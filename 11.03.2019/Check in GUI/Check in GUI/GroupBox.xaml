@@ -1,0 +1,116 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Check_in_GUI">
+    <Style TargetType="GroupBox" x:Key="FirstGroupbox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
+                            </Border.BorderBrush>
+
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource ContentAreaColorLight}"/>
+                            </Border.Background>
+
+                            <ContentPresenter Margin="4"
+                              ContentSource="Header"
+                              RecognizesAccessKey="True" />
+                        </Border>
+
+                        <Border Grid.Row="1">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="{StaticResource BorderMediumColor}" />
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <SolidColorBrush Color="{StaticResource MainBackroundGroupbox}" />
+                            </Border.Background>
+                            <ContentPresenter Margin="4" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SecondGroupbox" TargetType="GroupBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
+                            </Border.BorderBrush>
+
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource TopGroupboxLightBlue}"/>
+                            </Border.Background>
+
+                            <ContentPresenter Margin="4"
+                              ContentSource="Header"
+                              RecognizesAccessKey="True" />
+                        </Border>
+
+                        <Border Grid.Row="1">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="{StaticResource BorderMediumColor}" />
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <SolidColorBrush Color="{StaticResource SecondGroupboxColor}" />
+                            </Border.Background>
+                            <ContentPresenter Margin="4" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ThirdGroupbox" TargetType="GroupBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
+                            </Border.BorderBrush>
+
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource TopGroupboxBlue}"/>
+                            </Border.Background>
+
+                            <ContentPresenter Margin="4"
+                              ContentSource="Header"
+                              RecognizesAccessKey="True" />
+                        </Border>
+
+                        <Border Grid.Row="1">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="{StaticResource BorderMediumColor}" />
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <SolidColorBrush Color="{StaticResource ThirdGroupboxColor}" />
+                            </Border.Background>
+                            <ContentPresenter Margin="4" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
