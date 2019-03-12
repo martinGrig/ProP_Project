@@ -21,7 +21,7 @@
                     </Grid.RowDefinitions>
 
                     <!--Ticket info group box-->
-                    <GroupBox Grid.Column="0" Margin="10,10,5,0" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}"  Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <GroupBox Grid.Column="0" Margin="10,10,5,0" VerticalAlignment="Top" Header="Log-In" Style="{StaticResource FirstGroupbox}"  Grid.ColumnSpan="2" Grid.RowSpan="2">
                         <Grid 
                   >
                             <Grid.ColumnDefinitions>
@@ -40,18 +40,41 @@
                             <TextBlock Text="Emlployee Number" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
                             <TextBlock Text="Password" Grid.Row="1"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
 
-                            <!--Read only text boxes -->
+                            <!--text boxes -->
 
                             <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource NormalTextBox}"/>
                             <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource PasswordBox}" />
 
-                            <Button Content="Add An Employee" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
+                            <Button Content="Log-In" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Margin="5,10,10,10" Header="Program RFID chip" Style="{StaticResource SecondGroupbox}" Grid.Column="2" Grid.RowSpan="2">
+                    <GroupBox Margin="5,10,10,10" Header="Add An Employee" Style="{StaticResource SecondGroupbox}" Grid.Column="2" Grid.RowSpan="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <!--Textblocks-->
+                            <TextBlock Text="First Name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                            <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                            <TextBlock Text="JobID" Grid.Row="2" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                            <TextBlock Text="Password" Grid.Row="3"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                            <!--text boxes -->
 
-                        <Button Content="Add An Employee" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
+                            <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                            <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{StaticResource PasswordBox}" />
+                            <Button Content="Add An Employee" Grid.Column="1" Grid.Row="6" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
+                        </Grid>
                     </GroupBox>
 
                 </Grid>
