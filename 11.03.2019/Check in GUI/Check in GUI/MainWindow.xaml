@@ -43,7 +43,7 @@
 
                     <!--Read only text boxes -->
 
-                    <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1"  Grid.Row="0" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
                     <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource ReadOnlyTextBox}"/>
                     <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource ReadOnlyTextBox}"/>
 
@@ -72,7 +72,7 @@
                         <!--Email-->
 
                         <TextBlock Text="Email" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}" />
-                        <TextBox  Grid.Column="1" Style="{StaticResource NormalTextBox}"/>
+                        <TextBox  Grid.Column="1" Style="{StaticResource  placeHolder}" Tag="Enter email here"/>
                         <!--<TextBox  VerticalAlignment="Center" Grid.Row="0" Height="28"  VerticalContentAlignment="Center" Padding="2"/>-->
 
                         <!--Button-->
