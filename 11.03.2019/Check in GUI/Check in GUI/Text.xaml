@@ -171,7 +171,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BaseStyle}">
+    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource PasswordBox}">
 
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
