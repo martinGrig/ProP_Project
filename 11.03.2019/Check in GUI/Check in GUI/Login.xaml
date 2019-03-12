@@ -21,15 +21,10 @@
                     </Grid.RowDefinitions>
 
                     <!--Ticket info group box-->
-
-                    <GroupBox Grid.Column="0" Margin="10,10,5,0" VerticalAlignment="Top" Header="Employee Log-In
-                              " Style="{StaticResource FirstGroupbox}" Height="150" Grid.ColumnSpan="2" Grid.RowSpan="2">
-
                     <GroupBox Grid.Column="0" Margin="10,10,5,0" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}"  Grid.ColumnSpan="2" Grid.RowSpan="2">
-
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
+                        <Grid 
+                  >
+                            <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
@@ -54,7 +49,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Margin="5,10,10,10" Header="Add an Employee" Style="{StaticResource SecondGroupbox}" Grid.Column="2" Grid.RowSpan="2">
+                    <GroupBox Margin="5,10,10,10" Header="Program RFID chip" Style="{StaticResource SecondGroupbox}" Grid.Column="2" Grid.RowSpan="2">
 
                         <Button Content="Add An Employee" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
                     </GroupBox>

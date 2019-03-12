@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using Check_in_GUI;
-using MaterialMenu;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -31,23 +30,6 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
-using Telerik.Windows.Controls;
-using Telerik.Windows.Controls.Animation;
-using Telerik.Windows.Controls.Behaviors;
-using Telerik.Windows.Controls.Carousel;
-using Telerik.Windows.Controls.DragDrop;
-using Telerik.Windows.Controls.LayoutControl;
-using Telerik.Windows.Controls.Legend;
-using Telerik.Windows.Controls.Primitives;
-using Telerik.Windows.Controls.RadialMenu;
-using Telerik.Windows.Controls.TransitionEffects;
-using Telerik.Windows.Controls.TreeView;
-using Telerik.Windows.Controls.Wizard;
-using Telerik.Windows.Data;
-using Telerik.Windows.DragDrop;
-using Telerik.Windows.DragDrop.Behaviors;
-using Telerik.Windows.Input.Touch;
-using Telerik.Windows.Shapes;
 
 
 namespace Check_in_GUI {

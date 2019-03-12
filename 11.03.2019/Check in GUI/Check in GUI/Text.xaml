@@ -171,14 +171,14 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource PasswordBox}">
+    <Style TargetType="{x:Type PasswordBox}" x:Key="PasswordBox" BasedOn="{StaticResource BaseStyle}">
 
-        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
-        <Setter Property="Padding" Value="10" />
-        <Setter Property="Margin" Value="0 5 0 5" />
-        <Setter Property="BorderBrush" Value="{StaticResource WordBlueBrush}" />
-        <Setter Property="BorderThickness" Value="0 0 0 1" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="BorderBrush" Value="#4B87BF" />
+        <Setter Property="BorderThickness" Value="2" />
         <Setter Property="Height" Value="28"/>
 
         <!--<Setter Property="local:MonitorPasswordProperty.Value" Value="True" />-->
@@ -200,7 +200,6 @@
                         <TextBlock IsHitTestVisible="False"
                                    Text="{TemplateBinding Tag}"
                                    x:Name="placeholder"
-                                   FontFamily="{StaticResource LatoThin}"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
