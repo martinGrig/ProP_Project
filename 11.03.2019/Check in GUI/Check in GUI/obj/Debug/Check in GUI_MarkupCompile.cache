@@ -4,17 +4,30 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\
+=======
+C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\
+>>>>>>> 5cb690f05f67b1d8ae3996f13c8b341332c80f9d
 Check_in_GUI
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\App.xaml
 9136520303
 
 8856771127
 191942773824
 Camping.xaml;Colors.xaml;Fonts.xaml;GroupBox.xaml;Login.xaml;MainWindow.xaml;Test.xaml;Text.xaml;Button.xaml;
+=======
+C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\App.xaml
+8-162232512
+
+7-1528299683
+19-1678280951
+Camping.xaml;Colors.xaml;Fonts.xaml;GroupBox.xaml;Login.xaml;MainWindow.xaml;Text.xaml;Button.xaml;
+>>>>>>> 5cb690f05f67b1d8ae3996f13c8b341332c80f9d
 
 False
 

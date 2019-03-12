@@ -43,9 +43,15 @@
 
                         <!--Read only text boxes -->
 
+<<<<<<< HEAD
                         <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
                         <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource ReadOnlyTextBox}"/>
                         <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource ReadOnlyTextBox}"/>
+=======
+                    <TextBox Grid.Column="1"  Grid.Row="0" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource ReadOnlyTextBox}"/>
+>>>>>>> 5cb690f05f67b1d8ae3996f13c8b341332c80f9d
 
                         <!-- Image-->
                         <Image Source="Images/waiting.jpg" Height="120" Width="210" Grid.Row="3" Margin="10 10 10 30" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
@@ -74,8 +80,13 @@
 
                         <!--Email-->
 
+<<<<<<< HEAD
                         <TextBlock Text="Email" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}" Grid.ColumnSpan="2" Margin="10,17,0,16" />
                         <TextBox  Grid.Column="2" Style="{StaticResource NormalTextBox}" Margin="10,10,9.8,10" Grid.ColumnSpan="3"/>
+=======
+                        <TextBlock Text="Email" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}" />
+                        <TextBox  Grid.Column="1" Style="{StaticResource  placeHolder}" Tag="Enter email here"/>
+>>>>>>> 5cb690f05f67b1d8ae3996f13c8b341332c80f9d
                         <!--<TextBox  VerticalAlignment="Center" Grid.Row="0" Height="28"  VerticalContentAlignment="Center" Padding="2"/>-->
 
                         <!--Button-->
