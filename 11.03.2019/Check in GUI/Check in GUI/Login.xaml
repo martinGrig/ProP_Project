@@ -21,7 +21,7 @@
                     </Grid.RowDefinitions>
 
                     <!--Ticket info group box-->
-                    <GroupBox Grid.Column="0" Margin="10,10,5,0" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}" Height="150" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <GroupBox Grid.Column="0" Margin="10,10,5,0" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}"  Grid.ColumnSpan="2" Grid.RowSpan="2">
                         <Grid 
                   >
                             <Grid.ColumnDefinitions>
@@ -43,7 +43,7 @@
                             <!--Read only text boxes -->
 
                             <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource NormalTextBox}"/>
-                            <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource PasswordBox}"/>
+                            <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource PasswordBox}" />
 
                             <Button Content="Add An Employee" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
                         </Grid>
