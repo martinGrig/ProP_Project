@@ -23,5 +23,14 @@ namespace Check_in_GUI
         {
             InitializeComponent();
         }
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window2 = new MainWindow();
+            Login window1 = new Login();
+            window1.Show();
+
+            //Actions
+            Close();
+        }
     }
 }
