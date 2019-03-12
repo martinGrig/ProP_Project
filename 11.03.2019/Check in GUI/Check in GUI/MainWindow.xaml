@@ -7,62 +7,71 @@
         xmlns:materialMenu="clr-namespace:MaterialMenu;assembly=MaterialMenu"
         mc:Ignorable="d"
         Title="Check In" Height="380" Width="600" Icon="Images/dice.ico">
-    
+
     <Viewbox >
         <Border Padding="0" Width="600">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="170"/>
-                <RowDefinition Height="190"/>
-            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="170"/>
+                    <RowDefinition Height="190"/>
+                </Grid.RowDefinitions>
 
-            <!--Ticket info group box-->
-            <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}">
-                <Grid 
+                <!--Ticket info group box-->
+                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}">
+                    <Grid 
                   >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                    <!--Textblocks-->
+                        <!--Textblocks-->
 
-                    <TextBlock Text="Ticket Number" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                    <TextBlock Text="Name" Grid.Row="1"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                    <TextBlock Text="Surname" Grid.Row="2"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="Ticket Number" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="Name" Grid.Row="1"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="Surname" Grid.Row="2"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
 
-                    <!--Read only text boxes -->
+                        <!--Read only text boxes -->
 
+<<<<<<< HEAD
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
+                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource ReadOnlyTextBox}"/>
+                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource ReadOnlyTextBox}"/>
+=======
                     <TextBox Grid.Column="1"  Grid.Row="0" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
                     <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource ReadOnlyTextBox}"/>
                     <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource ReadOnlyTextBox}"/>
+>>>>>>> 5cb690f05f67b1d8ae3996f13c8b341332c80f9d
 
-                    <!-- Image-->
-                    <Image Source="Images/waiting.jpg" Height="120" Width="210" Grid.Row="3" Margin="10 10 10 30" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
+                        <!-- Image-->
+                        <Image Source="Images/waiting.jpg" Height="120" Width="210" Grid.Row="3" Margin="10 10 10 30" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
 
 
 
 
-                </Grid>
-            </GroupBox>
-            
-            <!--Purchase ticket viewbox-->
-            <GroupBox Grid.Column="1" Grid.RowSpan="2" Margin="5 10 10 5" VerticalAlignment="Top" Header="Purchase ticket" Style="{StaticResource ThirdGroupbox}">
-                 <Grid 
+                    </Grid>
+                </GroupBox>
+
+                <!--Purchase ticket viewbox-->
+                <GroupBox Grid.Column="1" Grid.RowSpan="2" Margin="5 10 10 5" VerticalAlignment="Top" Header="Purchase ticket" Style="{StaticResource ThirdGroupbox}">
+                    <Grid 
                  >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="73*" />
-                            <ColumnDefinition Width="207*" />
+                            <ColumnDefinition Width="31*" />
+                            <ColumnDefinition Width="41*"/>
+                            <ColumnDefinition Width="134*" />
+                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="38*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="107*" />
@@ -71,24 +80,29 @@
 
                         <!--Email-->
 
+<<<<<<< HEAD
+                        <TextBlock Text="Email" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}" Grid.ColumnSpan="2" Margin="10,17,0,16" />
+                        <TextBox  Grid.Column="2" Style="{StaticResource NormalTextBox}" Margin="10,10,9.8,10" Grid.ColumnSpan="3"/>
+=======
                         <TextBlock Text="Email" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}" />
                         <TextBox  Grid.Column="1" Style="{StaticResource  placeHolder}" Tag="Enter email here"/>
+>>>>>>> 5cb690f05f67b1d8ae3996f13c8b341332c80f9d
                         <!--<TextBox  VerticalAlignment="Center" Grid.Row="0" Height="28"  VerticalContentAlignment="Center" Padding="2"/>-->
 
                         <!--Button-->
-                        <Button Content="Purchase" Grid.Row="1" Grid.ColumnSpan="2" Margin="10" Height="50"  Style="{StaticResource ButtonTest}"/>
+                        <Button Content="Purchase" Grid.Row="1" Grid.ColumnSpan="5" Margin="10,10,9.8,10.4" Height="50"  Style="{StaticResource ButtonTest}"/>
                     </Grid>
-            </GroupBox>
+                </GroupBox>
 
-            <!--Program chip-->
-            <GroupBox Grid.Column="1" Grid.Row="1" Margin="5 5 10 10" Header="Program RFID chip" Style="{StaticResource SecondGroupbox}">
-                 <Button Content="Program chip" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="70"/>
-            </GroupBox>
-            
+                <!--Program chip-->
+                <GroupBox Grid.Column="1" Grid.Row="1" Margin="5 5 10 10" Header="Program RFID chip" Style="{StaticResource SecondGroupbox}">
+                    <Button Content="Program chip" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="70"/>
+                </GroupBox>
 
-        </Grid>
-    </Border>
+
+            </Grid>
+        </Border>
     </Viewbox>
-    
+
 
 </Window>

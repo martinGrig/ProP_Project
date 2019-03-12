@@ -1,3 +1,43 @@
+<<<<<<< HEAD
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Check in GUI.exe.config
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Check in GUI.exe
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Check in GUI.pdb
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\MaterialMenu.dll
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Telerik.Windows.Controls.xml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Telerik.Windows.Controls.Navigation.xml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Telerik.Windows.Data.xml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\de\Telerik.Windows.Controls.resources.dll
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\es\Telerik.Windows.Controls.resources.dll
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\fr\Telerik.Windows.Controls.resources.dll
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\it\Telerik.Windows.Controls.resources.dll
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\nl\Telerik.Windows.Controls.resources.dll
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\tr\Telerik.Windows.Controls.resources.dll
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\EventManager.csprojAssemblyReference.cache
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Camping.g.cs
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Login.g.cs
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\MainWindow.g.cs
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\App.g.cs
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Check in GUI_MarkupCompile.cache
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Check in GUI_MarkupCompile.lref
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\App.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Camping.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Colors.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Fonts.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\GroupBox.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Login.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\MainWindow.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Text.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Button.baml
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Check in GUI.g.resources
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Check_in_GUI.Properties.Resources.resources
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\EventManager.csproj.GenerateResource.cache
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\EventManager.csproj.CoreCompileInputs.cache
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Check in GUI.exe
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Check in GUI.pdb
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Test.g.cs
+C:\Users\Martin Grigorov\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Test.baml
+=======
 C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Check in GUI.exe.config
 C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Check in GUI.exe
 C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\bin\Debug\Check in GUI.pdb
@@ -37,3 +77,4 @@ C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\
 C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
 C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Check in GUI.exe
 C:\Users\David\project-p-phase_group17\11.03.2019\Check in GUI\Check in GUI\obj\Debug\Check in GUI.pdb
+>>>>>>> 5cb690f05f67b1d8ae3996f13c8b341332c80f9d
