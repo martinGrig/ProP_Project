@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+                function confirmInput() {
+                    fname = document.forms[0].fname.value;
+                    alert("Hello " + fname + "! You will now be redirected to the home page.");
+                }
+        </script>
+        <title>BoardGames Log In</title>
+        <link href="styles.css" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+        <div class="header">
+        </div>
+        <div class="topnav">
+                <a href="Home.html">Home</a>
+                <a href="AboutUs.html">About us</a>
+                <a href="ContactUs.html">Contact us</a>
+                <a href="Reviews.html">Reviews</a>
+                <a href="LogIn.html" style="float:right">Log in</a>
+            </div>
+        <div class="row">
+            <div class="column centre ">
+              <div class="card">
+                <h2>Log In</h2>
+                <form onsubmit="confirmInput()" action="Home.html">
+                    <input id="fname" type="text" placeholder="Ticket Number"><br>
+                    <input name="number" type="password" placeholder="Password"><br>
+                    <input type="submit" value="Log in"><br>
+                </form>
+              </div>
+            </div>
+        </div>
+        <div class="footer">
+            <h2>
+                ADDRESS
+            </h2>
+            <p>
+                Eindhoven, Netherlands
+            </p>
+            <h2>
+                CONTACT
+            </h2>
+            <p>
+                info@mysite.com<br>
+                Tel: 123-456-7890
+            </p>
+            <h2>
+                BoardGames
+            </h2>
+            <p>
+                © 2019 by BoardGames
+            </p>
+            <h2>
+                WE ACCEPT
+            </h2>
+            <p>
+                <img src="weaccept.png" width="300" height="100">
+            </p>
+        </div>
+    </body>
+</html>
