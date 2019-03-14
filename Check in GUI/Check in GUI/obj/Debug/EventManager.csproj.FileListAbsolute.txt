@@ -15,22 +15,16 @@ C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\bin\Debug\it\Te
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\bin\Debug\nl\Telerik.Windows.Controls.resources.dll
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\bin\Debug\tr\Telerik.Windows.Controls.resources.dll
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\EventManager.csprojAssemblyReference.cache
-C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Camping.g.cs
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Logfile Converter.g.cs
-C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Login.g.cs
-C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\MainWindow.g.cs
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Test.g.cs
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\App.g.cs
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Check in GUI_MarkupCompile.cache
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Check in GUI_MarkupCompile.lref
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\App.baml
-C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Camping.baml
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Colors.baml
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Fonts.baml
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\GroupBox.baml
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Logfile Converter.baml
-C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Login.baml
-C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\MainWindow.baml
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Test.baml
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Text.baml
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Button.baml
@@ -41,3 +35,10 @@ C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Event
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Check in GUI.exe
 C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Check in GUI.pdb
+C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\CampingWindow.g.cs
+C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\LoginWindow.g.cs
+C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\CheckInWindow.g.cs
+C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\CampingWindow.baml
+C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\LoginWindow.baml
+C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\CheckInWindow.baml
+C:\Users\David\project-p-phase_group17\Check in GUI\Check in GUI\obj\Debug\Window.baml

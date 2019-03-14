@@ -13,24 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Check_in_GUI
+namespace EventManager
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CheckInWindow : Window
     {
-        public MainWindow()
+        public CheckInWindow()
         {
             InitializeComponent();
         }
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow window2 = new MainWindow();
-            Login window1 = new Login();
-            window1.Show();
-
+            CampingWindow window2 = new CampingWindow();
+            window2.Show();
             //Actions
             Close();
         }

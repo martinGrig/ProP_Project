@@ -12,25 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Check_in_GUI
+namespace EventManager
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Logfile_Converter.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class LogfileConverterWindow : Window
     {
-        public Login()
+        public LogfileConverterWindow()
         {
             InitializeComponent();
-        }
-        private void NextPageButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow window1 = new MainWindow();
-            Login window2 = new Login();
-            window1.Show();
-
-            //Actions
-            Close();
         }
     }
 }

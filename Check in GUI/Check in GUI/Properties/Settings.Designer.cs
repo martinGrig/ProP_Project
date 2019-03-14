@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Check_in_GUI.Properties
+namespace EventManager.Properties
 {
 
 
