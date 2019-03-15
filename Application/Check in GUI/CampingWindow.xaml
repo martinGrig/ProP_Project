@@ -5,58 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventManager"
         mc:Ignorable="d"
-        Title="Camping" Height="450" Width="300"
+        Title="Camping" Height="450" Width="800"
         WindowState="Maximized"
         >
 
     <Viewbox>
         <Border>
             <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Camping group information" Style="{StaticResource FirstGroupbox}">
-            <Grid 
+                <Grid 
                   >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="165"/>
+                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <!--Textblocks-->
+                    <!--Textblocks-->
 
-                <TextBlock Text="Group Leader" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                <TextBlock Text="Reserved Camping spot" Grid.Row="1"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                <TextBlock Text="Amount of participants" Grid.Row="2"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                <TextBlock Text="Payment Status" Grid.Row="3"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                    <TextBlock Text="Group Leader" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                    <TextBlock Text="Reserved Camping spot" Grid.Row="1"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                    <TextBlock Text="Amount of participants" Grid.Row="2"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                    <TextBlock Text="Payment Status" Grid.Row="3"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
 
-                <!--Read only text boxes -->
+                    <!--Read only text boxes -->
 
-                <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="0" Style="{DynamicResource ReadOnlyTextBox}"/>
-                <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource ReadOnlyTextBox}"/>
-                <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource ReadOnlyTextBox}"/>
-                <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="0" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{DynamicResource ReadOnlyTextBox}"/>
 
-                <!-- Image-->
-                <Image Source="Images/waiting.jpg" Height="Auto" Width="300" Grid.Row="4" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
-                
-                <!--Button-->
-                <Button Content="Pay for camping spot"  Grid.Row="5" Style="{StaticResource ButtonTest}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10" Height="75" Width="300" Name="PayForCampingSpotButton" />
+                    <!-- Image-->
+                    <Image Source="Images/waiting.jpg"  Width="300" Grid.Row="0" Grid.RowSpan="3" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="Fill" Grid.Column="2"/>
 
-                <!--Navigation Button-->
-                <Button Grid.Column="1" Grid.Row="6" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" />
+                    <!--Button-->
+                    <Button Content="Pay for camping spot" Grid.Column="2" Grid.Row="3" Style="{StaticResource ButtonTest}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="10" Height="75" Width="300" Name="PayForCampingSpotButton" />
 
-                <!--Test Button-->
-                    <Button Grid.Column="0" Grid.Row="6" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="PaidOrUnpaidButton" Click="PaidOrUnpaidButton_Click"/>
+                    <!--Navigation Button-->
+                    <Button Grid.Column="1" Grid.Row="3" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" />
+
+                    <!--Test Button-->
+                    <Button Grid.Column="0" Grid.Row="3" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="PaidOrUnpaidButton" Click="PaidOrUnpaidButton_Click"/>
 
 
                 </Grid>
-        </GroupBox>
+            </GroupBox>
         </Border>
-        
+
     </Viewbox>
 </Window>
