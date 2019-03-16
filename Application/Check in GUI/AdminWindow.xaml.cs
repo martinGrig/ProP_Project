@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Check_in_GUI
+namespace EventManager
 {
     /// <summary>
     /// Interaction logic for AdminWindow.xaml

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Check_in_GUI
+namespace EventManager
 {
     /// <summary>
     /// Interaction logic for CheckOutWindow.xaml
@@ -23,5 +24,15 @@ namespace Check_in_GUI
         {
             InitializeComponent();
         }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow window1 = new LoginWindow();
+            window1.Show();
+            //Actions
+            Close();
+        }
+
+
     }
 }

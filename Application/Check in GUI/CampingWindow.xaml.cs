@@ -28,7 +28,7 @@ namespace EventManager
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow window2 = new LoginWindow();
+            LogfileConverterWindow window2 = new LogfileConverterWindow();
             window2.Show();
             //Actions
             Close();

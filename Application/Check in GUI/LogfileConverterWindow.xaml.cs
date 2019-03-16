@@ -23,5 +23,14 @@ namespace EventManager
         {
             InitializeComponent();
         }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            CheckOutWindow window2 = new CheckOutWindow();
+            window2.Show();
+            //Actions
+            Close();
+        }
+        
     }
 }

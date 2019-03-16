@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:EventManager">
     <Style TargetType="GroupBox" x:Key="FirstGroupbox">
+        <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
@@ -12,16 +13,17 @@
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0">
                             <Border.BorderBrush>
-                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
+                                <SolidColorBrush Color="{StaticResource BorderMediumColor}"/>
                             </Border.BorderBrush>
 
                             <Border.Background>
-                                <SolidColorBrush Color="{DynamicResource ContentAreaColorLight}"/>
+                                <SolidColorBrush Color="{StaticResource ContentAreaColorLight}"/>
                             </Border.Background>
 
                             <ContentPresenter Margin="4"
                               ContentSource="Header"
-                              RecognizesAccessKey="True" />
+                              RecognizesAccessKey="True"
+                              HorizontalAlignment="Center"/>
                         </Border>
 
                         <Border Grid.Row="1">
@@ -40,6 +42,7 @@
     </Style>
 
     <Style x:Key="SecondGroupbox" TargetType="GroupBox">
+        <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
@@ -50,16 +53,17 @@
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0">
                             <Border.BorderBrush>
-                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
+                                <SolidColorBrush Color="{StaticResource BorderMediumColor}"/>
                             </Border.BorderBrush>
 
                             <Border.Background>
-                                <SolidColorBrush Color="{DynamicResource TopGroupboxLightBlue}"/>
+                                <SolidColorBrush Color="{StaticResource TopGroupboxLightBlue}"/>
                             </Border.Background>
 
                             <ContentPresenter Margin="4"
                               ContentSource="Header"
-                              RecognizesAccessKey="True" />
+                              RecognizesAccessKey="True"
+                              HorizontalAlignment="Center"/>
                         </Border>
 
                         <Border Grid.Row="1">
@@ -77,6 +81,7 @@
         </Setter>
     </Style>
     <Style x:Key="ThirdGroupbox" TargetType="GroupBox">
+        <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
@@ -87,16 +92,17 @@
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0">
                             <Border.BorderBrush>
-                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
+                                <SolidColorBrush Color="{StaticResource BorderMediumColor}"/>
                             </Border.BorderBrush>
 
                             <Border.Background>
-                                <SolidColorBrush Color="{DynamicResource TopGroupboxBlue}"/>
+                                <SolidColorBrush Color="{StaticResource TopGroupboxBlue}"/>
                             </Border.Background>
 
                             <ContentPresenter Margin="4"
                               ContentSource="Header"
-                              RecognizesAccessKey="True" />
+                              RecognizesAccessKey="True"
+                              HorizontalAlignment="Center"/>
                         </Border>
 
                         <Border Grid.Row="1">

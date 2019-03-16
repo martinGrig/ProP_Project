@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventManager"
         mc:Ignorable="d"
-        Title="Logfile_Converter" Height="190" Width="250">
+        Title="Logfile_Converter" Height="190" Width="250"
+        WindowState="Maximized">
     <Viewbox Width="Auto">
         <Border Height="210" Width="330"  Margin="10" >
             <GroupBox Header="Transaction File Converter" Style="{StaticResource ThirdGroupbox}">
@@ -25,7 +26,9 @@
                 <TextBox Style="{StaticResource ReadOnlyTextBox}" Grid.Row="1" Grid.ColumnSpan="2"/>
                 <Button Content="Convert and Update Database" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ButtonTest}" Margin="10"/>
 
-            </Grid>
+                <Button Grid.Column="1" Grid.Row="2" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" />
+
+                </Grid>
             </GroupBox>
             
         </Border>
