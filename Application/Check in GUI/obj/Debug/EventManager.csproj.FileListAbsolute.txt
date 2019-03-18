@@ -145,3 +145,7 @@ C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\De
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.exe
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employee.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\ShopWindow.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employee.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\ShopWindow.baml
