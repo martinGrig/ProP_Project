@@ -64,12 +64,12 @@
 
                         <Button Content="Check-In" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
                         <Button Content="CampingApp" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
-                        <Button Content="Beverages" Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Event Status" Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
                         <Button Content="Loan Boot" Grid.Column="0" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
                         <Button Content="Check-Out" Grid.Column="1" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
-                        <Button Content="Inspect Visior" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
-                        <Button Content="ATM" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
-                        <Button Content="DataBase" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Inspect Visitor" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Converter" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Shops" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Margin="5,10,10,10" Header="Inspect Emplyee" Style="{StaticResource SecondGroupbox}" Grid.Column="1" Grid.RowSpan="2">

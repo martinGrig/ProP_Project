@@ -177,14 +177,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\hot-dog.png" />
     <Resource Include="Images\soda.png" />
     <Resource Include="Images\burger.ico" />
-    <Resource Include="soda.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="burger_cheeseburger_fast_food_food_junk_food_icon_0.ico" />
     <Content Include="Fonts\Montserrat-Regular.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
