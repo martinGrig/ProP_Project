@@ -49,9 +49,6 @@
                         <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource ReadOnlyTextBox}"/>
                         <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource ReadOnlyTextBox}"/>
 
-                    <TextBox Grid.Column="1"  Grid.Row="0" Height="28" Style="{StaticResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource ReadOnlyTextBox}"/>
 
 
                         <!-- Image-->
