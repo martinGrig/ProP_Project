@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml
-13-1637975350
+14-1752604586
 1135991279
-15447640200
+16-823139845
 1944909154
-AdminWindow.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Fonts.xaml;GroupBox.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
+AdminWindow.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Fonts.xaml;GroupBox.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
 
-True
+False
 
