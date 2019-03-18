@@ -72,6 +72,9 @@
     <Compile Include="Employee.xaml.cs">
       <DependentUpon>Employee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoanStand.xaml.cs">
+      <DependentUpon>LoanStand.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogfileConverterWindow.xaml.cs">
       <DependentUpon>LogfileConverterWindow.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GroupBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoanStand.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
