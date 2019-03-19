@@ -1,0 +1,34 @@
+﻿<Window x:Class="Check_in_GUI.AdminWindowOnlyApps"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Check_in_GUI"
+        mc:Ignorable="d"
+        Title="AdminWindowOnlyApps" Height="400" Width="500">
+    <Grid>
+        <GroupBox Margin="5,10,10,10" Header="Apps" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.RowSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Button Content="Check-In" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                <Button Content="CampingApp" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                <Button Content="Event Status" Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                <Button Content="Loan Boot" Grid.Column="0" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                <Button Content="Check-Out" Grid.Column="1" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                <Button Content="Inspect Visitor" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                <Button Content="Converter" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                <Button Content="Shops" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

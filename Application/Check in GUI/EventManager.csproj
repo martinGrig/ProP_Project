@@ -66,6 +66,9 @@
     <Compile Include="AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminWindowOnlyApps.xaml.cs">
+      <DependentUpon>AdminWindowOnlyApps.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CheckOutWindow.xaml.cs">
       <DependentUpon>CheckOutWindow.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindowOnlyApps.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
