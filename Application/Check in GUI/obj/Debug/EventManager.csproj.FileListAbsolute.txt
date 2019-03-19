@@ -202,3 +202,7 @@ C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Deb
 C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
 C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.exe
 C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindowOnlyApps.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoanStand.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindowOnlyApps.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoanStand.baml
