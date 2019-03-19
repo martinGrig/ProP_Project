@@ -149,7 +149,7 @@
                                 <SolidColorBrush Color="{StaticResource BorderMediumColor}" />
                             </Border.BorderBrush>
                             <Border.Background>
-                                <SolidColorBrush Color="{StaticResource FourthGroupboxColor}" />
+                                <SolidColorBrush Color="{DynamicResource SliderTrackDarkColor}" />
                             </Border.Background>
                             <ContentPresenter Margin="4" />
                         </Border>

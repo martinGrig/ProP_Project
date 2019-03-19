@@ -1,4 +1,5 @@
 ﻿
+<<<<<<< HEAD
 FC:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml;;
 FC:\Users\David\project-p-phase_group17\Application\Check in GUI\AdminWindow.xaml;;
 FC:\Users\David\project-p-phase_group17\Application\Check in GUI\AdminWindowOnlyApps.xaml;;
@@ -18,4 +19,25 @@ FC:\Users\David\project-p-phase_group17\Application\Check in GUI\Test.xaml;;
 FC:\Users\David\project-p-phase_group17\Application\Check in GUI\Text.xaml;;
 FC:\Users\David\project-p-phase_group17\Application\Check in GUI\Button.xaml;;
 FC:\Users\David\project-p-phase_group17\Application\Check in GUI\Window.xaml;;
+=======
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\App.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\AdminWindow.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\AdminWindowOnlyApps.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\CampingWindow.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\CheckOutWindow.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\Colors.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\Employee.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\Fonts.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\GroupBox.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\LoanStand.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\LogfileConverterWindow.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\LoginWindow.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\CheckInWindow.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\ShopWindow.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\Status.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\Test.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\Text.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\Button.xaml;;
+FC:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\Window.xaml;;
+>>>>>>> 9d9d252f3b746f1bc8f5c3e7d1a463e95d0e1af0
 
