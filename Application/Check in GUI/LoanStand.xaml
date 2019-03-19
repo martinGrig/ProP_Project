@@ -30,7 +30,7 @@
 
                         <!--Textblocks-->
 
-                        <TextBlock Text="Shop ID :" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}" Height="14.627" Margin="10, 5, 10, 5" Width="Auto"/>
+                        <TextBlock Text="Loan stand ID:" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}" Height="14.627" Margin="10, 5, 10, 5" Width="Auto"/>
 
                         <!--Read only text boxes -->
 
@@ -39,8 +39,8 @@
                             <TabItem>
                                 <TabItem.Header>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Food" Margin="0 0 10 0" VerticalAlignment="Center" />
-                                        <Image Source="Images/burger.ico" Height="25"/>
+                                        <TextBlock Text="Tech" Margin="0 0 10 0" VerticalAlignment="Center" />
+                                        <Image Source="Images/USB.png" Height="25"/>
                                     </StackPanel>
                                 </TabItem.Header>
                                 <Grid>
@@ -56,20 +56,13 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
-                                    <Button Content="Hamburger" Grid.Column="0" Grid.Row="0" Background="{StaticResource WordBlueBrush}" Margin="5"/>
-                                    <Button Content="Hotdog" Grid.Column="0"  Grid.Row="1" Background="{StaticResource WordBlueBrush}" Margin="5"/>
-                                    <Button Content="Hotdog" Grid.Column="1" Grid.Row="0" Background="{StaticResource WordBlueBrush}" Margin="5"/>
-                                    <Button Content="Hotdog" Grid.Column="1" Grid.Row="1" Background="{StaticResource WordBlueBrush}" Margin="5"/>
+                                    <Button Content="Charger" Grid.Column="0" Grid.Row="0" Background="{StaticResource WordBlueBrush}" Margin="5"/>
+                                    <Button Content="" Grid.Column="0"  Grid.Row="1" Background="{StaticResource WordBlueBrush}" Margin="5"/>
+                                    <Button Content="" Grid.Column="1" Grid.Row="0" Background="{StaticResource WordBlueBrush}" Margin="5"/>
+                                    <Button Content="" Grid.Column="1" Grid.Row="1" Background="{StaticResource WordBlueBrush}" Margin="5"/>
                                 </Grid>
                             </TabItem>
-                            <TabItem>
-                                <TabItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Beverages" Margin="0 0 10 0" VerticalAlignment="Center" />
-                                        <Image Source="Images/soda.png" Height="25"/>
-                                    </StackPanel>
-                                </TabItem.Header>
-                            </TabItem>
+                            
                         </TabControl>
 
                         <ListView Grid.Row="2" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2">
