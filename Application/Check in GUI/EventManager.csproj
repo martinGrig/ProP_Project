@@ -184,6 +184,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\logo_transparent.png" />
     <Resource Include="Images\hot-dog.png" />
     <Resource Include="Images\soda.png" />
     <Resource Include="Images\burger.ico" />

@@ -9,6 +9,25 @@
         WindowStartupLocation="CenterScreen"
         
         >
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                                    Storyboard.TargetName="Logo" 
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="1.0" To="0.0" Duration="0:0:1" 
+                                    AutoReverse="True" RepeatBehavior="Forever" />
+                    <DoubleAnimation
+                                    Storyboard.TargetName="Logo" 
+                                    Storyboard.TargetProperty=""
+                                    From="1.0" To="0.0" Duration="0:0:1" 
+                                    AutoReverse="True" RepeatBehavior="Forever" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
         <Viewbox>
             <Border Padding="0">
@@ -52,5 +71,7 @@
 
             </Border>
         </Viewbox>
+        <Border Background="White" Name="TempBack"/>
+        <Image Source="Images/logo_transparent.png" Name="Logo"/>
     </Grid>
 </Window>
