@@ -31,5 +31,14 @@ namespace EventManager
             //Actions
             Close();
         }
+
+        private void getRidOfBorder(object sender, EventArgs e)
+        {
+            
+                // Does not appear to have any effect:
+                // the brush remains yellow.
+                TempBack.Visibility = Visibility.Collapsed;
+            
+        }
     }
 }

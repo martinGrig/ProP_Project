@@ -9,21 +9,12 @@ Check_in_GUI
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\App.xaml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml
 18-27484725
 1135991279
-201685346228
-19-170734083
-AdminWindow.xaml;AdminWindowOnlyApps.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Status.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
-=======
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml
-17-2050721565
-1135991279
-19-964533343
+20743347638
 1944909154
-AdminWindow.xaml;AdminWindowOnlyApps.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
->>>>>>> 92fb1ee9bc056cbe13b65fd15723e5636d1a9c68
+AdminWindow.xaml;AdminWindowOnlyApps.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Status.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
 
 False
 
