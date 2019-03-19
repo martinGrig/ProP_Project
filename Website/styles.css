@@ -96,21 +96,27 @@ body {
 /* Add a card effect for articles */
 .card {
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 0px;
+  padding: 20px;
   margin-top: 20px;
   border-radius: 25px;
 }
 
 .card h1 {
   font-size: 80px;
+  color: orange;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .card h2 {
   font-size: 50px;
+  color: orange;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .card h3 {
   font-size: 25px;
+  color: orange;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 
@@ -124,11 +130,16 @@ body {
 
 /* Footer */
 .footer {
-  padding: 20px;
+  padding: 0px;
   text-align: center;
   background: rgba(255, 255, 255, 0.5);
   margin-top: 20px;
   border-radius: 25px;
+  float: left;
+  width: 25%;
+  min-height: 170px;
+  color: orange;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
@@ -158,7 +169,6 @@ body {
   float: left;
   width: 33.33%;
 }
-
 
 .row:after {
   content: "";
@@ -226,13 +236,14 @@ input {
   box-sizing: border-box;
   border: 5px solid #ccc;
   outline: none;
+  color: orange;
 }
 
 input:focus {
   border: 5px solid orange;
 }
 textarea{
-  width: 33%;
+  width: 76%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
