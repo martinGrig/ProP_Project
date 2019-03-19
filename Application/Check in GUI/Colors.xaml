@@ -14,6 +14,7 @@
 
     <Color x:Key="MainBackroundGroupbox">#FFD2E7F7</Color>
     <Color x:Key="SecondGroupboxColor">#FAB883</Color>
+    <Color x:Key="FourthGroupboxColor">#fff</Color>
     <Color x:Key="ThirdGroupboxColor">#FF7D66</Color>
     <Color x:Key="TopGroupboxLightBlue">#99DDFF</Color>
     <Color x:Key="TopGroupboxBlue">#50AEE3</Color>
