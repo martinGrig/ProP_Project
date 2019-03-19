@@ -17,13 +17,14 @@
                     <DoubleAnimation
                                     Storyboard.TargetName="Logo" 
                                     Storyboard.TargetProperty="Opacity"
-                                    From="1.0" To="0.0" Duration="0:0:1" 
-                                    AutoReverse="True" RepeatBehavior="Forever" />
+                                    From="0.0" To="1.0" Duration="0:0:3" 
+                                    AutoReverse="True"/>
                     <DoubleAnimation
-                                    Storyboard.TargetName="Logo" 
-                                    Storyboard.TargetProperty=""
-                                    From="1.0" To="0.0" Duration="0:0:1" 
-                                    AutoReverse="True" RepeatBehavior="Forever" />
+                                    Storyboard.TargetName="Logo"
+
+                                    Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
+
+                                    By="-400" Duration="0:0:2"/>
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
@@ -72,6 +73,12 @@
             </Border>
         </Viewbox>
         <Border Background="White" Name="TempBack"/>
-        <Image Source="Images/logo_transparent.png" Name="Logo"/>
+        <Image Source="Images/logo_transparent.png" Name="Logo">
+            <Image.RenderTransform>
+
+                <TranslateTransform Y="400"/>
+
+            </Image.RenderTransform>
+        </Image>
     </Grid>
 </Window>
