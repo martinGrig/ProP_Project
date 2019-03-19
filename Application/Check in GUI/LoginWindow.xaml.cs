@@ -37,7 +37,8 @@ namespace EventManager
             
                 // Does not appear to have any effect:
                 // the brush remains yellow.
-                TempBack.Visibility = Visibility.Collapsed;
+            TempBack.Visibility = Visibility.Collapsed;
+            Logo.Visibility = Visibility.Collapsed;
             
         }
     }

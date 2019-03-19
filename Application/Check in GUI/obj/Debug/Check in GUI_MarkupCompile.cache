@@ -4,25 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\
 Check_in_GUI
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\App.xaml
-18-27484725
-1135991279
-201685346228
-19-170734083
-=======
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml
 18-27484725
 1135991279
 16-985799183
 1944909154
->>>>>>> 475a46ad97782b5823cb3e08799e9b78b3751b9e
 AdminWindow.xaml;AdminWindowOnlyApps.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Status.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
 
-True
+False
 

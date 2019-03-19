@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:EventManager"
         mc:Ignorable="d"
         Title="Login" Height="450" Width="549.881"
-        WindowStartupLocation="CenterScreen" Icon="Webp.net-resizeimage.png"
-        
+        WindowStartupLocation="CenterScreen" Icon="Webp.net-resizeimage (3).png"
+        WindowState="Maximized"
         >
 
     <Window.Triggers>
@@ -15,7 +15,7 @@
             <BeginStoryboard>
                 <Storyboard>
                     <DoubleAnimation
-                                    BeginTime="0:0:0.5"                        
+                                    BeginTime="0:0:0"                        
                                     Storyboard.TargetName="Logo" 
                                     Storyboard.TargetProperty="Opacity"
                                     From="0.0" To="1.0" Duration="0:0:1" 
@@ -28,11 +28,11 @@
 
                                     By="-400" Duration="0:0:0.5"/>
                     <DoubleAnimation 
-                                    BeginTime="0:0:0.4"
+                                    BeginTime="0:0:0"
                                     Storyboard.TargetName="TempBack"
 
                                     Storyboard.TargetProperty="Opacity"
-                                    From="1.0" To="0.0" Duration="0:0:1.5"
+                                    From="1.0" To="0.0" Duration="0:0:2"
                                     Completed="getRidOfBorder" />
                 </Storyboard>
             </BeginStoryboard>
