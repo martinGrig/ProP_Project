@@ -4,25 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\
 Check_in_GUI
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\App.xaml
-15-1246536877
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\App.xaml
+16-1342039717
 1135991279
-17-1505299805
-19-170734083
-=======
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml
-15-1246536877
-1135991279
-13118522080
-1944909154
->>>>>>> 15dc9402f7481b10aa400edc426ce144b7bf962b
-AdminWindow.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
+14-1590747373
+19855914173
+AdminWindow.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
 
-True
+False
 

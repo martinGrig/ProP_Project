@@ -149,3 +149,56 @@ C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employ
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\ShopWindow.g.cs
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employee.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\ShopWindow.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\Fonts\Montserrat-Regular.otf
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\Check in GUI.exe.config
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\Check in GUI.exe
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\Check in GUI.pdb
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\MaterialMenu.dll
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Controls.xml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Controls.Navigation.xml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Data.xml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\de\Telerik.Windows.Controls.resources.dll
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\es\Telerik.Windows.Controls.resources.dll
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\fr\Telerik.Windows.Controls.resources.dll
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\it\Telerik.Windows.Controls.resources.dll
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\nl\Telerik.Windows.Controls.resources.dll
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\bin\Debug\tr\Telerik.Windows.Controls.resources.dll
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csprojAssemblyReference.cache
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindow.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\CampingWindow.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\CheckOutWindow.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employee.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoanStand.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\LogfileConverterWindow.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoginWindow.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\CheckInWindow.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\ShopWindow.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Test.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\App.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI_Content.g.cs
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI_MarkupCompile.cache
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI_MarkupCompile.lref
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\App.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindow.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\CampingWindow.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\CheckOutWindow.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Colors.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employee.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Fonts.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\GroupBox.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoanStand.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\LogfileConverterWindow.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoginWindow.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\CheckInWindow.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\ShopWindow.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Test.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Text.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Button.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Window.baml
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.g.resources
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check_in_GUI.Properties.Resources.resources
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.GenerateResource.cache
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.CoreCompileInputs.cache
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.exe
+C:\Users\Dimitar Ivanov\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.pdb
