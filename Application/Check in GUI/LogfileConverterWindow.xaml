@@ -16,18 +16,24 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
-                <TextBlock Style="{StaticResource HeaderText}" Text="Load transaction-log-file:" />
-                <Button Style="{StaticResource ButtonTest}"  Grid.Column="1" Grid.Row="0" Content="Load" Margin="0 0 10 0"/>
+                <TextBlock Style="{StaticResource HeaderText}" Text="Load transaction-log-file:" Margin="20"/>
+                <Button Style="{StaticResource ButtonTest}"  Grid.Column="1" Grid.Row="0" Content="Load" Margin="10 10 10 10"/>
                 <TextBox Style="{StaticResource ReadOnlyTextBox}" Grid.Row="1" Grid.ColumnSpan="2"/>
-                <Button Content="Convert and Update Database" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ButtonTest}" Margin="10"/>
-                    <ListBox Grid.Row="3" Grid.ColumnSpan="2" Margin="10"/>
-                    <Button Grid.Column="1" Grid.Row="3" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" />
+                    <ListBox Grid.Row="2" Grid.ColumnSpan="2" Margin="10"/>
+                    
+                    <Button Grid.Column="1" Grid.Row="3" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" Visibility="Collapsed" />
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                        <Button Style="{StaticResource ButtonTest}" Height="40"  Content="Upload Selected" Margin="10 10 10 10"/>
+                        <Button Style="{StaticResource ButtonTest}" Content="Ignore Selected" Margin="10 10 10 10"/>
+                        <Button Style="{StaticResource ButtonTest}" Content="Upload Everything" Margin="10 10 10 10"/>
+
+                    </StackPanel>
 
                 </Grid>
             </GroupBox>

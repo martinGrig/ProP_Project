@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using SourceWeave.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +14,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace EventManager
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow : SWWindow
     {
         public LoginWindow()
         {

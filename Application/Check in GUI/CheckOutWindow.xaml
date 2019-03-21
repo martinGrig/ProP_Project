@@ -20,7 +20,7 @@
                         <RowDefinition Height="100" />
                     </Grid.RowDefinitions>
 
-                    <Image Source="Images/waiting.jpg" Grid.Column="0" Grid.RowSpan="2" Width="400"  Grid.Row="0" Margin="10 10 5 10" Stretch="Fill" />
+                    <Image Source="Images/CheckOut2.png" Grid.Column="0" Grid.RowSpan="2" Width="400"  Grid.Row="0" Margin="10 10 5 10" Stretch="Fill" />
                     
                     <ListView Margin="5 10 10 5" Grid.Column="1">
                         <ListView.View>

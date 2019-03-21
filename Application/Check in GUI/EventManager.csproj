@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialMenu, Version=0.0.4.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialMenu.0.0.4.5\lib\net46\MaterialMenu.dll</HintPath>
     </Reference>
@@ -160,6 +163,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +198,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\databaseToFileIcon.png" />
+    <Resource Include="Images\fairground.png" />
+    <Resource Include="Images\overview.png" />
+    <Resource Include="Images\camp.png" />
+    <Resource Include="Images\check-out.png" />
+    <Resource Include="Images\point.png" />
+    <Resource Include="Images\TransactionCompleted.png" />
+    <Resource Include="Images\CheckOut2.png" />
+    <Resource Include="Images\CheckinUnsuccessful.png" />
+    <Resource Include="Images\CheckinSuccess.png" />
     <Resource Include="Webp.net-resizeimage %283%29.png" />
     <Resource Include="Webp.net-resizeimage %281%29.png" />
     <Resource Include="Images\MLogo.png" />
@@ -206,7 +223,9 @@
     <Content Include="Fonts\Montserrat-Regular.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -221,6 +240,11 @@
   <ItemGroup>
     <Resource Include="Images\dice.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SourceWeave.Controls\SourceWeave.Controls.csproj">
+      <Project>{7286E3A4-21F9-45DA-A0CD-2B2037289F99}</Project>
+      <Name>SourceWeave.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

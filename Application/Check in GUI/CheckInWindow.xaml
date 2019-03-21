@@ -52,7 +52,7 @@
 
 
                         <!-- Image-->
-                        <Image Source="Images/waiting.jpg" Height="140"  Grid.Row="3" Margin="10 10 10 30" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
+                        <Image Source="Images/CheckinUnsuccessful.png" Height="140"  Grid.Row="3" Margin="10,10,10,30" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
 
 
 
@@ -96,7 +96,7 @@
                     <Button Content="Program chip" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="70"/>
                 </GroupBox>
 
-                <Button Grid.Column="1" Grid.Row="1" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" />
+                <Button Grid.Column="1" Grid.Row="1" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" Visibility="Collapsed" />
 
 
             </Grid>

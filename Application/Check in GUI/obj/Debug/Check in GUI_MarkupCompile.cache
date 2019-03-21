@@ -9,20 +9,12 @@ Check_in_GUI
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml
-18-27484725
+192012391799
 1135991279
 16-985799183
-1944909154
-=======
-C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\App.xaml
-18-27484725
-1135991279
-201685346228
-19-170734083
->>>>>>> 9d9d252f3b746f1bc8f5c3e7d1a463e95d0e1af0
-AdminWindow.xaml;AdminWindowOnlyApps.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Status.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
+21-1454941116
+AdminWindow.xaml;AdminWindowOnlyApps.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Status.xaml;Style.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
 
 False
 
