@@ -91,10 +91,9 @@
                             <RowDefinition Height="185*" />
                         </Grid.RowDefinitions>
 
-                        <Image Source="Images/waiting.jpg"  Grid.Row="0" Margin="10,10,10,4.603" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
+                        <Image Source="Images/waiting.jpg"  Grid.Row="0" Margin="10,10,10,4.603" Grid.ColumnSpan="2" Grid.RowSpan="2" Stretch="UniformToFill"/>
 
                         <!--Button-->
-                        <Button Content="Purchase" Grid.Row="1" Grid.ColumnSpan="2" Margin="10, 5 , 10,5" Style="{StaticResource ButtonTest}"/>
                         <ListView Grid.Row="2" Grid.Column="0" Margin="10 5 10 5" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>

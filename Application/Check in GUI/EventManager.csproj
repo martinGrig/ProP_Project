@@ -198,6 +198,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\icons8-multiply-96.png" />
     <Resource Include="Images\databaseToFileIcon.png" />
     <Resource Include="Images\fairground.png" />
     <Resource Include="Images\overview.png" />
