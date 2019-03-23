@@ -23,11 +23,11 @@
                 </Grid.RowDefinitions>
 
                 <!--Ticket info group box-->
-                <Border  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderThickness="4" BorderBrush="Gray" Margin="10 10 5 10">
+                <Border  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderThickness="2" BorderBrush="Gray" Margin="10 10 5 10">
                     <Image Source="Images/ScanQrCode.png"/>
                 </Border>
                 
-                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}" Visibility="Visible">
+                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}" Visibility="Collapsed">
                     <Grid 
                   >
                         <Grid.ColumnDefinitions>
@@ -96,11 +96,10 @@
                 </GroupBox>
 
                 <!--Program chip-->
-                <GroupBox Grid.Column="1" Grid.Row="1" Margin="5 5 10 10" Header="Program RFID chip" Style="{StaticResource SecondGroupbox}">
-                    <Button Content="Program chip" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="70"/>
-                </GroupBox>
+                
+                    <Image Source="Images/ScanOrBuyTicket.png" Grid.Column="1" Grid.Row="1" Margin="5 5 10 10"/>
 
-                <Button Grid.Column="1" Grid.Row="1" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" Visibility="Collapsed" />
+                    <Button Grid.Column="1" Grid.Row="1" Height="40" Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="NextPageButton" Click="NextPageButton_Click" Visibility="Collapsed" />
 
 
             </Grid>
