@@ -91,7 +91,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Themes\icons8-multiply-96.png" />
+    <Resource Include="Themes\Close icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

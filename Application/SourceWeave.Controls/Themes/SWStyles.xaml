@@ -3,7 +3,7 @@
                     xmlns:fa="http://schemas.fontawesome.io/icons/"
                     xmlns:local="clr-namespace:SourceWeave.Controls">
 
-    
+    <FontFamily x:Key="FontAwesome">/Fonts/FontAwesome.ttf#FontAwesome</FontFamily>
     <Style TargetType="{x:Type Button}" x:Key="WindowButtonStyle">
         <Setter Property="Template">
             <Setter.Value>
@@ -74,7 +74,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="Webp.net-resizeimage (1).png"/>
+                                <Image Source="Webp.net-resizeimage (1).png" Margin="10 0 0 0"/>
 
                                 <TextBlock Text="{TemplateBinding Title}" 
                                            Grid.Column="0"
@@ -98,25 +98,24 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Button x:Name="MinimizeButton" Style="{StaticResource WindowButtonStyle}" 
-                                            fa:Awesome.Content="WindowMinimize" 
-                                            TextElement.FontFamily="pack://application:,,,/Themes/#FontAwesome"
-                                            Grid.Column="0"/>
+                                            Grid.Column="0">
+                                        <fa:FontAwesome Icon="WindowMinimize"  />
+                                    </Button>
                                     <Button x:Name="MaximizeButton" Style="{StaticResource WindowButtonStyle}" 
-                                            fa:Awesome.Content="WindowMaximize" 
-                                            TextElement.FontFamily="pack://application:,,,/Themes/#FontAwesome"
-                                            Grid.Column="1"/>
+                                            Grid.Column="1" Visibility="Collapsed">
+                                        <fa:FontAwesome Icon="WindowMaximize" />
+                                    </Button>
 
-                                    <Button x:Name="RestoreButton" Style="{StaticResource WindowButtonStyle}" 
-                                            fa:Awesome.Content="WindowRestore"
-                                            Visibility="Collapsed"
-                                            TextElement.FontFamily="pack://application:,,,/Themes/#FontAwesome"
-                                            Grid.Column="1"/>
+                                    <Button x:Name="RestoreButton" Style="{StaticResource WindowButtonStyle}"
+                                            Grid.Column="1">
+                                        <fa:FontAwesome Icon="WindowRestore" />
+                                    </Button>
 
                                     <Button x:Name="CloseButton" Style="{StaticResource WindowButtonStyle}" 
-                                            fa:Awesome.Content="Times" 
-                                            TextElement.FontFamily="pack://application:,,,/Themes/#FontAwesome"
-                                            TextElement.FontSize="24"
-                                            Grid.Column="2"/>
+                                            Grid.Column="2">
+                                        <fa:FontAwesome Icon="Close" FontSize="24"/>
+                                    </Button>
+                                    
                                 </Grid>
                             </Grid>
 

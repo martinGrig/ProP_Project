@@ -23,7 +23,11 @@
                 </Grid.RowDefinitions>
 
                 <!--Ticket info group box-->
-                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}">
+                <Border  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderThickness="4" BorderBrush="Gray" Margin="10 10 5 10">
+                    <Image Source="Images/ScanQrCode.png"/>
+                </Border>
+                
+                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}" Visibility="Visible">
                     <Grid 
                   >
                         <Grid.ColumnDefinitions>

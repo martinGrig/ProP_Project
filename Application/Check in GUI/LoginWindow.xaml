@@ -41,13 +41,13 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid>
-        <Viewbox>
+        <Viewbox >
             <Border Padding="0">
                 <!--<Border.Background>
                     <ImageBrush ImageSource="/Images/background.png" Stretch="UniformToFill"/>
                 </Border.Background>-->
 
-                <GroupBox Grid.Column="0"  Width="300" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Header="Log-In" Style="{StaticResource FirstGroupbox}"  Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <GroupBox Grid.Column="0"  Width="300" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Header="Log-In" Style="{StaticResource FirstGroupbox}" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <Grid 
                   >
                         <Grid.ColumnDefinitions>

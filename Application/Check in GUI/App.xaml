@@ -17,8 +17,8 @@
                 <ResourceDictionary Source="GroupBox.xaml"/>
                 <ResourceDictionary Source="Window.xaml"/>
                 
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </Application.Resources>
 </Application>
