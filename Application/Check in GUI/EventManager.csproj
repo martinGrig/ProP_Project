@@ -198,6 +198,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\ScanBracletShop.png" />
+    <Resource Include="Images\RFID account successful.png" />
     <Resource Include="Images\Scan Braclet.png" />
     <Resource Include="Images\ScanOrBuyTicket.png" />
     <Resource Include="Images\ScanQrCode.png" />

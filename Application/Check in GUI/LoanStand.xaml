@@ -68,10 +68,10 @@
                         <ListView Grid.Row="2" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Selected item" Width="130"/>
+                                    <GridViewColumn Header="Selected item" />
                                     <GridViewColumn Header="Price" Width="50"/>
                                     <GridViewColumn Header="Quantity" Width="75"/>
-                                    <GridViewColumn Header="Subtotal" Width="100"/>
+                                    <GridViewColumn Header="Subtotal" />
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -91,19 +91,11 @@
                             <RowDefinition Height="185*" />
                         </Grid.RowDefinitions>
 
-                        <Image Source="Images/waiting.jpg"  Grid.Row="0" Margin="10,10,10,4.603" Grid.ColumnSpan="2" Grid.RowSpan="2" Stretch="UniformToFill"/>
+                        <Image Source="Images/TransactionCompleted.png"  Grid.Row="0" Margin="10,10,10,4.603" Grid.ColumnSpan="2" Grid.RowSpan="2" Stretch="Fill"/>
 
                         <!--Button-->
-                        <ListView Grid.Row="2" Grid.Column="0" Margin="10 5 10 5" Grid.ColumnSpan="2">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Selected item" Width="130"/>
-                                    <GridViewColumn Header="Price" Width="50"/>
-                                    <GridViewColumn Header="Quantity" Width="75"/>
-                                    <GridViewColumn Header="Subtotal" Width="100"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Receipt:" Margin="10 5 0 0"/>
+                        <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="10,25,10.4,10"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Grid.Column="2" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Stretch" Header="Items" Style="{StaticResource FirstGroupbox}">
@@ -122,14 +114,13 @@
                         <ListView Grid.Row="1" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Selected item" Width="130"/>
-                                    <GridViewColumn Header="Price" Width="50"/>
-                                    <GridViewColumn Header="Quantity" Width="75"/>
-                                    <GridViewColumn Header="Subtotal" Width="100"/>
+                                    <GridViewColumn Header="Loaned Items" Width="130"/>
+                                    <GridViewColumn Header="Date Loaned" Width="Auto"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button Content="Return" Grid.Row="2" Grid.ColumnSpan="2" Margin="15, 70 , 15,70" Style="{StaticResource ButtonTest}"/>
+                        <Button Content="Return All" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Margin="15, 70 , 15,70" Style="{StaticResource ButtonTest}"/>
+                        <Button Content="Return Selected" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Margin="15, 70 , 15,70" Style="{StaticResource ButtonTest}"/>
 
                     </Grid>
                 </GroupBox>
