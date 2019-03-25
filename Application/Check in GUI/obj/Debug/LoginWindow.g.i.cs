@@ -79,7 +79,7 @@ namespace EventManager {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Check in GUI;component/loginwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EventManager;component/loginwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\LoginWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -63,7 +63,7 @@
                         <Grid x:Name="LayoutRoot"
                               Background="{TemplateBinding Background}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="36"/>
+                                <RowDefinition Height="50"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -74,14 +74,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="Webp.net-resizeimage (1).png" Margin="10 0 0 0"/>
+                                <Image Source="Webp.net-resizeimage (1).png" Margin="10 10 0 10"/>
 
                                 <TextBlock Text="{TemplateBinding Title}" 
                                            Grid.Column="0"
                                            Grid.ColumnSpan="3"
                                            TextTrimming="CharacterEllipsis"
                                            HorizontalAlignment="Stretch" 
-                                           FontSize="13"
+                                           FontSize="26"
                                            TextAlignment="Center"
                                            VerticalAlignment="Center"
                                            Width="Auto"

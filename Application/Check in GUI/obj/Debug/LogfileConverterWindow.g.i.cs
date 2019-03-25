@@ -60,7 +60,7 @@ namespace EventManager {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Check in GUI;component/logfileconverterwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EventManager;component/logfileconverterwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\LogfileConverterWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

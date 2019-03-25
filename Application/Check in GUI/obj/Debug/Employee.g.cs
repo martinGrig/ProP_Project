@@ -52,7 +52,7 @@ namespace Check_in_GUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Check in GUI;component/employee.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EventManager;component/employee.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\Employee.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="EventManager.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EventManager.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="550">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                                    BeginTime="0:0:0"                        
+                                    Storyboard.TargetName="Logo" 
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0.0" To="1.0" Duration="0:0:1" 
+                                    AutoReverse="True"/>
+                    <DoubleAnimation
+                                    BeginTime="0:0:0"                        
+                                    Storyboard.TargetName="Logo"
+
+                                    Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
+
+                                    By="-410" Duration="0:0:0.5"/>
+                    <DoubleAnimation 
+                                    BeginTime="0:0:0"
+                                    Storyboard.TargetName="TempBack"
+
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="1.0" To="0.0" Duration="0:0:2"
+                                    Completed="getRidOfBorder" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
+        <Viewbox >
+            <Border Padding="0">
+                <!--<Border.Background>
+                    <ImageBrush ImageSource="/Images/background.png" Stretch="UniformToFill"/>
+                </Border.Background>-->
+
+                <GroupBox Grid.Column="0"  Width="300" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Header="Log-In" Style="{StaticResource FirstGroupbox}" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <Grid 
+                  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--Textblocks-->
+
+                        <TextBlock Text="Employee Number" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                        <TextBlock Text="Password" Grid.Row="1"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+
+                        <!--text boxes -->
+
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}"/>
+                        <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource PasswordBox}" />
+
+                        <Button Content="Log-In" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="50" />
+
+
+                        <TextBlock Text="Forgot your password?" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" Margin="10 0 0 15" Foreground="{StaticResource ForegroundMainBrush}"/>
+                    </Grid>
+                </GroupBox>
+
+
+
+            </Border>
+        </Viewbox>
+        <Border Background="White" Name="TempBack"/>
+        <Image Source="/EventManager;component/Images/MLogo.png" Name="Logo">
+            <Image.RenderTransform>
+
+                <TranslateTransform Y="410"/>
+
+            </Image.RenderTransform>
+        </Image>
+    </Grid>
+</UserControl>

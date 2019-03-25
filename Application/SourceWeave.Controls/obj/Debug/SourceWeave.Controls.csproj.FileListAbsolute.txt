@@ -2,7 +2,6 @@ C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\bin\Debu
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\bin\Debug\SourceWeave.Controls.pdb
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\bin\Debug\FontAwesome.WPF.dll
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\bin\Debug\FontAwesome.WPF.xml
-C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csprojAssemblyReference.cache
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls_MarkupCompile.cache
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls_MarkupCompile.lref
@@ -14,3 +13,4 @@ C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debu
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csproj.CopyComplete
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.dll
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.pdb
+C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csprojAssemblyReference.cache

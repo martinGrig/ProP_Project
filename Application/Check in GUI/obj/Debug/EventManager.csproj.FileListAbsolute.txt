@@ -1,7 +1,12 @@
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csprojAssemblyReference.cache
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindow.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindowOnlyApps.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employee.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\MainWindow.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Status.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\App.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Fonts\Montserrat-Regular.otf
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Check in GUI.exe.config
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Check in GUI.exe
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Check in GUI.pdb
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\FontAwesome.WPF.dll
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\MaterialMenu.dll
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\SourceWeave.Controls.dll
@@ -19,48 +24,47 @@ C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\fr\Tel
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\it\Telerik.Windows.Controls.resources.dll
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\nl\Telerik.Windows.Controls.resources.dll
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\tr\Telerik.Windows.Controls.resources.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csprojAssemblyReference.cache
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindow.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindowOnlyApps.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\CampingWindow.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\CheckOutWindow.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employee.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoanStand.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\LogfileConverterWindow.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoginWindow.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\CheckInWindow.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\ShopWindow.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Status.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Test.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\App.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI_Content.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI_MarkupCompile.cache
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI_MarkupCompile.lref
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\App.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindow.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\AdminWindowOnlyApps.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\CampingWindow.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\CheckOutWindow.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Colors.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Employee.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Fonts.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\GroupBox.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoanStand.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\LogfileConverterWindow.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\LoginWindow.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\CheckInWindow.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\ShopWindow.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\MainWindow.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Status.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Style.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Test.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Text.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Button.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Window.baml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.g.resources
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check_in_GUI.Properties.Resources.resources
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.GenerateResource.cache
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.CoreCompileInputs.cache
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.exe
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Check in GUI.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\LoginView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager_Content.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager_MarkupCompile.cache
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager_MarkupCompile.lref
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\LoginView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.exe
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\EventManager.exe.config
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\EventManager.exe
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\EventManager.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.g.resources
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.Properties.Resources.resources
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\AppsView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\AppsView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\CheckInView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\CheckInView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\ShopView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\ShopView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\CampingView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\CampingView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\CheckOutView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\CheckOutView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\ConverterView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\ConverterView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\StatusView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\StatusView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\LoanStandView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\LoanStandView.baml
