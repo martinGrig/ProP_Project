@@ -24,8 +24,8 @@ namespace EventManager
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new LoanStandViewModel();
-            this.Title = "Loan stand screen";
+            DataContext = new LoginViewModel();
+            this.Title = "Log-in screen";
         }
 
         private void LoginView_Clicked(object sender, RoutedEventArgs e)
