@@ -23,3 +23,7 @@ Website (static part) (everyone?)
  - more info on homepage
  - add reserve camping spot map
  - js validation
+ - change about us to event
+ - add about us in contact us
+ - add profile, buy ticket, top up and reserve spot pages
+ 
