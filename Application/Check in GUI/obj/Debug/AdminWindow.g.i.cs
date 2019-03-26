@@ -52,7 +52,7 @@ namespace EventManager {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Check in GUI;component/adminwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EventManager;component/adminwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\AdminWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

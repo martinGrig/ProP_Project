@@ -1,0 +1,89 @@
+﻿<sw:SWWindow
+     x:Class="EventManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sw="clr-namespace:SourceWeave.Controls;assembly=SourceWeave.Controls"
+        xmlns:local="clr-namespace:EventManager"
+        xmlns:viewmodels="clr-namespace:EventManager.ViewModels"
+        xmlns:views="clr-namespace:EventManager.Views"
+        mc:Ignorable="d"
+        Title="Login screen" Height="450" Width="549.881"
+        WindowStartupLocation="CenterScreen" Icon="Webp.net-resizeimage (3).png"
+        WindowState="Maximized">
+    <Window.Resources>
+        <DataTemplate x:Name="LoginViewTemplate" DataType="{x:Type viewmodels:LoginViewModel}">
+            <views:LoginView  DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="AppsViewTemplate" DataType="{x:Type viewmodels:AppsViewModel}">
+            <views:AppsView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="CheckInViewTemplate" DataType="{x:Type viewmodels:CheckinViewModel}">
+            <views:CheckInView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="ShopViewTemplate" DataType="{x:Type viewmodels:ShopViewModel}">
+            <views:ShopView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="CampingViewTemplate" DataType="{x:Type viewmodels:CampingViewModel}">
+            <views:CampingView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="CheckOutViewModel" DataType="{x:Type viewmodels:CheckOutViewModel}">
+            <views:CheckOutView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="ConverterViewModel" DataType="{x:Type viewmodels:ConverterViewModel}">
+            <views:ConverterView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="StatusViewModel" DataType="{x:Type viewmodels:StatusViewModel}">
+            <views:StatusView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="LoanStandViewModel" DataType="{x:Type viewmodels:LoanStandViewModel}">
+            <views:LoanStandView DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <Storyboard x:Key="ExpandSideBar">
+
+            <DoubleAnimation Duration="00:00:20" From="0" To="300" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="SideBar"/>
+
+        </Storyboard>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Background="Gray" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Name="SideBar" Visibility="Visible">
+            <StackPanel>
+                <Button Content="Login" Click="LoginView_Clicked"/>
+                <Button Content="Apps" Click="AppsView_Clicked"/>
+                <Button Content="Check in" Click="CheckInView_Clicked"/>
+                <Button Content="Shop" Click="ShopView_Clicked"/>
+                <Button Content="Camping" Click="CampingView_Clicked"/>
+                <Button Content="Check Out" Click="CheckOutView_Clicked"/>
+                <Button Content="Converter" Click="ConverterView_Clicked"/>
+                <Button Content="Status" Click="StatusView_Clicked"/>
+                <Button Content="Loan stand" Click="LoanStandView_Clicked"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5">
+            <Border.Background>
+                <ImageBrush ImageSource="Images/background.png"/>
+            </Border.Background>
+            <ContentControl Content="{Binding}">
+            </ContentControl>
+        </Border>
+        
+    </Grid>
+</sw:SWWindow>

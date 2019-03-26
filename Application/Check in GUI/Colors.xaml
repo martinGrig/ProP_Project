@@ -6,15 +6,15 @@
     
     <!--Window Color-->
     <Color x:Key="WindowColor">#F7F4F3</Color>
-    <Color x:Key="ContentAreaColorLight">#FFFEC99E</Color>
+    <Color x:Key="ContentAreaColorLight">#FFF68E53</Color>
 
     <!--Disabled Control Colors-->
-    <Color x:Key="DisabledControlLightColor">#B7D8F9</Color>
+    <Color x:Key="DisabledControlLightColor">#FFB7D8F9</Color>
     <Color x:Key="DisabledForegroundColor">#9AC3EE</Color>
 
-    <Color x:Key="MainBackroundGroupbox">#FFD2E7F7</Color>
-    <Color x:Key="SecondGroupboxColor">#FAB883</Color>
-    <Color x:Key="FourthGroupboxColor">#fff</Color>
+    <Color x:Key="MainBackroundGroupbox">#FFB7DCFB</Color>
+    <Color x:Key="SecondGroupboxColor">#FFF9DCB7</Color>
+    <Color x:Key="FourthGroupboxColor">#FFFEFFE4</Color>
     <Color x:Key="ThirdGroupboxColor">#FF7D66</Color>
     <Color x:Key="TopGroupboxLightBlue">#99DDFF</Color>
     <Color x:Key="TopGroupboxBlue">#50AEE3</Color>
@@ -24,7 +24,7 @@
 
     <!--Controls Colors-->
     <Color x:Key="ControlLightColor">#7DAEE3</Color>
-    <Color x:Key="ControlMediumColor">#EA7317</Color>
+    <Color x:Key="ControlMediumColor">#FFFE7567</Color>
 
     <!--Moused over Color-->
     <Color x:Key="ControlMouseOverColor">#19609A</Color>

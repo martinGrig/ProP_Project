@@ -1,0 +1,29 @@
+Project plan:
+ - MASHA: add names and student numbers
+ - MASHA: update version of title page
+ - DIMITAR: do smth about milestones (ASK TEACHER done): ADD IT AS A LINK AN SCREENSHOT
+ - MASHA: update table of content (pdf not working)
+
+Agenda's:
+ - MARTIN: add logo on titlepage
+ - MARTIN: add correct version
+ - MARTIN: add "phase 1" title
+ - MARTIN: add 26.03 meeting
+
+Setup document:
+ - DAVID: add requirements according to diagrams
+ - DAVID: add agreements made with client
+ - DAVID: update GUI to uproved ones
+ - MASHA: add use case of "before login"
+ - MASHA: update ERD (with a small text why it can be changed)
+ - MASHA: add ddl (sql creating of database)
+
+Website (static part) (everyone?)
+ - finish?
+ - more info on homepage
+ - add reserve camping spot map
+ - js validation
+ - change about us to event
+ - add about us in contact us
+ - add profile, buy ticket, top up and reserve spot pages
+ 

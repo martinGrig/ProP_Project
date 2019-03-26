@@ -5,16 +5,16 @@ winexe
 C#
 .cs
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\
-Check_in_GUI
+EventManager
 none
 false
 DEBUG;TRACE
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml
-18-27484725
+211957199966
 1135991279
-20743347638
-1944909154
-AdminWindow.xaml;AdminWindowOnlyApps.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;ShopWindow.xaml;Status.xaml;Test.xaml;Text.xaml;Button.xaml;Window.xaml;
+24-2127478589
+23-1040213504
+AdminWindow.xaml;AdminWindowOnlyApps.xaml;CampingWindow.xaml;CheckOutWindow.xaml;Colors.xaml;Employee.xaml;Fonts.xaml;GroupBox.xaml;LoanStand.xaml;LogfileConverterWindow.xaml;LoginWindow.xaml;CheckInWindow.xaml;MainWindow.xaml;ShopWindow.xaml;Status.xaml;Style.xaml;Test.xaml;Text.xaml;Button.xaml;Views\LoginView.xaml;Window.xaml;
 
 False
 
