@@ -22,7 +22,7 @@
 
                                     Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
 
-                                    By="-410" Duration="0:0:0.5"/>
+                                    By="-437" Duration="0:0:0.5"/>
                     <DoubleAnimation 
                                     BeginTime="0:0:0"
                                     Storyboard.TargetName="TempBack"
@@ -80,7 +80,7 @@
         <Image Source="/EventManager;component/Images/MLogo.png" Name="Logo">
             <Image.RenderTransform>
 
-                <TranslateTransform Y="410"/>
+                <TranslateTransform Y="437"/>
 
             </Image.RenderTransform>
         </Image>
