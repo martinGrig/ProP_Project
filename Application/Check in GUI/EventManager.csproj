@@ -83,15 +83,20 @@
     <Compile Include="Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\AppsViewModel.cs" />
     <Compile Include="ViewModels\CampingViewModel.cs" />
     <Compile Include="ViewModels\CheckinViewModel.cs" />
     <Compile Include="ViewModels\CheckOutViewModel.cs" />
     <Compile Include="ViewModels\ConverterViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\LoanStandViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="ViewModels\StatusViewModel.cs" />
+    <Compile Include="Views\AdminView.xaml.cs">
+      <DependentUpon>AdminView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AppsView.xaml.cs">
       <DependentUpon>AppsView.xaml</DependentUpon>
     </Compile>
@@ -106,6 +111,9 @@
     </Compile>
     <Compile Include="Views\ConverterView.xaml.cs">
       <DependentUpon>ConverterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoanStandView.xaml.cs">
       <DependentUpon>LoanStandView.xaml</DependentUpon>
@@ -167,6 +175,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AppsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConverterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EventManager.Views"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Viewbox>
@@ -22,14 +23,22 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="4*" />
                             <RowDefinition Height="4*" />
                         </Grid.RowDefinitions>
 
                         <!--Textblocks-->
-
-                        <TextBlock Text="Shop ID :" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}" Height="14.627" Margin="10, 5, 10, 5" Width="Auto"/>
+                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock Text="Shop ID :"  Style="{StaticResource HeaderText}" Margin="10, 5, 10, 0" Width="Auto"/>
+                            <TextBlock Text="Item name" Style="{StaticResource HeaderText}" Margin="10, 5, 10, 0"/>
+                            
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="10, 15, 10, 0">
+                            <fa:FontAwesome Icon="Search" VerticalAlignment="Center"/>
+                            
+                        </StackPanel>
+                        <TextBox  Style="{StaticResource NormalTextBox}" Grid.Column="1" Grid.Row="0" Margin="30, 15, 10, 0"/>
 
                         <!--Read only text boxes -->
 

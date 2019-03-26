@@ -41,6 +41,12 @@
         <DataTemplate x:Name="LoanStandViewModel" DataType="{x:Type viewmodels:LoanStandViewModel}">
             <views:LoanStandView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="AdminViewModel" DataType="{x:Type viewmodels:AdminViewModel}">
+            <views:AdminView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="EmployeeViewModel" DataType="{x:Type viewmodels:EmployeeViewModel}">
+            <views:EmployeeView DataContext="{Binding}"/>
+        </DataTemplate>
 
         <Storyboard x:Key="ExpandSideBar">
 
@@ -74,6 +80,8 @@
                 <Button Content="Converter" Click="ConverterView_Clicked"/>
                 <Button Content="Status" Click="StatusView_Clicked"/>
                 <Button Content="Loan stand" Click="LoanStandView_Clicked"/>
+                <Button Content="Admin" Click="AdminView_Clicked"/>
+                <Button Content="Employeee" Click="EmployeeView_Clicked"/>
             </StackPanel>
         </Border>
 

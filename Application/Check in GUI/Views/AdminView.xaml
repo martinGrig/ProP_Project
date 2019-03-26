@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="EventManager.Views.AdminView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EventManager.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Viewbox >
+        <Border Padding="0" Width="800" >
+            <!--<Border.Background>
+                    <ImageBrush ImageSource="/Images/background.png" Stretch="UniformToFill"/>
+                </Border.Background>-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60*" />
+                    <ColumnDefinition Width="55*" />
+                    <ColumnDefinition Width="70*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="170"/>
+                    <RowDefinition Height="190"/>
+                </Grid.RowDefinitions>
+
+                <GroupBox Margin="5,10,10,10" Header="Add An Employee" Style="{StaticResource SecondGroupbox}" Grid.Column="2" Grid.RowSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <!--Textblocks-->
+                        <TextBlock Text="First Name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="JobID" Grid.Row="2" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="Password" Grid.Row="3"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <!--text boxes -->
+
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                        <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{StaticResource PasswordBox}" />
+                        <Button Content="Add An Employee" Grid.Column="1" Grid.Row="6" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Margin="5,10,10,10" Header="Apps" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.RowSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Button Content="Check-In" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="CampingApp" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Event Status" Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Loan Boot" Grid.Column="0" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Check-Out" Grid.Column="1" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Inspect Visitor" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Converter" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                        <Button Content="Shops" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="55"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Margin="5,10,10,10" Header="Inspect Emplyee" Style="{StaticResource SecondGroupbox}" Grid.Column="1" Grid.RowSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+
+                        <TextBlock Text="Last Name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="Emp.Nr" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="Password" Grid.Row="2"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <!--text boxes -->
+
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                        <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource PasswordBox}" />
+                        <Button Content="Inspect" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+
+        </Border>
+    </Viewbox>
+</UserControl>
