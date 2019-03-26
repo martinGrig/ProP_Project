@@ -3,6 +3,7 @@
     <head>
         <title>BoardGames Buy</title>
         <link href="styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js.js"></script>
     </head>
     <body>
         <div class="header">
@@ -19,8 +20,8 @@
               <div class="card">
                 <h2>Before you buy a Ticket</h2>
                 <h2>First make a Registration</h2>
-                <form>
-                    <input id="fname" type="text" placeholder="First Name">
+                <form name="registration-form" onsubmit="return validateRegistration()">
+                    <input id="fname" name="fname" type="text" placeholder="First Name">
                     <input name="lname" type="text" placeholder="Last Name"><br>
                     <input name="email" type="email" placeholder="Email">
                     <input name="number" type="password" placeholder="Password"><br>

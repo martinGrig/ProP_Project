@@ -3,6 +3,7 @@
     <head>
         <title>BoardGames Log In</title>
         <link href="styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js.js"></script>
     </head>
     <body>
         <div class="header">
@@ -18,9 +19,9 @@
             <div class="column centre ">
               <div class="card">
                 <h2>Log In</h2>
-                <form>
-                    <input id="fname" type="text" placeholder="Ticket Number"><br>
-                    <input name="number" type="password" placeholder="Password"><br>
+                <form name="login-form" action="profile.html"  onsubmit="return validateLogin()">
+                    <input id="fname" name="number" type="text" placeholder="Ticket Number"><br>
+                    <input name="password" type="password" placeholder="Password"><br>
                     <input type="submit" value="Log in"><br>
                 </form>
                 <form action="Register.html">

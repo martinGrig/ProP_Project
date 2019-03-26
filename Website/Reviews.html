@@ -3,6 +3,7 @@
     <head>
         <title>BoardGames Revies</title>
         <link href="styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js.js"></script>
     </head>
     <body>
         <div class="header">
@@ -19,10 +20,10 @@
               <div class="card">
                 <h2>Reviews</h2>
                 <h3>Text</h3>
-                <form>
-                    <textarea name="comment" rows="10" cols="30" placeholder="Your Comment..."></textarea><br>
+                <form name="submit-review-form" onsubmit="return validateReview()">
+                    <textarea name="comment" rows="10" cols="30" placeholder="Your Review..."></textarea><br>
                     <input type="submit" value="Submit"><br>
-                </form> 
+                </form>
               </div>
             </div>
         </div>
