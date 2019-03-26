@@ -32,24 +32,28 @@ namespace EventManager
         {
             DataContext = new LoginViewModel();
             this.Title = "Log-in screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
 
         private void AppsView_Clicked(object sender, RoutedEventArgs e)
         {
             DataContext = new AppsViewModel();
             this.Title = "Apps screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
 
         private void CheckInView_Clicked(object sender, RoutedEventArgs e)
         {
             DataContext = new CheckinViewModel();
             this.Title = "Check in screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
 
         private void ShopView_Clicked(object sender, RoutedEventArgs e)
         {
             DataContext = new ShopViewModel();
             this.Title = "Shop screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
         
 
@@ -57,29 +61,48 @@ namespace EventManager
         {
             DataContext = new CampingViewModel();
             this.Title = "Camping screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
 
         private void CheckOutView_Clicked(object sender, RoutedEventArgs e)
         {
             DataContext = new CheckOutViewModel();
             this.Title = "Check out screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
 
         private void ConverterView_Clicked(object sender, RoutedEventArgs e)
         {
             DataContext = new ConverterViewModel();
             this.Title = "Converter screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
 
         private void StatusView_Clicked(object sender, RoutedEventArgs e)
         {
             DataContext = new StatusViewModel();
             this.Title = "Status screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
         private void LoanStandView_Clicked(object sender, RoutedEventArgs e)
         {
             DataContext = new LoanStandViewModel();
             this.Title = "Loan stand screen";
+            SideBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void AdminView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new AdminViewModel();
+            this.Title = "Admin screen";
+            SideBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void EmployeeView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new EmployeeViewModel();
+            this.Title = "Employee screen";
+            SideBar.Visibility = Visibility.Collapsed;
         }
     }
 }

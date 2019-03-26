@@ -68,3 +68,7 @@ C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\StatusView.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\LoanStandView.g.cs
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\LoanStandView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\AdminView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\AdminView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\EmployeeView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\EmployeeView.baml
