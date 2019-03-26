@@ -16,7 +16,7 @@ Setup document:
  - DAVID: update GUI to uproved ones
  + MASHA: add use case of "before login"
  + MASHA: update ERD (with a small text why it can be changed)
- - MASHA: add ddl (sql creating of database)
+ + MASHA: add ddl (sql creating of database)
 
 Website (static part) (everyone?)
  - finish?
