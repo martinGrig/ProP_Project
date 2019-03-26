@@ -1,16 +1,24 @@
 Project plan:
  - add names and student numbers
  - update version of title page
- - do smth about milestones (ASK TEACHER)
+ - do smth about milestones (ASK TEACHER done): ADD IT AS A LINK AN SCREENSHOT
+ - update table of content (pdf not working)
 
 Agenda's:
  - add logo on titlepage
  - add correct version
-
+ - add "phase 1" title
 
 Setup document:
+ - add requirements according to diagrams
  - add agreements made with client
- - do need to update GUI (ASK TEACHER)
+ - update GUI to uproved ones
+ - add use case of "before login"
+ - update ERD (with a small text why it can be changed)
+ - add ddl (sql creating of database)
 
 Website (static part)
  - finish?
+ - more info on homepage
+ - add reserve camping spot map
+ - js validation
