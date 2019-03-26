@@ -1,0 +1,16 @@
+Project plan:
+ - add names and student numbers
+ - update version of title page
+ - do smth about milestones (ASK TEACHER)
+
+Agenda's:
+ - add logo on titlepage
+ - add correct version
+
+
+Setup document:
+ - add agreements made with client
+ - do need to update GUI (ASK TEACHER)
+
+Website (static part)
+ - finish?
