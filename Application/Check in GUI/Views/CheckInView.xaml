@@ -20,11 +20,11 @@
                 </Grid.RowDefinitions>
 
                 <!--Ticket info group box-->
-                <Border  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderThickness="2" BorderBrush="Gray" Margin="10 10 5 10">
+                <Border  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderThickness="2" BorderBrush="Gray" Margin="10 10 5 10" Background="White">
                     <Image Source="/EventManager;component/Images/ScanQrCode.png"/>
                 </Border>
 
-                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}">
+                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}" Visibility="Collapsed">
                     <Grid 
                   >
                         <Grid.ColumnDefinitions>
@@ -93,7 +93,10 @@
                 </GroupBox>
 
                 <!--Program chip-->
-                <Image Source="/EventManager;component/Images/Scan Braclet.png" Grid.Column="1" Grid.Row="1" Margin="5 5 10 10"/>
+                <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="Gray" Margin="5 5 10 10">
+                    <Image Source="/EventManager;component/Images/Scan Braclet.png" Grid.Column="1" Grid.Row="1" />
+                </Border>
+                
 
 
 

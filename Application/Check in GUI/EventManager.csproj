@@ -222,6 +222,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\background.png" />
     <Resource Include="Images\adminIcon.png" />
     <Resource Include="Images\Camping.png" />
     <Resource Include="Images\ScanBracletShop.png" />
