@@ -19,7 +19,6 @@ Setup document:
  + MASHA: add ddl (sql creating of database)
 
 Website (static part) (everyone?)
- - finish?
  - more info on homepage
  - add reserve camping spot map
- - js validation
+ + js validation
