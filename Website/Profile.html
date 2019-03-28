@@ -3,17 +3,20 @@
     <head>
         <title>BoardGames Profile</title>
         <link href="styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js.js"></script>
+        <meta charset="UTF-8">
     </head>
     <body>
         <div class="header">
         </div>
         <div class="topnav">
-                <a href="Home.html">Home</a>
-                <a href="AboutUs.html">About us</a>
-                <a href="ContactUs.html">Contact us</a>
-                <a href="Reviews.html">Reviews</a>
-                <a href="LogIn.html" style="float:right">Log in</a>
-            </div>
+            <a href="Home.html">Home</a>
+            <a href="Events.html">Events</a>
+            <a href="ContactUs.html">Contact us</a>
+            <a href="Reviews.html">Reviews</a>
+            <a href="LogIn.html" style="float:right">Log in</a>
+            <a href="Profile.html" style="float:right">Profile</a>
+        </div>
         <div class="row">
             <div class="column centre ">
               <div class="card">
@@ -22,9 +25,9 @@
                 <h3>Ticket Number</h3>
                 <h3>Balance</h3>
                 <form>
-                    <input type="submit" value="Buy A Ticket">
-                    <input type="submit" value="Top Up Balance">
-                    <input type="submit" value="Reserve A Camp Spot">
+                    <input type="button" value="Buy A Ticket" onclick="window.location.href='Buy.html'">
+                    <input type="button" value="Top Up Balance" onclick="window.location.href='TopUp.html'">
+                    <input type="button" value="Reserve A Camp Spot" onclick="window.location.href='Camp.html'">
                 </form>
               </div>
             </div>
