@@ -32,7 +32,7 @@
                         </ListView.View>
                     </ListView>
 
-                    <Button Content="Mark account as invalid" Grid.Column="1" Grid.Row="1" Margin="5 5 10 10"/>
+                    <Button Content="Check out account" Grid.Column="1" Grid.Row="1" Margin="5 5 10 10" Style="{StaticResource OrangeButton}"/>
 
 
                 </Grid>

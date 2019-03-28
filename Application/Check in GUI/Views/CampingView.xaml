@@ -17,11 +17,10 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <!--Textblocks-->
@@ -39,7 +38,7 @@
                     <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{DynamicResource ReadOnlyTextBox}"/>
 
                     <!-- Image-->
-                    <Image Source="/EventManager;component/Images/Camping.png"  Width="300" Grid.Row="0" Grid.RowSpan="4" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="Fill" Grid.Column="2"/>
+                    <Image Source="/EventManager;component/Images/Camping.png"  Width="300" Grid.Row="0" Grid.RowSpan="3" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="Fill" Grid.Column="2"/>
 
                     <!--Button-->
                     <Button Content="Pay for camping spot" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonTest}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="10" Height="75" Width="300" Name="PayForCampingSpotButton" />

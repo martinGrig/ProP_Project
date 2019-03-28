@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EventManager.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" Width="681.647">
+             d:DesignHeight="900" Width="1360 ">
     <Viewbox>
         <Grid Width="539">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.2*" />
+            <ColumnDefinition Width="1.4*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -20,8 +20,8 @@
         <GroupBox Margin="10,10,5,10" Header="Employee Information" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.RowSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="2.2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

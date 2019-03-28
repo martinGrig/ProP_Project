@@ -24,5 +24,6 @@ namespace EventManager.Views
         {
             InitializeComponent();
         }
+        
     }
 }
