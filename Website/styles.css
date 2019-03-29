@@ -95,7 +95,7 @@ body {
 
 /* Add a card effect for articles */
 .card {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 20px;
   margin-top: 20px;
   border-radius: 25px;
@@ -103,20 +103,20 @@ body {
 
 .card h1 {
   font-size: 100px;
-  color: orange;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: #FFAF04;
+  text-shadow: -1px 0 #5A3A00, 0 1px #5A3A00, 1px 0 #5A3A00, 0 -1px #5A3A00;
 }
 
 .card h2 {
   font-size: 50px;
-  color: orange;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: #FF641B;
+  text-shadow: -1px 0 #6D1D02, 0 1px #6D1D02, 1px 0 #6D1D02, 0 -1px #6D1D02;
 }
 
 .card h3 {
   font-size: 25px;
   color: orange;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-shadow: -1px 0 #5A3A00, 0 1px #5A3A00, 1px 0 #5A3A00, 0 -1px #5A3A00;
 }
 
 
