@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventManager.ViewModels
 {
-    class CheckinViewModel
+    public class CheckinViewModel : IPageViewModel
     {
     }
 }

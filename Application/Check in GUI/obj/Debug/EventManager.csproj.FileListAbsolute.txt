@@ -7,20 +7,8 @@ C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Fonts\
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\FontAwesome.WPF.dll
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\MaterialMenu.dll
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\SourceWeave.Controls.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Controls.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Controls.Navigation.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Data.dll
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\SourceWeave.Controls.pdb
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\FontAwesome.WPF.xml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Controls.xml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Controls.Navigation.xml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Telerik.Windows.Data.xml
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\de\Telerik.Windows.Controls.resources.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\es\Telerik.Windows.Controls.resources.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\fr\Telerik.Windows.Controls.resources.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\it\Telerik.Windows.Controls.resources.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\nl\Telerik.Windows.Controls.resources.dll
-C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\tr\Telerik.Windows.Controls.resources.dll
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\App.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Colors.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Fonts.baml
@@ -66,3 +54,5 @@ C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\AdminView.baml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\EmployeeView.g.cs
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\EmployeeView.baml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Controls\StandItemControl.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Controls\StandItemControl.baml

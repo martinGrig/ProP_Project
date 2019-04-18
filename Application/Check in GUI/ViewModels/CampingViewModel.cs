@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventManager.ViewModels
 {
-    class CampingViewModel
+    public class CampingViewModel : IPageViewModel
     {
     }
 }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EventManager.Views"
+             xmlns:viewmodels="clr-namespace:EventManager.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="550">
     <UserControl.Triggers>
@@ -37,9 +38,6 @@
     <Grid>
         <Viewbox >
             <Border Padding="0">
-                <!--<Border.Background>
-                    <ImageBrush ImageSource="/Images/background.png" Stretch="UniformToFill"/>
-                </Border.Background>-->
 
                 <GroupBox Grid.Column="0"  Width="300" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Header="Log-In" Style="{StaticResource FirstGroupbox}" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <Grid 
@@ -62,13 +60,16 @@
 
                         <!--text boxes -->
 
-                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}"/>
-                        <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource PasswordBox}" />
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}" Text="{Binding EmployeeNumber}"/>
+                        <TextBlock Text="{Binding EmployeeNumber}"/>
+                        <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource PasswordBox}" x:Name="passwordBox"/>
 
-                        <Button Content="Log-In" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="50" />
+                        <Button Content="Log-In" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="50"  Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding Admin}" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext}">
+                        </Button>
 
 
-                        <TextBlock Text="Forgot your password?" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" Margin="10 0 0 15" Foreground="{StaticResource ForegroundMainBrush}"/>
+                            <TextBlock Text="Forgot your password?" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" Margin="10 0 0 15" Foreground="{StaticResource ForegroundMainBrush}"/>
                     </Grid>
                 </GroupBox>
 
@@ -76,7 +77,7 @@
 
             </Border>
         </Viewbox>
-        <Border Background="White" Name="TempBack"/>
+        <Border Background="White" Name="TempBack" Visibility="Collapsed"/>
         <Image Source="/EventManager;component/Images/MLogo.png" Name="Logo">
             <Image.RenderTransform>
 

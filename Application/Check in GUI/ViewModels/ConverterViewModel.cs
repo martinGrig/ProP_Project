@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventManager.ViewModels
 {
-    class ConverterViewModel
+    public class ConverterViewModel : IPageViewModel
     {
     }
 }

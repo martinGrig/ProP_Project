@@ -13,6 +13,10 @@
         Title="Login screen" Height="450" Width="549.881"
         WindowStartupLocation="CenterScreen" Icon="Webp.net-resizeimage (3).png"
         WindowState="Maximized">
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+    <!--Views and ViewModels-->
     <Window.Resources>
         <DataTemplate x:Name="LoginViewTemplate" DataType="{x:Type viewmodels:LoginViewModel}">
             <views:LoginView  DataContext="{Binding}"/>
@@ -48,12 +52,14 @@
             <views:EmployeeView DataContext="{Binding}"/>
         </DataTemplate>
 
+        <!--SideBar animations-->
         <Storyboard x:Key="ExpandSideBar">
 
             <DoubleAnimation Duration="00:00:20" From="0" To="300" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="SideBar"/>
 
         </Storyboard>
     </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -69,27 +75,53 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
+        <!--Sidebar-->
         <Border Background="Gray" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Name="SideBar" Visibility="Visible">
             <StackPanel>
-                <Button Content="Login" Click="LoginView_Clicked"/>
-                <Button Content="Apps" Click="AppsView_Clicked"/>
-                <Button Content="Check in" Click="CheckInView_Clicked"/>
-                <Button Content="Shop" Click="ShopView_Clicked"/>
-                <Button Content="Camping" Click="CampingView_Clicked"/>
-                <Button Content="Check Out" Click="CheckOutView_Clicked"/>
-                <Button Content="Converter" Click="ConverterView_Clicked"/>
-                <Button Content="Status" Click="StatusView_Clicked"/>
-                <Button Content="Loan stand" Click="LoanStandView_Clicked"/>
-                <Button Content="Admin" Click="AdminView_Clicked"/>
-                <Button Content="Employeee" Click="EmployeeView_Clicked"/>
+                <!--Navigation-->
+                <Button Content="Login"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding Login}"/>
+                <Button Content="Apps"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding Apps}"/>
+                <Button Content="Check in"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding  CheckIn}"/>
+                <Button Content="Shop"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding Shop}"/>
+                <Button Content="Camping"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding Camping}"/>
+                <Button Content="Check Out"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding CheckOut}"/>
+                <Button Content="Converter"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding Converter}"/>
+                <Button Content="Status"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding Status}"/>
+                <Button Content="Loan stand"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding LoanStand}"/>
+                <Button Content="Admin" 
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding Admin }"/>
+                <Button Content="Employeee"
+                        Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding Employee}"/>
             </StackPanel>
         </Border>
 
+        <!--Content-->
         <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5">
             <Border.Background>
                 <ImageBrush ImageSource="Images/background.png"/>
             </Border.Background>
-            <ContentControl Content="{Binding}">
+            <ContentControl Content="{Binding CurrentPageViewModel}">
             </ContentControl>
         </Border>
         

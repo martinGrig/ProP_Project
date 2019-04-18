@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventManager.ViewModels
+namespace EventManager
 {
-    public class StatusViewModel : IPageViewModel
+    public interface IPageViewModel
     {
+
     }
 }
