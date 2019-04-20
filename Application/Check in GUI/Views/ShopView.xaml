@@ -92,7 +92,7 @@
                             </TabItem>
                         </TabControl>
 
-                        <ListView Grid.Row="2" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2" ItemsSource="{Binding Shop.SelectedItems, Mode=TwoWay}">
+                        <ListView Grid.Row="2" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2" ItemsSource="{Binding Shop.SelectedItems, Mode=TwoWay}" Visibility="Collapsed">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Selected item" Width="130" DisplayMemberBinding="{Binding Name}"/>
@@ -102,6 +102,29 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
+
+
+                        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="10 5 10 5" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+
+                            <GridViewRowPresenter  Columns="{Binding ElementName=ListViewGridView, Path=Columns}" DockPanel.Dock="Bottom" Margin="4,5,0,5">
+                                <GridViewRowPresenter.Content>
+                                    <TextBlock Text="Total:"/>
+                                </GridViewRowPresenter.Content>
+                            </GridViewRowPresenter>
+
+                            <ListView SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListView.View>
+                                    <GridView x:Name="ListViewGridView">
+                                        <GridViewColumn Header="Selected item" Width="130" DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Price" Width="50" DisplayMemberBinding="{Binding Price}"/>
+                                        <GridViewColumn Header="Quantity" Width="75"/>
+                                        <GridViewColumn Header="Subtotal" Width="100"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                        </DockPanel>
+
 
                     </Grid>
                 </GroupBox>

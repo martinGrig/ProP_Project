@@ -11,6 +11,7 @@ namespace EventManager.ViewModels
 {
     public class LoginViewModel : ObservableObject, IPageViewModel
     {
+        DataHelper dh;
         MainViewModel _mainViewModel;
         private string _employeeNumber;
 
@@ -71,9 +72,10 @@ namespace EventManager.ViewModels
 
             PasswordBox pwBox = (PasswordBox)parameter;
             Password = pwBox.Password.ToString();
-            
-            if(Password == realPassword && EmployeeNumber == realEmpNr)
+            string name = dh.Login(Convert.ToInt32(EmployeeNumber), Password);
+            if( name != null)
             {
+                MessageBox.Show("Welcome" + name);
                 _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Apps);
             }
             else
@@ -84,6 +86,7 @@ namespace EventManager.ViewModels
         public LoginViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
+            dh = new DataHelper();
         }
     }
 }

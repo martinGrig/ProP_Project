@@ -4,7 +4,6 @@ CREATE TABLE Purchaise (ticketNr int(10) NOT NULL, dateOfTrans timestamp NOT NUL
 CREATE TABLE TopUp (ticketNr int(10) NOT NULL, dateOfTrans timestamp NOT NULL, machineId int(10) NOT NULL, PRIMARY KEY (ticketNr, dateOfTrans));
 CREATE TABLE Entity (VisitorticketNr int(10) NOT NULL);
 CREATE TABLE Place (placeId int(10) NOT NULL AUTO_INCREMENT, name varchar(20) NOT NULL, PRIMARY KEY (placeId));
-CREATE TABLE Entity2 ();
 CREATE TABLE Item (itemId int(10) NOT NULL AUTO_INCREMENT, name varchar(20), price int(10) NOT NULL, PRIMARY KEY (itemId));
 CREATE TABLE Review (ticketNr int(10) NOT NULL AUTO_INCREMENT, reviewText varchar(1000), PRIMARY KEY (ticketNr));
 CREATE TABLE CampSpot (campSpotId int(10) NOT NULL, reservedPlaces int(2) NOT NULL, PRIMARY KEY (campSpotId));
