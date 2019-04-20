@@ -49,9 +49,30 @@ namespace EventManager.ViewModels
             }
             
         }
+
+        private List<Item> _selectedItems;
+
+        public IEnumerable<Item> SelectedItems
+        {
+            get
+            {
+                if (_selectedItems == null)
+                {
+                    return _selectedItems;
+                }
+                return _selectedItems;
+            }
+            set
+            {
+                _selectedItems = value.ToList();
+            }
+        }
+
         public ShopViewModel()
         {
             _items = new List<Item>();
+            _selectedItems = new List<Item>();
+            _selectedItems.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
             _items.Add(new Item("Hamburger", 1.5, 880, "Images/burger.ico"));
             _items.Add(new Item("ddddd", 1.5, 8, "Images/camp.png"));
             _items.Add(new Item("tter", 1.5, 50, "Images/burger.ico"));
@@ -77,14 +98,18 @@ namespace EventManager.ViewModels
             {
                 if (_selectItem == null)
                 {
-                    _selectItem = new RelayCommand(SelectItem);
+                    _selectItem  = new RelayCommand(new Action<object>(SelectItem));
                 }
                 return _selectItem;
             }
         }
         private void SelectItem(object obj)
         {
-            SearchText = ((Item)obj).Name;
+            Item item = ((Item)obj);
+            item.SellItem(1);
+            _selectedItems.Add(item);
+            SelectedItems = _selectedItems;
+            OnPropertyChanged("SelectedItems");
         }
     }
 

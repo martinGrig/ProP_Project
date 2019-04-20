@@ -33,7 +33,7 @@ namespace EventManager.ViewModels
 
         public MainViewModel()
         {
-            Login = new LoginViewModel();
+            Login = new LoginViewModel(this);
             Admin = new AdminViewModel();
             Apps = new AppsViewModel();
             Camping = new CampingViewModel();

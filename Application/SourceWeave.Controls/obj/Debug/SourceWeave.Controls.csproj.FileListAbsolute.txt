@@ -13,3 +13,4 @@ C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debu
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csproj.CopyComplete
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.dll
 C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.pdb
+C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csprojAssemblyReference.cache

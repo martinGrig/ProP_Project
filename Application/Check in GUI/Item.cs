@@ -48,5 +48,11 @@ namespace EventManager
                 Stock -= amount;
             }
         }
+        
+        //public List<string> GetSelectedItemInfo()
+        //{
+        //    int quanity;
+        //    foreach()
+        //}
     }
 }

@@ -66,7 +66,7 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Viewbox>
-                                                <Button BorderThickness="0.1"  Command="{Binding ElementName=me,  Path=DataContex.SelectItemCommand}"  CommandParameter="{Binding}">
+                                                <Button BorderThickness="0.1"   Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.Shop.SelectItemCommand}"  CommandParameter="{Binding}">
                                                     
                                                     <Button.Background>
 
@@ -92,11 +92,11 @@
                             </TabItem>
                         </TabControl>
 
-                        <ListView Grid.Row="2" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2" ItemsSource="{Binding Shop.FilteredItems}">
+                        <ListView Grid.Row="2" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2" ItemsSource="{Binding Shop.SelectedItems, Mode=TwoWay}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Selected item" Width="130"/>
-                                    <GridViewColumn Header="Price" Width="50"/>
+                                    <GridViewColumn Header="Selected item" Width="130" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Price" Width="50" DisplayMemberBinding="{Binding Price}"/>
                                     <GridViewColumn Header="Quantity" Width="75"/>
                                     <GridViewColumn Header="Subtotal" Width="100"/>
                                 </GridView>

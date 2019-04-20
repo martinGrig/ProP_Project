@@ -64,8 +64,8 @@
                         <TextBlock Text="{Binding EmployeeNumber}"/>
                         <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource PasswordBox}" x:Name="passwordBox"/>
 
-                        <Button Content="Log-In" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="50"  Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                                CommandParameter="{Binding Admin}" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext}">
+                        <Button Content="Log-In" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10" Height="50"  Command="{Binding Click_LoginCommand}"
+                                CommandParameter="{Binding ElementName=passwordBox}" >
                         </Button>
 
 
