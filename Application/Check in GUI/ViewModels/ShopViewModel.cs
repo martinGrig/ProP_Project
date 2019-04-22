@@ -1,4 +1,5 @@
-﻿using EventManager.ViewModels.Commands;
+﻿using EventManager.Models;
+using EventManager.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,84 +11,34 @@ namespace EventManager.ViewModels
 {
     public class ShopViewModel : ObservableObject, IPageViewModel
     {
-        //These properties need to go into a seperate Model clase 
-        private string _searchText;
+        public DataModel Dm { get;  set; }
+        DataHelper dh;
 
-        public string SearchText
+        public ShopViewModel(DataModel dataModel)
         {
-            get
-            {
-                if (_searchText == null)
-                {
-                    return _searchText;
-                }
-
-                return _searchText;
-            }
-
-            set
-            {
-                _searchText = value;
-                OnPropertyChanged("SearchText");
-                OnPropertyChanged("FilteredItems");
-            }
-        }
-
-        private List<Item> _items;
-
-        public IEnumerable<Item> FilteredItems
-        {
-            get
-            {
-
-                    if (SearchText == null)
-                    {
-                        return _items;
-                    }
-                return _items.Where(x => x.Name.ToUpper().Contains(SearchText.ToUpper()));
-
-            }
-            
-        }
-
-        private List<Item> _selectedItems;
-
-        public IEnumerable<Item> SelectedItems
-        {
-            get
-            {
-                if (_selectedItems == null)
-                {
-                    return _selectedItems;
-                }
-                return _selectedItems;
-            }
-            set
-            {
-                _selectedItems = value.ToList();
-            }
-        }
-
-        public ShopViewModel()
-        {
-            _items = new List<Item>();
-            _selectedItems = new List<Item>();
-            _selectedItems.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 880, "Images/burger.ico"));
-            _items.Add(new Item("ddddd", 1.5, 8, "Images/camp.png"));
-            _items.Add(new Item("tter", 1.5, 50, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 540, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 880, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 8, "Images/camp.png"));
-            _items.Add(new Item("Hamburger", 1.5, 50, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 540, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 880, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 8, "Images/camp.png"));
-            _items.Add(new Item("Hamburger", 1.5, 50, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
-            _items.Add(new Item("Hamburger", 1.5, 540, "Images/burger.ico"));
+            Dm = dataModel;
+            dh = new DataHelper();
+           
+            OnPropertyChanged("FilteredItems");
+            OnPropertyChanged("Items");
+            //_items = new List<Item>();
+            //_selectedItems = new List<Item>();
+            //_selectedItems.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 880, "Images/burger.ico"));
+            //_items.Add(new Item("ddddd", 1.5, 8, "Images/camp.png"));
+            //_items.Add(new Item("tter", 1.5, 50, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 540, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 880, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 8, "Images/camp.png"));
+            //_items.Add(new Item("Hamburger", 1.5, 50, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 540, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 880, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 8, "Images/camp.png"));
+            //_items.Add(new Item("Hamburger", 1.5, 50, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 30, "Images/burger.ico"));
+            //_items.Add(new Item("Hamburger", 1.5, 540, "Images/burger.ico"));
         }
 
         // Commands 
@@ -106,10 +57,22 @@ namespace EventManager.ViewModels
         private void SelectItem(object obj)
         {
             Item item = ((Item)obj);
-            item.SellItem(1);
-            _selectedItems.Add(item);
-            SelectedItems = _selectedItems;
-            OnPropertyChanged("SelectedItems");
+            if(Dm._selectedItems == null)
+            {
+                Dm._selectedItems = new List<Item>();
+            }
+            foreach(Item it in Dm.SelectedItems)
+            {
+                if(it.Name == item.Name)
+                {
+                    it.SelectItem();
+                    Dm.SelectedItems = Dm._selectedItems;
+                    return;
+                }
+            }
+            item.SelectItem();
+            Dm._selectedItems.Add(item);
+            Dm.SelectedItems = Dm._selectedItems;
         }
     }
 

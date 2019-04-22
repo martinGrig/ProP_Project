@@ -54,37 +54,48 @@ namespace EventManager
             return empNr;
         }
 
-        public int AddAStudent(int number, string name, int creditpoints)
+        public List<Item> GetItems(int employeeNr)
         {   //Probably you expected a return-value of type bool:
             //true if the query was executed succesfully and false otherwise.
             //But what if you executed a delete-query? Or an update-query?
             //The return-value is teh number of records affected.
 
-            String sql = "INSERT INTO StudentTable VALUES (@name, @number, @cp )";
+            String sql = "SELECT item.name as Name,item.price as Price,itemtype_place.StartQuantity as Stock FROM item, purchaisable,place,itemtype_place,employee_place,employee,itemtype WHERE item.itemId = purchaisable.itemId AND purchaisable.placeId = place.placeId AND itemtype_place.PlaceplaceId = place.placeId And employee_place.PlaceplaceId = place.placeId AND employee.employeeNr = employee_place.EmployeeemployeeNr AND itemtype.itemType = itemtype_place.ItemTypeitemType And purchaisable.itemType = itemtype.itemType AND employee.employeeNr = @empNr ;";
             MySqlCommand command = new MySqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@name", name);
-            command.Parameters.AddWithValue("@number", number);
-            command.Parameters.AddWithValue("@cp", creditpoints);
+            command.Parameters.AddWithValue("@empNr", employeeNr );
 
             //On internet you also see a solution like:
             // String sql = "INSERT INTO StudentTable VALUES (" +
             //     "'" + name + "'," + number  + "," + creditpoints + ")";
             //Be aware of sql-injection!
 
+            List<Item> temp;
+            temp = new List<Item>();
             try
             {
                 connection.Open();
-                int nrOfRecordsChanged = command.ExecuteNonQuery();
-                return nrOfRecordsChanged;
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                int price;
+                int stock;
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["Name"]);
+                    price = Convert.ToInt32(reader["Price"]);
+                    stock = Convert.ToInt32(reader["Stock"]);
+                    temp.Add(new Item(name,price,stock, "Images/burger.ico"));
+                }
             }
             catch
             {
-                return -1; //which means the try-block was not executed succesfully, so  . . .
+                MessageBox.Show("error while loading the students");
             }
             finally
             {
                 connection.Close();
             }
+            return temp;
         }
     }
 }

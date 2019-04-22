@@ -11,9 +11,42 @@ namespace EventManager
         //private string name;
         //private double price;
         private int stock;
+        private int quanity;
+        private double subTotal;
 
         public string Name { get; private set; }
         public double Price { get; private set; }
+        public int Quantity {
+            get
+            {
+                return quanity;
+            }
+            set
+            {
+                if (quanity != value)
+                {
+                    quanity = value;
+                    OnPropertyChanged("Quanity");
+                    OnPropertyChanged("SubTotal");
+                    OnPropertyChanged("FilteredItems");
+                }
+            }
+        }
+        public double SubTotal {
+            get
+            {
+                return Quantity*Price;
+            }
+            set
+            {
+                if (subTotal != value)
+                {
+                    subTotal = value;
+                    OnPropertyChanged("SubTotal");
+                    OnPropertyChanged("FilteredItems");
+                }
+            }
+        }
         public int Stock
         {
             get
@@ -39,6 +72,8 @@ namespace EventManager
             Price = _price;
             Stock = _stock;
             _FileName = fileName;
+            SubTotal = 0;
+            Quantity = 0;
         }
 
         public void SellItem(int amount)
@@ -49,6 +84,14 @@ namespace EventManager
             }
         }
         
+        public void SelectItem()
+        {
+            if(Quantity+1 <= Stock)
+            {
+                Quantity++;
+            }
+            
+        }
         //public List<string> GetSelectedItemInfo()
         //{
         //    int quanity;

@@ -104,6 +104,7 @@
                                    FontFamily="{StaticResource MontserratRegular}"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
+                                   FontSize="{StaticResource FontSizeSmall}"
                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                    Foreground="Gainsboro"
                                    >

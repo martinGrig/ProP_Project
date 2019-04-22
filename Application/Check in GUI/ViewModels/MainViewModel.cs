@@ -1,4 +1,5 @@
-﻿using EventManager.ViewModels.Commands;
+﻿using EventManager.Models;
+using EventManager.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace EventManager.ViewModels
         public EmployeeViewModel Employee { get; private set; }
         public LoanStandViewModel LoanStand { get; private set; }
         public StatusViewModel Status { get; private set; }
-        public ShopViewModel Shop { get; private set; }
-        //public RelayCommand GoToLoginCommand { get; private set; }
-        //public RelayCommand GoToAdminCommand { get; private set; }
+        public ShopViewModel Shop { get; set; }
+
+        public DataModel dataModel { get; set; }
 
 
         private RelayCommand _changePageCommand;
@@ -33,7 +34,9 @@ namespace EventManager.ViewModels
 
         public MainViewModel()
         {
-            Login = new LoginViewModel(this);
+            dataModel = new DataModel();
+            dataModel.Items = new List<Item>();
+            Login = new LoginViewModel(this, dataModel);
             Admin = new AdminViewModel();
             Apps = new AppsViewModel();
             Camping = new CampingViewModel();
@@ -43,13 +46,12 @@ namespace EventManager.ViewModels
             Employee = new EmployeeViewModel();
             LoanStand = new LoanStandViewModel();
             Status = new StatusViewModel();
-            Shop = new ShopViewModel();
+            Shop = new ShopViewModel(dataModel);
+            
 
             PageViewModels.Add(Login);
             CurrentPageViewModel = _pageViewModels[0];
-
-            //GoToLoginCommand = new RelayCommand(LoginScreen);
-            //GoToAdminCommand = new RelayCommand(AdminScreen);
+            
         }
         public RelayCommand ChangePageCommand
         {
@@ -103,25 +105,6 @@ namespace EventManager.ViewModels
         }
 
     }
-
-    //private object _currentView;
-
-    //public object CurrentView
-    //{
-    //    get { return _currentView; }
-    //    set
-    //    {
-    //        _currentView = value; this.OnPropertyChanged("CurrentView");
-    //    }
-    //}
-
-    //public void LoginScreen(object obj)
-    //{
-    //    CurrentView = Login;
-    //}
-    //public void AdminScreen(object obj)
-    //{
-    //    CurrentView = Admin;
-    //}
+    
 }
 
