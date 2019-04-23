@@ -133,6 +133,7 @@
     <Compile Include="Views\StatusView.xaml.cs">
       <DependentUpon>StatusView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visitor.cs" />
     <Page Include="Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

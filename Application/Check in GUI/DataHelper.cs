@@ -137,5 +137,37 @@ namespace EventManager
             }
             return emp;
         }
+        public int AddEmployee(string firstName, string lastName, int jobId)
+        {   //Probably you expected a return-value of type bool:
+            //true if the query was executed succesfully and false otherwise.
+            //But what if you executed a delete-query? Or an update-query?
+            //The return-value is teh number of records affected.
+
+            String sql = "INSERT INTO StudentTable VALUES (@employeeName, @surname, @possitionId )";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@employeeName", firstName);
+            command.Parameters.AddWithValue("@surname", lastName);
+            command.Parameters.AddWithValue("@possitionId", jobId);
+
+            //On internet you also see a solution like:
+            // String sql = "INSERT INTO StudentTable VALUES (" +
+            //     "'" + name + "'," + number  + "," + creditpoints + ")";
+            //Be aware of sql-injection!
+
+            try
+            {
+                connection.Open();
+                int nrOfRecordsChanged = command.ExecuteNonQuery();
+                return nrOfRecordsChanged;
+            }
+            catch
+            {
+                return -1; //which means the try-block was not executed succesfully, so  . . .
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
