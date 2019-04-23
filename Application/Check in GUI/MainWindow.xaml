@@ -10,7 +10,7 @@
         xmlns:viewmodels="clr-namespace:EventManager.ViewModels"
         xmlns:views="clr-namespace:EventManager.Views"
         mc:Ignorable="d"
-        Title="Login screen" Height="450" Width="549.881"
+        Title="{Binding dataModel.UserName}" Height="450" Width="549.881"
         WindowStartupLocation="CenterScreen" Icon="Webp.net-resizeimage (3).png"
         WindowState="Maximized">
     <Window.DataContext>

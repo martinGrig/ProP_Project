@@ -129,6 +129,25 @@ namespace EventManager.Models
             }
         }
 
+        private string _userName;
+
+        public string UserName
+        {
+            get
+            {
+                if (_userName == null)
+                {
+                    return "Log-in screen";
+                }
+                return _userName;
+            }
+            set
+            {
+                _userName = value;
+                OnPropertyChanged("UserName");
+            }
+        }
+
 
 
 

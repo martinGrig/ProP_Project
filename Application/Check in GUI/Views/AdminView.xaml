@@ -35,14 +35,14 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <!--Textblocks-->
-                        <TextBlock Text="First Name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                        <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                        <TextBlock Text="JobID" Grid.Row="2" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="First Name" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                        <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                        <TextBlock Text="JobID" Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderText}"/>
                         <!--text boxes -->
 
-                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource NormalTextBox}" Text="{Binding FirstName}"/>
-                        <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{DynamicResource NormalTextBox}"/>
-                        <TextBox Grid.Column="1" Grid.Row="2" Height="28" Style="{DynamicResource NormalTextBox}"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}" Text="{Binding FirstName}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource NormalTextBox}"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" Height="28" Style="{StaticResource NormalTextBox}"/>
                         <Button Content="Add Employee" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource ButtonTest}" Margin="10" Height="50" Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext}"
                                 CommandParameter="{Binding Login}">
                            
@@ -64,13 +64,13 @@
                         </Grid.RowDefinitions>
 
 
-                        <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}" Visibility="Hidden"/>
-                        <TextBlock Text="Employee Number" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                        <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderText}" Visibility="Hidden"/>
+                        <TextBlock Text="Employee Number" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
                         <!--text boxes -->
 
-                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource NormalTextBox}" Text="{Binding dataModel.EmployeeNumber}"/>
-                        <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{DynamicResource NormalTextBox}" Visibility="Hidden"/>
-                        <Button Content="Inspect" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10 58 10 10" Height="50" Command=""/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}" x:Name="tbEmployeeNumber"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource NormalTextBox}" Visibility="Hidden"/>
+                        <Button Content="Inspect" Command="{Binding InspectEmployeeCommand}" CommandParameter="{Binding ElementName=tbEmployeeNumber}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10 58 10 10" Height="50"/>
                     </Grid>
                 </GroupBox>
             </Grid>

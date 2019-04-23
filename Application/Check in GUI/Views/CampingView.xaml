@@ -25,17 +25,17 @@
 
                     <!--Textblocks-->
 
-                    <TextBlock Text="Group Leader" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                    <TextBlock Text="Reserved Camping spot" Grid.Row="1"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                    <TextBlock Text="Amount of participants" Grid.Row="2"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                    <TextBlock Text="Payment Status" Grid.Row="3"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                    <TextBlock Text="Group Leader" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Text="Reserved Camping spot" Grid.Row="1"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Text="Amount of participants" Grid.Row="2"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Text="Payment Status" Grid.Row="3"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
 
                     <!--Read only text boxes -->
 
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="0" Style="{DynamicResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{DynamicResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{StaticResource ReadOnlyTextBox}"/>
 
                     <!-- Image-->
                     <Image Source="/EventManager;component/Images/Camping.png"  Width="300" Grid.Row="0" Grid.RowSpan="3" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="Fill" Grid.Column="2"/>

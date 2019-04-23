@@ -17,7 +17,7 @@
             <RowDefinition Height="190"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Margin="10,10,5,10" Header="Employee Information" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.RowSpan="2">
+            <GroupBox Margin="10,10,5,10" Header="Employee Information" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.RowSpan="2" DataContext="{Binding _mainViewModel.dataModel.SelectedEmployee}">
             <Grid>
                 <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.5*" />
@@ -31,18 +31,18 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <!--Textblocks-->
-                <TextBlock Text="First Name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                <TextBlock Text="JobID" Grid.Row="2" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                <TextBlock Text="Password" Grid.Row="3"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
-                <TextBlock Text="Employee Number" Grid.Row="4"  Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                <TextBlock Text="First Name" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                <TextBlock Text="JobID" Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                <TextBlock Text="Password" Grid.Row="3"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                <TextBlock Text="Employee Number" Grid.Row="4"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
                 <!--text boxes -->
 
-                <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
-                <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
-                <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{DynamicResource ReadOnlyTextBox}" />
-                <TextBox Grid.Column="1" Grid.Row="4" Height="28" Style="{DynamicResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding FirstName, Mode=OneWay}"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding LastName, Mode=OneWay}"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding JobId, Mode=OneWay}"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding Password, Mode=OneWay}" />
+                    <TextBox Grid.Column="1" Grid.Row="4" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding EmployeeNr, Mode=OneWay}"/>
 
             </Grid>
         </GroupBox>
@@ -67,8 +67,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{DynamicResource NormalTextBox}"/>
-                <TextBlock Text="JobID" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}"/>
+                <TextBlock Text="JobID" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
                 <Button Content="Change" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
             </Grid>
         </GroupBox>

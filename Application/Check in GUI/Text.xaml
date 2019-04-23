@@ -10,7 +10,7 @@
     
     <!--Read only text boxes-->
     <Style TargetType="TextBox" x:Key="ReadOnlyTextBox" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
         <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
         <Setter Property="Padding" Value="2" />
         <Setter Property="Margin" Value="10" />
