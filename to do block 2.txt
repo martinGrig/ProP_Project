@@ -1,0 +1,10 @@
+Update database
+Change employee job
+PHP for website
+Employee class
+Visitor
+Make child class for item class
+Update documentaition(agenda minutes and setup)
+Add methods for datahelper:
+GetJobId()
+Get

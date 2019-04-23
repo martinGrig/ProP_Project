@@ -77,7 +77,7 @@
 
             </Border>
         </Viewbox>
-        <Border Background="White" Name="TempBack" Visibility="Collapsed"/>
+        <Border Background="White" Name="TempBack"/>
         <Image Source="/EventManager;component/Images/MLogo.png" Name="Logo">
             <Image.RenderTransform>
 
