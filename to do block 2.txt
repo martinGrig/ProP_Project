@@ -2,9 +2,10 @@ Update database
 Change employee job
 PHP for website
 Employee class
-Visitor
+Visitor class
 Make child class for item class
+Employee window
 Update documentaition(agenda minutes and setup)
+Change window title to first name
 Add methods for datahelper:
 GetJobId()
-Get

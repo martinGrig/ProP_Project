@@ -110,6 +110,27 @@ namespace EventManager.Models
         }
 
 
+        private Employee _selectedEmployee;
+
+        public Employee SelectedEmployee
+        {
+            get
+            {
+                if (_selectedEmployee == null)
+                {
+                    return _selectedEmployee;
+                }
+                return _selectedEmployee;
+            }
+            set
+            {
+                _selectedEmployee = value;
+                OnPropertyChanged("SelectedEmployee");
+            }
+        }
+
+
+
 
     }
 }
