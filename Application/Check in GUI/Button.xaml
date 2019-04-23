@@ -27,7 +27,7 @@
                             <SolidColorBrush Color="Transparent"/>
                         </Border.BorderBrush>
                         <Border.Background>
-                            <SolidColorBrush Color="{DynamicResource SecondGroupboxColor}"/>
+                            <SolidColorBrush Color="{StaticResource SecondGroupboxColor}"/>
                         </Border.Background>
                         <ContentPresenter Margin="2"
                             HorizontalAlignment="Center"
@@ -75,7 +75,7 @@
                             <SolidColorBrush Color="Transparent"/>
                         </Border.BorderBrush>
                         <Border.Background>
-                            <SolidColorBrush Color="{DynamicResource ControlLightColor}"/>
+                            <SolidColorBrush Color="{StaticResource ControlLightColor}"/>
                         </Border.Background>
                         <ContentPresenter Margin="2"
                             HorizontalAlignment="Center"

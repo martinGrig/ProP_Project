@@ -24,7 +24,7 @@ namespace EventManager.ViewModels
         public ShopViewModel Shop { get; set; }
 
         public DataModel dataModel { get; set; }
-
+        public DataHelper dataHelper;
 
         private RelayCommand _changePageCommand;
 
@@ -35,15 +35,16 @@ namespace EventManager.ViewModels
         public MainViewModel()
         {
             dataModel = new DataModel();
+            dataHelper = new DataHelper();
             dataModel.Items = new List<Item>();
             Login = new LoginViewModel(this, dataModel);
-            Admin = new AdminViewModel();
+            Admin = new AdminViewModel(this);
             Apps = new AppsViewModel();
             Camping = new CampingViewModel();
             CheckIn = new CheckinViewModel();
             CheckOut = new CheckOutViewModel();
             Converter = new ConverterViewModel();
-            Employee = new EmployeeViewModel();
+            Employee = new EmployeeViewModel(this);
             LoanStand = new LoanStandViewModel();
             Status = new StatusViewModel();
             Shop = new ShopViewModel(dataModel);

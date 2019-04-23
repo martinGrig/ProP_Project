@@ -70,6 +70,9 @@ namespace EventManager.ViewModels
                     return;
                 }
             }
+            
+            Dm.SelectedEmployee = dh.GetEmployee(Convert.ToInt32(Dm.EmployeeNumber));
+            MessageBox.Show(Dm.SelectedEmployee.FirstName);
             item.SelectItem();
             Dm._selectedItems.Add(item);
             Dm.SelectedItems = Dm._selectedItems;

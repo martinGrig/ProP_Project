@@ -36,14 +36,14 @@ namespace EventManager.ViewModels
             string name = dh.Login(Convert.ToInt32(Dm.EmployeeNumber), Dm.Password);
             if( name != null)
             {
-                MessageBox.Show("Welcome" + name);
+                Dm.UserName = name;
                 int numb = Convert.ToInt32(Dm.EmployeeNumber);
                 Dm.Items = dh.GetItems(numb);
                 _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Shop);
             }
             else
             {
-                MessageBox.Show("Wrong usernam or password");
+                MessageBox.Show("Wrong username or password");
             }
         }
         public LoginViewModel(MainViewModel mainViewModel, DataModel dataModel)

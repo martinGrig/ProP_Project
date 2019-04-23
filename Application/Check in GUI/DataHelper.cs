@@ -100,7 +100,7 @@ namespace EventManager
         public Employee GetEmployee(int employeeNr)
         {
 
-            String sql = "SELECT employeeName, surname, possitionId, password, employeeNr FROM employees WHERE employee.employeeNr = @empNr ;";
+            String sql = "SELECT employeeName, surname, positionId, password FROM employee WHERE employee.employeeNr = @empNr ;";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@empNr", employeeNr );
 
@@ -118,14 +118,19 @@ namespace EventManager
                 string lastName;
                 int jobId;
                 int password;
+
                 while (reader.Read())
                 {
                     name = Convert.ToString(reader["employeeName"]);
                     lastName = Convert.ToString(reader["surname"]);
-                    jobId = Convert.ToInt32(reader["possitionId"]);
+                    jobId = Convert.ToInt32(reader["positionId"]);
                     password = Convert.ToInt32(reader["password"]);
+
                     emp = new Employee(name, lastName, jobId, password, employeeNr);
                 }
+
+                
+                
             }
             catch
             {

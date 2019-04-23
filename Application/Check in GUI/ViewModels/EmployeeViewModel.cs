@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace EventManager.ViewModels
 {
     public class EmployeeViewModel : IPageViewModel
     {
+        public MainViewModel _mainViewModel { get; set; }
+
+        public EmployeeViewModel(MainViewModel mainViewModel)
+        {
+            _mainViewModel = mainViewModel;
+        }
     }
 }
