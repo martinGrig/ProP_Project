@@ -97,5 +97,45 @@ namespace EventManager
             }
             return temp;
         }
+        public Employee GetEmployee(int employeeNr)
+        {
+
+            String sql = "SELECT employeeName, surname, possitionId, password, employeeNr FROM employees WHERE employee.employeeNr = @empNr ;";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@empNr", employeeNr );
+
+            //On internet you also see a solution like:
+            // String sql = "INSERT INTO StudentTable VALUES (" +
+            //     "'" + name + "'," + number  + "," + creditpoints + ")";
+            //Be aware of sql-injection!
+            Employee emp = null;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                string lastName;
+                int jobId;
+                int password;
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["employeeName"]);
+                    lastName = Convert.ToString(reader["surname"]);
+                    jobId = Convert.ToInt32(reader["possitionId"]);
+                    password = Convert.ToInt32(reader["password"]);
+                    emp = new Employee(name, lastName, jobId, password, employeeNr);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return emp;
+        }
     }
 }
