@@ -15,7 +15,7 @@
                         <ItemsControl>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="2" Rows="4"/>
+                                <UniformGrid Columns="2"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <Viewbox Height="Auto" Width="Auto">
