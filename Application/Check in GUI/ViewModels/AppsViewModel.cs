@@ -8,5 +8,11 @@ namespace EventManager.ViewModels
 {
     public class AppsViewModel : IPageViewModel
     {
+        public MainViewModel _mainViewModel { get; set; }
+
+        public AppsViewModel(MainViewModel mainViewModel)
+        {
+            _mainViewModel = mainViewModel;
+        }
     }
 }

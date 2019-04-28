@@ -39,7 +39,7 @@ namespace EventManager.ViewModels
             dataModel.Items = new List<Item>();
             Login = new LoginViewModel(this, dataModel);
             Admin = new AdminViewModel(this);
-            Apps = new AppsViewModel();
+            Apps = new AppsViewModel(this);
             Camping = new CampingViewModel();
             CheckIn = new CheckinViewModel();
             CheckOut = new CheckOutViewModel();
@@ -48,11 +48,16 @@ namespace EventManager.ViewModels
             LoanStand = new LoanStandViewModel();
             Status = new StatusViewModel();
             Shop = new ShopViewModel(dataModel);
-            
-
             PageViewModels.Add(Login);
             CurrentPageViewModel = _pageViewModels[0];
-            
+
+
+            dataModel._jobs = new List<Job>();
+            dataModel._jobs.Add(new Job("GateKeeper", "io"));
+            dataModel._jobs.Add(new Job("Shop Worker", "sl"));
+            dataModel._jobs.Add(new Job("Camping worker", "c"));
+            dataModel._jobs.Add(new Job("Manager", "ieosclv"));
+            dataModel.Jobs = dataModel._jobs;
         }
         public RelayCommand ChangePageCommand
         {

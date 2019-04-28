@@ -10,11 +10,12 @@ namespace EventManager.ViewModels
 {
     public class AdminViewModel : ObservableObject, IPageViewModel
     {
-        MainViewModel _mainViewModel;
+        public MainViewModel _mainViewModel { get; set; }
 
         public AdminViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
+            
         }
 
         private RelayCommand _inspectEmployeeCommand;

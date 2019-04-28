@@ -45,6 +45,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\MySql.Data\v4.0_6.10.8.0__c5687fc88969c44d\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Phidget22.NET, Version=1.1.1.4, Culture=neutral, PublicKeyToken=aefa9ee0bcd237af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Phidgets\Phidget22\Phidget22.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -75,10 +79,12 @@
     <Compile Include="Controls\StandItemControl.xaml.cs">
       <DependentUpon>StandItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\StockToColorConverter.cs" />
     <Compile Include="DataHelper.cs" />
-    <Compile Include="Employee.cs" />
+    <Compile Include="Objects\Employee.cs" />
     <Compile Include="IPageViewModel.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="Objects\Item.cs" />
+    <Compile Include="Objects\Job.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -133,7 +139,7 @@
     <Compile Include="Views\StatusView.xaml.cs">
       <DependentUpon>StatusView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visitor.cs" />
+    <Compile Include="Objects\Visitor.cs" />
     <Page Include="Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

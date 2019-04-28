@@ -116,14 +116,14 @@ namespace EventManager
 
                 String name;
                 string lastName;
-                int jobId;
+                string jobId;
                 int password;
 
                 while (reader.Read())
                 {
                     name = Convert.ToString(reader["employeeName"]);
                     lastName = Convert.ToString(reader["surname"]);
-                    jobId = Convert.ToInt32(reader["positionId"]);
+                    jobId = Convert.ToString(reader["positionId"]);
                     password = Convert.ToInt32(reader["password"]);
 
                     emp = new Employee(name, lastName, jobId, password, employeeNr);

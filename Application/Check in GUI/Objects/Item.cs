@@ -16,6 +16,13 @@ namespace EventManager
 
         public string Name { get; private set; }
         public double Price { get; private set; }
+        public int SeenAmount
+        {
+            get
+            {
+                return Stock - Quantity;
+            }
+        }
         public int Quantity {
             get
             {
@@ -28,6 +35,7 @@ namespace EventManager
                     quanity = value;
                     OnPropertyChanged("Quanity");
                     OnPropertyChanged("SubTotal");
+                    OnPropertyChanged("SeenAmount");
                     OnPropertyChanged("FilteredItems");
                 }
             }
@@ -76,11 +84,12 @@ namespace EventManager
             Quantity = 0;
         }
 
-        public void SellItem(int amount)
+        public void SellItem()
         {
-            if(Stock-amount >= 0)
+            if(Stock-Quantity >= 0)
             {
-                Stock -= amount;
+                Stock -= Quantity;
+                Quantity = 0;
             }
         }
         

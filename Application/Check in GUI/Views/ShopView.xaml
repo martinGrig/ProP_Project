@@ -7,9 +7,13 @@
              xmlns:local="clr-namespace:EventManager.Views"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:controls="clr-namespace:EventManager.Controls"
+             xmlns:converters="clr-namespace:EventManager.Converters"
              xmlns:viewmodels="clr-namespace:EventManager.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:StockToColorConverter x:Key="StockColor"/>
+    </UserControl.Resources>
     <Viewbox>
         <Border>
             <Grid Width="800" Height="450" >
@@ -61,17 +65,19 @@
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
+                                        <DataTemplate x:Name="Foods">
                                             <Viewbox>
                                                 <Button BorderThickness="0.1"  Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectItemCommand}"  CommandParameter="{Binding}" >
-                                                    
+                                                    <Button.InputBindings>
+                                                        <MouseBinding Gesture="RightClick"/>
+                                                    </Button.InputBindings>
                                                     <Button.Background>
 
                                                         <ImageBrush ImageSource="{Binding _FileName}"/>
 
                                                     </Button.Background>
-                                                    
-                                                    <TextBlock Text="{Binding Stock}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="0.7"/>
+
+                                                    <TextBlock Text="{Binding SeenAmount}"  Foreground="{Binding Converter={StaticResource StockColor}}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="0.7"/>
                                                     
                                                 </Button>
                                             </Viewbox>

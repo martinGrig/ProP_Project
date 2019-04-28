@@ -118,3 +118,6 @@ C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\De
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.exe
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Phidget22.NET.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Phidget22.NET.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Phidget22.NET.xml
