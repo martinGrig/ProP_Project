@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManager.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -144,6 +145,36 @@ namespace EventManager.Models
             }
         }
 
+        private Visitor _selectedVisitor;
+        public Visitor SelectedVisitor
+        {
+            get
+            {
+                return _selectedVisitor;
+            }
+
+            set
+            {
+                _selectedVisitor = value;
+                OnPropertyChanged("SelectedVisitor");
+            }
+        }
+
+        public List<LogLine> _logFileLines;
+        public IEnumerable<LogLine> LogFileLines
+        {
+            get
+            {
+                return _logFileLines;
+            }
+
+            set
+            {
+                _logFileLines = value.ToList();
+                OnPropertyChanged("LogFileLines");
+            }
+        }
+
         private string _userName;
 
         public string UserName
@@ -269,6 +300,34 @@ namespace EventManager.Models
             {
                 _showAdmin = value;
                 OnPropertyChanged("ShowAdmin");
+            }
+        }
+
+        private bool _showScanQrCode;
+        public bool ShowScanQrCode
+        {
+            get
+            {
+                return _showScanQrCode;
+            }
+            set
+            {
+                _showScanQrCode = value;
+                OnPropertyChanged("ShowScanQrCode");
+            }
+        }
+
+        private bool _showBackButton;
+        public bool ShowBackButton
+        {
+            get
+            {
+                return _showBackButton;
+            }
+            set
+            {
+                _showBackButton = value;
+                OnPropertyChanged("ShowBackButton");
             }
         }
 

@@ -41,9 +41,9 @@ namespace EventManager.ViewModels
             Admin = new AdminViewModel(this);
             Apps = new AppsViewModel(this);
             Camping = new CampingViewModel();
-            CheckIn = new CheckinViewModel();
+            CheckIn = new CheckinViewModel(this);
             CheckOut = new CheckOutViewModel();
-            Converter = new ConverterViewModel();
+            Converter = new ConverterViewModel(this);
             Employee = new EmployeeViewModel(this);
             LoanStand = new LoanStandViewModel();
             Status = new StatusViewModel();
@@ -106,8 +106,13 @@ namespace EventManager.ViewModels
         {
             if (!PageViewModels.Contains(viewModel))
                 PageViewModels.Add(viewModel);
+            if (viewModel.GetType() == typeof(CheckinViewModel))
+            {
+                CheckIn.StartQrScannerCommand.Execute(null);
+            }
             CurrentPageViewModel = PageViewModels
                 .FirstOrDefault(vm => vm == viewModel);
+            
         }
 
     }

@@ -3,14 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:EventManager.Converters"
              xmlns:local="clr-namespace:EventManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="380" d:DesignWidth="600">
 
+    
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <converters:RfidScanConverter x:Key="RfidScan"/>
+    </UserControl.Resources>
     <Viewbox >
         <Border Padding="0" Width="600">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
@@ -20,12 +27,14 @@
                 </Grid.RowDefinitions>
 
                 <!--Ticket info group box-->
-                <Border  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderThickness="2" BorderBrush="Gray" Margin="10 10 5 10" Background="White">
-                    <Image Source="/EventManager;component/Images/ScanQrCode.png"/>
+                <Button Background="Transparent" Height="25" Width="25" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 10 0 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                <Border  Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BorderThickness="2" BorderBrush="Gray" Margin="10 10 5 10" Background="White" >
+                    <Image  Source="{Binding QrImageSource}"/>
+                   
                 </Border>
 
-                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}" Visibility="Hidden">
-                    <Grid 
+                <GroupBox Grid.Column="1" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Ticket Information" Style="{StaticResource FirstGroupbox}" Visibility="{Binding _mainViewModel.dataModel.ShowScanQrCode, Converter={StaticResource booleanToVisibilityConverter}}">
+                    <Grid DataContext="{Binding _mainViewModel.dataModel.SelectedVisitor}"
                   >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -46,10 +55,9 @@
 
                         <!--Read only text boxes -->
 
-                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource ReadOnlyTextBox}"/>
-                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource ReadOnlyTextBox}"/>
-                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource ReadOnlyTextBox}"/>
-
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding TicketNr, Mode=OneWay}"/>
+                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding FirstName, Mode=OneWay}"/>
+                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding LastName , Mode=OneWay}"/>
 
 
                         <!-- Image-->
@@ -64,7 +72,7 @@
                 <Image Source="/EventManager;component/Images/waiting.jpg" Grid.Column="0" Grid.RowSpan="2" Stretch="Fill" Margin="10 10 5 10" Visibility="Collapsed"/>
 
                 <!--Purchase ticket viewbox-->
-                <GroupBox Grid.Column="1" Grid.RowSpan="2" Margin="5 10 10 5" VerticalAlignment="Top" Header="Purchase ticket" Style="{StaticResource ThirdGroupbox}">
+                <GroupBox Grid.Column="3" Grid.RowSpan="2" Margin="5 10 10 5" VerticalAlignment="Top" Header="Purchase ticket" Style="{StaticResource ThirdGroupbox}">
                     <Grid 
                  >
                         <Grid.ColumnDefinitions>
@@ -93,8 +101,8 @@
                 </GroupBox>
 
                 <!--Program chip-->
-                <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="Gray" Margin="5 5 10 10">
-                    <Image Source="/EventManager;component/Images/ScanOrBuyTicket.png" Grid.Column="1" Grid.Row="1" />
+                <Border Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="Gray" Margin="5 5 10 10">
+                    <Image Source="{Binding _mainViewModel.dataModel.SelectedVisitor, Converter={StaticResource RfidScan} }" Grid.Column="1" Grid.Row="1" />
                 </Border>
                 
 

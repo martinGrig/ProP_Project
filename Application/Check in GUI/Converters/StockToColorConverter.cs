@@ -9,19 +9,23 @@ using System.Windows.Data;
 
 namespace EventManager.Converters
 {
+    [ValueConversion(typeof(Item), typeof(string))]
     class StockToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Item item = (Item)value;
-            if(item.Stock == item.SeenAmount)
+            string color = "Black";
+            if (value != null)
             {
-                return "Black";
+                Item item = (Item)value;
+
+                if (item.Stock != item.SeenAmount)
+                {
+                    return "Yellow";
+                }
             }
-            else
-            {
-                return "Yellow";
-            }
+
+            return color;
 
         }
 

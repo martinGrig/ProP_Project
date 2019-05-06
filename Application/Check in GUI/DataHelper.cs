@@ -142,17 +142,18 @@ namespace EventManager
             }
             return emp;
         }
-        public int AddEmployee(string firstName, string lastName, int jobId)
+        public int AddEmployee(string firstName, string lastName, string jobId, string password)
         {   //Probably you expected a return-value of type bool:
             //true if the query was executed succesfully and false otherwise.
             //But what if you executed a delete-query? Or an update-query?
             //The return-value is teh number of records affected.
-
-            String sql = "INSERT INTO StudentTable VALUES (@employeeName, @surname, @possitionId )";
+            int nrOfRecordsChanged;
+            String sql = "INSERT INTO employee (employeeName, surname, positionId, password) VALUES (@employeeName, @surname, @possitionId, @password )";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@employeeName", firstName);
             command.Parameters.AddWithValue("@surname", lastName);
             command.Parameters.AddWithValue("@possitionId", jobId);
+            command.Parameters.AddWithValue("@password", password);
 
             //On internet you also see a solution like:
             // String sql = "INSERT INTO StudentTable VALUES (" +
@@ -162,17 +163,64 @@ namespace EventManager
             try
             {
                 connection.Open();
-                int nrOfRecordsChanged = command.ExecuteNonQuery();
-                return nrOfRecordsChanged;
+                nrOfRecordsChanged = command.ExecuteNonQuery();
             }
             catch
             {
-                return -1; //which means the try-block was not executed succesfully, so  . . .
+                nrOfRecordsChanged = -1; //which means the try-block was not executed succesfully, so  . . .
+            }
+            finally
+            {
+                connection.Close();
+                
+            }
+            return nrOfRecordsChanged;
+        }
+
+        public Visitor GetVisitor(int ticketNr)
+        {
+
+            String sql = "SELECT account.name as Name, account.surname as Surname, account.email as Email, visitor.balance as Balance FROM account, visitor WHERE account.email = visitor.accountEmail AND visitor.ticketNr = @ticketNr ;";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@ticketNr", ticketNr);
+
+            //On internet you also see a solution like:
+            // String sql = "INSERT INTO StudentTable VALUES (" +
+            //     "'" + name + "'," + number  + "," + creditpoints + ")";
+            //Be aware of sql-injection!
+           Visitor vis = null;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                string lastName;
+                string email;
+                int balance;
+
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["Name"]);
+                    lastName = Convert.ToString(reader["Surname"]);
+                    email = Convert.ToString(reader["Email"]);
+                    balance = Convert.ToInt32(reader["Balance"]);
+
+                    vis = new Visitor(name, lastName, ticketNr, email, balance);
+                }
+
+
+
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
             }
             finally
             {
                 connection.Close();
             }
+            return vis;
         }
     }
 }

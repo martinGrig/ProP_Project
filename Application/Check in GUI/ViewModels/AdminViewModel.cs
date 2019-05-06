@@ -18,6 +18,48 @@ namespace EventManager.ViewModels
             
         }
 
+        #region Properties
+        private string _newFirstName;
+        public string NewFirstName
+        {
+            get
+            {
+                return _newFirstName;
+            }
+            set
+            {
+                _newFirstName = value;
+                OnPropertyChanged("NewFirstName");
+            }
+        }
+        private string _newLastName;
+        public string NewLastName
+        {
+            get
+            {
+                return _newLastName;
+            }
+            set
+            {
+                _newLastName = value;
+                OnPropertyChanged("NewLastName");
+            }
+        }
+
+        private Job _selecetedJob;
+        public Job SelectedJob
+        {
+            get
+            {
+                return _selecetedJob;
+            }
+            set
+            {
+                _selecetedJob = value;
+                OnPropertyChanged("SelectedJob");
+            }
+        }
+        #endregion Properties
         private RelayCommand _inspectEmployeeCommand;
         public RelayCommand InspectEmployeeCommand
         {
@@ -41,6 +83,56 @@ namespace EventManager.ViewModels
                 
             }
             
+        }
+
+        private RelayCommand _addEmployeeCommand;
+        public RelayCommand AddEmployeeCommand
+        {
+            get
+            {
+                if (_addEmployeeCommand == null) _addEmployeeCommand = new RelayCommand(new Action<object>(AddEmployee));
+                return _addEmployeeCommand;
+            }
+        }
+
+        public void AddEmployee(object obj)
+        {
+            if(NewFirstName != null)
+            {
+                if (NewLastName != null)
+                {
+                    if (obj != null)
+                    {
+
+                        if(_mainViewModel.dataHelper.AddEmployee(NewFirstName, NewLastName, SelectedJob.Id, "1111") != -1)
+                        {
+                            NewFirstName = null;
+                            NewLastName = null;
+                            SelectedJob = null;
+                        }
+                        else
+                        {
+                            //something went wrong
+                            System.Windows.Forms.MessageBox.Show("Something went wrong with database");
+                        }
+                    }
+                    else
+                    {
+                        //please select job
+                        System.Windows.Forms.MessageBox.Show("no job selected");
+                    }
+                }
+                else
+                {
+                    //pleas fill in last name
+                    System.Windows.Forms.MessageBox.Show("Last name not selected");
+                }
+            }
+            else
+            {
+                //please fill in first name
+                System.Windows.Forms.MessageBox.Show("First name not selected");
+            }
         }
     }
 }

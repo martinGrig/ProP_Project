@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace EventManager
 {
-    class Visitor
+    public class Visitor : ObservableObject
     {
-        //private string _firstName;
-        //private string _lastName;
-        private int _ticketNr;
         private string _email;
-        private string _password;
-        private string _bankAccountNr;
-        private int _balance;
-        private int _RFIDCode;
-
+        private string _rfidCode;
         private int _campingSpotId;
         private int _campSpotIt;
         private bool _isCampPayed;
@@ -25,16 +18,37 @@ namespace EventManager
         private bool _isValid;
         private DateTime _whenScanned;
 
+        public string RfidCode
+        {
+            get
+            {
+                return _rfidCode;
+            }
+            set
+            {
+                _rfidCode = value;
+                OnPropertyChanged("RfidCode");
+                OnPropertyChanged("SelectedVisitor");
+            }
+        }
         public string FirstName { get; private set; }
-        public string SecondName { get; private set; }
+        public string LastName { get; private set; }
+        public int Balance { get; private set; }
+        public int TicketNr { get; private set; }
         public string Email { get; private set; }  //add regex for email
-        public Visitor(string firstName, string lastName, string email, string password, string bankAccountNr, int balance)
+        public Visitor(string firstName, string lastName, int ticketNumber, string email, int balance)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            TicketNr = ticketNumber;
+            Balance = balance;
+            Email = email;
+        }
+        public Visitor(string firstName, string lastName, string email, int balance, int _campingSpotId)
         {
 
         }
-        public Visitor(string firstName, string lastName, string email, string password, string bankAccountNr, int balance, int _campingSpotId)
-        {
 
-        }
+
     }
 }

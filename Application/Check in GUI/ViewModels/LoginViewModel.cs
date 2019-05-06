@@ -43,6 +43,7 @@ namespace EventManager.ViewModels
                 string job = dh.GetEmployee(numb).JobId;
                 if(job.Length == 1)
                 {
+                    Dm.ShowBackButton = false;
                     switch (job)
                     {
                         case "i":
@@ -74,6 +75,7 @@ namespace EventManager.ViewModels
                 }
                 else if(job.Length > 1)
                 {
+                    Dm.ShowBackButton = true;
                     if (job.Contains("i"))
                     {
                         Dm.ShowCheckin = true;
