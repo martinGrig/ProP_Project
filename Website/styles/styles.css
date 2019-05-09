@@ -1,8 +1,8 @@
 * {
   box-sizing: border-box;
 }
-html { 
-  background: url(games.jpg) no-repeat center center fixed; 
+html {
+  background: url(../images/games.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -20,7 +20,7 @@ body {
   text-align: center;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 25px;
-  background: url(board.png) no-repeat;
+  background: url(../images/board.png) no-repeat;
 }
 
 .header h1 {
@@ -73,7 +73,7 @@ body {
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
-.leftcolumn {   
+.leftcolumn {
   float: left;
   width: 75%;
 }
@@ -95,7 +95,7 @@ body {
 
 /* Add a card effect for articles */
 .card {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
   margin-top: 20px;
   border-radius: 25px;
@@ -144,7 +144,7 @@ body {
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {   
+  .leftcolumn, .rightcolumn {
     width: 100%;
     padding: 0;
   }
@@ -317,12 +317,12 @@ img {vertical-align: middle;}
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4} 
+  from {opacity: .4}
   to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4} 
+  from {opacity: .4}
   to {opacity: 1}
 }
 
@@ -405,4 +405,3 @@ img {vertical-align: middle;}
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
