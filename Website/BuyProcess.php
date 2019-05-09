@@ -29,6 +29,38 @@
     $_SESSION['currentUser']['balance'] = $result[0]['balance'];
   }
 
+  if ($tshirt == "t-shirt") {
+    $sql = "INSERT INTO website_merch_purchaise (merchname, email) VALUES (?, ?)";
+    $statement = $con->prepare($sql);
+    $statement->bindParam('1', $tshirt);
+    $statement->bindParam('2', $email);
+    $result = $statement->execute();
+  }
+
+  if ($hoodie == "hoodie") {
+    $sql = "INSERT INTO website_merch_purchaise (merchname, email) VALUES (?, ?)";
+    $statement = $con->prepare($sql);
+    $statement->bindParam('1', $hoodie);
+    $statement->bindParam('2', $email);
+    $result = $statement->execute();
+  }
+
+  if ($hat == "hat") {
+    $sql = "INSERT INTO website_merch_purchaise (merchname, email) VALUES (?, ?)";
+    $statement = $con->prepare($sql);
+    $statement->bindParam('1', $hat);
+    $statement->bindParam('2', $email);
+    $result = $statement->execute();
+  }
+
+  if ($keychain == "keychain") {
+    $sql = "INSERT INTO website_merch_purchaise (merchname, email) VALUES (?, ?)";
+    $statement = $con->prepare($sql);
+    $statement->bindParam('1', $keychain);
+    $statement->bindParam('2', $email);
+    $result = $statement->execute();
+  }
+  
   header("location:Profile.php");
 
 ?>
