@@ -6,11 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using NAudio.Wave;
 
 namespace EventManager.ViewModels
 {
+    
+
     public class MainViewModel : ObservableObject
     {
+        private WaveOut waveOut;
         public LoginViewModel Login { get; private set; }
         public AdminViewModel Admin { get; private set; }
         public AppsViewModel Apps { get; private set; }
@@ -58,6 +62,13 @@ namespace EventManager.ViewModels
             dataModel._jobs.Add(new Job("Camping worker", "c"));
             dataModel._jobs.Add(new Job("Manager", "ieosclv"));
             dataModel.Jobs = dataModel._jobs;
+
+            var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ele.mp3");
+            LoopStream loop = new LoopStream(reader);
+            waveOut = new WaveOut();
+            waveOut.Volume = 0.8F;
+            waveOut.Init(loop);
+            waveOut.Play();
         }
         public RelayCommand ChangePageCommand
         {
