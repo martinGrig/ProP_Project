@@ -49,19 +49,25 @@ session_start();
 
                 if (!$result) {
                   echo "<h3>No ticket purchaised yet!</h3>";
-                }
-                else {
+                } else {
                   $ticketNr = $result[0]['ticketNr'];
                   $balance = $result[0]['balance'];
                   echo "<h3>Ticket number: " .  $ticketNr . "</h3>";
-                  echo "<h3>Balance: " .  $balance . "€</h3>"
+                  echo "<h3>Balance: " .  $balance . "€</h3>";
                 }
                 ?>
 
                 <form>
                     <input type="button" value="Buy A Ticket" onclick="window.location.href='Buy.php'">
-                    <input type="button" value="Top Up Balance" onclick="window.location.href='TopUp.php'">
-                    <input type="button" value="Reserve A Camp Spot" onclick="window.location.href='Camp.php'">
+                    <?php
+                    if ($result) {
+                      echo "
+                      <input type=\"button\" value=\"Top Up Balance\" onclick=\"window.location.href='TopUp.php'\">
+                      <input type=\"button\" value=\"Reserve A Camp Spot\" onclick=\"window.location.href='Camp.php'\">
+                      ";
+                    }
+                    ?>
+
                 </form>
               </div>
             </div>
