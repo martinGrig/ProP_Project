@@ -31,7 +31,7 @@ session_start();
               <div class="card">
                 <h2>Before you buy a Ticket</h2>
                 <h2>First make a Registration</h2>
-                <form name="registration-form" onsubmit="return validateRegistration()">
+                <form name="registration-form" action="RegisterProcess.php" onsubmit="return validateRegistration()" method="post">
                     <input id="fname" name="fname" type="text" placeholder="First Name">
                     <input name="lname" type="text" placeholder="Last Name"><br>
                     <input name="email" type="email" placeholder="Email">
