@@ -46,8 +46,16 @@ session_start();
                 $name = $_SESSION['currentUser']['name'];
                 $surname = $_SESSION['currentUser']['surname'];
                 echo "<h3>" .  $name . " " . $surname . "</h3>";
-                echo "<h3>Ticket number: " .  $result[0]['ticketNr'] . "</h3>";
-                echo "<h3>Balance: " .  $result[0]['balance'] . "€</h3>"
+
+                if (!$result) {
+                  echo "<h3>No ticket purchaised yet!</h3>";
+                }
+                else {
+                  $ticketNr = $result[0]['ticketNr'];
+                  $balance = $result[0]['balance'];
+                  echo "<h3>Ticket number: " .  $ticketNr . "</h3>";
+                  echo "<h3>Balance: " .  $balance . "€</h3>"
+                }
                 ?>
 
                 <form>
