@@ -30,8 +30,8 @@ session_start();
             <div class="column centre ">
               <div class="card">
                 <h2>Top Up Balance</h2>
-                <form name="TopUp-form" action="Profile.php">
-                    <select name="cars">
+                <form name="TopUp-form" action="TopUpProcess.php" method="post">
+                    <select name="topUpAmount">
                         <option value="10">10 Euro</option>
                         <option value="20">20 Euro</option>
                         <option value="30">30 Euro</option>
