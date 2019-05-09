@@ -1,43 +1,52 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>BoardGames Buy A Ticket</title>
-        <link href="styles.css" type="text/css" rel="stylesheet"></link>
-        <script src="js.js"></script>
+        <link href="styles/styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js/js.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
         <div class="header">
         </div>
         <div class="topnav">
-            <a href="Home.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="ContactUs.html">Contact us</a>
-            <a href="Reviews.html">Reviews</a>
-            <a href="LogIn.html" style="float:right">Log in</a>
-            <a href="Profile.html" style="float:right">Profile</a>
+            <a href="Home.php">Home</a>
+            <a href="Events.php">Events</a>
+            <a href="ContactUs.php">Contact us</a>
+            <a href="Reviews.php">Reviews</a>
+            <?php
+            if (isset($_SESSION['loggedin'])){
+              echo "<a href=\"LogOut.php\" style=\"float:right\">Log Out</a>";
+               echo "<a href=\"Profile.php\" style=\"float:right\">Profile</a>";
+             } else {
+              echo "<a href=\"LogIn.php\" style=\"float:right\">Log in</a>";
+             }
+             ?>
         </div>
         <div class="row">
             <div class="column centre ">
               <div class="card">
                 <h2>Buy A Ticket</h2>
                 <h3>Check an item with your ticket</h3>
-                <form name="Buy-form" action="Profile.html">
+                <form name="Buy-form" action="Profile.php">
                     <label class="container">T-Shirt
                     <input type="checkbox" >
                     <span class="checkmark"></span>
                     </label>
-                    
+
                     <label class="container">Hoodie
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     </label>
-                    
+
                     <label class="container">Hat
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     </label>
-                    
+
                     <label class="container">Key Chain
                     <input type="checkbox">
                     <span class="checkmark"></span>
@@ -83,7 +92,7 @@
                     WE ACCEPT
                 </h2>
                 <h3>
-                    <img src="weaccept.png" width="200" height="75">
+                    <img src="images/weaccept.png" width="200" height="75">
                 </h3>
             </div>
         </div>

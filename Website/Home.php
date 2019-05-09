@@ -1,21 +1,31 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>BoardGames Home</title>
-        <link href="styles.css" type="text/css" rel="stylesheet"></link>
-        <script src="js.js"></script>
+        <link href="styles/styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js/js.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
         <div class="header">
         </div>
         <div class="topnav">
-            <a href="Home.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="ContactUs.html">Contact us</a>
-            <a href="Reviews.html">Reviews</a>
-            <a href="LogIn.html" style="float:right">Log in</a>
-            <a href="Profile.html" style="float:right">Profile</a>
+            <a href="Home.php">Home</a>
+            <a href="Events.php">Events</a>
+            <a href="ContactUs.php">Contact us</a>
+            <a href="Reviews.php">Reviews</a>
+            <?php
+            if (isset($_SESSION['loggedin'])){
+              echo "<a href=\"LogOut.php\" style=\"float:right\">Log Out</a>";
+               echo "<a href=\"Profile.php\" style=\"float:right\">Profile</a>";
+             } else {
+              echo "<a href=\"LogIn.php\" style=\"float:right\">Log in</a>";
+             }
+             ?>
         </div>
         <div class="row">
             <div class="column centre ">
@@ -23,30 +33,30 @@
                     <h1>MAD Games</h1>
                     <h2>Discover a new breed of Board Games</h2>
                     <div class="mySlides fade">
-                    <img src="a.jpg" style="width:60%">
+                    <img src="images/a.jpg" style="width:60%">
                     </div>
-                    
+
                     <div class="mySlides fade">
-                    <img src="b.jpg" style="width:60%">
+                    <img src="images/b.jpg" style="width:60%">
                     </div>
-                    
+
                     <div class="mySlides fade">
-                    <img src="c.jpg" style="width:60%">
+                    <img src="images/c.jpg" style="width:60%">
                     </div>
 
                     <br>
-                    
+
                     <div style="text-align:center">
-                    <span class="dot"></span> 
-                    <span class="dot"></span> 
-                    <span class="dot"></span> 
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
                     </div>
 
                     <h2>Whether you are only curious or a tried-and-true hardcore gamer, you can join out event this summer.</h2>
 
                     <h2>July 5 - 7 2019,Eindhoven</h2>
 
-                    <form action="Register.html">
+                    <form action="Register.php">
                         <input type="submit" value="Buy A Ticket"/>
                     </form>
                 </div>
@@ -88,10 +98,10 @@
                     WE ACCEPT
                 </h2>
                 <h3>
-                    <img src="weaccept.png" width="200" height="75">
+                    <img src="images/weaccept.png" width="200" height="75">
                 </h3>
             </div>
         </div>
-        <script src="js.js"></script>
+        <script src="js/js.js"></script>
     </body>
 </html>

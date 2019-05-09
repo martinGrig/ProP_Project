@@ -1,33 +1,45 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BoardGames Top Up Balance</title>
-        <link href="styles.css" type="text/css" rel="stylesheet"></link>
-        <script src="js.js"></script>
+        <title>BoardGames Camp Spot</title>
+        <link href="styles/styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js/js.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
         <div class="header">
         </div>
         <div class="topnav">
-            <a href="Home.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="ContactUs.html">Contact us</a>
-            <a href="Reviews.html">Reviews</a>
-            <a href="LogIn.html" style="float:right">Log in</a>
-            <a href="Profile.html" style="float:right">Profile</a>
+            <a href="Home.php">Home</a>
+            <a href="Events.php">Events</a>
+            <a href="ContactUs.php">Contact us</a>
+            <a href="Reviews.php">Reviews</a>
+            <?php
+            if (isset($_SESSION['loggedin'])){
+              echo "<a href=\"LogOut.php\" style=\"float:right\">Log Out</a>";
+               echo "<a href=\"Profile.php\" style=\"float:right\">Profile</a>";
+             } else {
+              echo "<a href=\"LogIn.php\" style=\"float:right\">Log in</a>";
+             }
+             ?>
         </div>
         <div class="row">
             <div class="column centre ">
               <div class="card">
-                <h2>Top Up Balance</h2>
-                <form name="TopUp-form" action="Profile.html">
+                <h2>Reserve A Camp Spot</h2>
+                <div>
+                    <img src="images/spots.png" style="width:50%">
+                </div>
+                <form name="Camp-form" action="Profile.php">
                     <select name="cars">
-                        <option value="10">10 Euro</option>
-                        <option value="20">20 Euro</option>
-                        <option value="30">30 Euro</option>
-                        <option value="40">40 Euro</option>
-                        <option value="50">50 Euro</option>
+                        <option value="A">SPOT A</option>
+                        <option value="B">SPOT B</option>
+                        <option value="C">SPOT C</option>
+                        <option value="D">SPOT D</option>
+                        <option value="E">SPOT E</option>
                     </select><br>
                     <input type="submit" value="Accept">
                 </form>
@@ -70,7 +82,8 @@
                     WE ACCEPT
                 </h2>
                 <h3>
-                    <img src="weaccept.png" width="200" height="75">
+                    <img src="images/weaccept
+                    " width="200" height="75">
                 </h3>
             </div>
         </div>

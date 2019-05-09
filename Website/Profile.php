@@ -1,21 +1,30 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>BoardGames Profile</title>
-        <link href="styles.css" type="text/css" rel="stylesheet"></link>
-        <script src="js.js"></script>
+        <link href="styles/styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js/js.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
         <div class="header">
         </div>
         <div class="topnav">
-            <a href="Home.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="ContactUs.html">Contact us</a>
-            <a href="Reviews.html">Reviews</a>
-            <a href="LogIn.html" style="float:right">Log in</a>
-            <a href="Profile.html" style="float:right">Profile</a>
+            <a href="Home.php">Home</a>
+            <a href="Events.php">Events</a>
+            <a href="ContactUs.php">Contact us</a>
+            <a href="Reviews.php">Reviews</a>
+            <?php
+            if (isset($_SESSION['loggedin'])){
+              echo "<a href=\"LogOut.php\" style=\"float:right\">Log Out</a>";
+               echo "<a href=\"Profile.php\" style=\"float:right\">Profile</a>";
+             } else {
+              echo "<a href=\"LogIn.php\" style=\"float:right\">Log in</a>";
+             }
+             ?>
         </div>
         <div class="row">
             <div class="column centre ">
@@ -25,9 +34,9 @@
                 <h3>Ticket Number</h3>
                 <h3>Balance</h3>
                 <form>
-                    <input type="button" value="Buy A Ticket" onclick="window.location.href='Buy.html'">
-                    <input type="button" value="Top Up Balance" onclick="window.location.href='TopUp.html'">
-                    <input type="button" value="Reserve A Camp Spot" onclick="window.location.href='Camp.html'">
+                    <input type="button" value="Buy A Ticket" onclick="window.location.href='Buy.php'">
+                    <input type="button" value="Top Up Balance" onclick="window.location.href='TopUp.php'">
+                    <input type="button" value="Reserve A Camp Spot" onclick="window.location.href='Camp.php'">
                 </form>
               </div>
             </div>
@@ -68,7 +77,7 @@
                     WE ACCEPT
                 </h2>
                 <h3>
-                    <img src="weaccept.png" width="200" height="75">
+                    <img src="images/weaccept.png" width="200" height="75">
                 </h3>
             </div>
         </div>

@@ -1,38 +1,44 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BoardGames Camp Spot</title>
-        <link href="styles.css" type="text/css" rel="stylesheet"></link>
-        <script src="js.js"></script>
+        <title>BoardGames Log In</title>
+        <link href="styles/styles.css" type="text/css" rel="stylesheet"></link>
+        <script src="js/js.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
         <div class="header">
         </div>
         <div class="topnav">
-            <a href="Home.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="ContactUs.html">Contact us</a>
-            <a href="Reviews.html">Reviews</a>
-            <a href="LogIn.html" style="float:right">Log in</a>
-            <a href="Profile.html" style="float:right">Profile</a>
+            <a href="Home.php">Home</a>
+            <a href="Events.php">Events</a>
+            <a href="ContactUs.php">Contact us</a>
+            <a href="Reviews.php">Reviews</a>
+
+        <?php
+        if (isset($_SESSION['loggedin'])){
+           echo "<a href=\"LogOut.php\" style=\"float:right\">Log Out</a>";
+           echo "<a href=\"Profile.php\" style=\"float:right\">Profile</a>";
+         } else {
+          echo "<a href=\"LogIn.php\" style=\"float:right\">Log in</a>";
+         }
+         ?>
+
         </div>
         <div class="row">
             <div class="column centre ">
               <div class="card">
-                <h2>Reserve A Camp Spot</h2>
-                <div>
-                    <img src="spots.png" style="width:50%">
-                </div>
-                <form name="Camp-form" action="Profile.html">
-                    <select name="cars">
-                        <option value="A">SPOT A</option>
-                        <option value="B">SPOT B</option>
-                        <option value="C">SPOT C</option>
-                        <option value="D">SPOT D</option>
-                        <option value="E">SPOT E</option>
-                    </select><br>
-                    <input type="submit" value="Accept">
+                <h2>Log In</h2>
+                <form name="login-form" action="LoginProcess.php"  onsubmit="return validateLogin()" method="post">
+                    <input id="fname" name="email" type="text" placeholder="Email"><br>
+                    <input name="password" type="password" placeholder="Password"><br>
+                    <input type="submit" value="Log in"><br>
+                </form>
+                <form action="Register.php">
+                    <input type="submit" value="Register"/>
                 </form>
               </div>
             </div>
@@ -73,7 +79,7 @@
                     WE ACCEPT
                 </h2>
                 <h3>
-                    <img src="weaccept.png" width="200" height="75">
+                    <img src="images/weaccept.png" width="200" height="75">
                 </h3>
             </div>
         </div>
