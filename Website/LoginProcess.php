@@ -30,6 +30,22 @@
     $result = $statement->fetchAll();
     $_SESSION['currentUser'] = $result[0];
 
+    //check if person has a ticket
+    $username = 'dbi410102';
+    $password = 'prop17';
+    $con = new PDO('mysql:host=studmysql01.fhict.local;dbname=dbi410102', $username, $password);
+
+    $sql = "select * from visitor where accountEmail = ?";
+    $statement = $con->prepare($sql);
+    $email= $_SESSION['currentUser']['email'];
+    $statement->bindParam('1', $email);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    if ($result) {
+      $_SESSION['currentUser']['ticketNr'] = $result[0]['ticketNr'];
+      $_SESSION['currentUser']['balance'] = $result[0]['balance'];
+    }
+
     header("location:index.html");
   }
 

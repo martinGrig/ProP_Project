@@ -31,24 +31,24 @@ session_start();
               <div class="card">
                 <h2>Buy A Ticket</h2>
                 <h3>Check an item with your ticket</h3>
-                <form name="Buy-form" action="Profile.php">
+                <form name="Buy-form" action="BuyProcess.php" method="post">
                     <label class="container">T-Shirt
-                    <input type="checkbox" >
+                    <input type="checkbox" name="t-shirt_checkbox" value="t-shirt">
                     <span class="checkmark"></span>
                     </label>
 
                     <label class="container">Hoodie
-                    <input type="checkbox">
+                    <input type="checkbox" name="hoodie_checkbox" value="hoodie">
                     <span class="checkmark"></span>
                     </label>
 
                     <label class="container">Hat
-                    <input type="checkbox">
+                    <input type="checkbox" name="hat_checkbox" value="hat">
                     <span class="checkmark"></span>
                     </label>
 
                     <label class="container">Key Chain
-                    <input type="checkbox">
+                    <input type="checkbox" name="keychain_checkbox" value="keychain">
                     <span class="checkmark"></span>
                     </label>
                     <input type="submit" value="Confirm">

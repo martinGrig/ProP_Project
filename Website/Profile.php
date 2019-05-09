@@ -32,43 +32,25 @@ session_start();
                 <h2>Profile</h2>
 
                 <?php
-                $username = 'dbi410102';
-                $password = 'prop17';
-                $con = new PDO('mysql:host=studmysql01.fhict.local;dbname=dbi410102', $username, $password);
-
-                $sql = "select * from visitor where accountEmail = ?";
-                $statement = $con->prepare($sql);
-                $email= $_SESSION['currentUser']['email'];
-                $statement->bindParam('1', $email);
-                $statement->execute();
-                $result = $statement->fetchAll();
-
                 $name = $_SESSION['currentUser']['name'];
                 $surname = $_SESSION['currentUser']['surname'];
                 echo "<h3>" .  $name . " " . $surname . "</h3>";
 
-                if (!$result) {
+                if (!isset($_SESSION['currentUser']['ticketNr'])) {
                   echo "<h3>No ticket purchaised yet!</h3>";
+                  echo "<input type=\"button\" value=\"Buy A Ticket\" onclick=\"window.location.href='Buy.php'\">";
                 } else {
-                  $ticketNr = $result[0]['ticketNr'];
-                  $balance = $result[0]['balance'];
+                  $ticketNr = $_SESSION['currentUser']['ticketNr'];
+                  $balance = $_SESSION['currentUser']['balance'];
                   echo "<h3>Ticket number: " .  $ticketNr . "</h3>";
                   echo "<h3>Balance: " .  $balance . "€</h3>";
+                  echo "
+                  <input type=\"button\" value=\"Top Up Balance\" onclick=\"window.location.href='TopUp.php'\">
+                  <input type=\"button\" value=\"Reserve A Camp Spot\" onclick=\"window.location.href='Camp.php'\">
+                  ";
                 }
                 ?>
 
-                <form>
-                    <input type="button" value="Buy A Ticket" onclick="window.location.href='Buy.php'">
-                    <?php
-                    if ($result) {
-                      echo "
-                      <input type=\"button\" value=\"Top Up Balance\" onclick=\"window.location.href='TopUp.php'\">
-                      <input type=\"button\" value=\"Reserve A Camp Spot\" onclick=\"window.location.href='Camp.php'\">
-                      ";
-                    }
-                    ?>
-
-                </form>
               </div>
             </div>
         </div>

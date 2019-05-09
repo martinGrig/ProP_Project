@@ -1,6 +1,6 @@
 to do:
 - send emails (usecase create account)
-- buy a ticket usecase fully (add items with buying ticket to DB)
+- buy a ticket usecase fully
 - add credits to account usecase fully
 - reserve camping usecase fully
 - leave a review usecase fully
