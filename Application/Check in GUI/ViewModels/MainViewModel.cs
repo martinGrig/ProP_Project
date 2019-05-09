@@ -40,7 +40,7 @@ namespace EventManager.ViewModels
             Login = new LoginViewModel(this, dataModel);
             Admin = new AdminViewModel(this);
             Apps = new AppsViewModel(this);
-            Camping = new CampingViewModel();
+            Camping = new CampingViewModel(this);
             CheckIn = new CheckinViewModel(this);
             CheckOut = new CheckOutViewModel();
             Converter = new ConverterViewModel(this);

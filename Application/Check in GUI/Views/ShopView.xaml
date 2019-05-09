@@ -38,14 +38,12 @@
                         <!--Textblocks-->
                         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock Text="Shop ID :"  Style="{StaticResource HeaderText}" Margin="10, 5, 10, 0" Width="Auto"/>
-                            <TextBlock Text="{Binding Dm.SearchText}" Style="{StaticResource HeaderText}" Margin="10, 5, 10, 0"/>
-                            
+
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="10, 15, 10, 0">
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="10, 15, 10, 0">
                             <fa:FontAwesome Icon="Search" VerticalAlignment="Center"/>
-                            
+                            <TextBox  Style="{StaticResource NormalTextBox}"  Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Dm.SearchText, UpdateSourceTrigger=PropertyChanged}" Width="325" Tag="Enter Item Name Here"/>
                         </StackPanel>
-                        <TextBox  Style="{StaticResource NormalTextBox}" Grid.Column="1" Grid.Row="0" Margin="30, 15, 10, 0" Text="{Binding Dm.SearchText, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!--Read only text boxes -->
 

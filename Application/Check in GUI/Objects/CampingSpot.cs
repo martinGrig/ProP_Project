@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventManager.Objects
 {
-    class CampingSpot
+    public class CampingSpot
     {
         public string GroupLeader { get; private set; }
         public string Spot { get; private set; }

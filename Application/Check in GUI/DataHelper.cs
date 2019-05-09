@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-
+using EventManager.Objects;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
 namespace EventManager
 {
     public class DataHelper
-    { 
+    {
         public MySqlConnection connection;
 
         public DataHelper()
@@ -17,7 +17,7 @@ namespace EventManager
             String connectionInfo = "server=studmysql01.fhict.local;" +//the hera-server
                                     "database=dbi410102;" +
                                     "user id=dbi410102;" +
-                                    "password=kingovel1;" +
+                                    "password=prop17;" +
                                     "connect timeout=30;";
 
             connection = new MySqlConnection(connectionInfo);
@@ -37,7 +37,7 @@ namespace EventManager
             {
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();
-                
+
                 while (reader.Read())
                 {
                     empNr = Convert.ToString(reader["employeeName"]);
@@ -62,7 +62,7 @@ namespace EventManager
 
             String sql = "SELECT item.name as Name,item.price as Price,itemtype_place.StartQuantity as Stock FROM item, purchaisable,place,itemtype_place,employee_place,employee,itemtype WHERE item.itemId = purchaisable.itemId AND purchaisable.placeId = place.placeId AND itemtype_place.PlaceplaceId = place.placeId And employee_place.PlaceplaceId = place.placeId AND employee.employeeNr = employee_place.EmployeeemployeeNr AND itemtype.itemType = itemtype_place.ItemTypeitemType And purchaisable.itemType = itemtype.itemType AND employee.employeeNr = @empNr ;";
             MySqlCommand command = new MySqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@empNr", employeeNr );
+            command.Parameters.AddWithValue("@empNr", employeeNr);
 
             //On internet you also see a solution like:
             // String sql = "INSERT INTO StudentTable VALUES (" +
@@ -84,7 +84,7 @@ namespace EventManager
                     name = Convert.ToString(reader["Name"]);
                     price = Convert.ToInt32(reader["Price"]);
                     stock = Convert.ToInt32(reader["Stock"]);
-                    temp.Add(new Item(name,price,stock, "Images/burger.ico"));
+                    temp.Add(new Item(name, price, stock, "Images/burger.ico"));
                 }
             }
             catch
@@ -102,7 +102,7 @@ namespace EventManager
 
             String sql = "SELECT employeeName, surname, positionId, password FROM employee WHERE employee.employeeNr = @empNr ;";
             MySqlCommand command = new MySqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@empNr", employeeNr );
+            command.Parameters.AddWithValue("@empNr", employeeNr);
 
             //On internet you also see a solution like:
             // String sql = "INSERT INTO StudentTable VALUES (" +
@@ -129,8 +129,8 @@ namespace EventManager
                     emp = new Employee(name, lastName, jobId, password, employeeNr);
                 }
 
-                
-                
+
+
             }
             catch
             {
@@ -172,7 +172,7 @@ namespace EventManager
             finally
             {
                 connection.Close();
-                
+
             }
             return nrOfRecordsChanged;
         }
@@ -188,7 +188,7 @@ namespace EventManager
             // String sql = "INSERT INTO StudentTable VALUES (" +
             //     "'" + name + "'," + number  + "," + creditpoints + ")";
             //Be aware of sql-injection!
-           Visitor vis = null;
+            Visitor vis = null;
             try
             {
                 connection.Open();
@@ -222,5 +222,46 @@ namespace EventManager
             }
             return vis;
         }
+
+        public CampingSpot GetCampingSpotByRFID(string rfid)
+        {
+            String sql = "SELECT c.reservedPlaces as places, a.name as groupleader, c.campSpotId as spotId, v.isCampPayed as paymentStatus FROM campspot c JOIN visitor v ON c.campSpotId = v.campSpotId JOIN account a ON v.accountEmail = a.email WHERE v.RFIDCode = @rfidCode";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@rfidCode", rfid);
+            CampingSpot spot = null;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int amountOfParticipants;
+                string groupLeader;
+                string spotId;
+                bool paymentStatus;
+
+                while (reader.Read())
+                {
+                    groupLeader = Convert.ToString(reader["groupleader"]);
+                    spotId = Convert.ToString(reader["spotId"]);
+                    paymentStatus = Convert.ToBoolean(reader["paymentStatus"]);
+                    amountOfParticipants = Convert.ToInt32(reader["places"]);
+
+                    spot = new CampingSpot(groupLeader, spotId, amountOfParticipants, paymentStatus);
+                }
+
+
+
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return spot;
+        }
     }
 }
+

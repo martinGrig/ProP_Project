@@ -160,6 +160,19 @@ namespace EventManager.Models
             }
         }
 
+        private CampingSpot _selectedCampingSpot;
+        public CampingSpot SelectedCampingSpot
+        {
+            get
+            {
+                return _selectedCampingSpot;
+            }
+            set
+            {
+                _selectedCampingSpot = value;
+                OnPropertyChanged("SelectedCampingSpot");
+            }
+        }
         public List<LogLine> _logFileLines;
         public IEnumerable<LogLine> LogFileLines
         {

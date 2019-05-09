@@ -3,50 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:EventManager.Converters"
              xmlns:local="clr-namespace:EventManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Viewbox>
-        <Border>
-            <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Camping group information" Style="{StaticResource FourthGroupbox}">
-                <Grid 
+    <UserControl.Resources>
+        <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibilty"/>
+    </UserControl.Resources>
+    <Grid>
+        <Viewbox>
+
+            <Border>
+                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Top" Header="Camping group information" Style="{StaticResource FourthGroupbox}">
+                    <Grid 
                   >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="165"/>
-                        <ColumnDefinition Width="190"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="165"/>
+                            <ColumnDefinition Width="190"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                    <!--Textblocks-->
+                        <!--Textblocks-->
 
-                    <TextBlock Text="Group Leader" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
-                    <TextBlock Text="Reserved Camping spot" Grid.Row="1"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
-                    <TextBlock Text="Amount of participants" Grid.Row="2"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
-                    <TextBlock Text="Payment Status" Grid.Row="3"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                        <TextBlock Text="Group Leader" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                        <TextBlock Text="Reserved Camping spot" Grid.Row="1"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                        <TextBlock Text="Amount of participants" Grid.Row="2"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                        <TextBlock Text="Payment Status" Grid.Row="3"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
 
-                    <!--Read only text boxes -->
+                        <!--Read only text boxes -->
 
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{StaticResource ReadOnlyTextBox}"/>
+                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding _mainViewModel.dataModel.SelectedCampingSpot.GroupLeader, Mode=OneWay}"/>
+                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding _mainViewModel.dataModel.SelectedCampingSpot.Spot, Mode=OneWay}"/>
+                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding _mainViewModel.dataModel.SelectedCampingSpot.AmountOfParticpants, Mode=OneWay}"/>
+                        <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding _mainViewModel.dataModel.SelectedCampingSpot.PaymentStatus, Mode=OneWay}"/>
 
-                    <!-- Image-->
-                    <Image Source="/EventManager;component/Images/Camping.png"  Width="300" Grid.Row="0" Grid.RowSpan="3" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="Fill" Grid.Column="2"/>
+                        <!-- Image-->
+                        <Image Source="/EventManager;component/Images/Camping.png"  Width="300" Grid.Row="0" Grid.RowSpan="3" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="Fill" Grid.Column="2"/>
 
-                    <!--Button-->
-                    <Button Content="Pay for camping spot" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonTest}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="10" Height="75" Width="300" Name="PayForCampingSpotButton" />
+                        <!--Button-->
+                        <Button Content="Pay for camping spot" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonTest}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="10" Height="75" Width="300" Name="PayForCampingSpotButton" />
 
 
-                </Grid>
-            </GroupBox>
+                    </Grid>
+                </GroupBox>
+            </Border>
+
+        </Viewbox>
+        <Border Background="White" Visibility="{Binding _mainViewModel.dataModel.SelectedCampingSpot, Converter={StaticResource ObjectToVisibilty}}">
+            <Viewbox>
+                <StackPanel>
+                    <Label Content="Scan Rfid Bracelet" HorizontalContentAlignment="Center"/>
+                    <Label Content="Please" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </Viewbox>
+
+
         </Border>
+    </Grid>
 
-    </Viewbox>
 </UserControl>
