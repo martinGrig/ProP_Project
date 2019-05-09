@@ -1,7 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BoardGames Log In</title>
+        <title>BoardGames Profile</title>
         <link href="styles/styles.css" type="text/css" rel="stylesheet"></link>
         <script src="js/js.js"></script>
         <meta charset="UTF-8">
@@ -10,24 +13,30 @@
         <div class="header">
         </div>
         <div class="topnav">
-            <a href="Home.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="ContactUs.html">Contact us</a>
-            <a href="Reviews.html">Reviews</a>
-            <a href="LogIn.html" style="float:right">Log in</a>
-            <a href="Profile.html" style="float:right">Profile</a>
+            <a href="Home.php">Home</a>
+            <a href="Events.php">Events</a>
+            <a href="ContactUs.php">Contact us</a>
+            <a href="Reviews.php">Reviews</a>
+            <?php
+            if (isset($_SESSION['loggedin'])){
+              echo "<a href=\"LogOut.php\" style=\"float:right\">Log Out</a>";
+               echo "<a href=\"Profile.php\" style=\"float:right\">Profile</a>";
+             } else {
+              echo "<a href=\"LogIn.php\" style=\"float:right\">Log in</a>";
+             }
+             ?>
         </div>
         <div class="row">
             <div class="column centre ">
               <div class="card">
-                <h2>Log In</h2>
-                <form name="login-form" action="profile.html"  onsubmit="return validateLogin()">
-                    <input id="fname" name="number" type="text" placeholder="Ticket Number"><br>
-                    <input name="password" type="password" placeholder="Password"><br>
-                    <input type="submit" value="Log in"><br>
-                </form>
-                <form action="Register.html">
-                    <input type="submit" value="Register"/>
+                <h2>Profile</h2>
+                <h3>Name</h3>
+                <h3>Ticket Number</h3>
+                <h3>Balance</h3>
+                <form>
+                    <input type="button" value="Buy A Ticket" onclick="window.location.href='Buy.php'">
+                    <input type="button" value="Top Up Balance" onclick="window.location.href='TopUp.php'">
+                    <input type="button" value="Reserve A Camp Spot" onclick="window.location.href='Camp.php'">
                 </form>
               </div>
             </div>

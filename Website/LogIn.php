@@ -1,7 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BoardGames Top Up Balance</title>
+        <title>BoardGames Log In</title>
         <link href="styles/styles.css" type="text/css" rel="stylesheet"></link>
         <script src="js/js.js"></script>
         <meta charset="UTF-8">
@@ -10,26 +13,32 @@
         <div class="header">
         </div>
         <div class="topnav">
-            <a href="Home.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="ContactUs.html">Contact us</a>
-            <a href="Reviews.html">Reviews</a>
-            <a href="LogIn.html" style="float:right">Log in</a>
-            <a href="Profile.html" style="float:right">Profile</a>
+            <a href="Home.php">Home</a>
+            <a href="Events.php">Events</a>
+            <a href="ContactUs.php">Contact us</a>
+            <a href="Reviews.php">Reviews</a>
+
+        <?php
+        if (isset($_SESSION['loggedin'])){
+           echo "<a href=\"LogOut.php\" style=\"float:right\">Log Out</a>";
+           echo "<a href=\"Profile.php\" style=\"float:right\">Profile</a>";
+         } else {
+          echo "<a href=\"LogIn.php\" style=\"float:right\">Log in</a>";
+         }
+         ?>
+
         </div>
         <div class="row">
             <div class="column centre ">
               <div class="card">
-                <h2>Top Up Balance</h2>
-                <form name="TopUp-form" action="Profile.html">
-                    <select name="cars">
-                        <option value="10">10 Euro</option>
-                        <option value="20">20 Euro</option>
-                        <option value="30">30 Euro</option>
-                        <option value="40">40 Euro</option>
-                        <option value="50">50 Euro</option>
-                    </select><br>
-                    <input type="submit" value="Accept">
+                <h2>Log In</h2>
+                <form name="login-form" action="LoginProcess.php"  onsubmit="return validateLogin()" method="post">
+                    <input id="fname" name="email" type="text" placeholder="Email"><br>
+                    <input name="password" type="password" placeholder="Password"><br>
+                    <input type="submit" value="Log in"><br>
+                </form>
+                <form action="Register.php">
+                    <input type="submit" value="Register"/>
                 </form>
               </div>
             </div>

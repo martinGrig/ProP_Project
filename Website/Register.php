@@ -1,7 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BoardGames Reviews</title>
+        <title>BoardGames Register</title>
         <link href="styles/styles.css" type="text/css" rel="stylesheet"></link>
         <script src="js/js.js"></script>
         <meta charset="UTF-8">
@@ -10,21 +13,31 @@
         <div class="header">
         </div>
         <div class="topnav">
-            <a href="Home.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="ContactUs.html">Contact us</a>
-            <a href="Reviews.html">Reviews</a>
-            <a href="LogIn.html" style="float:right">Log in</a>
-            <a href="Profile.html" style="float:right">Profile</a>
-        </div>
+            <a href="Home.php">Home</a>
+            <a href="Events.php">Events</a>
+            <a href="ContactUs.php">Contact us</a>
+            <a href="Reviews.php">Reviews</a>
+            <?php
+            if (isset($_SESSION['loggedin'])){
+              echo "<a href=\"LogOut.php\" style=\"float:right\">Log Out</a>";
+               echo "<a href=\"Profile.php\" style=\"float:right\">Profile</a>";
+             } else {
+              echo "<a href=\"LogIn.php\" style=\"float:right\">Log in</a>";
+             }
+             ?>
+            </div>
         <div class="row">
-            <div class="column centre">
+            <div class="column centre ">
               <div class="card">
-                <h2>Reviews</h2>
-                <h3>Text</h3>
-                <form name="submit-review-form" onsubmit="return validateReview()">
-                    <textarea name="comment" rows="10" cols="30" placeholder="Your Review..."></textarea><br>
-                    <input type="submit" value="Submit"><br>
+                <h2>Before you buy a Ticket</h2>
+                <h2>First make a Registration</h2>
+                <form name="registration-form" onsubmit="return validateRegistration()">
+                    <input id="fname" name="fname" type="text" placeholder="First Name">
+                    <input name="lname" type="text" placeholder="Last Name"><br>
+                    <input name="email" type="email" placeholder="Email">
+                    <input name="number" type="password" placeholder="Password"><br>
+                    <input name="iban" type="text" placeholder="IBAN"><br>
+                    <input type="submit" value="Register"><br>
                 </form>
               </div>
             </div>
