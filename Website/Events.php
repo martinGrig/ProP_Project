@@ -39,7 +39,7 @@ session_start();
                     </div>
                     <div class="column centre">
                         <div class="card">
-                        <img src="images/Event Pic.jpg">
+                        <img src="images/Event Pic.jpg" width="1220" height="680">
                         </div>
                     </div>
                 </div>
