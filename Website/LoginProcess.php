@@ -1,5 +1,4 @@
 <?php
-/*file made for login php code, to not make html in another file too complicated*/
   session_start();
 
   $username = 'dbi410102';
@@ -23,7 +22,7 @@
     $_SESSION['loggedin'] = true;
 
     //getting info about just logged in user
-    $sql = "select * from accounts where email = ? and password = ?";
+    $sql = "select * from account where email = ? and password = ?";
     $statement = $con->prepare($sql);
     $statement->bindParam('1', $email);
     $statement->bindParam('2', $pass);

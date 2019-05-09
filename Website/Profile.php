@@ -30,7 +30,13 @@ session_start();
             <div class="column centre ">
               <div class="card">
                 <h2>Profile</h2>
-                <h3>Name</h3>
+                <h3>
+                  <?php
+                $name = $_SESSION['currentUser']['name'];
+                $surname = $_SESSION['currentUser']['surname'];
+                echo $name . " " . $surname;
+                ?>
+                </h3>
                 <h3>Ticket Number</h3>
                 <h3>Balance</h3>
                 <form>
