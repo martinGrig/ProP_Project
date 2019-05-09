@@ -30,15 +30,26 @@ session_start();
             <div class="column centre ">
               <div class="card">
                 <h2>Profile</h2>
-                <h3>
-                  <?php
+
+                <?php
+                $username = 'dbi410102';
+                $password = 'prop17';
+                $con = new PDO('mysql:host=studmysql01.fhict.local;dbname=dbi410102', $username, $password);
+
+                $sql = "select * from visitor where accountEmail = ?";
+                $statement = $con->prepare($sql);
+                $email= $_SESSION['currentUser']['email'];
+                $statement->bindParam('1', $email);
+                $statement->execute();
+                $result = $statement->fetchAll();
+
                 $name = $_SESSION['currentUser']['name'];
                 $surname = $_SESSION['currentUser']['surname'];
-                echo $name . " " . $surname;
+                echo "<h3>" .  $name . " " . $surname . "</h3>";
+                echo "<h3>Ticket number: " .  $result[0]['ticketNr'] . "</h3>";
+                echo "<h3>Balance: " .  $result[0]['balance'] . "€</h3>"
                 ?>
-                </h3>
-                <h3>Ticket Number</h3>
-                <h3>Balance</h3>
+
                 <form>
                     <input type="button" value="Buy A Ticket" onclick="window.location.href='Buy.php'">
                     <input type="button" value="Top Up Balance" onclick="window.location.href='TopUp.php'">
