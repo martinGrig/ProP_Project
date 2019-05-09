@@ -134,3 +134,5 @@ C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.presentation.pdb
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.presentation.xml
 C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\MessagingToolkit.Barcode.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\NAudio.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\NAudio.xml

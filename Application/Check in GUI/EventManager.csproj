@@ -57,6 +57,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\MySql.Data\v4.0_6.10.8.0__c5687fc88969c44d\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.9.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Phidget22.NET, Version=1.1.1.4, Culture=neutral, PublicKeyToken=aefa9ee0bcd237af, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files\Phidgets\Phidget22\Phidget22.NET.dll</HintPath>
@@ -102,6 +105,7 @@
     <Compile Include="Converters\RfidScanConverter.cs" />
     <Compile Include="Converters\StockToColorConverter.cs" />
     <Compile Include="DataHelper.cs" />
+    <Compile Include="LoopStream.cs" />
     <Compile Include="Objects\CampingSpot.cs" />
     <Compile Include="Objects\Employee.cs" />
     <Compile Include="IPageViewModel.cs" />
@@ -266,6 +270,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Sounds\ding.mp3" />
+    <Content Include="Sounds\ele.mp3" />
+    <Content Include="Sounds\fart.mp3" />
+    <Content Include="Sounds\mosh.mp3" />
     <Resource Include="Images\Qr code valid.png" />
     <Resource Include="Images\background.png" />
     <Resource Include="Images\adminIcon.png" />

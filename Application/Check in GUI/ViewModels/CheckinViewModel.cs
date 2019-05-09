@@ -16,21 +16,18 @@ using EventManager.ViewModels.Commands;
 using System.Windows.Threading;
 using Phidget22;
 using Phidget22.Events;
-
-using MessagingToolkit.Barcode.QRCode.Decoder;
-using MessagingToolkit.Barcode.QRCode;
+using NAudio.Wave;
 
 namespace EventManager.ViewModels
 {
     public class CheckinViewModel : ObservableObject, IPageViewModel
     {
+        WaveOut waveOut;
         private FilterInfoCollection CaptureDevice;
         private VideoCaptureDevice FinalFrame;
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         DispatcherTimer resetTimer = new DispatcherTimer();
         private RFID myRFIDReader;
-
-        QRCodeDecoder dec = new QRCodeDecoder();
 
         public MainViewModel _mainViewModel { get; set; }
         public CheckinViewModel(MainViewModel mainViewModel)
@@ -55,26 +52,36 @@ namespace EventManager.ViewModels
 
         private void FinalFrame_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            //BarcodeReader Reader = new BarcodeReader();
-            //Result result = Reader.Decode((Bitmap)eventArgs.Frame.Clone());
+            BarcodeReader Reader = new BarcodeReader();
+            Result result = Reader.Decode((Bitmap)eventArgs.Frame.Clone());
 
             try
             {
-                string decoded = (dec.Decode((MessagingToolkit.Barcode.BinaryBitmap)eventArgs.Frame.Clone())).ToString();
+                string decoded = (result.Text);
                 if (decoded != null)
                 {
-
                     _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataHelper.GetVisitor(Convert.ToInt32(decoded));
                     if (_mainViewModel.dataModel.SelectedVisitor != null)
                     {
+
                         FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
+                        var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ding.mp3");
+                        waveOut = new WaveOut();
+                        waveOut.Volume = 0.8F;
+                        waveOut.Init(reader);
+                        waveOut.Play();
                         myRFIDReader.Tag += new RFIDTagEventHandler(LinkRfid);
                         myRFIDReader.Open();
                         _mainViewModel.dataModel.ShowScanQrCode = true;
                     }
                     else
                     {
-                        MessageBox.Show("This ticket is not valid");
+                        var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/fart.mp3");
+                        waveOut = new WaveOut();
+                        waveOut.Volume = 0.8F;
+                        waveOut.Init(reader);
+                        waveOut.Play();
+                        
                         QrImageSource = "/Images/CheckinUnsuccessful.png";
                         FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
                         dispatcherTimer.Start();
