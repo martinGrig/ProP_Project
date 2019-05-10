@@ -33,14 +33,14 @@ session_start();
                 <?php
                 if (isset($_SESSION['loggedin']) && isset($_SESSION['currentUser']['ticketNr'])) {
                   echo  "<h3>Leave your review here!</h3>
-                   <form name=\"submit-review-form\" onsubmit=\"return validateReview()\">
+                   <form name=\"submit-review-form\" action=\"ReviewsProcess.php\" onsubmit=\"return validateReview()\" method=\"post\">
                        <textarea name=\"comment\" rows=\"10\" cols=\"30\" placeholder=\"Your Review...\"></textarea><br>
                        <input type=\"submit\" value=\"Submit\"><br>
                    </form>";
                 } else {
                   echo "<h3>Only event's visitors can leave reviews!</h3>";
                 }
-                 ?>
+                ?>
 
               </div>
             </div>
