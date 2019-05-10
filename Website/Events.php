@@ -36,11 +36,7 @@ session_start();
                             From the best indie board games Kickstarted this year, to the flagships from the largest publishers in the world, we have something for everyone!<br>
                             So grab a seat and Get Rolling!!!
                         </h3>
-                    </div>
-                    <div class="column centre">
-                        <div class="card">
-                        <img src="images/Event Pic.jpg" width="1220" height="680">
-                        </div>
+                        <img src="images/Event Pic.jpg" style="width:60%">
                     </div>
                 </div>
                 <div class="column centre">
@@ -97,7 +93,6 @@ session_start();
                 </h2>
                 <h3>
                     <br>
-                    <br>
                     Eindhoven, Netherlands
                 </h3>
             </div>
@@ -116,7 +111,6 @@ session_start();
                     BoardGames
                 </h2>
                 <h3>
-                    <br>
                     <br>
                     © 2019 by BoardGames
                 </h3>
