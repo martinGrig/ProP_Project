@@ -14,5 +14,7 @@
   $statement->bindParam('2', $_SESSION['currentUser']['ticketNr']);
   $result = $statement->execute();
 
+  $_SESSION['currentUser']['balance'] = $_SESSION['currentUser']['balance'] + $amount;
+
   header('Location:Profile.php');
   ?>

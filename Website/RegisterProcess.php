@@ -42,7 +42,7 @@
     $statement->bindParam('5', $IBAN);
     $result = $statement->execute();
 
-    header('Location:Profile.php');
+    header('Location:LogIn.php');
   }
 
 ?>
