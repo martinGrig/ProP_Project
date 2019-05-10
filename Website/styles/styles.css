@@ -103,19 +103,19 @@ body {
 
 .card h1 {
   font-size: 100px;
-  color: #FFAF04;
+  color: orange;
   text-shadow: -1px 0 #5A3A00, 0 1px #5A3A00, 1px 0 #5A3A00, 0 -1px #5A3A00;
 }
 
 .card h2 {
   font-size: 50px;
-  color: #FF641B;
+  color: orange;
   text-shadow: -1px 0 #6D1D02, 0 1px #6D1D02, 1px 0 #6D1D02, 0 -1px #6D1D02;
 }
 
 .card h3 {
   font-size: 25px;
-  color: orange;
+  color: orangered;
   text-shadow: -1px 0 #5A3A00, 0 1px #5A3A00, 1px 0 #5A3A00, 0 -1px #5A3A00;
 }
 
