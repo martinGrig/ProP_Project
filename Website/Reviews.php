@@ -34,6 +34,7 @@ session_start();
                 if (isset($_SESSION['loggedin']) && isset($_SESSION['currentUser']['ticketNr'])) {
                   echo  "<h3>Leave your review here!</h3>
                    <form name=\"submit-review-form\" action=\"ReviewsProcess.php\" onsubmit=\"return validateReview()\" method=\"post\">
+                       <input id=\"yname\" name=\"yname\" type=\"text\" placeholder=\"Your Name\">
                        <textarea name=\"comment\" rows=\"10\" cols=\"30\" placeholder=\"Your Review...\"></textarea><br>
                        <input type=\"submit\" value=\"Submit\"><br>
                    </form>";

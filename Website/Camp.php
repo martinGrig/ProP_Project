@@ -34,12 +34,20 @@ session_start();
                     <img src="images/spots.png" style="width:50%">
                 </div>
                 <form name="Camp-form" action="Profile.php">
-                    <select name="cars">
+                    <select name="spots">
                         <option value="A">SPOT A</option>
                         <option value="B">SPOT B</option>
                         <option value="C">SPOT C</option>
                         <option value="D">SPOT D</option>
                         <option value="E">SPOT E</option>
+                    </select><br>
+                    <select name="people">
+                        <option value="1">1 Person</option>
+                        <option value="2">2 Persons</option>
+                        <option value="3">3 Persons</option>
+                        <option value="4">4 Persons</option>
+                        <option value="5">5 Persons</option>
+                        <option value="6">6 Persons</option>
                     </select><br>
                     <input type="submit" value="Accept">
                 </form>
