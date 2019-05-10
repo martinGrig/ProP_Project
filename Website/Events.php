@@ -87,19 +87,6 @@ session_start();
                         <h3>The activities might be over at night but that doesnt mean that the fun has to be. Grab up to 5 of your friends and come on down to your reserved camping spot. Wheter you all gather by the campfire or play cards in the tent all night long, your guaranteed to have a blast</h3>
                         </div>
                     </div>
-                    <?php
-                    if (isset($_SESSION['loggedin'])){
-                        if (!isset($_SESSION['currentUser']['ticketNr'])) {
-                            echo "  <form action=\"Buy.php\">
-                            <input type=\"submit\" value=\"Buy A Ticket\"/>
-                            </form>";
-                          }
-                    } else {
-                    echo "  <form action=\"Register.php\">
-                            <input type=\"submit\" value=\"Buy A Ticket\"/>
-                            </form>";
-                    }
-                    ?>
                 </div>
             </div>
         </div>
