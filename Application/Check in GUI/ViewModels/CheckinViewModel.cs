@@ -106,11 +106,27 @@ namespace EventManager.ViewModels
             }
         }
 
+        private RelayCommand _stopQrScanner;
+        public RelayCommand StopQrScannerCommand
+        {
+            get
+            {
+                if (_stopQrScanner == null) _stopQrScanner = new RelayCommand(new Action<object>(StopQrScanner));
+                return _stopQrScanner;
+            }
+        }
+
         private void StartQrScanner(object obj)
         {
             FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
             FinalFrame.Start();
             QrImageSource = "/Images/ScanQrCode.png";
+        }
+
+        private void StopQrScanner(object obj)
+        {
+            FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
+            FinalFrame.Stop();
         }
 
         private string _qrImageSource;

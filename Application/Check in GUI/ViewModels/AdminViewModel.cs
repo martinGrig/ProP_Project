@@ -77,7 +77,15 @@ namespace EventManager.ViewModels
             {
                 empNr = Convert.ToInt32(((TextBox)obj).Text);
                 _mainViewModel.dataModel.SelectedEmployee = _mainViewModel.dataHelper.GetEmployee(empNr);
-                _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Employee);
+                if (_mainViewModel.dataModel.SelectedEmployee != null)
+                {
+                    _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Employee);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("There is no employee with that name");
+                }
+                
             }
             catch (FormatException)
             {

@@ -91,6 +91,8 @@ namespace EventManager.ViewModels
                     if (job.Contains("s"))
                     {
                         Dm.Items = dh.GetItems(numb);
+                        OnPropertyChanged("FilteredFood");
+                        OnPropertyChanged("Items");
                         Dm.ShowShop = true;
                     }
                     if (job.Contains("c"))
