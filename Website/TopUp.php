@@ -50,7 +50,6 @@ session_start();
                 </h2>
                 <h3>
                     <br>
-                    <br>
                     Eindhoven, Netherlands
                 </h3>
             </div>
@@ -69,7 +68,6 @@ session_start();
                     BoardGames
                 </h2>
                 <h3>
-                    <br>
                     <br>
                     © 2019 by BoardGames
                 </h3>

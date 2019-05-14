@@ -1,35 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace EventManager.Converters
 {
-    [ValueConversion(typeof(Item), typeof(string))]
-    class StockToColorConverter : IValueConverter
+    class StockToColorConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            string color = "Black";
-            if (value != null)
+            if (targetType != typeof(Brush))
             {
-                Item item = (Item)value;
-
-                if (item.Stock != item.SeenAmount)
-                {
-                    return "Yellow";
-                }
+                throw new InvalidOperationException("The targetType must be a Brush object");
             }
+            if (values.Length < 2)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            int stock = 0;
+            int seenAmount = 0;
+            int.TryParse(values[0].ToString(), out stock);
+            int.TryParse(values[1].ToString(), out seenAmount);
+            Brush bBrush = Brushes.Black;
 
-            return color;
-
+            if (stock != seenAmount)
+            {
+                if(seenAmount >= 50)
+                {
+                    bBrush = Brushes.LightYellow;
+                }
+                else if(seenAmount >= 25)
+                {
+                    bBrush = Brushes.Yellow;
+                }
+                else if(seenAmount >= 10)
+                {
+                    bBrush = Brushes.Orange;
+                }
+                else if(seenAmount >= 5)
+                {
+                    bBrush = Brushes.OrangeRed;
+                }
+                else
+                {
+                    bBrush = Brushes.Red;
+                }
+                
+            }
+            else if(stock == 0)
+            {
+                bBrush = Brushes.Red;
+            }
+            return bBrush;
         }
+        
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

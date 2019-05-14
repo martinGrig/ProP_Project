@@ -103,6 +103,7 @@
     <Compile Include="Converters\LogFileRegExConverter.cs" />
     <Compile Include="Converters\ObjectToVisibilityConverter.cs" />
     <Compile Include="Converters\RfidScanConverter.cs" />
+    <Compile Include="Converters\ShowShopCmbValueConverter.cs" />
     <Compile Include="Converters\StockToColorConverter.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="LoopStream.cs" />
@@ -116,6 +117,8 @@
     </Compile>
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Objects\LogLine.cs" />
+    <Compile Include="Objects\Shop.cs" />
+    <Compile Include="Objects\ShopItem.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>
@@ -131,6 +134,7 @@
     <Compile Include="ViewModels\LoanStandViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PopUpViewModel.cs" />
     <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="ViewModels\StatusViewModel.cs" />
     <Compile Include="Views\AdminView.xaml.cs">
@@ -159,6 +163,9 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUpView.xaml.cs">
+      <DependentUpon>PopUpView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShopView.xaml.cs">
       <DependentUpon>ShopView.xaml</DependentUpon>
@@ -240,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

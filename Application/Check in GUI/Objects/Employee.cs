@@ -14,18 +14,17 @@ namespace EventManager
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string JobId { get; private set; }
-        public int Password { get; private set; }
+        public string Password { get; private set; }
         public Employee(string firstName, string lastName, string jobId)
         {
             FirstName = firstName;
             LastName = lastName;
             rng = new Random();
-            Password = rng.Next(10000);
             EmployeeNr = _employeeIdCounter;
             JobId = jobId;
             _employeeIdCounter++;
         }
-        public Employee(string firstName, string lastName, string jobId, int password, int employeeNr)
+        public Employee(string firstName, string lastName, string jobId, string password, int employeeNr)
         {
             FirstName = firstName;
             LastName = lastName;

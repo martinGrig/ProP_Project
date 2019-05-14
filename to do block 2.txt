@@ -1,11 +1,4 @@
-Update database
-Change employee job
-PHP for website
-Employee class
-Visitor class
-Make child class for item class
-Employee window
-Update documentaition(agenda minutes and setup)
-Change window title to first name
-Add methods for datahelper:
-GetJobId()
+Update database(transactions)
+Add method for transactions in datahelper
+Add method to link RFID to a visitor
+Get info from the database to the Log-in window

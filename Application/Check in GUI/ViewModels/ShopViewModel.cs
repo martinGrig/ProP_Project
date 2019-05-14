@@ -22,8 +22,6 @@ namespace EventManager.ViewModels
             Dm = dataModel;
             dh = new DataHelper();
            
-            OnPropertyChanged("FilteredItems");
-            OnPropertyChanged("Items");
 
             try
             {

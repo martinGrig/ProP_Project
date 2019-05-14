@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using NAudio.Wave;
+using EventManager.Objects;
+using System.Windows.Threading;
+using EventManager.Views;
 
 namespace EventManager.ViewModels
 {
@@ -14,7 +17,9 @@ namespace EventManager.ViewModels
 
     public class MainViewModel : ObservableObject
     {
+        private bool isConnected;
         private WaveOut waveOut;
+        private DispatcherTimer databaseChecker;
         public LoginViewModel Login { get; private set; }
         public AdminViewModel Admin { get; private set; }
         public AppsViewModel Apps { get; private set; }
@@ -40,7 +45,7 @@ namespace EventManager.ViewModels
         {
             dataModel = new DataModel();
             dataHelper = new DataHelper();
-            dataModel.Items = new List<Item>();
+            dataModel.Items = new List<ShopItem>();
             Login = new LoginViewModel(this, dataModel);
             Admin = new AdminViewModel(this);
             Apps = new AppsViewModel(this);
@@ -54,7 +59,11 @@ namespace EventManager.ViewModels
             Shop = new ShopViewModel(dataModel);
             PageViewModels.Add(Login);
             CurrentPageViewModel = _pageViewModels[0];
-
+            databaseChecker = new DispatcherTimer();
+            databaseChecker.Interval = new TimeSpan(0, 0, 10);
+            databaseChecker.Tick += new EventHandler(CheckDatabaseConnection);
+            databaseChecker.IsEnabled = true;
+            databaseChecker.Start();
 
             dataModel._jobs = new List<Job>();
             dataModel._jobs.Add(new Job("GateKeeper", "io"));
@@ -66,9 +75,11 @@ namespace EventManager.ViewModels
             var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ele.mp3");
             LoopStream loop = new LoopStream(reader);
             waveOut = new WaveOut();
-            waveOut.Volume = 0.8F;
+            waveOut.Volume = 0.0F;
             waveOut.Init(loop);
             waveOut.Play();
+
+            isConnected = true;
         }
         public RelayCommand ChangePageCommand
         {
@@ -121,11 +132,32 @@ namespace EventManager.ViewModels
             {
                 CheckIn.StartQrScannerCommand.Execute(null);
             }
+            else
+            {
+                CheckIn.StopQrScannerCommand.Execute(null);
+            }
+            if(viewModel.GetType() == typeof(AdminViewModel))
+            {
+                dataModel.Shops = dataHelper.GetShops();
+            }
             CurrentPageViewModel = PageViewModels
                 .FirstOrDefault(vm => vm == viewModel);
             
         }
 
+        private void CheckDatabaseConnection(object sender, EventArgs e)
+        {
+            bool check = dataHelper.IsServerConnected();
+            if (check != isConnected)
+            {
+                if(check == false)
+                {
+                    PopUpView popUp = new PopUpView(dataHelper);
+                    popUp.ShowDialog();
+                }
+                isConnected = check;
+            }
+        }
     }
     
 }

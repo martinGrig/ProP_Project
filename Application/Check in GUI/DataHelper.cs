@@ -23,6 +23,21 @@ namespace EventManager
             connection = new MySqlConnection(connectionInfo);
         }
 
+        public  bool IsServerConnected()
+        {
+            using (connection)
+            {
+                try
+                {
+                    connection.Open();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
 
         public string Login(int _employeeNumber, string password)
         {
@@ -54,13 +69,13 @@ namespace EventManager
             return empNr;
         }
 
-        public List<Item> GetItems(int employeeNr)
+        public List<ShopItem> GetItems(int employeeNr)
         {   //Probably you expected a return-value of type bool:
             //true if the query was executed succesfully and false otherwise.
             //But what if you executed a delete-query? Or an update-query?
             //The return-value is teh number of records affected.
 
-            String sql = "SELECT item.name as Name,item.price as Price,itemtype_place.StartQuantity as Stock FROM item, purchaisable,place,itemtype_place,employee_place,employee,itemtype WHERE item.itemId = purchaisable.itemId AND purchaisable.placeId = place.placeId AND itemtype_place.PlaceplaceId = place.placeId And employee_place.PlaceplaceId = place.placeId AND employee.employeeNr = employee_place.EmployeeemployeeNr AND itemtype.itemType = itemtype_place.ItemTypeitemType And purchaisable.itemType = itemtype.itemType AND employee.employeeNr = @empNr ;";
+            String sql = "SELECT i.name as Name,i.price as Price, p.StartQuantity as Stock, p.IsFood as Food, i.itemId as Id FROM item i JOIN purchaisable p ON i.itemId = p.itemId JOIN place pl On p.placeId = pl.placeId JOIN employee_place ep ON pl.placeId = ep.PlaceplaceId JOIN employee e ON ep.EmployeeemployeeNr = e.employeeNr WHERE e.employeeNr = @empNr;";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@empNr", employeeNr);
 
@@ -69,8 +84,7 @@ namespace EventManager
             //     "'" + name + "'," + number  + "," + creditpoints + ")";
             //Be aware of sql-injection!
 
-            List<Item> temp;
-            temp = new List<Item>();
+            List<ShopItem> temp = new List<ShopItem>();
             try
             {
                 connection.Open();
@@ -79,12 +93,16 @@ namespace EventManager
                 String name;
                 int price;
                 int stock;
+                bool isFood;
+                int id;
                 while (reader.Read())
                 {
                     name = Convert.ToString(reader["Name"]);
                     price = Convert.ToInt32(reader["Price"]);
                     stock = Convert.ToInt32(reader["Stock"]);
-                    temp.Add(new Item(name, price, stock, "Images/burger.ico"));
+                    isFood = Convert.ToBoolean(reader["Food"]);
+                    id = Convert.ToInt32(reader["Id"]);
+                    temp.Add(new ShopItem(name, price, stock, "Images/burger.ico",id, isFood));
                 }
             }
             catch
@@ -117,14 +135,14 @@ namespace EventManager
                 String name;
                 string lastName;
                 string jobId;
-                int password;
+                string password;
 
                 while (reader.Read())
                 {
                     name = Convert.ToString(reader["employeeName"]);
                     lastName = Convert.ToString(reader["surname"]);
                     jobId = Convert.ToString(reader["positionId"]);
-                    password = Convert.ToInt32(reader["password"]);
+                    password = Convert.ToString(reader["password"]);
 
                     emp = new Employee(name, lastName, jobId, password, employeeNr);
                 }
@@ -261,6 +279,72 @@ namespace EventManager
                 connection.Close();
             }
             return spot;
+        }
+
+        public int DeleteEmployee(int employeeNr)
+        {
+            int check = 1;
+            String sql = "DELETE FROM employee_place WHERE employee_place.EmployeeemployeeNr = @empNr";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@empNr", employeeNr);
+
+            //On internet you also see a solution like:
+            // String sql = "INSERT INTO StudentTable VALUES (" +
+            //     "'" + name + "'," + number  + "," + creditpoints + ")";
+            //Be aware of sql-injection!
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                sql = "DELETE FROM employee WHERE employeeNr = @empNr";
+                command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@empNr", employeeNr);
+                command.ExecuteNonQuery();
+
+
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+                check = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return check;
+        }
+
+        public List<Shop> GetShops()
+        {
+            String sql = "Select * From place";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            List<Shop> temp = new List<Shop>();
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                int id;
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["name"]);
+                    id = Convert.ToInt32(reader["placeId"]);
+                    temp.Add(new Shop(id,name));
+                }
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return temp;
         }
     }
 }

@@ -8,14 +8,13 @@ namespace EventManager
 {
     public class Item : ObservableObject
     {
-        //private string name;
-        //private double price;
         private int stock;
         private int quanity;
         private double subTotal;
 
         public string Name { get; private set; }
         public double Price { get; private set; }
+        public int ID { get; private set; }
         public int SeenAmount
         {
             get
@@ -74,12 +73,13 @@ namespace EventManager
         public string _FileName { get; private set; }
 
 
-        public Item(string _name, double _price, int _stock, string fileName)
+        public Item(string _name, double _price, int _stock, string fileName, int _id)
         {
             Name = _name;
             Price = _price;
             Stock = _stock;
             _FileName = fileName;
+            ID = _id;
             SubTotal = 0;
             Quantity = 0;
         }

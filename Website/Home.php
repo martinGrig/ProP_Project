@@ -56,9 +56,20 @@ session_start();
 
                     <h2>July 5 - 7 2019,Eindhoven</h2>
 
-                    <form action="Register.php">
-                        <input type="submit" value="Buy A Ticket"/>
-                    </form>
+                    <?php
+                    if (isset($_SESSION['loggedin'])){
+                        if (!isset($_SESSION['currentUser']['ticketNr'])) {
+                            echo "  <form action=\"Buy.php\">
+                            <input type=\"submit\" value=\"Buy A Ticket\"/>
+                            </form>";
+                          }
+                    } else {
+                    echo "  <form action=\"Register.php\">
+                            <input type=\"submit\" value=\"Buy A Ticket\"/>
+                            </form>";
+                    }
+                    ?>
+                    
                 </div>
             </div>
         </div>
@@ -67,7 +78,6 @@ session_start();
                 ADDRESS
             </h2>
             <h3>
-                <br>
                 <br>
                 Eindhoven, Netherlands
             </h3>
@@ -88,7 +98,6 @@ session_start();
                     BoardGames
                 </h2>
                 <h3>
-                    <br>
                     <br>
                     © 2019 by BoardGames
                 </h3>

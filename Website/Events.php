@@ -36,11 +36,7 @@ session_start();
                             From the best indie board games Kickstarted this year, to the flagships from the largest publishers in the world, we have something for everyone!<br>
                             So grab a seat and Get Rolling!!!
                         </h3>
-                    </div>
-                    <div class="column centre">
-                        <div class="card">
-                        <img src="images/Event Pic.jpg" width="1220" height="680">
-                        </div>
+                        <img src="images/Event Pic.jpg" style="width:60%">
                     </div>
                 </div>
                 <div class="column centre">
@@ -87,9 +83,6 @@ session_start();
                         <h3>The activities might be over at night but that doesnt mean that the fun has to be. Grab up to 5 of your friends and come on down to your reserved camping spot. Wheter you all gather by the campfire or play cards in the tent all night long, your guaranteed to have a blast</h3>
                         </div>
                     </div>
-                    <form action="Register.php">
-                        <input type="submit" value="Buy A Ticket"/>
-                    </form>
                 </div>
             </div>
         </div>
@@ -99,7 +92,6 @@ session_start();
                     ADDRESS
                 </h2>
                 <h3>
-                    <br>
                     <br>
                     Eindhoven, Netherlands
                 </h3>
@@ -119,7 +111,6 @@ session_start();
                     BoardGames
                 </h2>
                 <h3>
-                    <br>
                     <br>
                     © 2019 by BoardGames
                 </h3>

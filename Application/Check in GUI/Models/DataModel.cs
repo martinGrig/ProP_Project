@@ -67,15 +67,35 @@ namespace EventManager.Models
             {
                 _searchText = value;
                 OnPropertyChanged("SearchText");
+                OnPropertyChanged("FilteredFood");
+                OnPropertyChanged("FilteredDrink");
                 OnPropertyChanged("FilteredItems");
                 OnPropertyChanged("Items");
             }
         }
 
-        //Item list. it returns items based on wheter they contain the search text
-        public List<Item> Items { get; set; }
+        private int _selectedTabIndex;
+        public int SelectedTabIndex
+        {
+            get
+            {
+                return _selectedTabIndex;
+            }
+            set
+            {
+                if (_selectedTabIndex != value)
+                {
+                    _selectedTabIndex = value;
+                    OnPropertyChanged("SelectedTabIndex");
+                }
+                
+            }
+        }
 
-        public IEnumerable<Item> FilteredItems
+        //Item list. it returns items based on wheter they contain the search text
+        public List<ShopItem> Items { get; set; }
+
+        public IEnumerable<ShopItem> FilteredItems
         {
             get
             {
@@ -88,6 +108,57 @@ namespace EventManager.Models
 
             }
 
+        }
+
+        public IEnumerable<ShopItem> FilteredFood
+        {
+            get
+            {
+
+                if (SearchText == null)
+                {
+                    return Items.Where(x => x.IsFood);
+                }
+                if(Items.Where(x => x.Name.ToUpper().Contains(SearchText.ToUpper()) && x.IsFood).Count() == 0  && Items.Where(x => x.Name.ToUpper().Contains(SearchText.ToUpper()) && !x.IsFood).Count() > 0)
+                {
+                    SelectedTabIndex = 1;
+                }
+                return Items.Where(x => x.Name.ToUpper().Contains(SearchText.ToUpper()) && x.IsFood);
+
+            }
+        }
+
+        public IEnumerable<ShopItem> FilteredDrink
+        {
+            get
+            {
+
+                if (SearchText == null)
+                {
+                    return Items.Where(x => !x.IsFood);
+                }
+                if (Items.Where(x => x.Name.ToUpper().Contains(SearchText.ToUpper()) && !x.IsFood).Count() == 0 && Items.Where(x => x.Name.ToUpper().Contains(SearchText.ToUpper()) && x.IsFood).Count() > 0)
+                {
+                    SelectedTabIndex = 0;
+                }
+                return Items.Where(x => x.Name.ToUpper().Contains(SearchText.ToUpper()) && !x.IsFood);
+
+            }
+        }
+
+        private List<Shop> _shops;
+        public IEnumerable<Shop> Shops
+        {
+            get
+            {
+                return _shops;
+            }
+
+            set
+            {
+                _shops = value.ToList();
+                OnPropertyChanged("Shops");
+            }
         }
 
         //Selected items

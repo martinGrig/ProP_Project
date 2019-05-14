@@ -58,7 +58,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Button Content="Remove" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
+                    <Button Content="Remove" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="50" Command="{Binding RemoveEmployeeCommand}"/>
             </Grid>
         </GroupBox>
         <GroupBox Margin="5,5,10,10" Header="Change JOBID" Style="{StaticResource SecondGroupbox}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="1">

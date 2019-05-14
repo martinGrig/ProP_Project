@@ -34,6 +34,7 @@ session_start();
                 if (isset($_SESSION['loggedin']) && isset($_SESSION['currentUser']['ticketNr'])) {
                   echo  "<h3>Leave your review here!</h3>
                    <form name=\"submit-review-form\" action=\"ReviewsProcess.php\" onsubmit=\"return validateReview()\" method=\"post\">
+                       <input id=\"yname\" name=\"yname\" type=\"text\" placeholder=\"Your Name\">
                        <textarea name=\"comment\" rows=\"10\" cols=\"30\" placeholder=\"Your Review...\"></textarea><br>
                        <input type=\"submit\" value=\"Submit\"><br>
                    </form>";
@@ -51,7 +52,6 @@ session_start();
                     ADDRESS
                 </h2>
                 <h3>
-                    <br>
                     <br>
                     Eindhoven, Netherlands
                 </h3>
@@ -71,7 +71,6 @@ session_start();
                     BoardGames
                 </h2>
                 <h3>
-                    <br>
                     <br>
                     © 2019 by BoardGames
                 </h3>
