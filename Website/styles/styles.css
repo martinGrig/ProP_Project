@@ -125,6 +125,12 @@ body {
   text-shadow: -1px 0 #5A3A00, 0 1px #5A3A00, 1px 0 #5A3A00, 0 -1px #5A3A00;
 }
 
+.card h5 {
+  font-size: 15px;
+  color: orange;
+  text-shadow: -1px 0 #5A3A00, 0 1px #5A3A00, 1px 0 #5A3A00, 0 -1px #5A3A00;
+}
+
 
 
 /* Clear floats after the columns */

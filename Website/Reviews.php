@@ -32,6 +32,7 @@ session_start();
                 <h2>Reviews</h2>
                 <h3>Name</h3>
                 <h4>Comment</h4>
+                <h5>Date</h5>
                 <?php
                 if (isset($_SESSION['loggedin']) && isset($_SESSION['currentUser']['ticketNr'])) {
                   echo  "<h3>Leave your review here!</h3>
