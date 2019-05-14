@@ -43,6 +43,7 @@ namespace EventManager.Views
             bool check = dataHelper.IsServerConnected();
             if (check)
             {
+                lbTime.Content = "Conection succesfull";
                 this.Close();
             }
             else

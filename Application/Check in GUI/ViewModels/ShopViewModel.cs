@@ -13,7 +13,7 @@ namespace EventManager.ViewModels
 {
     public class ShopViewModel : ObservableObject, IPageViewModel
     {
-        public DataModel Dm { get;  set; }
+        public DataModel Dm { get; set; }
         DataHelper dh;
         private RFID myRFIDReader;
 
@@ -21,7 +21,7 @@ namespace EventManager.ViewModels
         {
             Dm = dataModel;
             dh = new DataHelper();
-           
+
 
             try
             {
@@ -39,7 +39,7 @@ namespace EventManager.ViewModels
             {
                 if (_selectItem == null)
                 {
-                    _selectItem  = new RelayCommand(new Action<object>(SelectItem));
+                    _selectItem = new RelayCommand(new Action<object>(SelectItem));
                 }
                 return _selectItem;
             }
@@ -47,25 +47,29 @@ namespace EventManager.ViewModels
         private void SelectItem(object obj)
         {
             Item item = ((Item)obj);
-            if(Dm._selectedItems == null)
+            if (Dm._selectedItems == null)
             {
                 Dm._selectedItems = new List<Item>();
                 myRFIDReader.Open();
             }
-            foreach(Item it in Dm.SelectedItems)
+            //Check if there is already a item with that name and  if there is select the item to update its properties
+            foreach (Item it in Dm.SelectedItems)
             {
-                if(it.Name == item.Name)
+                if (it.Name == item.Name)
                 {
                     it.SelectItem();
                     Dm.SelectedItems = Dm._selectedItems;
                     return;
                 }
             }
-            
-            item.SelectItem();
-            Dm._selectedItems.Add(item);
-            Dm.SelectedItems = Dm._selectedItems;
-            OnPropertyChanged("FilteredItems");
+            if (item.Stock != 0)
+            {
+                item.SelectItem();
+                Dm._selectedItems.Add(item);
+                Dm.SelectedItems = Dm._selectedItems;
+                OnPropertyChanged("FilteredItems");
+            }
+
         }
 
         private RelayCommand _unSelectItem;
@@ -83,7 +87,7 @@ namespace EventManager.ViewModels
         public void SellItems(object sender, RFIDTagEventArgs e)
         {
             MessageBox.Show(e.Tag);
-            foreach(Item it in Dm.SelectedItems)
+            foreach (Item it in Dm.SelectedItems)
             {
                 it.SellItem();
             }

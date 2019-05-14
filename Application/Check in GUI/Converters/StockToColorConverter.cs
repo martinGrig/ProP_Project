@@ -29,9 +29,10 @@ namespace EventManager.Converters
 
             if (stock != seenAmount)
             {
-                if(seenAmount >= 50)
+                
+                if (seenAmount >= 50)
                 {
-                    bBrush = Brushes.LightYellow;
+                    bBrush = Brushes.DarkOrange;
                 }
                 else if(seenAmount >= 25)
                 {

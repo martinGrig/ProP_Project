@@ -102,7 +102,7 @@ namespace EventManager
                     stock = Convert.ToInt32(reader["Stock"]);
                     isFood = Convert.ToBoolean(reader["Food"]);
                     id = Convert.ToInt32(reader["Id"]);
-                    temp.Add(new ShopItem(name, price, stock, "Images/burger.ico",id, isFood));
+                    temp.Add(new ShopItem(name, price, stock, $"Images/{name}.png",id, isFood));
                 }
             }
             catch
