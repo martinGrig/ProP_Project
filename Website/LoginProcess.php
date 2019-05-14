@@ -29,6 +29,7 @@
     $statement->execute();
     $result = $statement->fetchAll();
     $_SESSION['currentUser'] = $result[0];
+    $_SESSION['currentUser']['name'] = $result[0]['name'];
 
     //check if person has a ticket
     $username = 'dbi410102';

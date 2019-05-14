@@ -281,6 +281,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\Taco.png" />
+    <Resource Include="Images\Burger.png" />
+    <Resource Include="Images\Fries.png" />
     <Content Include="Sounds\ding.mp3" />
     <Content Include="Sounds\ele.mp3" />
     <Content Include="Sounds\fart.mp3" />

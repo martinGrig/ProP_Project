@@ -5,7 +5,8 @@
   $password = 'prop17';
 
   $review = htmlspecialchars($_POST['comment']);
-  $name = "BEFOREFRONTEND";
+
+  $name = $_SESSION['currentUser']['name'];
 
   $con = new PDO('mysql:host=studmysql01.fhict.local;dbname=dbi410102', $username, $password);
 

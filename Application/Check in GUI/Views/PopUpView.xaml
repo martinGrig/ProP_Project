@@ -18,7 +18,7 @@
             <StackPanel>
                 <Label Content="Can't connect to database" HorizontalContentAlignment="Center"/>
                 <Label Content="The system will attempt to recconect in:" HorizontalContentAlignment="Center"/>
-                <Label x:Name="lbTime"/> 
+                <Label x:Name="lbTime" HorizontalContentAlignment="Center"/> 
             </StackPanel>
            
         </Viewbox>
