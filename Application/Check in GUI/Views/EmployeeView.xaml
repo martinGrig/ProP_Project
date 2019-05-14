@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:EventManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="900" Width="1360 ">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </UserControl.Resources>
     <Viewbox>
         <Grid Width="539">
         <Grid.ColumnDefinitions>
@@ -13,11 +16,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="170"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="170"/>
             <RowDefinition Height="190"/>
         </Grid.RowDefinitions>
-
-            <GroupBox Margin="10,10,5,10" Header="Employee Information" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.RowSpan="2" DataContext="{Binding _mainViewModel.dataModel.SelectedEmployee}">
+            <Button Background="Transparent" Height="25" Width="25" HorizontalAlignment="Left" Margin="10 0 0 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Admin}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+            <GroupBox Margin="10,10,5,10" Header="Employee Information" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" DataContext="{Binding _mainViewModel.dataModel.SelectedEmployee}">
             <Grid>
                 <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.5*" />
@@ -46,7 +50,7 @@
 
             </Grid>
         </GroupBox>
-        <GroupBox Margin="5,10,10,5" Header="Remove" Style="{StaticResource SecondGroupbox}" Grid.Column="1" Grid.RowSpan="1">
+        <GroupBox Margin="5,10,10,5" Header="Remove" Style="{StaticResource SecondGroupbox}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -54,10 +58,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Button Content="Remove" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="50"/>
+                    <Button Content="Remove" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonTest}" Margin="10" Height="50" Command="{Binding RemoveEmployeeCommand}"/>
             </Grid>
         </GroupBox>
-        <GroupBox Margin="5,5,10,10" Header="Change JOBID" Style="{StaticResource SecondGroupbox}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1">
+        <GroupBox Margin="5,5,10,10" Header="Change JOBID" Style="{StaticResource SecondGroupbox}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

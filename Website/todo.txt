@@ -1,0 +1,4 @@
+to do:
+- send emails (usecase create account)
+- reserve camping usecase fully
+- leave a review usecase fully

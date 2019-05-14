@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EventManager.Views"
              mc:Ignorable="d" d:DesignWidth="900" Height="640">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </UserControl.Resources>
 
-    <Viewbox>
+    <Viewbox DataContext="{Binding _mainViewModel}">
         <Border>
             <GroupBox Margin="10,10,10,10" Header="Apps" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.RowSpan="2">
                 <Grid>
@@ -18,16 +21,16 @@
                                 <UniformGrid Columns="2"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <Viewbox Height="Auto" Width="Auto">
-                            <Button  Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding GoToLogInCommand}">
+                            <Viewbox  Visibility="{Binding dataModel.ShowCheckin, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <Button  Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding ChangePageCommand}" CommandParameter="{Binding CheckIn}">
                                 <StackPanel Orientation="Horizontal" Width="200">
                                     <Image Source="/EventManager;component/Images/point.png" Margin="5 5 5 5" />
                                     <TextBlock Text="Check In" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Viewbox>
-                        <Viewbox>
-                            <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55">
+                            <Viewbox Visibility="{Binding  dataModel.ShowCamping, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding ChangePageCommand}" CommandParameter="{Binding Camping}">
                                 <StackPanel Orientation="Horizontal" Width="200" Margin="5 5 5 5">
                                     <Image Source="/EventManager;component/Images/camp.png"/>
                                     <TextBlock Text="Camping Check In" VerticalAlignment="Center"/>
@@ -35,48 +38,48 @@
                             </Button>
 
                         </Viewbox>
-                        <Viewbox>
-                            <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55">
+                            <Viewbox Visibility="{Binding  dataModel.ShowStatus, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding ChangePageCommand}" CommandParameter="{Binding Status}">
                                 <StackPanel Orientation="Horizontal" Width="200" Margin="5 5 5 5">
                                     <Image Source="/EventManager;component/Images/overview.png"/>
                                     <TextBlock Text="Event Status" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Viewbox>
-                        <Viewbox>
-                            <Button  Style="{StaticResource ButtonTest}" Margin="10" Height="55">
+                            <Viewbox Visibility="{Binding  dataModel.ShowLoan, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <Button  Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding ChangePageCommand}" CommandParameter="{Binding LoanStand}">
                                 <StackPanel Orientation="Horizontal" Width="200" Margin="5 5 5 5">
                                     <Image Source="/EventManager;component/Images/fairground.png"/>
                                     <TextBlock Text="Loan stand" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Viewbox>
-                        <Viewbox>
-                            <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55">
+                            <Viewbox Visibility="{Binding  dataModel.ShowCheckout, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding ChangePageCommand}" CommandParameter="{Binding CheckOut}">
                                 <StackPanel Orientation="Horizontal" Width="200" Margin="5 5 5 5">
                                     <Image Source="/EventManager;component/Images/check-out.png"/>
                                     <TextBlock Text="Check-Out" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Viewbox>
-                        <Viewbox>
-                            <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55">
+                            <Viewbox Visibility="{Binding  dataModel.ShowConverter, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding ChangePageCommand}" CommandParameter="{Binding Converter}">
                                 <StackPanel Orientation="Horizontal" Width="200" Margin="5 5 5 5">
                                     <Image Source="/EventManager;component/Images/databaseToFileIcon.png" Height="43.8" Width="101"/>
                                     <TextBlock Text="Converter" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Viewbox>
-                        <Viewbox>
-                            <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55">
+                            <Viewbox Visibility="{Binding  dataModel.ShowShop, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding ChangePageCommand}" CommandParameter="{Binding Shop}">
                                 <StackPanel Orientation="Horizontal" Width="200" Margin="5 5 5 5">
                                     <Image Source="/EventManager;component/Images/hot-dog.png"/>
                                     <TextBlock Text="Shops" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Viewbox>
-                        <Viewbox>
-                            <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55">
+                            <Viewbox Visibility="{Binding  dataModel.ShowAdmin, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <Button Style="{StaticResource ButtonTest}" Margin="10" Height="55" Command="{Binding ChangePageCommand}" CommandParameter="{Binding Admin}">
                                 <StackPanel Orientation="Horizontal" Width="200" Margin="5 5 5 5">
                                     <Image Source="/EventManager;component/Images/adminIcon.png"/>
                                     <TextBlock Text="Administration " VerticalAlignment="Center"/>

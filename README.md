@@ -6,4 +6,4 @@ Project description: The team was requested by the client to create a software
 solution that manages a event.
 
 Website link:
-http://i400672.hera.fhict.nl/ProP/
+http://i415306.hera.fhict.nl/

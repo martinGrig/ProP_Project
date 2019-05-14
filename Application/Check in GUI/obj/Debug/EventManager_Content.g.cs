@@ -8,6 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/ding.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/ele.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/fart.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/mosh.mp3")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fonts/montserrat-regular.otf")]
 
 

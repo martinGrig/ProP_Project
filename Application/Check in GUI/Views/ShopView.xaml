@@ -7,9 +7,13 @@
              xmlns:local="clr-namespace:EventManager.Views"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:controls="clr-namespace:EventManager.Controls"
+             xmlns:converters="clr-namespace:EventManager.Converters"
              xmlns:viewmodels="clr-namespace:EventManager.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:StockToColorConverter x:Key="StockColor"/>
+    </UserControl.Resources>
     <Viewbox>
         <Border>
             <Grid Width="800" Height="450" >
@@ -34,58 +38,97 @@
                         <!--Textblocks-->
                         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock Text="Shop ID :"  Style="{StaticResource HeaderText}" Margin="10, 5, 10, 0" Width="Auto"/>
-                            <TextBlock Text="{Binding Dm.SearchText}" Style="{StaticResource HeaderText}" Margin="10, 5, 10, 0"/>
-                            
+
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="10, 15, 10, 0">
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="10, 15, 10, 0">
                             <fa:FontAwesome Icon="Search" VerticalAlignment="Center"/>
-                            
+                            <TextBox  Style="{StaticResource NormalTextBox}"  Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Dm.SearchText, UpdateSourceTrigger=PropertyChanged}" Width="325" Tag="Enter Item Name Here"/>
                         </StackPanel>
-                        <TextBox  Style="{StaticResource NormalTextBox}" Grid.Column="1" Grid.Row="0" Margin="30, 15, 10, 0" Text="{Binding Dm.SearchText, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!--Read only text boxes -->
 
                         <!--Tab control-->
-                        <TabControl Grid.Row="1" Grid.ColumnSpan="2" Margin="10 5 10 5">
-                            <TabItem>
+                        <TabControl Grid.Row="1" Grid.ColumnSpan="2" Margin="10 5 10 5" SelectedIndex="{Binding Dm.SelectedTabIndex, Mode=TwoWay}">
+                            <TabItem TabIndex="0">
                                 <TabItem.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Food" Margin="0 0 10 0" VerticalAlignment="Center" />
                                         <Image Source="/EventManager;component/Images/burger.ico" Height="25"/>
                                     </StackPanel>
                                 </TabItem.Header>
-                                <ItemsControl ItemsSource="{Binding Dm.FilteredItems}">
+                                <ItemsControl ItemsSource="{Binding Dm.FilteredFood}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel ItemWidth="50" />
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
+                                        <DataTemplate x:Name="Foods">
                                             <Viewbox>
                                                 <Button BorderThickness="0.1"  Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectItemCommand}"  CommandParameter="{Binding}" >
-                                                    
+                                                    <Button.InputBindings>
+                                                        <MouseBinding Gesture="RightClick"/>
+                                                    </Button.InputBindings>
                                                     <Button.Background>
 
                                                         <ImageBrush ImageSource="{Binding _FileName}"/>
 
                                                     </Button.Background>
-                                                    
-                                                    <TextBlock Text="{Binding Stock}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="0.7"/>
-                                                    
+
+                                                    <TextBlock Text="{Binding SeenAmount}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="0.7">
+                                                        <TextBlock.Foreground>
+                                                            <MultiBinding Converter="{StaticResource StockColor}">
+                                                                <Binding Path="Stock" />
+                                                                <Binding Path="SeenAmount" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
                                                 </Button>
                                             </Viewbox>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </TabItem>
-                            <TabItem>
+                            <TabItem TabIndex="1">
                                 <TabItem.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Beverages" Margin="0 0 10 0" VerticalAlignment="Center" />
                                         <Image Source="/EventManager;component/Images/soda.png" Height="25"/>
                                     </StackPanel>
                                 </TabItem.Header>
+                                <ItemsControl ItemsSource="{Binding Dm.FilteredDrink}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel ItemWidth="50" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:Name="Drinks">
+                                            <Viewbox>
+                                                <Button BorderThickness="0.1"  Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectItemCommand}"  CommandParameter="{Binding}" >
+                                                    <Button.InputBindings>
+                                                        <MouseBinding Gesture="RightClick"/>
+                                                    </Button.InputBindings>
+                                                    <Button.Background>
+
+                                                        <ImageBrush ImageSource="{Binding _FileName}"/>
+
+                                                    </Button.Background>
+
+                                                    <TextBlock Text="{Binding SeenAmount}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="0.7">
+                                                        <TextBlock.Foreground>
+                                                            <MultiBinding Converter="{StaticResource StockColor}">
+                                                                <Binding Path="Stock" />
+                                                                <Binding Path="SeenAmount" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
+
+                                                </Button>
+                                            </Viewbox>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </TabItem>
                         </TabControl>
 

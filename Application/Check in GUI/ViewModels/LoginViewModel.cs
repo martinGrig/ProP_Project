@@ -36,10 +36,85 @@ namespace EventManager.ViewModels
             string name = dh.Login(Convert.ToInt32(Dm.EmployeeNumber), Dm.Password);
             if( name != null)
             {
+                
                 Dm.UserName = name;
                 int numb = Convert.ToInt32(Dm.EmployeeNumber);
-                Dm.Items = dh.GetItems(numb);
-                _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Shop);
+
+                string job = dh.GetEmployee(numb).JobId;
+                if(job.Length == 1)
+                {
+                    Dm.ShowBackButton = false;
+                    switch (job)
+                    {
+                        case "i":
+                            _mainViewModel.ChangePageCommand.Execute(_mainViewModel.CheckIn);
+                            break;
+                        case "e":
+                            _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Status);
+                            break;
+                        case "o":
+                            _mainViewModel.ChangePageCommand.Execute(_mainViewModel.CheckOut);
+                            break;
+                        case "s":
+                            Dm.Items = dh.GetItems(numb);
+                            _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Shop);
+                            break;
+                        case "c":
+                            _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Camping);
+                            break;
+                        case "l":
+                            _mainViewModel.ChangePageCommand.Execute(_mainViewModel.LoanStand);
+                            break;
+                        case "v":
+                            _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Converter);
+                            break;
+                        case "a":
+                            _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Admin);
+                            break;
+                    }
+                }
+                else if(job.Length > 1)
+                {
+                    Dm.ShowBackButton = true;
+                    if (job.Contains("i"))
+                    {
+                        Dm.ShowCheckin = true;
+                    }
+                    if (job.Contains("e"))
+                    {
+                        Dm.ShowStatus = true;
+                    }
+                    if (job.Contains("o"))
+                    {
+                        Dm.ShowCheckout = true;
+                    }
+                    if (job.Contains("s"))
+                    {
+                        Dm.Items = dh.GetItems(numb);
+                        OnPropertyChanged("FilteredFood");
+                        OnPropertyChanged("Items");
+                        Dm.ShowShop = true;
+                    }
+                    if (job.Contains("c"))
+                    {
+                        Dm.ShowCamping = true;
+                    }
+                    if (job.Contains("l"))
+                    {
+                        Dm.ShowLoan = true;
+                    }
+                    if (job.Contains("v"))
+                    {
+                        Dm.ShowConverter = true;
+                    }
+                    if (job.Contains("a"))
+                    {
+                        Dm.ShowAdmin = true;
+                    }
+                    _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Apps);
+                }
+                
+
             }
             else
             {
@@ -53,5 +128,7 @@ namespace EventManager.ViewModels
             dh = new DataHelper();
             Dm = dataModel;
         }
+
+
     }
 }

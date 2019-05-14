@@ -118,3 +118,23 @@ C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\De
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.csproj.CopyComplete
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.exe
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\EventManager.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Phidget22.NET.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Phidget22.NET.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\Phidget22.NET.xml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\AForge.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\AForge.Video.DirectShow.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\AForge.Video.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.presentation.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\AForge.xml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\AForge.Video.xml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\AForge.Video.DirectShow.xml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.xml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.presentation.pdb
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\zxing.presentation.xml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\MessagingToolkit.Barcode.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\NAudio.dll
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\bin\Debug\NAudio.xml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\PopUpView.g.cs
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\Views\PopUpView.baml
