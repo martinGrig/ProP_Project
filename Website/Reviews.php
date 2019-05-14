@@ -46,21 +46,23 @@ session_start();
                 }
                 ?>
                 </div>
-                <div class="card">
-                    <h3>Name</h3>
-                    <h4>Comment</h4>
-                    <h5>Date</h5>
-                </div>
-                <div class="card">
-                    <h3>Name</h3>
-                    <h4>Comment</h4>
-                    <h5>Date</h5>
-                </div>
-                <div class="card">
-                    <h3>Name</h3>
-                    <h4>Comment</h4>
-                    <h5>Date</h5>
-                </div>
+
+                  <?php
+                  $username = 'dbi410102';
+                  $password = 'prop17';
+                  $con = new PDO('mysql:host=studmysql01.fhict.local;dbname=dbi410102', $username, $password);
+                  $sql = "select * from review";
+                  $statement = $con->query($sql);
+                  $statement->execute();
+                  $result = $statement->fetchAll();
+                  for ($i = 0; $i < sizeof($result); $i++) {
+                    echo "<div class=\"card\">";
+                    echo "<h3>" . $result[$i]['name'] . "</h3>";
+                    echo "<h4>" . $result[$i]['reviewText'] . "</h4>";
+                    echo "<h5>" . $result[$i]['datetime'] . "</h5>";
+                    echo "</div>";
+                  }
+                  ?>
             </div>
         </div>
         <div class="row">
