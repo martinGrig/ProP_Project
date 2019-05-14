@@ -55,7 +55,7 @@ namespace EventManager.ViewModels
             Converter = new ConverterViewModel(this);
             Employee = new EmployeeViewModel(this);
             LoanStand = new LoanStandViewModel();
-            Status = new StatusViewModel();
+            Status = new StatusViewModel(this);
             Shop = new ShopViewModel(dataModel);
             PageViewModels.Add(Login);
             CurrentPageViewModel = _pageViewModels[0];
@@ -71,13 +71,7 @@ namespace EventManager.ViewModels
             dataModel._jobs.Add(new Job("Camping worker", "c"));
             dataModel._jobs.Add(new Job("Manager", "ieosclv"));
             dataModel.Jobs = dataModel._jobs;
-
-            var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ele.mp3");
-            LoopStream loop = new LoopStream(reader);
-            waveOut = new WaveOut();
-            waveOut.Volume = 0.0F;
-            waveOut.Init(loop);
-            waveOut.Play();
+            
 
             isConnected = true;
         }

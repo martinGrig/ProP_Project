@@ -36,13 +36,15 @@ namespace EventManager
         public int Balance { get; private set; }
         public int TicketNr { get; private set; }
         public string Email { get; private set; }  //add regex for email
-        public Visitor(string firstName, string lastName, int ticketNumber, string email, int balance)
+        public bool IsScanned { get; private set; }
+        public Visitor(string firstName, string lastName, int ticketNumber, string email, int balance, bool isScanned)
         {
             FirstName = firstName;
             LastName = lastName;
             TicketNr = ticketNumber;
             Balance = balance;
             Email = email;
+            IsScanned = isScanned;
         }
         public Visitor(string firstName, string lastName, string email, int balance, int _campingSpotId)
         {

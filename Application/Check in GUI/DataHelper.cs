@@ -198,7 +198,7 @@ namespace EventManager
         public Visitor GetVisitor(int ticketNr)
         {
 
-            String sql = "SELECT account.name as Name, account.surname as Surname, account.email as Email, visitor.balance as Balance FROM account, visitor WHERE account.email = visitor.accountEmail AND visitor.ticketNr = @ticketNr ;";
+            String sql = "SELECT account.name as Name, account.surname as Surname, account.email as Email, visitor.balance as Balance, visitor.isScanned as IsScanned FROM account, visitor WHERE account.email = visitor.accountEmail AND visitor.ticketNr = @ticketNr ;";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@ticketNr", ticketNr);
 
@@ -216,6 +216,7 @@ namespace EventManager
                 string lastName;
                 string email;
                 int balance;
+                bool isScanned;
 
                 while (reader.Read())
                 {
@@ -223,8 +224,10 @@ namespace EventManager
                     lastName = Convert.ToString(reader["Surname"]);
                     email = Convert.ToString(reader["Email"]);
                     balance = Convert.ToInt32(reader["Balance"]);
+                    isScanned = Convert.ToBoolean(reader["IsScanned"]);
 
-                    vis = new Visitor(name, lastName, ticketNr, email, balance);
+
+                    vis = new Visitor(name, lastName, ticketNr, email, balance, isScanned);
                 }
 
 
