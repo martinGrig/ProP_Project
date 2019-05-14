@@ -46,17 +46,17 @@ session_start();
                 }
                 ?>
                 </div>
-                <div class="card"> 
+                <div class="card">
                     <h3>Name</h3>
                     <h4>Comment</h4>
                     <h5>Date</h5>
                 </div>
-                <div class="card"> 
+                <div class="card">
                     <h3>Name</h3>
                     <h4>Comment</h4>
                     <h5>Date</h5>
                 </div>
-                <div class="card"> 
+                <div class="card">
                     <h3>Name</h3>
                     <h4>Comment</h4>
                     <h5>Date</h5>
