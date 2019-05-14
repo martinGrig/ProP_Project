@@ -3,11 +3,12 @@ to do:
 - reserve camping usecase fully
 - only one review should be possible
 - send emails (usecase create account)
+- contact us
+
+(pdf with screenshots of work for client)
 
 !front end:
-- choosing number of people in camp reservation
-- review showing (make example of one review)
+- make better review showing
 - ability to pay right now for camp or later
 (a box were you can tick if you wanna pay during reservation)
-- review post: name should be possible to specify above review
 
