@@ -29,21 +29,38 @@ session_start();
         <div class="row">
             <div class="column centre">
               <div class="card">
-                <h2>Reviews</h2>
+                    <h2>Reviews</h2>
                 <?php
                 if (isset($_SESSION['loggedin']) && isset($_SESSION['currentUser']['ticketNr'])) {
                   echo  "<h3>Leave your review here!</h3>
                    <form name=\"submit-review-form\" action=\"ReviewsProcess.php\" onsubmit=\"return validateReview()\" method=\"post\">
-                       <input id=\"yname\" name=\"yname\" type=\"text\" placeholder=\"Your Name\">
                        <textarea name=\"comment\" rows=\"10\" cols=\"30\" placeholder=\"Your Review...\"></textarea><br>
+                       <label class=\"container\">Anonymous comment
+                       <input type=\"checkbox\" name=\"anonymous_checkbox\" value=\"anonymous\">
+                       <span class=\"checkmark\"></span>
+                       </label>
                        <input type=\"submit\" value=\"Submit\"><br>
                    </form>";
                 } else {
                   echo "<h3>Only event's visitors can leave reviews!</h3>";
                 }
                 ?>
-
-              </div>
+                </div>
+                <div class="card"> 
+                    <h3>Name</h3>
+                    <h4>Comment</h4>
+                    <h5>Date</h5>
+                </div>
+                <div class="card"> 
+                    <h3>Name</h3>
+                    <h4>Comment</h4>
+                    <h5>Date</h5>
+                </div>
+                <div class="card"> 
+                    <h3>Name</h3>
+                    <h4>Comment</h4>
+                    <h5>Date</h5>
+                </div>
             </div>
         </div>
         <div class="row">

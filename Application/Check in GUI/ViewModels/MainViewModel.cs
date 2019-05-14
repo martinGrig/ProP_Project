@@ -71,7 +71,17 @@ namespace EventManager.ViewModels
             dataModel._jobs.Add(new Job("Camping worker", "c"));
             dataModel._jobs.Add(new Job("Manager", "ieosclv"));
             dataModel.Jobs = dataModel._jobs;
+<<<<<<< HEAD
             
+=======
+
+            var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ele.mp3");
+            LoopStream loop = new LoopStream(reader);
+            waveOut = new WaveOut();
+            waveOut.Volume = 0.05F;
+            waveOut.Init(loop);
+            waveOut.Play();
+>>>>>>> a8fdf94c36b123b7abb25c99443ac5da29613100
 
             isConnected = true;
         }
@@ -147,6 +157,8 @@ namespace EventManager.ViewModels
                 if(check == false)
                 {
                     PopUpView popUp = new PopUpView(dataHelper);
+                    popUp.Height = 200;
+                    popUp.Width = 400;
                     popUp.ShowDialog();
                 }
                 isConnected = check;
