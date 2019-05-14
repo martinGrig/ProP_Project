@@ -29,10 +29,7 @@ session_start();
         <div class="row">
             <div class="column centre">
               <div class="card">
-                <h2>Reviews</h2>
-                <h3>Name</h3>
-                <h4>Comment</h4>
-                <h5>Date</h5>
+                    <h2>Reviews</h2>
                 <?php
                 if (isset($_SESSION['loggedin']) && isset($_SESSION['currentUser']['ticketNr'])) {
                   echo  "<h3>Leave your review here!</h3>
@@ -48,8 +45,22 @@ session_start();
                   echo "<h3>Only event's visitors can leave reviews!</h3>";
                 }
                 ?>
-
-              </div>
+                </div>
+                <div class="card"> 
+                    <h3>Name</h3>
+                    <h4>Comment</h4>
+                    <h5>Date</h5>
+                </div>
+                <div class="card"> 
+                    <h3>Name</h3>
+                    <h4>Comment</h4>
+                    <h5>Date</h5>
+                </div>
+                <div class="card"> 
+                    <h3>Name</h3>
+                    <h4>Comment</h4>
+                    <h5>Date</h5>
+                </div>
             </div>
         </div>
         <div class="row">
