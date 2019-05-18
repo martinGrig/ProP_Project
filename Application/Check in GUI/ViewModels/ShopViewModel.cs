@@ -19,12 +19,31 @@ namespace EventManager.ViewModels
         private RFID myRFIDReader;
         public MainViewModel _mainViewModel { get; set; }
 
+        private List<string> _receipt;
+
+        public IEnumerable<string> Receipt
+        {
+            get
+            {
+                if(_receipt == null)
+                {
+                    return new List<string>();
+                }
+                return _receipt;
+            }
+            set
+            {
+                _receipt = value.ToList();
+                OnPropertyChanged("Receipt");
+            }
+        }
+
         public ShopViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
             Dm = _mainViewModel.dataModel;
             dh = new DataHelper();
-
+            _receipt = new List<string>();
 
             try
             {
@@ -99,6 +118,30 @@ namespace EventManager.ViewModels
                 try
                 {
                     _mainViewModel.dataHelper.CreatePurchase(temp, Dm.SelectedItems.ToList(), 1234);
+                    _receipt.Add("Shop: blablabla");
+                    _receipt.Add($"Customer: {temp.FirstName} {temp.LastName}");
+                    _receipt.Add(DateTime.Now.ToShortDateString());
+                    _receipt.Add("-----------------------------");
+                    _receipt.Add("Food:");
+                    foreach(ShopItem shopItem in Dm.SelectedItems)
+                    {
+                        if (shopItem.IsFood)
+                        {
+                            _receipt.Add($"Item: {shopItem.Name} Price: {shopItem.Price} Quantity: {shopItem.Quantity}");
+                            _receipt.Add($"     Subtotal: {shopItem.SubTotal}");
+                        }
+                    }
+                    _receipt.Add("Beverages:");
+                    foreach (ShopItem shopItem in Dm.SelectedItems)
+                    {
+                        if (!shopItem.IsFood)
+                        {
+                            _receipt.Add($"Item {shopItem.Name} Price {shopItem.Price} Quantity {shopItem.Quantity}");
+                            _receipt.Add($"     Subtotal: {shopItem.SubTotal}");
+                        }
+                    }
+                    _receipt.Add($"Total {Dm.SelectedItems.Sum(x => x.SubTotal)}");
+                    Receipt = _receipt;
                     Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber));
                     Dm._selectedItems.Clear();
                     Dm.SelectedItems = Dm._selectedItems;

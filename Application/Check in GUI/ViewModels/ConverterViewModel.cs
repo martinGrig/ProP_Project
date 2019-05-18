@@ -35,6 +35,7 @@ namespace EventManager.ViewModels
         {
             _mainViewModel = mainViewModel;
             _mainViewModel.dataModel._logFileLines = new List<LogLine>();
+            _mainViewModel.dataModel._logFileLinesInfo = new List<LogLine>();
         }
 
         #region Commands
@@ -47,6 +48,39 @@ namespace EventManager.ViewModels
             {
                 if (_loadFileCommand == null) _loadFileCommand = new RelayCommand(new Action<object>(LoadFile));
                 return _loadFileCommand;
+            }
+        }
+
+        private RelayCommand _uploadAllCommand;
+
+        public RelayCommand UploadAllCommand
+        {
+            get
+            {
+                if (_uploadAllCommand == null) _uploadAllCommand = new RelayCommand(new Action<object>(UploadAll));
+                return _uploadAllCommand;
+            }
+        }
+
+        private RelayCommand _uploadSelectedCommand;
+
+        public RelayCommand UploadSelectedCommand
+        {
+            get
+            {
+                if (_uploadSelectedCommand == null) _uploadSelectedCommand = new RelayCommand(new Action<object>(UploadSelected));
+                return _uploadSelectedCommand;
+            }
+        }
+
+        private RelayCommand _uploadUnselectedCommand;
+
+        public RelayCommand UploadUnselectedCommand
+        {
+            get
+            {
+                if (_uploadUnselectedCommand == null) _uploadUnselectedCommand = new RelayCommand(new Action<object>(UploadUnselected));
+                return _uploadUnselectedCommand;
             }
         }
         #endregion
@@ -67,19 +101,42 @@ namespace EventManager.ViewModels
                 {
                     fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
                     sr = new StreamReader(fs);
+                    int id = 1;
                     String s;
+
                     s = sr.ReadLine();
-                    _mainViewModel.dataModel._logFileLines.Add(new LogLine(s, "iban"));
-                    s = sr.ReadLine();
-                    _mainViewModel.dataModel._logFileLines.Add(new LogLine(s, "start"));
-                    s = sr.ReadLine();
-                    _mainViewModel.dataModel._logFileLines.Add(new LogLine(s, "end"));
-                    s = sr.ReadLine();
-                    _mainViewModel.dataModel._logFileLines.Add(new LogLine(s, "amount"));
-                    s = sr.ReadLine();
+                    if (s != null)
+                    {
+
+                        _mainViewModel.dataModel._logFileLinesInfo.Add(new LogLine(s, "iban", 0));
+                        s = sr.ReadLine();
+
+                    }
+                    if (s != null)
+                    {
+
+                        _mainViewModel.dataModel._logFileLinesInfo.Add(new LogLine(s, "start", 0));
+                        s = sr.ReadLine();
+
+                    }
+                    if (s != null)
+                    {
+
+                        _mainViewModel.dataModel._logFileLinesInfo.Add(new LogLine(s, "end", 0));
+                        s = sr.ReadLine();
+
+                    }
+                    if (s != null)
+                    {
+
+                        _mainViewModel.dataModel._logFileLinesInfo.Add(new LogLine(s, "amount", 0));
+                        s = sr.ReadLine();
+
+                    }
                     while (s != null)
                     {
-                        _mainViewModel.dataModel._logFileLines.Add(new LogLine(s, "user"));
+                        _mainViewModel.dataModel._logFileLines.Add(new LogLine(s, "user", id));
+                        id++;
                         s = sr.ReadLine();
                     }
                 }
@@ -92,7 +149,23 @@ namespace EventManager.ViewModels
                     if (sr != null) sr.Close();
                     if (fs != null) fs.Close();
                 }
-                foreach(LogLine line in _mainViewModel.dataModel._logFileLines)
+                foreach (LogLine line in _mainViewModel.dataModel._logFileLines)
+                {
+                    Regex regex;
+                    switch (line.Type)
+                    {
+                        case "user":
+                            regex = new Regex(@"[0-9]*[ ][0-9]*[,][0-9]{2}");
+                            if (regex.Match(line.Line).ToString() == line.Line.Trim())
+                            {
+                                line.IsEnabled = true;
+                            }
+                            break;
+
+
+                    }
+                }
+                foreach (LogLine line in _mainViewModel.dataModel._logFileLinesInfo)
                 {
                     Regex regex;
                     switch (line.Type)
@@ -108,7 +181,7 @@ namespace EventManager.ViewModels
                             regex = new Regex(@"^(?:(?:(?:(?:(?:[1-9]\d)(?:0[48]|[2468][048]|[13579][26])|(?:(?:[2468][048]|[13579][26])00))(\/|-|\.)(?:0?2\1(?:29)))|(?:(?:[1-9]\d{3})(\/|-|\.)(?:(?:(?:0?[13578]|1[02])\2(?:31))|(?:(?:0?[13-9]|1[0-2])\2(?:29|30))|(?:(?:0?[1-9])|(?:1[0-2]))\2(?:0?[1-9]|1\d|2[0-8])[/](?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)))))$");
                             if (regex.Match(line.Line).ToString() == line.Line.Trim())
                             {
-                                int year = Convert.ToInt32(line.Line.Trim().Substring(0,4));
+                                int year = Convert.ToInt32(line.Line.Trim().Substring(0, 4));
                                 int month = Convert.ToInt32(line.Line.Trim().Substring(5, 2));
                                 int day = Convert.ToInt32(line.Line.Trim().Substring(8, 2));
                                 dt = new DateTime(year, month, day);
@@ -130,18 +203,12 @@ namespace EventManager.ViewModels
                                 line.IsEnabled = true;
                             }
                             break;
-                        case "user":
-                            regex = new Regex(@"[0-9]*[ ][0-9]*[.][0-9]{2}");
-                            if (regex.Match(line.Line).ToString() == line.Line.Trim())
-                            {
-                                line.IsEnabled = true;
-                            }
-                            break;
 
 
                     }
                 }
                 _mainViewModel.dataModel.LogFileLines = _mainViewModel.dataModel._logFileLines;
+                _mainViewModel.dataModel.LogFileLinesInfo = _mainViewModel.dataModel._logFileLinesInfo;
             }
         }
         private string GetDaySuffix(int day)
@@ -161,6 +228,77 @@ namespace EventManager.ViewModels
                 default:
                     return "th";
             }
+        }
+
+        private void UploadAll(object obj)
+        {
+            try
+            {
+                _mainViewModel.dataHelper.CreateTopUps(_mainViewModel.dataModel.LogFileLines.Where(x => x.IsEnabled == true).ToList());
+                Reset();
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        private void UploadSelected(object obj)
+        {
+            System.Collections.IList items = (System.Collections.IList)obj;
+            var temp = items.Cast<LogLine>().ToList();
+
+            try
+            {
+                _mainViewModel.dataHelper.CreateTopUps(temp);
+                Reset();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void UploadUnselected(object obj)
+        {
+            System.Collections.IList items = (System.Collections.IList)obj;
+            var temp = items.Cast<LogLine>().ToList();
+            List<LogLine> unselectedItems = new List<LogLine>();
+            foreach (LogLine line in _mainViewModel.dataModel.LogFileLines.Where(x => x.IsEnabled == true).ToList())
+            {
+                bool isUnselected = true;
+
+                foreach (LogLine selLine in temp)
+                {
+                    if (line.ID == selLine.ID)
+                    {
+                        isUnselected = false;
+                    }
+                }
+                if (isUnselected)
+                {
+                    unselectedItems.Add(line);
+                }
+            }
+            try
+            {
+                _mainViewModel.dataHelper.CreateTopUps(unselectedItems);
+                Reset();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Reset()
+        {
+            LogFileTitle = "";
+            _mainViewModel.dataModel._logFileLines.Clear();
+            _mainViewModel.dataModel._logFileLinesInfo.Clear();
+            _mainViewModel.dataModel.LogFileLines = _mainViewModel.dataModel._logFileLines;
+            _mainViewModel.dataModel.LogFileLinesInfo = _mainViewModel.dataModel._logFileLinesInfo;
         }
     }
 }

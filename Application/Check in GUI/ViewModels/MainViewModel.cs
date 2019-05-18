@@ -131,6 +131,7 @@ namespace EventManager.ViewModels
             if(viewModel.GetType() == typeof(AdminViewModel))
             {
                 dataModel.Shops = dataHelper.GetShops();
+                Admin.GetDatabaseStuff();
             }
             CurrentPageViewModel = PageViewModels
                 .FirstOrDefault(vm => vm == viewModel);

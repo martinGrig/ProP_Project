@@ -46,6 +46,21 @@ namespace EventManager.ViewModels
             }
         }
 
+        private string _searchNr;
+        public string SearchNr
+        {
+            get
+            {
+                return _searchNr;
+            }
+            set
+            {
+                _searchNr = value;
+                OnPropertyChanged("SearchNr");
+                OnPropertyChanged("FilteredEmployees");
+            }
+        }
+
         private Job _selecetedJob;
         public Job SelectedJob
         {
@@ -57,6 +72,19 @@ namespace EventManager.ViewModels
             {
                 _selecetedJob = value;
                 OnPropertyChanged("SelectedJob");
+            }
+        }
+
+        private List<Employee> _employees;
+        public IEnumerable<Employee> FilteredEmployees
+        {
+            get
+            {
+                if (SearchNr == null)
+                {
+                    return _employees;
+                }
+                return _employees.Where(x => x.FirstName.ToUpper().Contains(SearchNr.ToUpper()) || x.LastName.ToUpper().Contains(SearchNr.ToUpper()) || x.EmployeeNr.ToString().Contains(SearchNr.ToUpper()));
             }
         }
         #endregion Properties
@@ -141,6 +169,11 @@ namespace EventManager.ViewModels
                 //please fill in first name
                 System.Windows.Forms.MessageBox.Show("First name not selected");
             }
+        }
+
+        public void GetDatabaseStuff()
+        {
+            _employees = _mainViewModel.dataHelper.GetEmployees();
         }
 
         

@@ -10,6 +10,7 @@ namespace EventManager.Objects
     {
         public string Line { get; private set; }
         public string Type { get; private set; }
+        public int ID { get; private set; }
         private bool _isEnabled;
         public bool IsEnabled
         {
@@ -24,10 +25,11 @@ namespace EventManager.Objects
             }
         }
 
-        public LogLine(string line, string type)
+        public LogLine(string line, string type, int id)
         {
             Line = line;
             Type = type;
+            ID = id;
         }
     }
 }

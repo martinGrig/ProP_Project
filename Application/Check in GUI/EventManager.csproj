@@ -287,7 +287,6 @@
     <Resource Include="Images\Burger.png" />
     <Resource Include="Images\Fries.png" />
     <None Include="Resources\ele.mp3" />
-    <None Include="Resources\thisThatele.wav" />
     <Content Include="Sounds\ding.mp3" />
     <Content Include="Sounds\ele.mp3" />
     <Content Include="Sounds\fart.mp3" />
@@ -323,6 +322,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="Fonts\Montserrat-Regular.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

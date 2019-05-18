@@ -118,6 +118,48 @@ namespace EventManager
             return temp;
         }
 
+        public List<Employee> GetEmployees()
+        {
+            String sql = "SELECT  employeeName, employeeNr, surname, positionId, password FROM employee ";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            
+            List<Employee> emps = new List<Employee>();
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                string lastName;
+                string jobId;
+                string password;
+                int employeeNr;
+
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["employeeName"]);
+                    lastName = Convert.ToString(reader["surname"]);
+                    jobId = Convert.ToString(reader["positionId"]);
+                    password = Convert.ToString(reader["password"]);
+                    employeeNr = Convert.ToInt32(reader["employeeNr"]);
+
+                    emps.Add(new Employee(name, lastName, jobId, password, employeeNr));
+                }
+
+
+
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return emps;
+        }
+
         public Employee GetEmployee(int employeeNr)
         {
 
@@ -377,7 +419,7 @@ namespace EventManager
             int allVisitors = 0;
             String sql = "Select count(*) as total From visitor";
             MySqlCommand command = new MySqlCommand(sql, connection);
-            
+
             try
             {
                 connection.Open();
@@ -604,6 +646,47 @@ namespace EventManager
             }
             return check;
         }
+
+        #region Converter
+        public int CreateTopUps(List<LogLine> logLines)
+        {
+            int nrOfRecordsChanged = 0;
+            String sql;
+            MySqlCommand command;
+            try
+            {
+                connection.Open();
+                foreach (LogLine line in logLines)
+                {
+                    string[] words = line.Line.Split(' ');
+                    int ticketNr = Convert.ToInt32(words[0]);
+                    double amount = Convert.ToDouble(words[1]);
+                    sql = "INSERT INTO topup (topUpNr, ticketNr, dateOfTrans, amount) VALUES (NULL, @ticketNr, CURRENT_TIMESTAMP, @amount)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@ticketNr", ticketNr);
+                    command.Parameters.AddWithValue("@amount", amount);
+                    command.ExecuteNonQuery();
+                    
+
+                    sql = "UPDATE visitor SET balance = balance + @total WHERE ticketNr = @ticketNr";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@total", amount);
+                    command.Parameters.AddWithValue("@ticketNr", ticketNr);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                throw new Exception("Something went wrong with database");
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+            return nrOfRecordsChanged;
+        }
+        #endregion 
 
         #region Password Generation
         public static string GetRandomAlphanumericString(int length)

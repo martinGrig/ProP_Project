@@ -61,11 +61,11 @@
                         <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource NormalTextBox}" Text="{Binding NewLastName, UpdateSourceTrigger=PropertyChanged}"/>
                         <ComboBox x:Name="cmbJob" Grid.Column="1" Grid.Row="2" Margin="10 5 10 5" ItemsSource="{Binding _mainViewModel.dataModel.Jobs}" DisplayMemberPath="Description" SelectedItem="{Binding SelectedJob}"/>
                         <Button Content="Add Employee" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Style="{StaticResource ButtonTest}" Margin="10" Height="50" Command="{Binding AddEmployeeCommand}" CommandParameter="{Binding ElementName=cmbJob, Path=SelectedItem}">
-                           
+
                         </Button>
                     </Grid>
                 </GroupBox>
-                
+
                 <GroupBox Margin="5,10,10,10" Header="Inspect Employee" Style="{StaticResource SecondGroupbox}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -73,20 +73,30 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
                         </Grid.RowDefinitions>
 
 
+                        <ListView Grid.ColumnSpan="2" Grid.Row="0" ItemsSource="{Binding FilteredEmployees}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Emp Nr" Width="50" DisplayMemberBinding="{Binding EmployeeNr}"/>
+                                    <GridViewColumn Header="First name" Width="70" DisplayMemberBinding="{Binding FirstName}"/>
+                                    <GridViewColumn Header="Last Name" Width="70" DisplayMemberBinding="{Binding LastName}"/>
+                                    <GridViewColumn Header="Job" Width="75" DisplayMemberBinding="{Binding  JobId}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                         <TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderText}" Visibility="Hidden"/>
-                        <TextBlock Text="Employee Number" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                        <TextBlock Text="Employee Number" Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderText}"/>
                         <!--text boxes -->
 
-                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}" x:Name="tbEmployeeNumber"/>
+                        <TextBox Grid.ColumnSpan="2" Grid.Row="1" Height="28" Style="{StaticResource NormalTextBox}" x:Name="tbEmployeeNumber" Margin="114,10,10,10" Text="{Binding SearchNr, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource NormalTextBox}" Visibility="Hidden"/>
-                        <Button Content="Inspect" Command="{Binding InspectEmployeeCommand}" CommandParameter="{Binding ElementName=tbEmployeeNumber}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10 58 10 10" Height="50"/>
+                        <Button Content="Inspect" Command="{Binding InspectEmployeeCommand}" CommandParameter="{Binding ElementName=tbEmployeeNumber}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource ButtonTest}" Height="50"/>
                     </Grid>
                 </GroupBox>
             </Grid>

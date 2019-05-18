@@ -258,6 +258,20 @@ namespace EventManager.Models
                 OnPropertyChanged("LogFileLines");
             }
         }
+        public List<LogLine> _logFileLinesInfo;
+        public IEnumerable<LogLine> LogFileLinesInfo
+        {
+            get
+            {
+                return _logFileLinesInfo;
+            }
+
+            set
+            {
+                _logFileLinesInfo = value.ToList();
+                OnPropertyChanged("LogFileLinesInfo");
+            }
+        }
 
         private string _userName;
 
