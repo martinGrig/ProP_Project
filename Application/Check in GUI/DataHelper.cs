@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using EventManager.Objects;
@@ -23,7 +25,7 @@ namespace EventManager
             connection = new MySqlConnection(connectionInfo);
         }
 
-        public  bool IsServerConnected()
+        public bool IsServerConnected()
         {
             using (connection)
             {
@@ -102,7 +104,7 @@ namespace EventManager
                     stock = Convert.ToInt32(reader["Stock"]);
                     isFood = Convert.ToBoolean(reader["Food"]);
                     id = Convert.ToInt32(reader["Id"]);
-                    temp.Add(new ShopItem(name, price, stock, $"Images/{name}.png",id, isFood));
+                    temp.Add(new ShopItem(name, price, stock, $"Images/{name}.png", id, isFood));
                 }
             }
             catch
@@ -160,23 +162,15 @@ namespace EventManager
             }
             return emp;
         }
-        public int AddEmployee(string firstName, string lastName, string jobId, string password)
-        {   //Probably you expected a return-value of type bool:
-            //true if the query was executed succesfully and false otherwise.
-            //But what if you executed a delete-query? Or an update-query?
-            //The return-value is teh number of records affected.
+        public int AddEmployee(string firstName, string lastName, string jobId)
+        {
             int nrOfRecordsChanged;
             String sql = "INSERT INTO employee (employeeName, surname, positionId, password) VALUES (@employeeName, @surname, @possitionId, @password )";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@employeeName", firstName);
             command.Parameters.AddWithValue("@surname", lastName);
             command.Parameters.AddWithValue("@possitionId", jobId);
-            command.Parameters.AddWithValue("@password", password);
-
-            //On internet you also see a solution like:
-            // String sql = "INSERT INTO StudentTable VALUES (" +
-            //     "'" + name + "'," + number  + "," + creditpoints + ")";
-            //Be aware of sql-injection!
+            command.Parameters.AddWithValue("@password", GetRandomAlphanumericString(6));
 
             try
             {
@@ -194,7 +188,87 @@ namespace EventManager
             }
             return nrOfRecordsChanged;
         }
+        public Visitor CreateTemporaryAccount(string _email)
+        {
+            Visitor vis = null;
+            String sql = "INSERT INTO account (name, surname, email, password, bankAccountNr) VALUES (@name, @surname, @email, @password, @bankAccount )";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@name", "temp");
+            command.Parameters.AddWithValue("@surname", "temp");
+            command.Parameters.AddWithValue("@email", _email);
+            command.Parameters.AddWithValue("@password", GetRandomAlphanumericString(6));
+            command.Parameters.AddWithValue("@bankAccount", "temp");
 
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                sql = "INSERT INTO visitor (accountEmail) VALUES (@email)";
+                command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@email", _email);
+                command.ExecuteNonQuery();
+                sql = "SELECT account.name as Name, account.surname as Surname, account.email as Email, visitor.ticketNr as Ticket,visitor.balance as Balance, visitor.isScanned as IsScanned FROM account, visitor WHERE account.email = visitor.accountEmail AND account.email = @email";
+                command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@email", _email);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                string lastName;
+                int ticketNr;
+                int balance;
+                bool isScanned;
+
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["Name"]);
+                    lastName = Convert.ToString(reader["Surname"]);
+                    balance = Convert.ToInt32(reader["Balance"]);
+                    ticketNr = Convert.ToInt32(reader["Ticket"]);
+                    isScanned = Convert.ToBoolean(reader["IsScanned"]);
+
+
+                    vis = new Visitor(name, lastName, ticketNr, _email, balance, isScanned);
+                }
+            }
+            catch
+            {
+                throw new Exception("There is already a account linked to this account");
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+            return vis;
+        }
+
+        public int SetRfidTag(string tag, int ticketNr)
+        {
+            String sql = "UPDATE visitor SET isScanned = 1, RFIDCode = @rfidCode, whenScanned = CURRENT_TIMESTAMP WHERE visitor.ticketNr = @ticketNr AND RFIDCode is NULL";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@ticketNr", ticketNr);
+            command.Parameters.AddWithValue("@rfidCode", tag);
+            int rowsAffected;
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw new Exception("There is already a account linked to this rfid code");
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+            return rowsAffected;
+        }
         public Visitor GetVisitor(int ticketNr)
         {
 
@@ -225,6 +299,56 @@ namespace EventManager
                     email = Convert.ToString(reader["Email"]);
                     balance = Convert.ToInt32(reader["Balance"]);
                     isScanned = Convert.ToBoolean(reader["IsScanned"]);
+
+
+                    vis = new Visitor(name, lastName, ticketNr, email, balance, isScanned);
+                }
+
+
+
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return vis;
+        }
+        public Visitor GetVisitor(string rfidCode)
+        {
+
+            String sql = "SELECT account.name as Name, account.surname as Surname, account.email as Email, visitor.balance as Balance,visitor.ticketNr as TicketNr, visitor.isScanned as IsScanned FROM account, visitor WHERE account.email = visitor.accountEmail AND visitor.RFIDCode = @rfidCode ;";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@rfidCode", rfidCode);
+
+            //On internet you also see a solution like:
+            // String sql = "INSERT INTO StudentTable VALUES (" +
+            //     "'" + name + "'," + number  + "," + creditpoints + ")";
+            //Be aware of sql-injection!
+            Visitor vis = null;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                string lastName;
+                string email;
+                int balance;
+                bool isScanned;
+                int ticketNr;
+
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["Name"]);
+                    lastName = Convert.ToString(reader["Surname"]);
+                    email = Convert.ToString(reader["Email"]);
+                    balance = Convert.ToInt32(reader["Balance"]);
+                    isScanned = Convert.ToBoolean(reader["IsScanned"]);
+                    ticketNr = Convert.ToInt32(reader["TicketNr"]);
 
 
                     vis = new Visitor(name, lastName, ticketNr, email, balance, isScanned);
@@ -336,7 +460,7 @@ namespace EventManager
                 {
                     name = Convert.ToString(reader["name"]);
                     id = Convert.ToInt32(reader["placeId"]);
-                    temp.Add(new Shop(id,name));
+                    temp.Add(new Shop(id, name));
                 }
             }
             catch
@@ -349,6 +473,111 @@ namespace EventManager
             }
             return temp;
         }
+
+
+
+
+        public int CreatePurchase(Visitor visitor, List<ShopItem> shopItems, int placeId)
+        {
+            int total = (int)shopItems.Sum(x => x.SubTotal);
+            int purchaseNr = 0;
+            int check = 0;
+            if (visitor.Balance >= total)
+            {
+                String sql = "UPDATE visitor SET balance = balance - @total WHERE ticketNr = @ticketNr";
+                MySqlCommand command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@total", total);
+                command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    sql = "INSERT INTO purchaise (ticketNr, dateOfTrans, purchaseNr, amount) VALUES (@ticketNr, CURRENT_TIMESTAMP, NULL, @total)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                    command.Parameters.AddWithValue("@total", total);
+                    check = command.ExecuteNonQuery();
+
+                    sql = "SELECT MAX(purchaise.purchaseNr) as purchaseNr FROM purchaise WHERE ticketNr = @ticketNr";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                    purchaseNr = (int)command.ExecuteScalar();
+
+                    foreach (ShopItem s in shopItems)
+                    {
+                        sql = "UPDATE purchaisable SET StartQuantity = StartQuantity - @amount WHERE itemId = @Id AND placeId = @place";
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@amount", s.Quantity);
+                        command.Parameters.AddWithValue("@Id", s.ID);
+                        command.Parameters.AddWithValue("@place", placeId);
+                        command.ExecuteNonQuery();
+
+                        sql = "INSERT INTO purchase_item (itemId, purchaseNr, qauntity) VALUES (@itemId, @purchaseNr, @amount)";
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@itemId", s.ID);
+                        command.Parameters.AddWithValue("@purchaseNr", purchaseNr);
+                        command.Parameters.AddWithValue("@amount", s.Quantity);
+
+                        command.ExecuteNonQuery();
+                    }
+
+
+
+                }
+                catch
+                {
+                    //TODO make exception
+                    check = -1;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            else
+            {
+                //There is not enough money
+                throw new Exception("Insufficient balance");
+            }
+            return check;
+        }
+
+        #region Password Generation
+        public static string GetRandomAlphanumericString(int length)
+        {
+            const string alphanumericCharacters =
+                //"ABCDEFGHJKMNPQRSTUVWXYZ" +
+                "abcdefghjkmnpqrstuvwxyz" +
+                "23456789";
+            return GetRandomString(length, alphanumericCharacters);
+        }
+
+        public static string GetRandomString(int length, IEnumerable<char> characterSet)
+        {
+            if (length < 0)
+                throw new ArgumentException("length must not be negative", "length");
+            if (length > int.MaxValue / 8) // 250 million chars ought to be enough for anybody
+                throw new ArgumentException("length is too big", "length");
+            if (characterSet == null)
+                throw new ArgumentNullException("characterSet");
+            var characterArray = characterSet.Distinct().ToArray();
+            if (characterArray.Length == 0)
+                throw new ArgumentException("characterSet must not be empty", "characterSet");
+
+            var bytes = new byte[length * 8];
+            new RNGCryptoServiceProvider().GetBytes(bytes);
+            var result = new char[length];
+            for (int i = 0; i < length; i++)
+            {
+                ulong value = BitConverter.ToUInt64(bytes, i * 8);
+                result[i] = characterArray[value % (uint)characterArray.Length];
+            }
+            return new string(result);
+        }
+
+        #endregion
     }
+
 }
 

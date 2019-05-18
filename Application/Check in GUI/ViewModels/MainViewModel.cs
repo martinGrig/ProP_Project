@@ -56,7 +56,7 @@ namespace EventManager.ViewModels
             Employee = new EmployeeViewModel(this);
             LoanStand = new LoanStandViewModel();
             Status = new StatusViewModel(this);
-            Shop = new ShopViewModel(dataModel);
+            Shop = new ShopViewModel(this);
             PageViewModels.Add(Login);
             CurrentPageViewModel = _pageViewModels[0];
             databaseChecker = new DispatcherTimer();
@@ -71,17 +71,6 @@ namespace EventManager.ViewModels
             dataModel._jobs.Add(new Job("Camping worker", "c"));
             dataModel._jobs.Add(new Job("Manager", "ieosclv"));
             dataModel.Jobs = dataModel._jobs;
-<<<<<<< HEAD
-            
-=======
-
-            var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ele.mp3");
-            LoopStream loop = new LoopStream(reader);
-            waveOut = new WaveOut();
-            waveOut.Volume = 0.05F;
-            waveOut.Init(loop);
-            waveOut.Play();
->>>>>>> a8fdf94c36b123b7abb25c99443ac5da29613100
 
             isConnected = true;
         }

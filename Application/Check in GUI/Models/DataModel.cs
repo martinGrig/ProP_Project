@@ -162,9 +162,9 @@ namespace EventManager.Models
         }
 
         //Selected items
-        public List<Item> _selectedItems;
+        public List<ShopItem> _selectedItems;
 
-        public IEnumerable<Item> SelectedItems
+        public IEnumerable<ShopItem> SelectedItems
         {
             get
             {

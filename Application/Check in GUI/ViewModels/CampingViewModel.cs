@@ -18,9 +18,9 @@ namespace EventManager.ViewModels
             _mainViewModel = mainViewModel;
             try
             {
-                myRFIDReader = new RFID();
-                myRFIDReader.Tag += new RFIDTagEventHandler(GetCampingSpot);
-                myRFIDReader.Open();
+                //myRFIDReader = new RFID();
+                //myRFIDReader.Tag += new RFIDTagEventHandler(GetCampingSpot);
+               // myRFIDReader.Open();
             }
             catch (PhidgetException) { }
         }

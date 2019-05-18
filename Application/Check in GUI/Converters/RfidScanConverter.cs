@@ -28,6 +28,14 @@ namespace EventManager.Converters
                 {
                     image = "Images/Scan Braclet.png";
                 }
+                else if(visitor.RfidCode == "1")
+                {
+                    image = "Images/CheckinUnsuccessful.png";
+                }
+                else if(visitor.RfidCode == "2")
+                {
+                    image = "Images/waiting.jpg";
+                }
                 else
                 {
                     image = "Images/RFID account successful.png";

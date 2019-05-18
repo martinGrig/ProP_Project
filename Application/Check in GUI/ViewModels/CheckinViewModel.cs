@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using Phidget22;
 using Phidget22.Events;
 using NAudio.Wave;
+using System.Windows.Media.Imaging;
 
 namespace EventManager.ViewModels
 {
@@ -30,6 +31,39 @@ namespace EventManager.ViewModels
         private RFID myRFIDReader;
 
         public MainViewModel _mainViewModel { get; set; }
+
+        private string _tempEmail;
+        public string TempEmail
+        {
+            get
+            {
+                if (_tempEmail == null)
+                {
+                    return "";
+                }
+                return _tempEmail;
+            }
+            set
+            {
+                _tempEmail = value;
+                OnPropertyChanged("TempEmail");
+            }
+        }
+
+        private BitmapImage _videoImage;
+        public BitmapImage VideoImage
+        {
+            get
+            {
+                return _videoImage;
+            }
+            set
+            {
+                _videoImage = value;
+                OnPropertyChanged("VideoImage");
+            }
+        }
+
         public CheckinViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -52,42 +86,51 @@ namespace EventManager.ViewModels
 
         private void FinalFrame_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
+            BitmapImage bi;
             BarcodeReader Reader = new BarcodeReader();
             Result result = Reader.Decode((Bitmap)eventArgs.Frame.Clone());
-
+            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+            bi = bitmap.ToBitmapImage();
+            bi.Freeze();
+            VideoImage = bi;
             try
             {
-                string decoded = (result.Text);
-                if (decoded != null)
+                if (result != null)
                 {
-                    _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataHelper.GetVisitor(Convert.ToInt32(decoded));
-                    if (_mainViewModel.dataModel.SelectedVisitor != null)
+                    string decoded = (result.Text);
+                    if (decoded != null)
                     {
 
-                        FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
-                        var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ding.mp3");
-                        waveOut = new WaveOut();
-                        waveOut.Volume = 0.8F;
-                        waveOut.Init(reader);
-                        waveOut.Play();
-                        myRFIDReader.Tag += new RFIDTagEventHandler(LinkRfid);
-                        myRFIDReader.Open();
-                        _mainViewModel.dataModel.ShowScanQrCode = true;
-                    }
-                    else
-                    {
-                        var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/fart.mp3");
-                        waveOut = new WaveOut();
-                        waveOut.Volume = 0.8F;
-                        waveOut.Init(reader);
-                        waveOut.Play();
-                        
-                        QrImageSource = "/Images/CheckinUnsuccessful.png";
-                        FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
-                        dispatcherTimer.Start();
-                    }
+                        _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataHelper.GetVisitor(Convert.ToInt32(decoded));
+                        if (_mainViewModel.dataModel.SelectedVisitor != null)
+                        {
 
+                            _mainViewModel.dataModel.ShowScanQrCode = true;
+                            FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
+                            //var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ding.mp3");
+                            //waveOut = new WaveOut();
+                            //waveOut.Volume = 0.8F;
+                            //waveOut.Init(reader);
+                            //waveOut.Play();
+                            myRFIDReader.Tag += new RFIDTagEventHandler(LinkRfid);
+                            myRFIDReader.AntennaEnabled = true;
+                        }
+                        else
+                        {
+                            var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/fart.mp3");
+                            waveOut = new WaveOut();
+                            waveOut.Volume = 0.8F;
+                            waveOut.Init(reader);
+                            waveOut.Play();
+
+                            QrImageSource = "/Images/CheckinUnsuccessful.png";
+                            FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
+                            dispatcherTimer.Start();
+                        }
+
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -116,16 +159,47 @@ namespace EventManager.ViewModels
             }
         }
 
+        private RelayCommand _sellTicketCommand;
+        public RelayCommand SellTicketCommand
+        {
+            get
+            {
+                if (_sellTicketCommand == null) _sellTicketCommand = new RelayCommand(new Action<object>(SellTicket));
+                return _sellTicketCommand;
+            }
+        }
+
+        private void SellTicket(object obj)
+        {
+            try
+            {
+                _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataHelper.CreateTemporaryAccount(TempEmail);
+                if (_mainViewModel.dataModel.SelectedVisitor != null)
+                {
+                    TempEmail = null;
+                    myRFIDReader.Tag += new RFIDTagEventHandler(LinkRfid);
+                    myRFIDReader.AntennaEnabled = true;
+                    QrImageSource = "/Images/waiting.jpg";
+                }
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
         private void StartQrScanner(object obj)
         {
             FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
             FinalFrame.Start();
+            myRFIDReader.Open();
             QrImageSource = "/Images/ScanQrCode.png";
         }
 
         private void StopQrScanner(object obj)
         {
             FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
+            myRFIDReader.Close();
             FinalFrame.Stop();
         }
 
@@ -155,18 +229,41 @@ namespace EventManager.ViewModels
 
         private void LinkRfid(object sender, RFIDTagEventArgs e)
         {
-            _mainViewModel.dataModel.SelectedVisitor.RfidCode = e.Tag;
-            _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataModel.SelectedVisitor;
-            resetTimer.Start();
-            myRFIDReader.Close();
+            try
+            {
+                int check = _mainViewModel.dataHelper.SetRfidTag(e.Tag, _mainViewModel.dataModel.SelectedVisitor.TicketNr);
+                if (check == 0)//there is already a visitor linked to this code
+                {
+                    _mainViewModel.dataModel.SelectedVisitor.RfidCode = "2";
+                }
+                else
+                {
+                    resetTimer.Start();
+                    _mainViewModel.dataModel.SelectedVisitor.RfidCode = "6";
+                    myRFIDReader.AntennaEnabled = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _mainViewModel.dataModel.SelectedVisitor.RfidCode = "1";
+
+            }
+            finally
+            {
+                _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataModel.SelectedVisitor;
+            }
+
         }
 
         private void Reset(object sender, EventArgs e)
         {
             _mainViewModel.dataModel.SelectedVisitor = null;
+            QrImageSource = "/Images/ScanQrCode.png";
             _mainViewModel.dataModel.ShowScanQrCode = false;
             FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
             resetTimer.Stop();
         }
+
     }
 }
