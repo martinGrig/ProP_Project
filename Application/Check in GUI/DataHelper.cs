@@ -117,6 +117,7 @@ namespace EventManager
             }
             return temp;
         }
+
         public Employee GetEmployee(int employeeNr)
         {
 
@@ -162,8 +163,10 @@ namespace EventManager
             }
             return emp;
         }
+
         public int AddEmployee(string firstName, string lastName, string jobId)
         {
+
             int nrOfRecordsChanged;
             String sql = "INSERT INTO employee (employeeName, surname, positionId, password) VALUES (@employeeName, @surname, @possitionId, @password )";
             MySqlCommand command = new MySqlCommand(sql, connection);
@@ -302,6 +305,7 @@ namespace EventManager
 
 
                     vis = new Visitor(name, lastName, ticketNr, email, balance, isScanned);
+
                 }
 
 
@@ -366,6 +370,64 @@ namespace EventManager
                 connection.Close();
             }
             return vis;
+        }
+
+        public int GetAllVisitors()
+        {
+            int allVisitors = 0;
+            String sql = "Select count(*) as total From visitor";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                allVisitors = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the visitors");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return allVisitors;
+        }
+
+        public int SumOfAllVisitorBalance()
+        {
+            int sumOfBalance = 0;
+            String sql = "Select sum(balance) as total From visitor";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                sumOfBalance = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the visitors");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return sumOfBalance;
         }
 
         public CampingSpot GetCampingSpotByRFID(string rfid)

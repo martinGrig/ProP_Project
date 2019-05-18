@@ -71,7 +71,6 @@ namespace EventManager.ViewModels
             dataModel._jobs.Add(new Job("Camping worker", "c"));
             dataModel._jobs.Add(new Job("Manager", "ieosclv"));
             dataModel.Jobs = dataModel._jobs;
-
             isConnected = true;
         }
         public RelayCommand ChangePageCommand
