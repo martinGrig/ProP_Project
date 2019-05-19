@@ -591,37 +591,22 @@ namespace EventManager
 
         public int AmountEarnedPerShop(int placeId)
         {
-            String sql = "SELECT WHERE placeId = @placeId ;";
+            String sql = "SELECT  from place p WHERE p.placeId = @placeId ;"; // notfinished
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@placeId", placeId);
-
-            //On internet you also see a solution like:
-            // String sql = "INSERT INTO StudentTable VALUES (" +
-            //     "'" + name + "'," + number  + "," + creditpoints + ")";
-            //Be aware of sql-injection!
+            
             int amount = 0;
             try
             {
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();
-
-                String name;
-                string lastName;
-                string email;
-                int balance;
-                bool isScanned;
+                
+                int money;
 
                 while (reader.Read())
                 {
-                    name = Convert.ToString(reader["Name"]);
-                    lastName = Convert.ToString(reader["Surname"]);
-                    email = Convert.ToString(reader["Email"]);
-                    balance = Convert.ToInt32(reader["Balance"]);
-                    isScanned = Convert.ToBoolean(reader["IsScanned"]);
-
-
-                    vis = new Visitor(name, lastName, ticketNr, email, balance, isScanned);
-
+                    money = Convert.ToInt32(reader["Balance"]);
+                    
                 }
 
 
