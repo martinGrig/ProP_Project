@@ -472,6 +472,172 @@ namespace EventManager
             return sumOfBalance;
         }
 
+        public int TotalMoneyEarned()
+        {
+            int sumOfEarnedMoney = 0;
+            String sql = "Select sum(balance) as total From visitor";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                sumOfEarnedMoney = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the sumOfEarnedMoney");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return sumOfEarnedMoney;
+        }
+
+        public int TotalMoneySpentByVisitor()
+        {
+            int sumOfSpentMoney = 0;
+            String sql = "SELECT count(v.ticketNr) * 55 + sum(p.amount) as total FROM purchaise p join visitor v on v.ticketNr = p.ticketNr";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                sumOfSpentMoney = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the sumOfEarnedMoney");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return sumOfSpentMoney;
+        }
+        
+        public int AmountOfBookedCampingSpots()
+        {
+            int amountOfBookedCampingSpots = 0;
+            String sql = "Select sum(reservedPlaces) as total From campspot";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                amountOfBookedCampingSpots = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the campspots");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amountOfBookedCampingSpots;
+        }
+
+        public int AmountOfFreeCampSpaces()
+        {
+            int amountOfFreeCampingSpots = 0;
+            String sql = "Select sum(6 - reservedPlaces) as total From campspot";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                amountOfFreeCampingSpots = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the campspots");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amountOfFreeCampingSpots;
+            
+        }
+
+        public int AmountEarnedPerShop(int placeId)
+        {
+            String sql = "SELECT WHERE placeId = @placeId ;";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@placeId", placeId);
+
+            //On internet you also see a solution like:
+            // String sql = "INSERT INTO StudentTable VALUES (" +
+            //     "'" + name + "'," + number  + "," + creditpoints + ")";
+            //Be aware of sql-injection!
+            int amount = 0;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                string lastName;
+                string email;
+                int balance;
+                bool isScanned;
+
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["Name"]);
+                    lastName = Convert.ToString(reader["Surname"]);
+                    email = Convert.ToString(reader["Email"]);
+                    balance = Convert.ToInt32(reader["Balance"]);
+                    isScanned = Convert.ToBoolean(reader["IsScanned"]);
+
+
+                    vis = new Visitor(name, lastName, ticketNr, email, balance, isScanned);
+
+                }
+
+
+
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amount;
+        }
+
         public CampingSpot GetCampingSpotByRFID(string rfid)
         {
             String sql = "SELECT c.reservedPlaces as places, a.name as groupleader, c.campSpotId as spotId, v.isCampPayed as paymentStatus FROM campspot c JOIN visitor v ON c.campSpotId = v.campSpotId JOIN account a ON v.accountEmail = a.email WHERE v.RFIDCode = @rfidCode";
