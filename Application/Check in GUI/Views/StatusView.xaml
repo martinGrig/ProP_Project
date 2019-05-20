@@ -60,9 +60,9 @@
                     <TextBlock Text="Total Visitors:" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}"/>
                     <TextBlock Text="Total balance of all visitors:" Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderText}"/>
                     <TextBlock Text="Total money spent by visitors:" Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderText}"/>
-                    <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" Height="28" Style="{StaticResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource ReadOnlyTextBox }" Text="{Binding TotalVisitors, Mode=OneWay}"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding TotalBalance, Mode=OneWay}"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Height="28" Style="{StaticResource ReadOnlyTextBox}"  Text="{Binding SpentMoney, Mode=OneWay}"/>
                 </Grid>
             </GroupBox>
 

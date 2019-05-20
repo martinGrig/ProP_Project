@@ -11,6 +11,9 @@ namespace EventManager.ViewModels
     {
         MainViewModel _mainViewModel;
         private string _visitorStatus;
+        private string _totalVisitors;
+        private string _totalBalance;
+        private string _spentMoney;
         private Visitor _visitor;
         public Visitor Visitor { get { return _visitor; }private set { _visitor = value; OnPropertyChanged("VisitorStatus"); OnPropertyChanged("Visitor"); } }
         public string VisitorStatus
@@ -30,6 +33,42 @@ namespace EventManager.ViewModels
                     _visitorStatus = "Not checked in";
                 }
                 OnPropertyChanged("VisitorStatus");
+            }
+        }
+        public string TotalVisitors
+        {
+            get
+            {
+                return _totalVisitors;
+            }
+            private set
+            {
+                _totalVisitors = value;
+                OnPropertyChanged("TotalVisitors");
+            }
+        }
+        public string TotalBalance
+        {
+            get
+            {
+                return _totalBalance;
+            }
+            private set
+            {
+                _totalBalance = value;
+                OnPropertyChanged("TotalBalance");
+            }
+        }
+        public string SpentMoney
+        {
+            get
+            {
+                return _spentMoney;
+            }
+            private set
+            {
+                _spentMoney = value;
+                OnPropertyChanged("SpentMoney");
             }
         }
 
@@ -53,6 +92,12 @@ namespace EventManager.ViewModels
             Visitor = _mainViewModel.dataHelper.GetVisitor(Convert.ToInt32(o)); ;
             OnPropertyChanged("VisitorStatus");
             VisitorStatus = "";
+        }
+        public void Start()
+        {
+            TotalVisitors = _mainViewModel.dataHelper.GetAllVisitors().ToString();
+            TotalBalance = _mainViewModel.dataHelper.SumOfAllVisitorBalance().ToString();
+            SpentMoney = _mainViewModel.dataHelper.TotalMoneySpentByVisitor().ToString();
         }
     }
 }

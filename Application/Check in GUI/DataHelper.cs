@@ -589,39 +589,39 @@ namespace EventManager
             
         }
 
-        public int AmountEarnedPerShop(int placeId)
-        {
-            String sql = "SELECT  from place p WHERE p.placeId = @placeId ;"; // notfinished
-            MySqlCommand command = new MySqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@placeId", placeId);
+        //public int AmountEarnedPerShop(int placeId)
+        //{
+        //    String sql = "SELECT  from place p WHERE p.placeId = @placeId ;"; // notfinished
+        //    MySqlCommand command = new MySqlCommand(sql, connection);
+        //    command.Parameters.AddWithValue("@placeId", placeId);
             
-            int amount = 0;
-            try
-            {
-                connection.Open();
-                MySqlDataReader reader = command.ExecuteReader();
+        //    int amount = 0;
+        //    try
+        //    {
+        //        connection.Open();
+        //        MySqlDataReader reader = command.ExecuteReader();
                 
-                int money;
+        //        int money;
 
-                while (reader.Read())
-                {
-                    money = Convert.ToInt32(reader["Balance"]);
+        //        while (reader.Read())
+        //        {
+        //            money = Convert.ToInt32(reader["Balance"]);
                     
-                }
+        //        }
 
 
 
-            }
-            catch
-            {
-                MessageBox.Show("error while loading the students");
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return amount;
-        }
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("error while loading the students");
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
+        //    return amount;
+        //}
 
         public CampingSpot GetCampingSpotByRFID(string rfid)
         {
