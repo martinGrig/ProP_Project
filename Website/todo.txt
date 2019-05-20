@@ -1,7 +1,6 @@
 to do:
 !back end:
 - reserve camping usecase fully
-- only one review should be possible
 - send emails (usecase create account)
 - contact us
 

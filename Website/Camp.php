@@ -49,6 +49,10 @@ session_start();
                         <option value="5">5 Persons</option>
                         <option value="6">6 Persons</option>
                     </select><br>
+                    <label class="container">Pay now
+                    <input type="checkbox" name="paynow_checkbox" value="paynow">
+                    <span class="checkmark"></span>
+                    </label>
                     <input type="submit" value="Accept">
                 </form>
               </div>
