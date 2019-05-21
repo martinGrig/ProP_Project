@@ -33,7 +33,7 @@ session_start();
                 <div>
                     <img src="images/spots.png" style="width:50%">
                 </div>
-                <form name="Camp-form" action="Profile.php">
+                <form name="Camp-form"  action="CampProcess.php" method="post">
                     <select name="spots">
                         <option value="A">SPOT A</option>
                         <option value="B">SPOT B</option>

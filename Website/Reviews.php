@@ -50,7 +50,6 @@ session_start();
                 }
                 ?>
                 </div>
-
                   <?php
                   $username = 'dbi410102';
                   $password = 'prop17';
