@@ -4,21 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\obj\Debug\
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\obj\Debug\
 EventManager
 none
 false
 DEBUG;TRACE
-C:\Users\Martin Grigorov\project-p-phase_group17\Application\Check in GUI\App.xaml
+C:\Users\David\project-p-phase_group17\Application\Check in GUI\App.xaml
 221504747424
 5-1568594132
-<<<<<<< HEAD
 54-1104559814
 321237466017
-=======
-53-1145572866
-32319157166
->>>>>>> a5a514eded970b86a42b423d0731c3f36ef829a8
 Colors.xaml;Controls\StandItemControl.xaml;Fonts.xaml;GroupBox.xaml;MainWindow.xaml;Status.xaml;Style.xaml;Text.xaml;Button.xaml;Views\AdminView.xaml;Views\AppsView.xaml;Views\CampingView.xaml;Views\CheckInView.xaml;Views\CheckOutView.xaml;Views\ConverterView.xaml;Views\EmployeeView.xaml;Views\LoanStandView.xaml;Views\LoginView.xaml;Views\PopUpView.xaml;Views\ShopView.xaml;Views\StatusView.xaml;Window.xaml;
 
 False
