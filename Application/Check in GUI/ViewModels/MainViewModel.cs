@@ -133,8 +133,13 @@ namespace EventManager.ViewModels
                 dataModel.Shops = dataHelper.GetShops();
                 Admin.GetDatabaseStuff();
             }
+            if(viewModel.GetType() == typeof(StatusViewModel))
+            {
+                Status.Start();
+            }
             CurrentPageViewModel = PageViewModels
                 .FirstOrDefault(vm => vm == viewModel);
+
             
         }
 

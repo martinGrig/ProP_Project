@@ -11,7 +11,17 @@ namespace EventManager.ViewModels
     {
         MainViewModel _mainViewModel;
         private string _visitorStatus;
+        private string _totalVisitors;
+        private string _totalBalance;
+        private string _spentMoney;
+        private string _bookedCampingSpots;
+        private string _freeCampingSpots;
+        private string _amountEarnedPerShop;
+        private string _amountEarnedPerItem;
+
         private Visitor _visitor;
+        private List<string> _transactions;
+
         public Visitor Visitor { get { return _visitor; }private set { _visitor = value; OnPropertyChanged("VisitorStatus"); OnPropertyChanged("Visitor"); } }
         public string VisitorStatus
         {
@@ -32,6 +42,102 @@ namespace EventManager.ViewModels
                 OnPropertyChanged("VisitorStatus");
             }
         }
+        public IEnumerable<string> Transactions
+        {
+            get
+            {
+                return _transactions;
+            }
+            private set
+            {
+                _transactions = value.ToList();
+                OnPropertyChanged("Transactions");
+            }
+        }
+        public string TotalVisitors
+        {
+            get
+            {
+                return _totalVisitors;
+            }
+            private set
+            {
+                _totalVisitors = value;
+                OnPropertyChanged("TotalVisitors");
+            }
+        }
+        public string TotalBalance
+        {
+            get
+            {
+                return _totalBalance;
+            }
+            private set
+            {
+                _totalBalance = value;
+                OnPropertyChanged("TotalBalance");
+            }
+        }
+        public string SpentMoney
+        {
+            get
+            {
+                return _spentMoney;
+            }
+            private set
+            {
+                _spentMoney = value;
+                OnPropertyChanged("SpentMoney");
+            }
+        }
+        public string BookedCampingSpots
+        {
+            get
+            {
+                return _bookedCampingSpots;
+            }
+            private set
+            {
+                _bookedCampingSpots = value;
+                OnPropertyChanged("BookedCampingSpots");
+            }
+        }
+        public string FreeCampingSpots
+        {
+            get
+            {
+                return _freeCampingSpots;
+            }
+            private set
+            {
+                _freeCampingSpots = value;
+                OnPropertyChanged("FreeCampingSpots");
+            }
+        }
+        public string AmountEarnedPerShop
+        {
+            get
+            {
+                return _amountEarnedPerShop;
+            }
+            private set
+            {
+                _amountEarnedPerShop = value;
+                OnPropertyChanged("AmountEarnedPerShop");
+            }
+        }
+        public string AmountEarnedPerItem
+        {
+            get
+            {
+                return _amountEarnedPerItem;
+            }
+            private set
+            {
+                _amountEarnedPerItem = value;
+                OnPropertyChanged("AmountEarnedPerItem");
+            }
+        }
 
         public StatusViewModel(MainViewModel model)
         {
@@ -48,11 +154,53 @@ namespace EventManager.ViewModels
             }
 
         }
+        private RelayCommand _GetShopEarningsCommand;
+        public RelayCommand GetShopEarningsCommand
+        {
+
+            get
+            {
+                if (_GetShopEarningsCommand == null) _GetShopEarningsCommand = new RelayCommand(new Action<object>(FindShop));
+                return _GetShopEarningsCommand;
+            }
+
+        }
+        private RelayCommand _GetItemEarningsCommand;
+        public RelayCommand GetItemEarningsCommand
+        {
+
+            get
+            {
+                if (_GetItemEarningsCommand == null) _GetItemEarningsCommand = new RelayCommand(new Action<object>(FindItem));
+                return _GetItemEarningsCommand;
+            }
+
+        }
         private void FindVisitor(object o)
         {
-            Visitor = _mainViewModel.dataHelper.GetVisitor(Convert.ToInt32(o)); ;
+            Visitor = _mainViewModel.dataHelper.GetVisitor(Convert.ToInt32(o));
+            Transactions = _mainViewModel.dataHelper.GetTransactions(Visitor.TicketNr);
             OnPropertyChanged("VisitorStatus");
             VisitorStatus = "";
+        }
+        private void FindShop(object o)
+        {
+            AmountEarnedPerShop = _mainViewModel.dataHelper.AmountEarnedPerShop(Convert.ToInt32(o)).ToString();
+            OnPropertyChanged("AmountEarnedPerShop");
+        }
+        private void FindItem(object o)
+        {
+            AmountEarnedPerItem = _mainViewModel.dataHelper.AmountEarnedPerItem(Convert.ToInt32(o)).ToString();
+            OnPropertyChanged("AmountEarnedPerItem");
+        }
+        public void Start()
+        {
+            TotalVisitors = _mainViewModel.dataHelper.GetAllVisitors().ToString();
+            TotalBalance = _mainViewModel.dataHelper.SumOfAllVisitorBalance().ToString();
+            SpentMoney = _mainViewModel.dataHelper.TotalMoneySpentByVisitor().ToString();
+            BookedCampingSpots = _mainViewModel.dataHelper.AmountOfBookedCampingSpots().ToString();
+            FreeCampingSpots = _mainViewModel.dataHelper.AmountOfFreeCampSpaces().ToString();
+            //AmountEarnedPerShop = _mainViewModel.dataHelper.AmountEarnedPerShop(1234).ToString();
         }
     }
 }

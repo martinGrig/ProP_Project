@@ -13,6 +13,7 @@ namespace EventManager
     public class DataHelper
     {
         public MySqlConnection connection;
+        public MySqlConnection connectionForTopUp;
 
         public DataHelper()
         {
@@ -23,6 +24,7 @@ namespace EventManager
                                     "connect timeout=30;";
 
             connection = new MySqlConnection(connectionInfo);
+            connectionForTopUp = new MySqlConnection(connectionInfo);
         }
 
         public bool IsServerConnected()
@@ -470,6 +472,231 @@ namespace EventManager
                 connection.Close();
             }
             return sumOfBalance;
+        }
+
+        public int TotalMoneyEarned()
+        {
+            int sumOfEarnedMoney = 0;
+            String sql = "Select sum(balance) as total From visitor";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                sumOfEarnedMoney = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the sumOfEarnedMoney");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return sumOfEarnedMoney;
+        }
+
+        public int TotalMoneySpentByVisitor()
+        {
+            int sumOfSpentMoney = 0;
+            String sql = "SELECT count(v.ticketNr) * 55 + sum(p.amount) as total FROM purchaise p join visitor v on v.ticketNr = p.ticketNr";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                sumOfSpentMoney = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the sumOfEarnedMoney");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return sumOfSpentMoney;
+        }
+        
+        public int AmountOfBookedCampingSpots()
+        {
+            int amountOfBookedCampingSpots = 0;
+            String sql = "Select sum(reservedPlaces) as total From campspot";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                amountOfBookedCampingSpots = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the campspots");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amountOfBookedCampingSpots;
+        }
+
+        public int AmountOfFreeCampSpaces()
+        {
+            int amountOfFreeCampingSpots = 0;
+            String sql = "Select sum(6 - reservedPlaces) as total From campspot";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int total = 0;
+                while (reader.Read())
+                {
+                    total = Convert.ToInt32(reader["total"]);
+                }
+                amountOfFreeCampingSpots = total;
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the campspots");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amountOfFreeCampingSpots;
+            
+        }
+
+        public int AmountEarnedPerShop(int placeId)
+        {
+            String sql = "SELECT SUM(p.qauntity*i.price) as total FROM purchase_item p JOIN purchaisable c On p.itemId = c.itemId JOIN item i ON i.itemId = c.itemId And c.placeId = @placeId ;";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@placeId", placeId);
+
+            int amount = 0;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();                
+
+                while (reader.Read())
+                {
+                    amount = Convert.ToInt32(reader["total"]);
+                }
+            }
+            catch
+            {
+                amount = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amount;
+        }
+        public int AmountEarnedPerItem(int itemId)
+        {
+            String sql = "SELECT SUM(p.qauntity*i.price) as total FROM purchase_item p JOIN item i ON i.itemId = p.itemId And p.itemId = @itemId;";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@itemId", itemId);
+
+            int amount = 0;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    amount = Convert.ToInt32(reader["total"]);
+                }
+            }
+            catch
+            {
+                amount = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amount;
+        }
+        public List<string> GetTransactions(int ticketNr)
+        {
+            String sql = "SELECT date_format(p.dateOfTrans, '%a') as Date, p.amount as Amount, pl.name as Place " +
+                "FROM purchaise p JOIN visitor v " +
+                "On v.ticketNr = p.ticketNr " +
+                "JOIN purchase_item b On p.purchaseNr = b.purchaseNr " +
+                "JOIN purchaisable c On c.itemId = b.itemId " +
+                "JOIN place pl On pl.placeId = c.placeId " +
+                "AND v.ticketNr = @ticketNr";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@ticketNr", ticketNr);
+
+            List<string> transactions = new List<string>();
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                string date;
+                string Amount;
+                string Place;
+                while (reader.Read())
+                {
+                    date = Convert.ToString(reader["Date"]);
+                    Amount = Convert.ToString(reader["Amount"]);
+                    Place = Convert.ToString(reader["Place"]);
+
+                    transactions.Add($"{date} spent {Amount} at {Place}");
+                }
+                connectionForTopUp.Open();
+                sql = "SELECT date_format(tu.dateOfTrans, '%a') as Date, tu.amount as Amount FROM topup tu WHERE tu.ticketNr = @ticketNr";
+                command = new MySqlCommand(sql, connectionForTopUp);
+                command.Parameters.AddWithValue("@ticketNr", ticketNr);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    date = Convert.ToString(reader["Date"]);
+                    Amount = Convert.ToString(reader["Amount"]);
+
+                    transactions.Add($"{date} spent {Amount}(topUp)");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("");
+            }
+            finally
+            {
+                connection.Close();
+                connectionForTopUp.Close();
+            }
+            return transactions;
         }
 
         public CampingSpot GetCampingSpotByRFID(string rfid)

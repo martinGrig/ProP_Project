@@ -45,6 +45,7 @@
     if ($result) {
       $_SESSION['currentUser']['ticketNr'] = $result[0]['ticketNr'];
       $_SESSION['currentUser']['balance'] = $result[0]['balance'];
+      $_SESSION['currentUser']['hasReview'] = $result[0]['hasReview'];
     }
 
     header("location:index.html");

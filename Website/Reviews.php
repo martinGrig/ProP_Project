@@ -32,6 +32,9 @@ session_start();
                     <h2>Reviews</h2>
                 <?php
                 if (isset($_SESSION['loggedin']) && isset($_SESSION['currentUser']['ticketNr'])) {
+                  if ($_SESSION['currentUser']['hasReview'] == 1) {
+                  echo "<h4>(You have already left your review)</h4>";
+                  } else {
                   echo  "<h3>Leave your review here!</h3>
                    <form name=\"submit-review-form\" action=\"ReviewsProcess.php\" onsubmit=\"return validateReview()\" method=\"post\">
                        <textarea name=\"comment\" rows=\"10\" cols=\"30\" placeholder=\"Your Review...\"></textarea><br>
@@ -41,12 +44,12 @@ session_start();
                        </label>
                        <input type=\"submit\" value=\"Submit\"><br>
                    </form>";
+                 }
                 } else {
                   echo "<h3>Only event's visitors can leave reviews!</h3>";
                 }
                 ?>
                 </div>
-
                   <?php
                   $username = 'dbi410102';
                   $password = 'prop17';
