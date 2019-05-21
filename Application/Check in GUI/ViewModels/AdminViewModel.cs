@@ -60,7 +60,30 @@ namespace EventManager.ViewModels
                 OnPropertyChanged("FilteredEmployees");
             }
         }
-
+        private Employee _focusedEmployee;
+        public Employee FocusedEmployee
+        {
+            get
+            {
+                return _focusedEmployee;
+            }
+            set
+            {
+                if(value != _focusedEmployee)
+                {
+                    if(value == null)
+                    {
+                    _focusedEmployee = null;
+                    }
+                    else
+                    {
+                        _focusedEmployee = value;
+                        SearchNr = _focusedEmployee.EmployeeNr.ToString();
+                    }
+                }
+                _focusedEmployee = value;
+            }
+        }
         private Job _selecetedJob;
         public Job SelectedJob
         {
