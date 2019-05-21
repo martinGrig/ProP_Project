@@ -14,7 +14,10 @@ namespace EventManager.ViewModels
         private string _totalVisitors;
         private string _totalBalance;
         private string _spentMoney;
+        private string _bookedCampingSpots;
+        private string _freeCampingSpots;
         private Visitor _visitor;
+
         public Visitor Visitor { get { return _visitor; }private set { _visitor = value; OnPropertyChanged("VisitorStatus"); OnPropertyChanged("Visitor"); } }
         public string VisitorStatus
         {
@@ -71,6 +74,30 @@ namespace EventManager.ViewModels
                 OnPropertyChanged("SpentMoney");
             }
         }
+        public string BookedCampingSpots
+        {
+            get
+            {
+                return _bookedCampingSpots;
+            }
+            private set
+            {
+                _bookedCampingSpots = value;
+                OnPropertyChanged("BookedCampingSpots");
+            }
+        }
+        public string FreeCampingSpots
+        {
+            get
+            {
+                return _freeCampingSpots;
+            }
+            private set
+            {
+                _freeCampingSpots = value;
+                OnPropertyChanged("FreeCampingSpots");
+            }
+        }
 
         public StatusViewModel(MainViewModel model)
         {
@@ -98,6 +125,8 @@ namespace EventManager.ViewModels
             TotalVisitors = _mainViewModel.dataHelper.GetAllVisitors().ToString();
             TotalBalance = _mainViewModel.dataHelper.SumOfAllVisitorBalance().ToString();
             SpentMoney = _mainViewModel.dataHelper.TotalMoneySpentByVisitor().ToString();
+            BookedCampingSpots = _mainViewModel.dataHelper.AmountOfBookedCampingSpots().ToString();
+            FreeCampingSpots = _mainViewModel.dataHelper.AmountOfFreeCampSpaces().ToString();
         }
     }
 }

@@ -79,8 +79,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Amount of booked camping spots:" Grid.Row="0"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
                     <TextBlock Text="Amount of free camping spots:" Grid.Row="1"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
-                    <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource ReadOnlyTextBox}"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource ReadOnlyTextBox}"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource ReadOnlyTextBox}"  Text="{Binding BookedCampingSpots, Mode=OneWay}"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource ReadOnlyTextBox}"  Text="{Binding FreeCampingSpots, Mode=OneWay}"/>
                 </Grid>
             </GroupBox>
             <GroupBox Margin="5,5,10,5" Header="Amount earned per shop" Style="{StaticResource FifthGroupbox}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1">

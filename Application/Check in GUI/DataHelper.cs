@@ -594,19 +594,19 @@ namespace EventManager
         //    String sql = "SELECT  from place p WHERE p.placeId = @placeId ;"; // notfinished
         //    MySqlCommand command = new MySqlCommand(sql, connection);
         //    command.Parameters.AddWithValue("@placeId", placeId);
-            
+
         //    int amount = 0;
         //    try
         //    {
         //        connection.Open();
         //        MySqlDataReader reader = command.ExecuteReader();
-                
+
         //        int money;
 
         //        while (reader.Read())
         //        {
         //            money = Convert.ToInt32(reader["Balance"]);
-                    
+
         //        }
 
 
