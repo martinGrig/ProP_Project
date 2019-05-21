@@ -1,6 +1,8 @@
 to do:
 !back end:
-- reserve camping usecase fully
+- camp spot reservation
+- show how many empty camp places are available
+- show price for selected number of people ?
 - send emails (usecase create account)
 - contact us
 

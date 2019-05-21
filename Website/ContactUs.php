@@ -38,7 +38,7 @@ session_start();
                 <h2>Contact Us</h2>
                 <h3>If you have any questions, please contact us by telephone or email and we'll get back to you as soon as possible.
                     We look forward to hearing from you.</h3>
-                <form name="contact-input-form" onsubmit="return validateContactUs()">
+                <form name="contact-input-form" action="ContactUsProcess.php" onsubmit="return validateContactUs()" method="post">
                     <input name="firstname" type="text" placeholder="First Name...">
                     <input type="email" name="email" placeholder="Your E-mail...">
                     <input name="number" type="tel" placeholder="Your Phone Number..."><br>
