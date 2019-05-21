@@ -1,4 +1,7 @@
-Update database(transactions)
-Add method for transactions in datahelper
-Add method to link RFID to a visitor
-Get info from the database to the Log-in window
+21/05/2019
+Exception handling(app)
+Loan stand(app)
+Fix database AGAIN(loan stand)
+Background music(for app and website(additional future))
+Smaal fixes on App
+make the app look better or add more futures(if(time != 0))
