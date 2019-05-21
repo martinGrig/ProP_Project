@@ -9,6 +9,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibilty"/>
+        <converters:ReverseBoolToVIsibilityConverter x:Key="ReverseObjectToVisibilty"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
     </UserControl.Resources>
     <Grid>
         <Viewbox>
@@ -44,10 +46,10 @@
                         <TextBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" Style="{StaticResource ReadOnlyTextBox}" Text="{Binding _mainViewModel.dataModel.SelectedCampingSpot.PaymentStatus, Mode=OneWay}"/>
 
                         <!-- Image-->
-                        <Image Source="/EventManager;component/Images/Camping.png"  Width="300" Grid.Row="0" Grid.RowSpan="3" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="Fill" Grid.Column="2"/>
+                        <Image Source="/EventManager;component/Images/Camping.png" Visibility="{Binding _mainViewModel.dataModel.SelectedCampingSpot.PaymentStatus, Converter={StaticResource ReverseObjectToVisibilty}}" Width="300" Grid.Row="0" Grid.RowSpan="3" Margin="10 10 10 10" Grid.ColumnSpan="2" Stretch="Fill" Grid.Column="2"/>
 
                         <!--Button-->
-                        <Button Content="Pay for camping spot" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonTest}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="10" Height="75" Width="300" Name="PayForCampingSpotButton" />
+                        <Button Content="Pay for camping spot" Grid.Column="2" Grid.Row="4" Visibility="{Binding _mainViewModel.dataModel.SelectedCampingSpot.PaymentStatus, Converter={StaticResource ReverseObjectToVisibilty}}" Style="{StaticResource ButtonTest}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="10" Height="75" Width="300" Name="PayForCampingSpotButton" />
 
 
                     </Grid>
@@ -55,7 +57,7 @@
             </Border>
 
         </Viewbox>
-        <Border Background="White" Visibility="{Binding _mainViewModel.dataModel.SelectedCampingSpot, Converter={StaticResource ObjectToVisibilty}}">
+        <!--<Border Background="White" Visibility="{Binding _mainViewModel.dataModel.SelectedCampingSpot, Converter={StaticResource ObjectToVisibilty}}">
             <Viewbox>
                 <StackPanel>
                     <Label Content="Scan Rfid Bracelet" HorizontalContentAlignment="Center"/>
@@ -64,7 +66,7 @@
             </Viewbox>
 
 
-        </Border>
+        </Border>-->
     </Grid>
 
 </UserControl>
