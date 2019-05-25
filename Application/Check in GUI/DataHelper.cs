@@ -14,6 +14,7 @@ namespace EventManager
     {
         public MySqlConnection connection;
         public MySqlConnection connectionForTopUp;
+        public MySqlConnection connectionForLoanable;
 
         public DataHelper()
         {
@@ -25,6 +26,7 @@ namespace EventManager
 
             connection = new MySqlConnection(connectionInfo);
             connectionForTopUp = new MySqlConnection(connectionInfo);
+            connectionForLoanable = new MySqlConnection(connectionInfo);
         }
 
         public bool IsServerConnected()
@@ -560,7 +562,7 @@ namespace EventManager
         public int TotalMoneySpentByVisitor()
         {
             int sumOfSpentMoney = 0;
-            String sql = "SELECT count(v.ticketNr) * 55 + sum(p.amount) as total FROM purchaise p join visitor v on v.ticketNr = p.ticketNr";
+            String sql = "SELECT count(v.ticketNr) * 55 + sum(p.amount) + sum(l.amount) as total FROM purchaise p join visitor v on v.ticketNr = p.ticketNr join loan l on l.ticketNr = v.ticketNr";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             try
@@ -672,11 +674,67 @@ namespace EventManager
             }
             return amount;
         }
+
+        public int AmountEarnedPerLoanStand(int loanStandId)
+        {
+            String sql = "SELECT SUM(amount) as total FROM loan WHERE loanStandId = @loanStandId ;";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@loanStandId", loanStandId);
+
+            int amount = 0;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    amount = Convert.ToInt32(reader["total"]);
+                }
+            }
+            catch
+            {
+                amount = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amount;
+        }
+
         public int AmountEarnedPerItem(int itemId)
         {
             String sql = "SELECT SUM(p.qauntity*i.price) as total FROM purchase_item p JOIN item i ON i.itemId = p.itemId And p.itemId = @itemId;";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@itemId", itemId);
+
+            int amount = 0;
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    amount = Convert.ToInt32(reader["total"]);
+                }
+            }
+            catch
+            {
+                amount = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return amount;
+        }
+        public int AmountEarnedPerLoanable(int loanitemId)
+        {
+            String sql = "SELECT SUM(amount) as total FROM loan WHERE loanitemId = @loanitemId;";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@loanitemId", loanitemId);
 
             int amount = 0;
             try
@@ -740,6 +798,19 @@ namespace EventManager
 
                     transactions.Add($"{date} spent {Amount}(topUp)");
                 }
+                connectionForLoanable.Open();
+                sql = "SELECT date_format(l.dateOfTrans, '%a') as Date, l.amount as Amount, ls.name as Place FROM loan l join loanstand ls on l.loanStandId = ls.loanStandId WHERE l.ticketNr = @ticketNr";
+                command = new MySqlCommand(sql, connectionForLoanable);
+                command.Parameters.AddWithValue("@ticketNr", ticketNr);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    date = Convert.ToString(reader["Date"]);
+                    Amount = Convert.ToString(reader["Amount"]);
+                    Place = Convert.ToString(reader["Place"]);
+
+                    transactions.Add($"{date} spent {Amount} at {Place}");
+                }
             }
             catch
             {
@@ -749,6 +820,7 @@ namespace EventManager
             {
                 connection.Close();
                 connectionForTopUp.Close();
+                connectionForLoanable.Close();
             }
             return transactions;
         }

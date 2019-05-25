@@ -18,6 +18,8 @@ namespace EventManager.ViewModels
         private string _freeCampingSpots;
         private string _amountEarnedPerShop;
         private string _amountEarnedPerItem;
+        private string _amountEarnedPerLoanStand;
+        private string _amountEarnedPerLanable;
 
         private Visitor _visitor;
         private List<string> _transactions;
@@ -126,6 +128,18 @@ namespace EventManager.ViewModels
                 OnPropertyChanged("AmountEarnedPerShop");
             }
         }
+        public string AmountEarnedPerLoanStand
+        {
+            get
+            {
+                return _amountEarnedPerLoanStand;
+            }
+            private set
+            {
+                _amountEarnedPerLoanStand = value;
+                OnPropertyChanged("AmountEarnedPerLoanStand");
+            }
+        }
         public string AmountEarnedPerItem
         {
             get
@@ -136,6 +150,18 @@ namespace EventManager.ViewModels
             {
                 _amountEarnedPerItem = value;
                 OnPropertyChanged("AmountEarnedPerItem");
+            }
+        }
+        public string AmountEarnedPerLoanable
+        {
+            get
+            {
+                return _amountEarnedPerLanable;
+            }
+            private set
+            {
+                _amountEarnedPerLanable = value;
+                OnPropertyChanged("AmountEarnedPerLoanable");
             }
         }
 
@@ -165,6 +191,17 @@ namespace EventManager.ViewModels
             }
 
         }
+        private RelayCommand _GetLoanStandEarningsCommand;
+        public RelayCommand GetLoanStandEarningsCommand
+        {
+
+            get
+            {
+                if (_GetLoanStandEarningsCommand == null) _GetLoanStandEarningsCommand = new RelayCommand(new Action<object>(FindLoanStand));
+                return _GetLoanStandEarningsCommand;
+            }
+
+        }
         private RelayCommand _GetItemEarningsCommand;
         public RelayCommand GetItemEarningsCommand
         {
@@ -173,6 +210,17 @@ namespace EventManager.ViewModels
             {
                 if (_GetItemEarningsCommand == null) _GetItemEarningsCommand = new RelayCommand(new Action<object>(FindItem));
                 return _GetItemEarningsCommand;
+            }
+
+        }
+        private RelayCommand _GetLoanableEarningsCommand;
+        public RelayCommand GetLoanableEarningsCommand
+        {
+
+            get
+            {
+                if (_GetLoanableEarningsCommand == null) _GetLoanableEarningsCommand = new RelayCommand(new Action<object>(FindLoanable));
+                return _GetLoanableEarningsCommand;
             }
 
         }
@@ -188,10 +236,20 @@ namespace EventManager.ViewModels
             AmountEarnedPerShop = _mainViewModel.dataHelper.AmountEarnedPerShop(Convert.ToInt32(o)).ToString();
             OnPropertyChanged("AmountEarnedPerShop");
         }
+        private void FindLoanStand(object o)
+        {
+            AmountEarnedPerLoanStand = _mainViewModel.dataHelper.AmountEarnedPerLoanStand(Convert.ToInt32(o)).ToString();
+            OnPropertyChanged("AmountEarnedPerLoanStand");
+        }
         private void FindItem(object o)
         {
             AmountEarnedPerItem = _mainViewModel.dataHelper.AmountEarnedPerItem(Convert.ToInt32(o)).ToString();
             OnPropertyChanged("AmountEarnedPerItem");
+        }
+        private void FindLoanable(object o)
+        {
+            AmountEarnedPerLoanable = _mainViewModel.dataHelper.AmountEarnedPerLoanable(Convert.ToInt32(o)).ToString();
+            OnPropertyChanged("AmountEarnedPerLoanable");
         }
         public void Start()
         {
