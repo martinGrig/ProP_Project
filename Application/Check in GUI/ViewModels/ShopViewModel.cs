@@ -47,9 +47,9 @@ namespace EventManager.ViewModels
 
             try
             {
-                myRFIDReader = new RFID();
-                myRFIDReader.Tag += new RFIDTagEventHandler(SellItems);
-                myRFIDReader.Open();
+                //myRFIDReader = new RFID();
+                //myRFIDReader.Tag += new RFIDTagEventHandler(SellItems);
+                //myRFIDReader.Open();
             }
             catch (PhidgetException) { }
         }

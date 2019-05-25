@@ -110,6 +110,8 @@ namespace EventManager.Models
 
         }
 
+        
+
         public IEnumerable<ShopItem> FilteredFood
         {
             get
@@ -158,6 +160,21 @@ namespace EventManager.Models
             {
                 _shops = value.ToList();
                 OnPropertyChanged("Shops");
+            }
+        }
+
+        private List<LoanStand> _loanStands;
+        public IEnumerable<LoanStand> LoanStands
+        {
+            get
+            {
+                return _loanStands;
+            }
+
+            set
+            {
+                _loanStands = value.ToList();
+                OnPropertyChanged("LoanStands");
             }
         }
 
@@ -231,19 +248,7 @@ namespace EventManager.Models
             }
         }
 
-        private CampingSpot _selectedCampingSpot;
-        public CampingSpot SelectedCampingSpot
-        {
-            get
-            {
-                return _selectedCampingSpot;
-            }
-            set
-            {
-                _selectedCampingSpot = value;
-                OnPropertyChanged("SelectedCampingSpot");
-            }
-        }
+        
         public List<LogLine> _logFileLines;
         public IEnumerable<LogLine> LogFileLines
         {

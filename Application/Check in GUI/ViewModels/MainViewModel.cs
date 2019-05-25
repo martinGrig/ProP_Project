@@ -10,6 +10,7 @@ using NAudio.Wave;
 using EventManager.Objects;
 using System.Windows.Threading;
 using EventManager.Views;
+using Phidget22;
 
 namespace EventManager.ViewModels
 {
@@ -17,7 +18,9 @@ namespace EventManager.ViewModels
 
     public class MainViewModel : ObservableObject
     {
+        public DispatcherTimer ResetTimer { get; private set; }
         private bool isConnected;
+        public RFID _MyRFIDReader;
         private WaveOut waveOut;
         private DispatcherTimer databaseChecker;
         public LoginViewModel Login { get; private set; }
@@ -43,6 +46,8 @@ namespace EventManager.ViewModels
 
         public MainViewModel()
         {
+            ResetTimer = new DispatcherTimer();
+            _MyRFIDReader = new RFID();
             dataModel = new DataModel();
             dataHelper = new DataHelper();
             dataModel.Items = new List<ShopItem>();
@@ -51,10 +56,10 @@ namespace EventManager.ViewModels
             Apps = new AppsViewModel(this);
             Camping = new CampingViewModel(this);
             CheckIn = new CheckinViewModel(this);
-            CheckOut = new CheckOutViewModel();
+            CheckOut = new CheckOutViewModel(this);
             Converter = new ConverterViewModel(this);
             Employee = new EmployeeViewModel(this);
-            LoanStand = new LoanStandViewModel();
+            LoanStand = new LoanStandViewModel(this);
             Status = new StatusViewModel(this);
             Shop = new ShopViewModel(this);
             PageViewModels.Add(Login);
@@ -64,6 +69,7 @@ namespace EventManager.ViewModels
             databaseChecker.Tick += new EventHandler(CheckDatabaseConnection);
             databaseChecker.IsEnabled = true;
             databaseChecker.Start();
+            
 
             dataModel._jobs = new List<Job>();
             dataModel._jobs.Add(new Job("GateKeeper", "io"));
@@ -136,6 +142,22 @@ namespace EventManager.ViewModels
             if(viewModel.GetType() == typeof(StatusViewModel))
             {
                 Status.Start();
+            }
+            if (viewModel.GetType() == typeof(LoanStandViewModel))
+            {
+                LoanStand.Start();
+            }
+            if (viewModel.GetType() == typeof(EmployeeViewModel))
+            {
+                Employee.Start();
+            }
+            if (viewModel.GetType() == typeof(CampingViewModel))
+            {
+                Camping.Start();
+            }
+            if (viewModel.GetType() == typeof(CheckOutViewModel))
+            {
+                CheckOut.Start();
             }
             CurrentPageViewModel = PageViewModels
                 .FirstOrDefault(vm => vm == viewModel);

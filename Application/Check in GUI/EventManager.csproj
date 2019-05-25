@@ -100,6 +100,7 @@
     <Compile Include="Controls\StandItemControl.xaml.cs">
       <DependentUpon>StandItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ListToVisibility.cs" />
     <Compile Include="Converters\LogFileRegExConverter.cs" />
     <Compile Include="Converters\ObjectToVisibilityConverter.cs" />
     <Compile Include="Converters\ReverseBoolToVIsibilityConverter.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Helpers\BitmapHelpers.cs" />
     <Compile Include="LoopStream.cs" />
     <Compile Include="Objects\CampingSpot.cs" />
+    <Compile Include="Objects\Display.cs" />
     <Compile Include="Objects\Employee.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="Objects\Item.cs" />
@@ -119,6 +121,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Objects\Loan.cs" />
+    <Compile Include="Objects\LoanStand.cs" />
+    <Compile Include="Objects\LoanStandItem.cs" />
     <Compile Include="Objects\LogLine.cs" />
     <Compile Include="Objects\Shop.cs" />
     <Compile Include="Objects\ShopItem.cs" />
@@ -288,6 +293,7 @@
     <Resource Include="Images\Burger.png" />
     <Resource Include="Images\Fries.png" />
     <None Include="Resources\ele.mp3" />
+    <Resource Include="Images\BracletRFID.png" />
     <Content Include="Sounds\ding.mp3" />
     <Content Include="Sounds\ele.mp3" />
     <Content Include="Sounds\fart.mp3" />

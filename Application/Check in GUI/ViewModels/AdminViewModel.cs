@@ -1,4 +1,5 @@
-﻿using EventManager.ViewModels.Commands;
+﻿using EventManager.Objects;
+using EventManager.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -110,6 +111,34 @@ namespace EventManager.ViewModels
                 return _employees.Where(x => x.FirstName.ToUpper().Contains(SearchNr.ToUpper()) || x.LastName.ToUpper().Contains(SearchNr.ToUpper()) || x.EmployeeNr.ToString().Contains(SearchNr.ToUpper()));
             }
         }
+
+        private Shop _selectedShop;
+        public Shop SelectedShop
+        {
+            get
+            {
+                return _selectedShop;
+            }
+            set
+            {
+                _selectedShop = value;
+                OnPropertyChanged("SelectedShop");
+            }
+        }
+
+        private LoanStand _selectedLoanStand;
+        public LoanStand SelectedLoanStand
+        {
+            get
+            {
+                return _selectedLoanStand;
+            }
+            set
+            {
+                _selectedLoanStand = value;
+                OnPropertyChanged("SelectedLoanStand");
+            }
+        }
         #endregion Properties
         private RelayCommand _inspectEmployeeCommand;
         public RelayCommand InspectEmployeeCommand
@@ -162,12 +191,14 @@ namespace EventManager.ViewModels
                 {
                     if (obj != null)
                     {
-
-                        if(_mainViewModel.dataHelper.AddEmployee(NewFirstName, NewLastName, SelectedJob.Id) != -1)
+                        System.Windows.Forms.MessageBox.Show(SelectedLoanStand.ID.ToString());
+                        if(_mainViewModel.dataHelper.AddEmployee(NewFirstName, NewLastName, SelectedJob.Id, SelectedShop,SelectedLoanStand) != -1)
                         {
                             NewFirstName = null;
                             NewLastName = null;
                             SelectedJob = null;
+                            SelectedLoanStand = null;
+                            SelectedShop = null;
                         }
                         else
                         {
@@ -197,6 +228,7 @@ namespace EventManager.ViewModels
         public void GetDatabaseStuff()
         {
             _employees = _mainViewModel.dataHelper.GetEmployees();
+            _mainViewModel.dataModel.LoanStands = _mainViewModel.dataHelper.GetLoanStands();
         }
 
         

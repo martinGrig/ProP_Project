@@ -74,19 +74,10 @@ namespace EventManager
         }
 
         public List<ShopItem> GetItems(int employeeNr)
-        {   //Probably you expected a return-value of type bool:
-            //true if the query was executed succesfully and false otherwise.
-            //But what if you executed a delete-query? Or an update-query?
-            //The return-value is teh number of records affected.
-
+        {
             String sql = "SELECT i.name as Name,i.price as Price, p.StartQuantity as Stock, p.IsFood as Food, i.itemId as Id FROM item i JOIN purchaisable p ON i.itemId = p.itemId JOIN place pl On p.placeId = pl.placeId JOIN employee_place ep ON pl.placeId = ep.PlaceplaceId JOIN employee e ON ep.EmployeeemployeeNr = e.employeeNr WHERE e.employeeNr = @empNr;";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@empNr", employeeNr);
-
-            //On internet you also see a solution like:
-            // String sql = "INSERT INTO StudentTable VALUES (" +
-            //     "'" + name + "'," + number  + "," + creditpoints + ")";
-            //Be aware of sql-injection!
 
             List<ShopItem> temp = new List<ShopItem>();
             try
@@ -120,11 +111,48 @@ namespace EventManager
             return temp;
         }
 
+        public List<LoanStandItem> GetLoanStandItems(int employeeNr, int placeId)
+        {
+            String sql = "SELECT li.name AS Name, li.dailyRate AS Price, li.loanitemId AS Id, la.stock AS Stock FROM loanitem li JOIN loanable la On la.loanitemId = li.loanitemId JOIN loanstand ls On ls.loanStandId = la.loanStandId JOIN employee_loanstand el ON el.loanStandId = la.loanStandId JOIN employee emp On emp.employeeNr = el.employeeNr AND emp.employeeNr = @empNr AND la.loanStandId = @placeId";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@empNr", employeeNr);
+            command.Parameters.AddWithValue("@placeId", placeId);
+
+            List<LoanStandItem> temp = new List<LoanStandItem>();
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                int price;
+                int stock;
+                int id;
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["Name"]);
+                    price = Convert.ToInt32(reader["Price"]);
+                    stock = Convert.ToInt32(reader["Stock"]);
+                    id = Convert.ToInt32(reader["Id"]);
+                    temp.Add(new LoanStandItem(name, price, stock, $"Images/{name}.png", id));
+                }
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return temp;
+        }
+
         public List<Employee> GetEmployees()
         {
             String sql = "SELECT  employeeName, employeeNr, surname, positionId, password FROM employee ";
             MySqlCommand command = new MySqlCommand(sql, connection);
-            
+
             List<Employee> emps = new List<Employee>();
             try
             {
@@ -208,7 +236,7 @@ namespace EventManager
             return emp;
         }
 
-        public int AddEmployee(string firstName, string lastName, string jobId)
+        public int AddEmployee(string firstName, string lastName, string jobId, Shop shop, LoanStand loanStand)
         {
 
             int nrOfRecordsChanged;
@@ -219,10 +247,36 @@ namespace EventManager
             command.Parameters.AddWithValue("@possitionId", jobId);
             command.Parameters.AddWithValue("@password", GetRandomAlphanumericString(6));
 
+
+
             try
             {
                 connection.Open();
                 nrOfRecordsChanged = command.ExecuteNonQuery();
+
+                sql = "SELECT MAX(employee.employeeNr) as EmpNr FROM employee where employeeName = @employeeName";
+                command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@employeeName", firstName);
+                int empNr = (int)command.ExecuteScalar();
+
+                if (jobId.Contains("s"))
+                {
+                    sql = "INSERT INTO employee_place (EmployeeemployeeNr, PlaceplaceId) VALUES (@empNr, @placeId)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@empNr", empNr);
+                    command.Parameters.AddWithValue("@placeId", shop.ID);
+                    command.ExecuteNonQuery();
+                }
+                if (jobId.Contains("l"))
+                {
+                    sql = "INSERT INTO employee_loanstand (employeeNr, loanStandId) VALUES (@empNr, @loanStandId);";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@empNr", empNr);
+                    command.Parameters.AddWithValue("@loanStandId", loanStand.ID);
+                    command.ExecuteNonQuery();
+                }
+
+
             }
             catch
             {
@@ -407,7 +461,7 @@ namespace EventManager
             }
             catch
             {
-                MessageBox.Show("error while loading the students");
+                throw new Exception("Couldnt load visitor");
             }
             finally
             {
@@ -531,7 +585,7 @@ namespace EventManager
             }
             return sumOfSpentMoney;
         }
-        
+
         public int AmountOfBookedCampingSpots()
         {
             int amountOfBookedCampingSpots = 0;
@@ -588,7 +642,7 @@ namespace EventManager
                 connection.Close();
             }
             return amountOfFreeCampingSpots;
-            
+
         }
 
         public int AmountEarnedPerShop(int placeId)
@@ -601,7 +655,7 @@ namespace EventManager
             try
             {
                 connection.Open();
-                MySqlDataReader reader = command.ExecuteReader();                
+                MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -701,7 +755,7 @@ namespace EventManager
 
         public CampingSpot GetCampingSpotByRFID(string rfid)
         {
-            String sql = "SELECT c.reservedPlaces as places, a.name as groupleader, c.campSpotId as spotId, v.isCampPayed as paymentStatus FROM campspot c JOIN visitor v ON c.campSpotId = v.campSpotId JOIN account a ON v.accountEmail = a.email WHERE v.RFIDCode = @rfidCode";
+            String sql = "SELECT c.reservedPlaces as places, a.name as groupleader, c.name as Name, c.campSpotId as spotId, v.isCampPayed as paymentStatus FROM campspot c JOIN visitor v ON c.campSpotId = v.campSpotId JOIN account a ON v.accountEmail = a.email WHERE v.RFIDCode = @rfidCode";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@rfidCode", rfid);
             CampingSpot spot = null;
@@ -712,17 +766,19 @@ namespace EventManager
 
                 int amountOfParticipants;
                 string groupLeader;
-                string spotId;
+                int spotId;
+                string name;
                 bool paymentStatus;
 
                 while (reader.Read())
                 {
                     groupLeader = Convert.ToString(reader["groupleader"]);
-                    spotId = Convert.ToString(reader["spotId"]);
+                    spotId = Convert.ToInt32(reader["spotId"]);
+                    name = Convert.ToString(reader["Name"]);
                     paymentStatus = Convert.ToBoolean(reader["paymentStatus"]);
                     amountOfParticipants = Convert.ToInt32(reader["places"]);
 
-                    spot = new CampingSpot(groupLeader, spotId, amountOfParticipants, paymentStatus);
+                    spot = new CampingSpot(groupLeader, spotId, amountOfParticipants, paymentStatus, name);
                 }
 
 
@@ -730,7 +786,8 @@ namespace EventManager
             }
             catch
             {
-                MessageBox.Show("error while loading the students");
+                throw new Exception("Something went wrong with database, camping spot");
+
             }
             finally
             {
@@ -738,7 +795,64 @@ namespace EventManager
             }
             return spot;
         }
+        public int PayForCampingSpot(Visitor visitor, CampingSpot campingSpot)
+        {
+            int total = (campingSpot.AmountOfParticpants * 20) + 20;
+            int purchaseNr = 0;
+            int check = 0;
+            if (visitor.Balance >= total)
+            {
+                String sql = "UPDATE visitor SET balance = balance - @total WHERE ticketNr = @ticketNr";
+                MySqlCommand command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@total", total);
+                command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
 
+                    sql = "INSERT INTO purchaise (ticketNr, dateOfTrans, purchaseNr, amount) VALUES (@ticketNr, CURRENT_TIMESTAMP, NULL, @total)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                    command.Parameters.AddWithValue("@total", total);
+                    check = command.ExecuteNonQuery();
+
+                    sql = "SELECT MAX(purchaise.purchaseNr) as purchaseNr FROM purchaise WHERE ticketNr = @ticketNr";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                    purchaseNr = (int)command.ExecuteScalar();
+
+
+                    sql = "UPDATE visitor SET isCampPayed = 1 WHERE visitor.ticketNr = @ticketNr";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                    command.ExecuteNonQuery();
+
+                    sql = "INSERT INTO purchase_campspot (campSpotId, purchaseNr) VALUES (@campSpotId, @purchaseNr)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@campSpotId", campingSpot.Spot);
+                    command.Parameters.AddWithValue("@purchaseNr", purchaseNr);
+
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    //TODO make exception
+                    throw new Exception("Something went wrong with updating camping tables");
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            else
+            {
+                //There is not enough money
+                throw new Exception("Insufficient balance");
+            }
+            return check;
+        }
         public int DeleteEmployee(int employeeNr)
         {
             int check = 1;
@@ -755,6 +869,11 @@ namespace EventManager
                 connection.Open();
                 command.ExecuteNonQuery();
 
+                sql = "DELETE FROM employee_loanstand WHERE employee_loanstand.employeeNr = @empNr";
+                command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@empNr", employeeNr);
+                command.ExecuteNonQuery();
+
                 sql = "DELETE FROM employee WHERE employeeNr = @empNr";
                 command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@empNr", employeeNr);
@@ -765,6 +884,35 @@ namespace EventManager
             catch
             {
                 MessageBox.Show("error while loading the students");
+                check = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return check;
+        }
+
+        public int ChangeJobId(Job job, int employeeNr)
+        {
+            int check = 1;
+            String sql = "UPDATE employee SET positionId = @jobId WHERE employee.employeeNr = @empNr";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@jobId", job.Id);
+            command.Parameters.AddWithValue("@empNr", employeeNr);
+
+            //On internet you also see a solution like:
+            // String sql = "INSERT INTO StudentTable VALUES (" +
+            //     "'" + name + "'," + number  + "," + creditpoints + ")";
+            //Be aware of sql-injection!
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch
+            {
                 check = 0;
             }
             finally
@@ -805,8 +953,272 @@ namespace EventManager
             return temp;
         }
 
+        public List<LoanStand> GetLoanStands()
+        {
+            String sql = "Select * From loanstand";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            List<LoanStand> temp = new List<LoanStand>();
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                String name;
+                int id;
+                while (reader.Read())
+                {
+                    name = Convert.ToString(reader["name"]);
+                    id = Convert.ToInt32(reader["loanStandId"]);
+                    temp.Add(new LoanStand(id, name));
+                }
+            }
+            catch
+            {
+                MessageBox.Show("error while loading the students");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return temp;
+        }
+
+        public int StartLoan(Visitor visitor, List<LoanStandItem> loanStandItems, int placeId, int days)
+        {
+            double total = (int)loanStandItems.Sum(x => x.SubTotal * days);
+            int check = 0;
+            if (visitor.Balance >= total)
+            {
+                String sql = "UPDATE visitor SET balance = balance - @total WHERE ticketNr = @ticketNr";
+                MySqlCommand command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@total", total);
+                command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    foreach (LoanStandItem li in loanStandItems)
+                    {
+                        sql = "UPDATE loanable SET stock = stock - @amount WHERE loanitemId = @Id AND loanStandId = @place";
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@amount", li.Quantity);
+                        command.Parameters.AddWithValue("@Id", li.ID);
+                        command.Parameters.AddWithValue("@place", placeId);
+                        command.ExecuteNonQuery();
+
+                        sql = "INSERT INTO loan (ticketNr, dateOfTrans, loanitemId, loanStandId, startTime, endTime, isReturned, amount, qauntity) VALUES (@ticketNr, CURRENT_TIMESTAMP, @Id, @place, CURRENT_TIMESTAMP , now() + interval @day day, '0', @amount, @qauntity);";
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@amount", li.SubTotal * days);
+                        command.Parameters.AddWithValue("@Id", li.ID);
+                        command.Parameters.AddWithValue("@place", placeId);
+                        command.Parameters.AddWithValue("@day", days);
+                        command.Parameters.AddWithValue("@qauntity", li.Quantity);
+                        command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                        command.ExecuteNonQuery();
+                    }
 
 
+
+                }
+                catch
+                {
+                    //TODO make exception
+                    check = -1;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            else
+            {
+                //There is not enough money
+                throw new Exception("Insufficient balance");
+            }
+            return check;
+        }
+
+        public List<Loan> GetLoans(Visitor visitor, int loanStand)
+
+        {
+            String sql = "SELECT l.LoanNr AS Id, li.name AS Name, li.loanitemId As ItemId, l.loanStandId AS LoanStand, ls.name As LoanstandName, l.startTime As StartDate, l.endTime AS EndDate, l.amount As Total, l.qauntity As Qauntity FROM loan l JOIN visitor v ON l.ticketNr = v.ticketNr JOIN loanitem li ON li.loanitemId = l.loanitemId JOIN loanstand ls ON ls.loanStandId = l.loanStandId WHERE isReturned = 0 AND v.ticketNr = @ticketNr AND l.loanStandId = @loanStandId";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+            command.Parameters.AddWithValue("@loanStandId", loanStand);
+
+            List<Loan> Loans = new List<Loan>();
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int id;
+                int loanStandId;
+                String name;
+                string loanStandName;
+                DateTime start;
+                DateTime end;
+                double total;
+                int qauntity;
+                int itemId;
+
+                while (reader.Read())
+                {
+                    id = Convert.ToInt32(reader["Id"]);
+                    loanStandId = Convert.ToInt32(reader["LoanStand"]);
+                    name = Convert.ToString(reader["Name"]);
+                    loanStandName = Convert.ToString(reader["LoanstandName"]);
+                    start = DateTime.Parse(Convert.ToString(reader["StartDate"]));
+                    end = DateTime.Parse(Convert.ToString(reader["EndDate"]));
+                    total = Convert.ToDouble(reader["Total"]);
+                    qauntity = Convert.ToInt32(reader["Qauntity"]);
+                    itemId = Convert.ToInt32(reader["ItemId"]);
+
+                    Loans.Add(new Loan(id, loanStandId, name, loanStandName, start, end, total, qauntity, itemId));
+                }
+
+
+
+            }
+            catch
+            {
+                throw new Exception("Couldnt load visitor");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return Loans;
+        }
+
+        public List<Loan> GetLoans(Visitor visitor)
+
+        {
+            String sql = "SELECT l.LoanNr AS Id, li.name AS Name, li.loanitemId As ItemId, l.loanStandId AS LoanStand, ls.name As LoanstandName, l.startTime As StartDate, l.endTime AS EndDate, l.amount As Total, l.qauntity As Qauntity FROM loan l JOIN visitor v ON l.ticketNr = v.ticketNr JOIN loanitem li ON li.loanitemId = l.loanitemId JOIN loanstand ls ON ls.loanStandId = l.loanStandId WHERE isReturned = 0 AND v.ticketNr = @ticketNr";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+
+            List<Loan> Loans = new List<Loan>();
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                int id;
+                int loanStandId;
+                String name;
+                string loanStandName;
+                DateTime start;
+                DateTime end;
+                double total;
+                int qauntity;
+                int itemId;
+
+                while (reader.Read())
+                {
+                    id = Convert.ToInt32(reader["Id"]);
+                    loanStandId = Convert.ToInt32(reader["LoanStand"]);
+                    name = Convert.ToString(reader["Name"]);
+                    loanStandName = Convert.ToString(reader["LoanstandName"]);
+                    start = DateTime.Parse(Convert.ToString(reader["StartDate"]));
+                    end = DateTime.Parse(Convert.ToString(reader["EndDate"]));
+                    total = Convert.ToDouble(reader["Total"]);
+                    qauntity = Convert.ToInt32(reader["Qauntity"]);
+                    itemId = Convert.ToInt32(reader["ItemId"]);
+
+                    Loans.Add(new Loan(id, loanStandId, name, loanStandName, start, end, total, qauntity, itemId));
+                }
+
+
+
+            }
+            catch
+            {
+                throw new Exception("Couldnt load visitor");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return Loans;
+        }
+
+        public void ReturnLoanedItems(List<Loan> loans, Visitor visitor)
+        {
+            String sql;
+            MySqlCommand command;
+            try
+            {
+                connection.Open();
+                foreach (Loan loan in loans)
+                {
+                    if (loan.IsOverdue)
+                    {
+                        int days = ((TimeSpan)(loan.EndDate - loan.StartDate)).Days;
+                        double pricePerDay = (loan.Total / loan.Qauntity) / days;
+                        int daysOverdue = ((TimeSpan)(DateTime.Now - loan.EndDate)).Days;
+                        double extra = pricePerDay * daysOverdue;
+
+                        if (visitor.Balance >= extra)
+                        {
+                            sql = "UPDATE visitor SET balance = balance - @total WHERE ticketNr = @ticketNr";
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@total", extra);
+                            command.Parameters.AddWithValue("@ticketNr", visitor.TicketNr);
+                            command.ExecuteNonQuery();
+
+                            sql = "UPDATE loanable SET stock = stock + @amount WHERE loanitemId = @Id AND loanStandId = @place";
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@amount", loan.Qauntity);
+                            command.Parameters.AddWithValue("@Id", loan.ItemId);
+                            command.Parameters.AddWithValue("@place", loan.LoanStandID);
+                            command.ExecuteNonQuery();
+
+                            sql = "UPDATE loan SET isReturned = 1, amount = amount + @amount  WHERE loan.LoanNr = @loanNr;";
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@loanNr", loan.ID);
+                            command.Parameters.AddWithValue("@amount", extra);
+                            command.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            throw new Exception("Insufficient balance");
+                        }
+
+
+                    }
+                    else
+                    {
+
+                        sql = "UPDATE loanable SET stock = stock + @amount WHERE loanitemId = @Id AND loanStandId = @place";
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@amount", loan.Qauntity);
+                        command.Parameters.AddWithValue("@Id", loan.ItemId);
+                        command.Parameters.AddWithValue("@place", loan.LoanStandID);
+                        command.ExecuteNonQuery();
+
+                        sql = "UPDATE loan SET isReturned = 1 WHERE loan.LoanNr = @loanNr;";
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@loanNr", loan.ID);
+                        command.ExecuteNonQuery();
+                    }
+
+                }
+            }
+            catch
+            {
+                //TODO make exception
+                throw new Exception("Something went wrong");
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+        }
 
         public int CreatePurchase(Visitor visitor, List<ShopItem> shopItems, int placeId)
         {
@@ -893,7 +1305,7 @@ namespace EventManager
                     command.Parameters.AddWithValue("@ticketNr", ticketNr);
                     command.Parameters.AddWithValue("@amount", amount);
                     command.ExecuteNonQuery();
-                    
+
 
                     sql = "UPDATE visitor SET balance = balance + @total WHERE ticketNr = @ticketNr";
                     command = new MySqlCommand(sql, connection);
