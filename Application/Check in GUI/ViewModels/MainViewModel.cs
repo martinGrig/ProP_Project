@@ -11,6 +11,7 @@ using EventManager.Objects;
 using System.Windows.Threading;
 using EventManager.Views;
 using Phidget22;
+using Phidget22.Events;
 
 namespace EventManager.ViewModels
 {
@@ -124,6 +125,8 @@ namespace EventManager.ViewModels
 
         private void ChangeViewModel(IPageViewModel viewModel)
         {
+            _MyRFIDReader.Close();
+            _MyRFIDReader = new RFID();
             if (!PageViewModels.Contains(viewModel))
                 PageViewModels.Add(viewModel);
             if (viewModel.GetType() == typeof(CheckinViewModel))
@@ -142,6 +145,10 @@ namespace EventManager.ViewModels
             if(viewModel.GetType() == typeof(StatusViewModel))
             {
                 Status.Start();
+            }
+            if (viewModel.GetType() == typeof(ShopViewModel))
+            {
+                Shop.Start();
             }
             if (viewModel.GetType() == typeof(LoanStandViewModel))
             {

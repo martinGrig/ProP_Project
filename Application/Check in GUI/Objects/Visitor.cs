@@ -37,7 +37,8 @@ namespace EventManager
         public int TicketNr { get; private set; }
         public string Email { get; private set; }  //add regex for email
         public bool IsScanned { get; private set; }
-        public Visitor(string firstName, string lastName, int ticketNumber, string email, int balance, bool isScanned)
+        public bool IsValid { get; private set; }
+        public Visitor(string firstName, string lastName, int ticketNumber, string email, int balance, bool isScanned, bool isValid)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -45,10 +46,7 @@ namespace EventManager
             Balance = balance;
             Email = email;
             IsScanned = isScanned;
-        }
-        public Visitor(string firstName, string lastName, string email, int balance, int _campingSpotId)
-        {
-
+            IsValid = isValid;
         }
 
 

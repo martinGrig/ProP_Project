@@ -108,7 +108,29 @@ namespace EventManager.ViewModels
                 {
                     return _employees;
                 }
+                if(_employees.Where(x => x.FirstName.ToUpper().Contains(SearchNr.ToUpper()) || x.LastName.ToUpper().Contains(SearchNr.ToUpper()) || x.EmployeeNr.ToString().Contains(SearchNr.ToUpper())).Count() == 0)
+                {
+                    CanInspect = false;
+                }
+                else
+                {
+                    CanInspect = true;
+                }
                 return _employees.Where(x => x.FirstName.ToUpper().Contains(SearchNr.ToUpper()) || x.LastName.ToUpper().Contains(SearchNr.ToUpper()) || x.EmployeeNr.ToString().Contains(SearchNr.ToUpper()));
+            }
+        }
+
+        private bool _canInspect;
+        public bool CanInspect
+        {
+            get
+            {
+                return _canInspect;
+            }
+            set
+            {
+                _canInspect = value;
+                OnPropertyChanged("CanInspect");
             }
         }
 
@@ -159,6 +181,7 @@ namespace EventManager.ViewModels
                 if (_mainViewModel.dataModel.SelectedEmployee != null)
                 {
                     _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Employee);
+                    SearchNr = null;
                 }
                 else
                 {
@@ -191,9 +214,12 @@ namespace EventManager.ViewModels
                 {
                     if (obj != null)
                     {
-                        System.Windows.Forms.MessageBox.Show(SelectedLoanStand.ID.ToString());
+
                         if(_mainViewModel.dataHelper.AddEmployee(NewFirstName, NewLastName, SelectedJob.Id, SelectedShop,SelectedLoanStand) != -1)
                         {
+                            _employees = _mainViewModel.dataHelper.GetEmployees();
+                            SearchNr = null;
+
                             NewFirstName = null;
                             NewLastName = null;
                             SelectedJob = null;
@@ -229,6 +255,8 @@ namespace EventManager.ViewModels
         {
             _employees = _mainViewModel.dataHelper.GetEmployees();
             _mainViewModel.dataModel.LoanStands = _mainViewModel.dataHelper.GetLoanStands();
+            CanInspect = true;
+            SearchNr = null;
         }
 
         

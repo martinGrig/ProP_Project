@@ -101,6 +101,14 @@ namespace EventManager
             }
             
         }
+
+        public void UnselectItem()
+        {
+            if(Quantity - 1 >= 0)
+            {
+                Quantity-= 1;
+            }
+        }
         //public List<string> GetSelectedItemInfo()
         //{
         //    int quanity;

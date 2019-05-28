@@ -95,7 +95,7 @@
                                     <GridViewColumn Header="Emp Nr" Width="50" DisplayMemberBinding="{Binding EmployeeNr}"/>
                                     <GridViewColumn Header="First name" Width="70" DisplayMemberBinding="{Binding FirstName}"/>
                                     <GridViewColumn Header="Last Name" Width="70" DisplayMemberBinding="{Binding LastName}"/>
-                                    <GridViewColumn Header="Job" Width="75" DisplayMemberBinding="{Binding  JobId}"/>
+                                    <GridViewColumn Header="Job" Width="75" DisplayMemberBinding="{Binding  JobDescription}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -105,7 +105,7 @@
 
                         <TextBox Grid.ColumnSpan="2" Grid.Row="1" Height="28" Style="{StaticResource NormalTextBox}" x:Name="tbEmployeeNumber" Margin="114,10,10,10" Text="{Binding SearchNr, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource NormalTextBox}" Visibility="Hidden"/>
-                        <Button Content="Inspect" Command="{Binding InspectEmployeeCommand}" CommandParameter="{Binding ElementName=tbEmployeeNumber}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource ButtonTest}" Height="50"/>
+                        <Button Content="Inspect" IsEnabled="{Binding CanInspect}" Command="{Binding InspectEmployeeCommand}" CommandParameter="{Binding ElementName=tbEmployeeNumber}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource ButtonTest}" Height="50"/>
                     </Grid>
                 </GroupBox>
             </Grid>

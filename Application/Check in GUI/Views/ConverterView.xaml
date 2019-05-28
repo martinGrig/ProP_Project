@@ -36,7 +36,13 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-            <Viewbox Width="Auto">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Background="Transparent" Height="25" Width="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 10 0 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+        <Viewbox Width="Auto" Grid.Column="1">
                 <Border Height="400" Width="400"  Margin="10" >
                     <GroupBox Header="Transaction File Converter" Style="{StaticResource ThirdGroupbox}">
                         <Grid >
@@ -76,4 +82,6 @@
 
 
             </Viewbox>
+    </Grid>
+            
 </UserControl>

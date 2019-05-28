@@ -9,7 +9,7 @@ namespace EventManager.ViewModels
 {
     public class StatusViewModel : ObservableObject, IPageViewModel
     {
-        MainViewModel _mainViewModel;
+        public MainViewModel _mainViewModel { get; private set; }
         private string _visitorStatus;
         private string _totalVisitors;
         private string _totalBalance;

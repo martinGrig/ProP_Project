@@ -9,6 +9,7 @@ using System.Windows;
 using Phidget22;
 using Phidget22.Events;
 using EventManager.Objects;
+using System.Windows.Media;
 
 namespace EventManager.ViewModels
 {
@@ -16,7 +17,6 @@ namespace EventManager.ViewModels
     {
         public DataModel Dm { get; set; }
         DataHelper dh;
-        private RFID myRFIDReader;
         public MainViewModel _mainViewModel { get; set; }
 
         private List<string> _receipt;
@@ -38,6 +38,20 @@ namespace EventManager.ViewModels
             }
         }
 
+        private Display _display;
+        public Display Display
+        {
+            get
+            {
+                return _display;
+            }
+            set
+            {
+                _display = value;
+                OnPropertyChanged("Display");
+            }
+        }
+
         public ShopViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -45,13 +59,6 @@ namespace EventManager.ViewModels
             dh = new DataHelper();
             _receipt = new List<string>();
 
-            try
-            {
-                //myRFIDReader = new RFID();
-                //myRFIDReader.Tag += new RFIDTagEventHandler(SellItems);
-                //myRFIDReader.Open();
-            }
-            catch (PhidgetException) { }
         }
 
         // Commands 
@@ -76,7 +83,8 @@ namespace EventManager.ViewModels
             }
             if(Dm.SelectedItems.Count() == 0)
             {
-                myRFIDReader.AntennaEnabled = true;
+                Display = new Display(Brushes.Black, "Scan vistors \nRFID Bracelet to complete trasaction", "", true, false);
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
             }
             //Check if there is already a item with that name and  if there is select the item to update its properties
             foreach (ShopItem it in Dm.SelectedItems)
@@ -98,17 +106,41 @@ namespace EventManager.ViewModels
 
         }
 
-        private RelayCommand _unSelectItem;
-        //public RelayCommand UnSelectItemCommand
-        //{
 
-        //}
-
-        private void UnSelectItem(object obj)
+        private RelayCommand _unselectItemCommand;
+        public RelayCommand UnselectItemCommand
         {
-
+            get
+            {
+                if (_unselectItemCommand == null)
+                {
+                    _unselectItemCommand = new RelayCommand(new Action<object>(UnselectItem));
+                }
+                return _unselectItemCommand;
+            }
         }
 
+
+        private void UnselectItem(object obj)
+        {
+            ShopItem item = ((ShopItem)obj);
+
+                item.UnselectItem();
+            Dm.SelectedItems = Dm._selectedItems;
+            if (item.Quantity == 0)
+                {
+                Dm._selectedItems.Remove(item);
+                Dm.SelectedItems = Dm._selectedItems;
+            }
+                if (Dm.SelectedItems.Count() == 0)
+                {
+                    Display = new Display(Brushes.Black, "Select items", "", false, false);
+                _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                }
+                
+        }
+
+        
 
         public void SellItems(object sender, RFIDTagEventArgs e)
         {
@@ -140,21 +172,63 @@ namespace EventManager.ViewModels
                             _receipt.Add($"     Subtotal: {shopItem.SubTotal}");
                         }
                     }
+                    Display = new Display(Brushes.Green, "Transaction Complete \nItems successfully purchased", "check", false, true);
                     _receipt.Add($"Total {Dm.SelectedItems.Sum(x => x.SubTotal)}");
                     Receipt = _receipt;
                     Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber));
                     Dm._selectedItems.Clear();
                     Dm.SelectedItems = Dm._selectedItems;
                     Dm.SearchText = "";
-                    myRFIDReader.AntennaEnabled = false;
+                    _mainViewModel.ResetTimer.Start();
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                    Display = new Display(Brushes.Red, $"{ex.Message}", "times", false, true);
                 }
 
             }
+            else
+            {
+                Display = new Display(Brushes.Red, "Visitor not recognised, try again", "times", false, true);
+                _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                Task.Delay(1000).ContinueWith(_ =>
+                {
+                    Display = new Display(Brushes.Black, "Scan vistors \nRFID Bracelet to complete trasaction", "", true, false);
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+                });
+            }
 
+        }
+
+        public void Start()
+        {
+            Display = new Display(Brushes.Black, "Select items", "", false, false);
+            Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber));
+            _mainViewModel.ResetTimer.Tick += new EventHandler(Reset);
+            _mainViewModel.ResetTimer.Interval = new TimeSpan(0, 0, 4);
+            try
+            {
+                _mainViewModel._MyRFIDReader.Open();
+                _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(SellItems);
+
+                _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(test);
+
+                _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+            }
+            catch (PhidgetException) { /*System.Windows.Forms.MessageBox.Show("Please connect rfid reader");*/ }
+        }
+
+        private void Reset(object sender, EventArgs e)
+        {
+            Display = new Display(Brushes.Black, "Select items", "", false, false);
+            _receipt = new List<string>();
+            Receipt = _receipt;
+        }
+
+        private void test(object sender, RFIDTagEventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("Shop");
         }
     }
 

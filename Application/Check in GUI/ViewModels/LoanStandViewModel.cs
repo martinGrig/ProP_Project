@@ -265,6 +265,93 @@ namespace EventManager.ViewModels
 
         }
 
+        private RelayCommand _unselectItemCommand;
+        public RelayCommand UnselectItemCommand
+        {
+            get
+            {
+                if (_unselectItemCommand == null)
+                {
+                    _unselectItemCommand = new RelayCommand(new Action<object>(UnselectItem));
+                }
+                return _unselectItemCommand;
+            }
+        }
+
+
+        private void UnselectItem(object obj)
+        {
+            LoanStandItem item = ((LoanStandItem)obj);
+            if (_visitor != null)
+            {
+
+                item.UnselectItem();
+                SelectedItems = _selectedItems;
+                if (item.Quantity == 0)
+                {
+                    _selectedItems.Remove(item);
+                    SelectedItems = _selectedItems;
+                }
+                if (SelectedItems.Count() == 0)
+                {
+                    Display = new Display(Brushes.Black, "Select items", "", false, false);
+                    myRFIDReader.AntennaEnabled = false;
+                    myRFIDReader.Tag -= new RFIDTagEventHandler(LoanItems);
+                }
+
+            }
+        }
+
+        private RelayCommand _increaseDaysCommand;
+        public RelayCommand IncreaseDaysCommand
+        {
+            get
+            {
+                if (_increaseDaysCommand == null)
+                {
+                    _increaseDaysCommand = new RelayCommand(new Action<object>(IncreaseDays));
+                }
+                return _increaseDaysCommand;
+            }
+        }
+
+        private void IncreaseDays(object obj)
+        {
+            LoanStandItem item = ((LoanStandItem)obj);
+            if (_visitor != null)
+            {
+
+                item.IncreaseDays();
+                SelectedItems = _selectedItems;
+
+            }
+        }
+
+        private RelayCommand _decreaseDaysCommand;
+        public RelayCommand DecreaseDaysCommand
+        {
+            get
+            {
+                if (_decreaseDaysCommand == null)
+                {
+                    _decreaseDaysCommand = new RelayCommand(new Action<object>(DecreaseDays));
+                }
+                return _decreaseDaysCommand;
+            }
+        }
+
+        private void DecreaseDays(object obj)
+        {
+            LoanStandItem item = ((LoanStandItem)obj);
+            if (_visitor != null)
+            {
+
+                item.DecreaseDays();
+                SelectedItems = _selectedItems;
+
+            }
+        }
+
         public void LoanItems(object sender, RFIDTagEventArgs e)
         {
             try
@@ -274,7 +361,7 @@ namespace EventManager.ViewModels
                 {
                     try
                     {
-                        _mainViewModel.dataHelper.StartLoan(_visitor, SelectedItems.ToList(), 1, 2);
+                        _mainViewModel.dataHelper.StartLoan(_visitor, SelectedItems.ToList(), 1);
                         Display = new Display(Brushes.Green, "Transaction Complete", "check", false, true);
                         //_receipt.Add("Shop: blablabla");
                         //_receipt.Add($"Customer: {temp.FirstName} {temp.LastName}");

@@ -13,7 +13,7 @@ namespace EventManager.ViewModels
 {
     public class CampingViewModel : ObservableObject, IPageViewModel
     {
-        private RFID myRFIDReader;
+        //private RFID myRFIDReader;
 
         public MainViewModel _mainViewModel { get; set; }
 
@@ -62,8 +62,9 @@ namespace EventManager.ViewModels
         public CampingViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            myRFIDReader = _mainViewModel._MyRFIDReader;
+            //myRFIDReader = _mainViewModel._MyRFIDReader;
         }
+        
         private void GetCampingSpot(object sender, RFIDTagEventArgs e)
         {
             try
@@ -71,7 +72,7 @@ namespace EventManager.ViewModels
                 SelectedCampingSpot = _mainViewModel.dataHelper.GetCampingSpotByRFID(e.Tag);
                 if (SelectedCampingSpot != null)
                 {
-                    myRFIDReader.AntennaEnabled = false;
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                     Display2 = new Display(Brushes.Black, $"", "", false, false);
                     if (SelectedCampingSpot.PaymentStatus)
                     {
@@ -124,9 +125,11 @@ namespace EventManager.ViewModels
             Display2 = new Display(Brushes.Black, $"Scan visitors \nRFID bracelet", "", false, false);
             try
             {
-                myRFIDReader.Tag += new RFIDTagEventHandler(GetCampingSpot);
+                _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(GetCampingSpot);
 
-                myRFIDReader.Open();
+                _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(test);
+
+                _mainViewModel._MyRFIDReader.Open();
             }
             catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
         }
@@ -168,7 +171,12 @@ namespace EventManager.ViewModels
             Display2 = new Display(Brushes.Black, $"Scan visitors \nRFID bracelet", "", false, false);
             _mainViewModel.ResetTimer.Stop();
             SelectedCampingSpot = null;
-            myRFIDReader.AntennaEnabled = true;
+            _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+        }
+
+        private void test(object sender, RFIDTagEventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("Camp");
         }
 
     }
