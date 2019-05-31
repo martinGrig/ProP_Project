@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EventManager.Views"
              xmlns:viewmodels="clr-namespace:EventManager.ViewModels"
+             xmlns:converters="clr-namespace:EventManager.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="550">
     <UserControl.Triggers>
@@ -35,6 +36,11 @@
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <converters:LoginConverter x:Key="LoginButtonEnabled"/>
+    </UserControl.Resources>
+
     <Grid>
         <Viewbox >
             <Border Padding="0">
@@ -60,11 +66,17 @@
 
                         <!--text boxes -->
 
-                        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}" Text="{Binding Dm.EmployeeNumber, UpdateSourceTrigger=PropertyChanged}"/>
-                        <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource PasswordBox}" x:Name="passwordBox"/>
+                        <TextBox  MaxLength="15" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource NormalTextBox}" Text="{Binding Dm.EmployeeNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        <PasswordBox Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource PasswordBox}" x:Name="passwordBox" PasswordChanged="PasswordBox_PasswordChanged"/>
 
                         <Button Content="Log-In" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="10 10 10 20" Height="50"  Command="{Binding Click_LoginCommand}"
                                 CommandParameter="{Binding ElementName=passwordBox}" >
+                            <Button.IsEnabled>
+                                <MultiBinding Converter="{StaticResource LoginButtonEnabled}">
+                                    <Binding Path="Tag" ElementName="passwordBox" />
+                                    <Binding Path="Dm.EmployeeNumber" />
+                                </MultiBinding>
+                            </Button.IsEnabled>
                         </Button>
 
 

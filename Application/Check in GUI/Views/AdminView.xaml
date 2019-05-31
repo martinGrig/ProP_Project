@@ -29,7 +29,10 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Button Background="Transparent" Height="25" Width="25" HorizontalAlignment="Left" Margin="10 0 0 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Background="Transparent" Height="30" Width="30"  VerticalAlignment="Center" Margin="10 0 0 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                    <Button VerticalAlignment="Top" Width="50" Height="40" Margin="10 0 0 0" HorizontalAlignment="Left" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Login}"  Style="{StaticResource logoutbutton}"/>
+                </StackPanel>
                 <GroupBox Margin="10,10,5,10" Header="Add Employee" Style="{StaticResource SecondGroupbox}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
                     <Grid>
                         <Grid.ColumnDefinitions>

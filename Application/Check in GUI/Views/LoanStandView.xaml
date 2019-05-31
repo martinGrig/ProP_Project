@@ -18,17 +18,28 @@
         <converters:LoanStandEnddateConverter x:Key="Daysconverter"/>
         <converters:ZeroConverter x:Key="Zeroprevention"/>
         <converters:QauntityConverter x:Key="QauntityConverter"/>
+        <converters:NullToCollapsed x:Key="NullToCollapsed"/>
     </UserControl.Resources>
     <Viewbox>
         <Border>
             <Grid Width="1000" Height="550" >
 
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <GroupBox Grid.Column="0" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Stretch" Header="Items" Style="{StaticResource FirstGroupbox}">
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                <Button Height="25" Width="26" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource DeleteButton}" Visibility="{Binding Visitor, Converter={StaticResource NullToCollapsed}}" Command="{Binding ClearVisitorCommand}" Margin="131,0"/>
+                <StackPanel Grid.Row="1" Margin="0 10 0 0">
+                    <Button Background="Transparent" Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10 0 10 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                    <Button VerticalAlignment="Top" Width="50" Height="40" Margin="10 10 0 0" HorizontalAlignment="Left" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Login}"  Style="{StaticResource logoutbutton}"/>
+                </StackPanel>
+                <GroupBox Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Stretch" Header="Items" Style="{StaticResource FirstGroupbox}">
                     <Grid 
                   >
                         <Grid.ColumnDefinitions>
@@ -37,98 +48,90 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="4*" />
                             <RowDefinition Height="4*" />
                         </Grid.RowDefinitions>
 
                         <!--Textblocks-->
 
-                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock Text="Loan stand ID:" Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderText}" Height="14.627" Margin="10, 5, 10, 5" Width="Auto"/>
-                            <TextBlock Text="Item name" Style="{StaticResource HeaderText}" Margin="10, 5, 10, 0"/>
-
+                            
                         </StackPanel>
+                        <ComboBox IsEnabled="{Binding CanChangeLoanStand}" Grid.Column="1" Grid.Row="0"  ItemsSource="{Binding LoanStands}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedLoanStand, Mode=TwoWay}"/>
 
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="10, 15, 10, 0">
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="10, 15, 10, 0">
                             <fa:FontAwesome Icon="Search" VerticalAlignment="Center"/>
 
                         </StackPanel>
-                        <TextBox  Style="{StaticResource NormalTextBox}" Grid.Column="1" Grid.Row="0" Margin="30, 15, 10, 0" Text="{Binding SearchText,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox  Style="{StaticResource NormalTextBox}" Tag="Enter Item Name" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="30, 15, 10, 0" Text="{Binding SearchText,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <!--Read only text boxes -->
 
                         <!--Tab control-->
-                        <TabControl Grid.Row="1" Grid.ColumnSpan="2" Margin="10 5 10 5" >
-                            <TabItem TabIndex="0">
-                                <TabItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Food" Margin="0 0 10 0" VerticalAlignment="Center" />
-                                        <Image Source="/EventManager;component/Images/burger.ico" Height="25"/>
-                                    </StackPanel>
-                                </TabItem.Header>
-                                <ItemsControl ItemsSource="{Binding FilteredLoanItems}" Grid.Row="1" Grid.ColumnSpan="2">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel ItemWidth="50" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate >
-                                            <Viewbox>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition/>
-                                                        <RowDefinition/>
-                                                    </Grid.RowDefinitions>
-                                                    <Button BorderThickness="0.1"  Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectItemCommand}"  CommandParameter="{Binding}" >
+                        <Border Background="White" Grid.Row="2" Grid.ColumnSpan="2" Margin="10 5 10 5">
+                            <ItemsControl ItemsSource="{Binding FilteredLoanItems}" Grid.Row="1" Grid.ColumnSpan="2">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel ItemWidth="50" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate >
+                                        <Viewbox>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Button BorderThickness="0.1"  Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectItemCommand}"  CommandParameter="{Binding}" >
 
-                                                        <Button.Background>
+                                                    <Button.Background>
 
-                                                            <ImageBrush ImageSource="{Binding _FileName}"/>
+                                                        <ImageBrush ImageSource="{Binding _FileName}"/>
 
-                                                        </Button.Background>
+                                                    </Button.Background>
 
-                                                        <TextBlock Text="{Binding SeenAmount}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="0.7">
-                                                            <TextBlock.Foreground>
-                                                                <MultiBinding Converter="{StaticResource StockColor}">
-                                                                    <Binding Path="Stock" />
-                                                                    <Binding Path="SeenAmount" />
-                                                                </MultiBinding>
-                                                            </TextBlock.Foreground>
-                                                        </TextBlock>
+                                                    <TextBlock Text="{Binding SeenAmount}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="0.7">
+                                                        <TextBlock.Foreground>
+                                                            <MultiBinding Converter="{StaticResource StockColor}">
+                                                                <Binding Path="Stock" />
+                                                                <Binding Path="SeenAmount" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
 
-                                                        <Button.Style>
-                                                            <Style TargetType="{x:Type Button}">
-                                                                <Setter Property="Template">
-                                                                    <Setter.Value>
-                                                                        <ControlTemplate TargetType="{x:Type Button}">
-                                                                            <Border Background="{TemplateBinding Background}">
-                                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                                            </Border>
-                                                                        </ControlTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                                <Style.Triggers>
-                                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                                        <Setter Property="Opacity"  Value="0.5"/>
-                                                                    </Trigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </Button.Style>
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                                        <Border Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Opacity"  Value="0.5"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
 
-                                                    </Button>
-                                                    <TextBlock Text="{Binding Name}" Grid.Row="1" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="1"/>
-                                                </Grid>
+                                                </Button>
+                                                <TextBlock Text="{Binding Name}" Grid.Row="1" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" Height="800" Width="800" Style="{StaticResource HeaderText}" Margin="0" FontSize="150" Opacity="1"/>
+                                            </Grid>
 
-                                            </Viewbox>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </TabItem>
-
-                        </TabControl>
-
-                        <ListView Grid.Row="2" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedItems, Mode=TwoWay}">
+                                        </Viewbox>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+                        
+                        <ListView Grid.Row="3" Grid.Column="0" Margin="10,5,10,5" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedItems, Mode=TwoWay}">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Selected item" Width="60" DisplayMemberBinding="{Binding Name}"/>
@@ -163,7 +166,7 @@
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Grid.Column="1" Grid.RowSpan="2" Margin="5 10 10 10" VerticalAlignment="Stretch" Header="Payment" Style="{StaticResource ThirdGroupbox}">
+                <GroupBox Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="5 10 10 10" VerticalAlignment="Stretch" Header="Payment" Style="{StaticResource ThirdGroupbox}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="31*" />
@@ -191,7 +194,7 @@
                         <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="10,25,10.4,10"/>
                     </Grid>
                 </GroupBox>
-                <GroupBox Grid.Column="2" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Stretch" Header="Return Items" Style="{StaticResource FifthGroupbox}" Visibility="{Binding Loans, Converter={StaticResource ListToVisiblity}}">
+                <GroupBox Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Margin="10 10 5 10" VerticalAlignment="Stretch" Header="Return Items" Style="{StaticResource FifthGroupbox}" Visibility="{Binding Loans, Converter={StaticResource ListToVisiblity}}">
                     <Grid 
                   >
                         <Grid.ColumnDefinitions>

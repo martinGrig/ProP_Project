@@ -31,11 +31,23 @@ namespace EventManager.ViewModels
             }
         }
 
+        private bool _canUpload;
+        public bool CanUpload
+        {
+            get
+            {
+                return _canUpload;
+            }
+            set
+            {
+                _canUpload = value;
+                OnPropertyChanged("CanUpload");
+            }
+        }
         public ConverterViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            _mainViewModel.dataModel._logFileLines = new List<LogLine>();
-            _mainViewModel.dataModel._logFileLinesInfo = new List<LogLine>();
+            
         }
 
         #region Commands
@@ -96,6 +108,7 @@ namespace EventManager.ViewModels
                 FileStream fs = null;
                 StreamReader sr = null;
                 _mainViewModel.dataModel._logFileLines.Clear();
+                _mainViewModel.dataModel._logFileLinesInfo.Clear();
 
                 try
                 {
@@ -209,6 +222,14 @@ namespace EventManager.ViewModels
                 }
                 _mainViewModel.dataModel.LogFileLines = _mainViewModel.dataModel._logFileLines;
                 _mainViewModel.dataModel.LogFileLinesInfo = _mainViewModel.dataModel._logFileLinesInfo;
+                if(_mainViewModel.dataModel.LogFileLinesInfo.Where(x => x.IsEnabled == false).Count() > 0)
+                {
+                    CanUpload = false;
+                }
+                else
+                {
+                    CanUpload = true;
+                }
             }
         }
         private string GetDaySuffix(int day)
@@ -295,10 +316,18 @@ namespace EventManager.ViewModels
         private void Reset()
         {
             LogFileTitle = "";
+            CanUpload = false;
             _mainViewModel.dataModel._logFileLines.Clear();
             _mainViewModel.dataModel._logFileLinesInfo.Clear();
             _mainViewModel.dataModel.LogFileLines = _mainViewModel.dataModel._logFileLines;
             _mainViewModel.dataModel.LogFileLinesInfo = _mainViewModel.dataModel._logFileLinesInfo;
+        }
+
+        public void Start()
+        {
+            CanUpload = false;
+            _mainViewModel.dataModel._logFileLines = new List<LogLine>();
+            _mainViewModel.dataModel._logFileLinesInfo = new List<LogLine>();
         }
     }
 }

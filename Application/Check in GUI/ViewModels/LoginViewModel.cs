@@ -56,7 +56,6 @@ namespace EventManager.ViewModels
                             _mainViewModel.ChangePageCommand.Execute(_mainViewModel.CheckOut);
                             break;
                         case "s":
-                            Dm.Items = dh.GetItems(numb);
                             _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Shop);
                             break;
                         case "c":
@@ -118,12 +117,17 @@ namespace EventManager.ViewModels
                 MessageBox.Show("Wrong username or password");
             }
         }
-        public LoginViewModel(MainViewModel mainViewModel, DataModel dataModel)
+        public LoginViewModel(MainViewModel mainViewModel)
         {
 
             _mainViewModel = mainViewModel;
             dh = new DataHelper();
-            Dm = dataModel;
+            Dm = _mainViewModel.dataModel;
+        }
+
+        public void Start()
+        {
+            Dm = _mainViewModel.dataModel;
         }
 
 

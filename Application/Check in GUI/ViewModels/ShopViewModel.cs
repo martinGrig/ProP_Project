@@ -25,7 +25,7 @@ namespace EventManager.ViewModels
         {
             get
             {
-                if(_receipt == null)
+                if (_receipt == null)
                 {
                     return new List<string>();
                 }
@@ -52,8 +52,58 @@ namespace EventManager.ViewModels
             }
         }
 
+        private List<Shop> _shops;
+        public IEnumerable<Shop>Shops
+        {
+            get
+            {
+                return _shops;
+            }
+            set
+            {
+                _shops = value.ToList();
+                OnPropertyChanged("Shops");
+            }
+        }
+
+        private Shop _selectedShop;
+        public Shop SelectedShop
+        {
+            get
+            {
+                return _selectedShop;
+            }
+            set
+            {
+                if(_selectedShop != value)
+                {
+                    _selectedShop = value;
+                    Display = new Display(Brushes.Black, "Select items", "", false, false);
+                    Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedShop.ID);
+                    Dm.SearchText = "";
+                }
+                _selectedShop = value;
+                OnPropertyChanged("SelectedShop");
+            }
+        }
+
+        private bool _canChangeShop;
+        public bool CanChangeShop
+        {
+            get
+            {
+                return _canChangeShop;
+            }
+            set
+            {
+                _canChangeShop = value;
+                OnPropertyChanged("CanChangeShop");
+            }
+        }
+
         public ShopViewModel(MainViewModel mainViewModel)
         {
+            _shops = new List<Shop>();
             _mainViewModel = mainViewModel;
             Dm = _mainViewModel.dataModel;
             dh = new DataHelper();
@@ -81,8 +131,9 @@ namespace EventManager.ViewModels
             {
                 Dm._selectedItems = new List<ShopItem>();
             }
-            if(Dm.SelectedItems.Count() == 0)
+            if (Dm.SelectedItems.Count() == 0)
             {
+                CanChangeShop = false;
                 Display = new Display(Brushes.Black, "Scan vistors \nRFID Bracelet to complete trasaction", "", true, false);
                 _mainViewModel._MyRFIDReader.AntennaEnabled = true;
             }
@@ -125,22 +176,23 @@ namespace EventManager.ViewModels
         {
             ShopItem item = ((ShopItem)obj);
 
-                item.UnselectItem();
+            item.UnselectItem();
             Dm.SelectedItems = Dm._selectedItems;
             if (item.Quantity == 0)
-                {
+            {
                 Dm._selectedItems.Remove(item);
                 Dm.SelectedItems = Dm._selectedItems;
             }
-                if (Dm.SelectedItems.Count() == 0)
-                {
-                    Display = new Display(Brushes.Black, "Select items", "", false, false);
+            if (Dm.SelectedItems.Count() == 0)
+            {
+                CanChangeShop = true;
+                Display = new Display(Brushes.Black, "Select items", "", false, false);
                 _mainViewModel._MyRFIDReader.AntennaEnabled = false;
-                }
-                
+            }
+
         }
 
-        
+
 
         public void SellItems(object sender, RFIDTagEventArgs e)
         {
@@ -149,13 +201,13 @@ namespace EventManager.ViewModels
             {
                 try
                 {
-                    _mainViewModel.dataHelper.CreatePurchase(temp, Dm.SelectedItems.ToList(), 1234);
+                    _mainViewModel.dataHelper.CreatePurchase(temp, Dm.SelectedItems.ToList(), SelectedShop.ID);
                     _receipt.Add("Shop: blablabla");
                     _receipt.Add($"Customer: {temp.FirstName} {temp.LastName}");
                     _receipt.Add(DateTime.Now.ToShortDateString());
                     _receipt.Add("-----------------------------");
                     _receipt.Add("Food:");
-                    foreach(ShopItem shopItem in Dm.SelectedItems)
+                    foreach (ShopItem shopItem in Dm.SelectedItems)
                     {
                         if (shopItem.IsFood)
                         {
@@ -175,7 +227,7 @@ namespace EventManager.ViewModels
                     Display = new Display(Brushes.Green, "Transaction Complete \nItems successfully purchased", "check", false, true);
                     _receipt.Add($"Total {Dm.SelectedItems.Sum(x => x.SubTotal)}");
                     Receipt = _receipt;
-                    Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber));
+                    Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber),SelectedShop.ID);
                     Dm._selectedItems.Clear();
                     Dm.SelectedItems = Dm._selectedItems;
                     Dm.SearchText = "";
@@ -203,33 +255,36 @@ namespace EventManager.ViewModels
 
         public void Start()
         {
+            try
+            {
+
+                _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(SellItems);
+                _mainViewModel._MyRFIDReader.Open();
+            }
+            catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
+            CanChangeShop = true;
+            Shops = dh.GetEmployeeShops(Convert.ToInt32(Dm.EmployeeNumber));
+            SelectedShop = _shops[0];
             Display = new Display(Brushes.Black, "Select items", "", false, false);
-            Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber));
+            Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber),SelectedShop.ID);
             _mainViewModel.ResetTimer.Tick += new EventHandler(Reset);
             _mainViewModel.ResetTimer.Interval = new TimeSpan(0, 0, 4);
             try
             {
-                _mainViewModel._MyRFIDReader.Open();
-                _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(SellItems);
-
-                _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(test);
-
                 _mainViewModel._MyRFIDReader.AntennaEnabled = false;
             }
-            catch (PhidgetException) { /*System.Windows.Forms.MessageBox.Show("Please connect rfid reader");*/ }
+            catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
         }
 
         private void Reset(object sender, EventArgs e)
         {
+            CanChangeShop = true;
             Display = new Display(Brushes.Black, "Select items", "", false, false);
             _receipt = new List<string>();
             Receipt = _receipt;
+            _mainViewModel.ResetTimer.Stop();
         }
-
-        private void test(object sender, RFIDTagEventArgs e)
-        {
-            System.Windows.Forms.MessageBox.Show("Shop");
-        }
+        
     }
 
 }

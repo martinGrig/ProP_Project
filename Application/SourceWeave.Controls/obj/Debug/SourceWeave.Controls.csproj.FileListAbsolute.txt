@@ -29,4 +29,19 @@ C:\Users\Martin Grigorov\project-p-phase_group17\Application\SourceWeave.Control
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csproj.CopyComplete
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.dll
 C:\Users\Martin Grigorov\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.pdb
-C:\Users\David\project-p-phase_group17\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csprojAssemblyReference.cache
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\bin\Debug\SourceWeave.Controls.dll
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\bin\Debug\SourceWeave.Controls.pdb
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\bin\Debug\FontAwesome.WPF.dll
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\bin\Debug\FontAwesome.WPF.xml
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csprojAssemblyReference.cache
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls_MarkupCompile.cache
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls_MarkupCompile.lref
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\Themes\SWStyles.baml
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.g.resources
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.Properties.Resources.resources
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csproj.GenerateResource.cache
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csproj.CoreCompileInputs.cache
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.csproj.CopyComplete
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.dll
+C:\Users\David\Desktop\Git back up\Application\SourceWeave.Controls\obj\Debug\SourceWeave.Controls.pdb
