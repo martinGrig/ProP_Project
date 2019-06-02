@@ -52,7 +52,7 @@ namespace EventManager.ViewModels
             dataModel = new DataModel();
             dataHelper = new DataHelper();
             dataModel.Items = new List<ShopItem>();
-            Login = new LoginViewModel(this, dataModel);
+            Login = new LoginViewModel(this);
             Admin = new AdminViewModel(this);
             Apps = new AppsViewModel(this);
             Camping = new CampingViewModel(this);
@@ -73,10 +73,6 @@ namespace EventManager.ViewModels
             
 
             dataModel._jobs = new List<Job>();
-            dataModel._jobs.Add(new Job("GateKeeper", "io"));
-            dataModel._jobs.Add(new Job("Shop Worker", "sl"));
-            dataModel._jobs.Add(new Job("Camping worker", "c"));
-            dataModel._jobs.Add(new Job("Manager", "ieosclv"));
             dataModel.Jobs = dataModel._jobs;
             isConnected = true;
         }
@@ -127,6 +123,7 @@ namespace EventManager.ViewModels
         {
             _MyRFIDReader.Close();
             _MyRFIDReader = new RFID();
+
             if (!PageViewModels.Contains(viewModel))
                 PageViewModels.Add(viewModel);
             if (viewModel.GetType() == typeof(CheckinViewModel))
@@ -139,7 +136,6 @@ namespace EventManager.ViewModels
             }
             if(viewModel.GetType() == typeof(AdminViewModel))
             {
-                dataModel.Shops = dataHelper.GetShops();
                 Admin.GetDatabaseStuff();
             }
             if(viewModel.GetType() == typeof(StatusViewModel))
@@ -165,6 +161,15 @@ namespace EventManager.ViewModels
             if (viewModel.GetType() == typeof(CheckOutViewModel))
             {
                 CheckOut.Start();
+            }
+            if (viewModel.GetType() == typeof(ConverterViewModel))
+            {
+                Converter.Start();
+            }
+            if (viewModel.GetType() == typeof(LoginViewModel))
+            {
+                dataModel = new DataModel();
+                Login.Start();
             }
             CurrentPageViewModel = PageViewModels
                 .FirstOrDefault(vm => vm == viewModel);

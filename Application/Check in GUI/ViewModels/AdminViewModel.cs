@@ -108,15 +108,15 @@ namespace EventManager.ViewModels
                 {
                     return _employees;
                 }
-                if(_employees.Where(x => x.FirstName.ToUpper().Contains(SearchNr.ToUpper()) || x.LastName.ToUpper().Contains(SearchNr.ToUpper()) || x.EmployeeNr.ToString().Contains(SearchNr.ToUpper())).Count() == 0)
-                {
-                    CanInspect = false;
-                }
-                else
+                if(_employees.Where(x => x.FirstName.ToUpper() == SearchNr.ToUpper() || x.LastName.ToUpper() == SearchNr.ToUpper() || x.EmployeeNr.ToString() == SearchNr.ToUpper() || x.JobDescription.ToUpper() == SearchNr.ToUpper()).Count() == 1)
                 {
                     CanInspect = true;
                 }
-                return _employees.Where(x => x.FirstName.ToUpper().Contains(SearchNr.ToUpper()) || x.LastName.ToUpper().Contains(SearchNr.ToUpper()) || x.EmployeeNr.ToString().Contains(SearchNr.ToUpper()));
+                else
+                {
+                    CanInspect = false;
+                }
+                return _employees.Where(x => x.FirstName.ToUpper().Contains(SearchNr.ToUpper()) || x.LastName.ToUpper().Contains(SearchNr.ToUpper())|| x.JobDescription.ToUpper().Contains(SearchNr.ToUpper()) || x.EmployeeNr.ToString().Contains(SearchNr.ToUpper()));
             }
         }
 
@@ -176,17 +176,11 @@ namespace EventManager.ViewModels
             int empNr;
             try
             {
-                empNr = Convert.ToInt32(((TextBox)obj).Text);
-                _mainViewModel.dataModel.SelectedEmployee = _mainViewModel.dataHelper.GetEmployee(empNr);
-                if (_mainViewModel.dataModel.SelectedEmployee != null)
-                {
+                _mainViewModel.dataModel.SelectedEmployee = _employees.Where(x => x.FirstName.ToUpper() == SearchNr.ToUpper() || x.LastName.ToUpper() == SearchNr.ToUpper() || x.EmployeeNr.ToString() == SearchNr.ToUpper() || x.JobDescription.ToUpper() == SearchNr.ToUpper()).ToList()[0];
+                
                     _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Employee);
                     SearchNr = null;
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("There is no employee with that name");
-                }
+              
                 
             }
             catch (FormatException)
@@ -255,8 +249,10 @@ namespace EventManager.ViewModels
         {
             _employees = _mainViewModel.dataHelper.GetEmployees();
             _mainViewModel.dataModel.LoanStands = _mainViewModel.dataHelper.GetLoanStands();
+            _mainViewModel.dataModel.Shops = _mainViewModel.dataHelper.GetShops();
+            _mainViewModel.dataModel.Jobs = _mainViewModel.dataHelper.GetJobs();
             CanInspect = true;
-            SearchNr = null;
+            SearchNr = "";
         }
 
         

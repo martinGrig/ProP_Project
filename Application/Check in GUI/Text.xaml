@@ -199,7 +199,6 @@
                         </Border>
 
                         <TextBlock IsHitTestVisible="False"
-                                   Text="{TemplateBinding Tag}"
                                    x:Name="placeholder"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"

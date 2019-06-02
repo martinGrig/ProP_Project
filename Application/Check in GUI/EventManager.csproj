@@ -104,13 +104,19 @@
     <Compile Include="Converters\ListToVisibility.cs" />
     <Compile Include="Converters\LoanStandEnddateConverter.cs" />
     <Compile Include="Converters\LogFileRegExConverter.cs" />
+    <Compile Include="Converters\LoginConverter.cs" />
+    <Compile Include="Converters\LogLineConverter.cs" />
+    <Compile Include="Converters\NullToCollapsed.cs" />
+    <Compile Include="Converters\ObjectEnabledConverter.cs" />
     <Compile Include="Converters\ObjectToVisibilityConverter.cs" />
     <Compile Include="Converters\QauntityConverter.cs" />
     <Compile Include="Converters\ReverseBoolToVIsibilityConverter.cs" />
     <Compile Include="Converters\ReverseObjectVisibilityConverter.cs" />
     <Compile Include="Converters\RfidScanConverter.cs" />
     <Compile Include="Converters\ShowShopCmbValueConverter.cs" />
+    <Compile Include="Converters\ShowShopOrLoanStandConverter.cs" />
     <Compile Include="Converters\StockToColorConverter.cs" />
+    <Compile Include="Converters\TextToEnabled.cs" />
     <Compile Include="Converters\ZeroConverter.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="Helpers\BitmapHelpers.cs" />
@@ -294,10 +300,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="Images\Taco.png" />
-    <Resource Include="Images\Burger.png" />
+    <Resource Include="Images\Hamburger.png" />
     <Resource Include="Images\Fries.png" />
     <None Include="Resources\ele.mp3" />
     <Resource Include="Images\BracletRFID.png" />
+    <Resource Include="Images\Chicken sandwich.png" />
+    <Resource Include="Images\Fried Chicken.png" />
+    <Resource Include="Images\Orange Juice.png" />
+    <Resource Include="Images\Pepsi.png" />
+    <Resource Include="Images\Pickle.png" />
+    <Resource Include="Images\RedBull.png" />
+    <Resource Include="Images\Soupo.png" />
+    <Resource Include="Images\Water.png" />
     <Content Include="Sounds\ding.mp3" />
     <Content Include="Sounds\ele.mp3" />
     <Content Include="Sounds\fart.mp3" />
@@ -305,11 +319,6 @@
     <Resource Include="Images\Qr code valid.png" />
     <Resource Include="Images\background.png" />
     <Resource Include="Images\adminIcon.png" />
-    <Resource Include="Images\Camping.png" />
-    <Resource Include="Images\ScanBracletShop.png" />
-    <Resource Include="Images\RFID account successful.png" />
-    <Resource Include="Images\Scan Braclet.png" />
-    <Resource Include="Images\ScanOrBuyTicket.png" />
     <Resource Include="Images\ScanQrCode.png" />
     <Resource Include="Images\icons8-multiply-96.png" />
     <Resource Include="Images\databaseToFileIcon.png" />
@@ -318,10 +327,6 @@
     <Resource Include="Images\camp.png" />
     <Resource Include="Images\check-out.png" />
     <Resource Include="Images\point.png" />
-    <Resource Include="Images\TransactionCompleted.png" />
-    <Resource Include="Images\CheckOut2.png" />
-    <Resource Include="Images\CheckinUnsuccessful.png" />
-    <Resource Include="Images\CheckinSuccess.png" />
     <Resource Include="Webp.net-resizeimage %283%29.png" />
     <Resource Include="Webp.net-resizeimage %281%29.png" />
     <Resource Include="Images\MLogo.png" />

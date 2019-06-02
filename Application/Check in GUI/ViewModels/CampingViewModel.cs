@@ -134,6 +134,21 @@ namespace EventManager.ViewModels
             catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
         }
 
+        private RelayCommand _clearVisitorCommand;
+        public RelayCommand ClearVisitorCommand
+        {
+            get
+            {
+                if (_clearVisitorCommand == null) _clearVisitorCommand = new RelayCommand(new Action<object>(ClearEmployee));
+                return _clearVisitorCommand;
+            }
+        }
+
+        private void ClearEmployee(object obj)
+        {
+            Reset(null, null);
+        }
+
         private RelayCommand _payForCampingSpotCommand;
         public RelayCommand PayForCampingSpotCommand
         {

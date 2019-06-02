@@ -15,6 +15,7 @@
         <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibility"/>
         <converters:ReverseObjectVisibilityConverter x:Key="ReverseObject"/>
         <converters:ListToVisibility x:Key="ListToVisiblity"/>
+        <converters:NullToCollapsed x:Key="NullToCollapsed"/>
     </UserControl.Resources>
     <Viewbox>
         <Grid>
@@ -22,7 +23,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Background="Transparent" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 10 0 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+            <Viewbox>
+                <StackPanel VerticalAlignment="Top" Height="649">
+                    <Button Background="Transparent" Height="25" Width="25" VerticalAlignment="Top" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                    <Button VerticalAlignment="Top" Width="50" Height="40" Margin="10 10 0 0" HorizontalAlignment="Left" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Login}"  Style="{StaticResource logoutbutton}"/>
+                    <Button Height="25" Width="26" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource DeleteButton}" Visibility="{Binding Visitor, Converter={StaticResource NullToCollapsed}}" Command="{Binding ClearVisitorCommand}"/>
+                </StackPanel>
+            </Viewbox>
             <Border Grid.Column="1">
             <GroupBox Header="Check out" Margin="10" Style="{StaticResource  FirstGroupbox}">
                 <Grid >
@@ -39,7 +46,7 @@
 
                     <StackPanel Orientation="Horizontal">
                        <TextBlock Text="Visitor Balance:" Margin="10" Style="{StaticResource HeaderText}" FontSize="30"/>
-                        <TextBox Style="{StaticResource ReadOnlyTextBox}" Text="{Binding Visitor.Balance, Mode=OneWay}" Width="150"/>
+                        <TextBlock Style="{StaticResource HeaderText}" Height="50" Text="{Binding Visitor.Balance, Mode=OneWay}" Width="150"/>
                     </StackPanel>
                     
                     <Border Background="White" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Margin="10 10 10 10" MaxWidth="500">
@@ -56,8 +63,8 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Loaned item" Width="130" DisplayMemberBinding="{Binding Name}" />
-                                <GridViewColumn Header="Date" Width="50" DisplayMemberBinding="{Binding Age}" />
-                                <GridViewColumn Header="Duration" Width="100" DisplayMemberBinding="{Binding Mail}" />
+                                <GridViewColumn Header="Start Date" Width="50" DisplayMemberBinding="{Binding StartDate}" />
+                                <GridViewColumn Header="End Date" Width="100" DisplayMemberBinding="{Binding Mail}" />
                                 <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Mail}" />
                             </GridView>
                         </ListView.View>

@@ -6,10 +6,11 @@
              xmlns:converters="clr-namespace:EventManager.Converters"
              xmlns:local="clr-namespace:EventManager.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="220">
+             d:DesignHeight="450" d:DesignWidth="900">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
         <converters:LogFileRegExConverter x:Key="RegExConverter"/>
+        <converters:LogLineConverter x:Key="ButtonEnabled"/>
         <Style x:Key="_ListBoxItemStyle" TargetType="ListBoxItem">
             <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
             <Setter Property="Margin" Value="0,0.25"/>
@@ -21,7 +22,7 @@
                                 SnapsToDevicePixels="true">
                             <ContentPresenter />
                         </Border>
-                        
+
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="true">
                                 <Setter TargetName="_Border" Property="Background" Value="Coral"/>
@@ -41,47 +42,71 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Background="Transparent" Height="25" Width="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 10 0 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+        <StackPanel Grid.Row="1" Margin="0 10 0 0">
+            <Button Background="Transparent" Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10 0 10 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
+            <Button VerticalAlignment="Top" Width="50" Height="40" Margin="10 10 0 0" HorizontalAlignment="Center" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Login}"  Style="{StaticResource logoutbutton}"/>
+        </StackPanel>
         <Viewbox Width="Auto" Grid.Column="1">
-                <Border Height="400" Width="400"  Margin="10" >
-                    <GroupBox Header="Transaction File Converter" Style="{StaticResource ThirdGroupbox}">
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+            <Border Height="400"  Margin="10" >
+                <GroupBox Header="Transaction File Converter" Style="{StaticResource ThirdGroupbox}">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="400"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                            <TextBlock Style="{StaticResource HeaderText}" Text="Load transaction-log-file:" Margin="20"/>
-                            <Button Style="{StaticResource ButtonTest}" Command="{Binding LoadFileCommand}" Grid.Column="1" Grid.Row="0" Content="Load" Margin="10 10 10 10"/>
-                    <TextBox Style="{StaticResource ReadOnlyTextBox}" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding LogFileTitle}"/>
-                    <ListBox Grid.Row="2" Grid.ColumnSpan="2" Margin="10" ItemsSource="{Binding _mainViewModel.dataModel.LogFileLinesInfo}" SelectionMode="Multiple" DisplayMemberPath="Line" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        <TextBlock Style="{StaticResource HeaderText}" Text="Load transaction-log-file:" Margin="20"/>
+                        <Button Style="{StaticResource ButtonTest}" Command="{Binding LoadFileCommand}" Grid.Column="1" Grid.Row="0" Content="Load" Margin="10 10 10 10"/>
+                        <TextBox Style="{StaticResource ReadOnlyTextBox}" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding LogFileTitle}"/>
+                        <ListBox IsHitTestVisible="False" Height="75" Grid.Row="1" Grid.Column="2" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.ColumnSpan="2" Margin="10" ItemsSource="{Binding _mainViewModel.dataModel.LogFileLinesInfo}" SelectionMode="Multiple" DisplayMemberPath="Line" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
-                    <ListBox Name="lbLoglines" Grid.Row="3" Grid.ColumnSpan="2" Margin="10" ItemsSource="{Binding _mainViewModel.dataModel.LogFileLines}" SelectionMode="Multiple" DisplayMemberPath="Line" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        <ListBox IsHitTestVisible="{Binding CanUpload}" Name="lbLoglines" Grid.Column="2" Grid.RowSpan="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="10" ItemsSource="{Binding _mainViewModel.dataModel.LogFileLines}" SelectionMode="Multiple" DisplayMemberPath="Line" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto"
                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                       
-                    </ListBox>
 
-                            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource ButtonTest}" Height="40"  Content="Upload Selected" Margin="10 10 10 10" Command="{Binding UploadSelectedCommand}" CommandParameter="{Binding ElementName=lbLoglines, Path=SelectedItems}"/>
-                        <Button Style="{StaticResource ButtonTest}" Content="Ignore Selected" Margin="10 10 10 10" Command="{Binding UploadUnselectedCommand}" CommandParameter="{Binding ElementName=lbLoglines,Path=SelectedItems}"/>
-                        <Button Style="{StaticResource ButtonTest}" Content="Upload Everything" Margin="10 10 10 10" Command="{Binding UploadAllCommand}"/>
+                        </ListBox>
 
-                            </StackPanel>
+                        <Viewbox Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" IsEnabled="{Binding CanUpload}">
+                            <StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
+                                <Button Style="{StaticResource ButtonTest}"  Content="Upload Selected" Margin="2" Command="{Binding UploadSelectedCommand}" CommandParameter="{Binding ElementName=lbLoglines, Path=SelectedItems}">
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource ButtonEnabled}" ConverterParameter="s">
+                                            <Binding  Path="SelectedItems.Count" ElementName="lbLoglines"/>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                                </Button>
+                                <Button Style="{StaticResource ButtonTest}" Content="Ignore Selected" Margin="2" Command="{Binding UploadUnselectedCommand}" CommandParameter="{Binding ElementName=lbLoglines,Path=SelectedItems}">
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource ButtonEnabled}" ConverterParameter="u">
+                                            <Binding Path="SelectedItems.Count" ElementName="lbLoglines"  />
+                                            <Binding Path="_mainViewModel.dataModel.LogFileLines" />
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                                </Button>
+                                <Button Style="{StaticResource ButtonTest}" Content="Upload Everything" Margin="2" Command="{Binding UploadAllCommand}">
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource ButtonEnabled}" ConverterParameter="a">
+                                            <Binding Path="_mainViewModel.dataModel.LogFileLines.Count" />
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                                </Button>
 
-                        </Grid>
-                    </GroupBox>
+                        </StackPanel>
+                        </Viewbox>
+                        
 
-                </Border>
+                    </Grid>
+                </GroupBox>
+
+            </Border>
 
 
-            </Viewbox>
+        </Viewbox>
     </Grid>
-            
+
 </UserControl>

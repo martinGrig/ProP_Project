@@ -77,7 +77,7 @@
         </Grid.RowDefinitions>
         
         <!--Sidebar-->
-        <Border Background="Gray" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Name="SideBar" Visibility="Visible">
+        <Border Background="Gray" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Name="SideBar">
             <StackPanel>
                 <!--Navigation-->
                 <Button Content="Login"

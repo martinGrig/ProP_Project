@@ -24,7 +24,7 @@ namespace EventManager.ViewModels
         private Visitor _visitor;
         private List<string> _transactions;
 
-        public Visitor Visitor { get { return _visitor; }private set { _visitor = value; OnPropertyChanged("VisitorStatus"); OnPropertyChanged("Visitor"); } }
+        public Visitor Visitor { get { return _visitor; } private set { _visitor = value; OnPropertyChanged("VisitorStatus"); OnPropertyChanged("Visitor"); } }
         public string VisitorStatus
         {
             get
@@ -33,7 +33,7 @@ namespace EventManager.ViewModels
             }
             set
             {
-                if(_visitor.IsScanned == true)
+                if (_visitor.IsScanned == true)
                 {
                     _visitorStatus = "Checked In";
                 }
@@ -226,30 +226,63 @@ namespace EventManager.ViewModels
         }
         private void FindVisitor(object o)
         {
-            Visitor = _mainViewModel.dataHelper.GetVisitor(Convert.ToInt32(o));
-            Transactions = _mainViewModel.dataHelper.GetTransactions(Visitor.TicketNr);
-            OnPropertyChanged("VisitorStatus");
-            VisitorStatus = "";
+            try
+            {
+                Visitor = _mainViewModel.dataHelper.GetVisitor(Convert.ToInt32(o));
+                Transactions = _mainViewModel.dataHelper.GetTransactions(Visitor.TicketNr);
+                OnPropertyChanged("VisitorStatus");
+                VisitorStatus = "";
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Test");
+            }
+
         }
         private void FindShop(object o)
         {
-            AmountEarnedPerShop = _mainViewModel.dataHelper.AmountEarnedPerShop(Convert.ToInt32(o)).ToString();
-            OnPropertyChanged("AmountEarnedPerShop");
+            try
+            {
+                AmountEarnedPerShop = _mainViewModel.dataHelper.AmountEarnedPerShop(Convert.ToInt32(o)).ToString();
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Test");
+            }
+
         }
         private void FindLoanStand(object o)
         {
-            AmountEarnedPerLoanStand = _mainViewModel.dataHelper.AmountEarnedPerLoanStand(Convert.ToInt32(o)).ToString();
-            OnPropertyChanged("AmountEarnedPerLoanStand");
+            try
+            {
+                AmountEarnedPerLoanStand = _mainViewModel.dataHelper.AmountEarnedPerLoanStand(Convert.ToInt32(o)).ToString();
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Test");
+            }
         }
         private void FindItem(object o)
         {
-            AmountEarnedPerItem = _mainViewModel.dataHelper.AmountEarnedPerItem(Convert.ToInt32(o)).ToString();
-            OnPropertyChanged("AmountEarnedPerItem");
+            try
+            {
+                AmountEarnedPerItem = _mainViewModel.dataHelper.AmountEarnedPerItem(Convert.ToInt32(o)).ToString();
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Test");
+            }
         }
         private void FindLoanable(object o)
         {
-            AmountEarnedPerLoanable = _mainViewModel.dataHelper.AmountEarnedPerLoanable(Convert.ToInt32(o)).ToString();
-            OnPropertyChanged("AmountEarnedPerLoanable");
+            try
+            {
+                AmountEarnedPerLoanable = _mainViewModel.dataHelper.AmountEarnedPerLoanable(Convert.ToInt32(o)).ToString();
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Test");
+            }
         }
         public void Start()
         {
@@ -258,7 +291,6 @@ namespace EventManager.ViewModels
             SpentMoney = _mainViewModel.dataHelper.TotalMoneySpentByVisitor().ToString();
             BookedCampingSpots = _mainViewModel.dataHelper.AmountOfBookedCampingSpots().ToString();
             FreeCampingSpots = _mainViewModel.dataHelper.AmountOfFreeCampSpaces().ToString();
-            //AmountEarnedPerShop = _mainViewModel.dataHelper.AmountEarnedPerShop(1234).ToString();
         }
     }
 }
