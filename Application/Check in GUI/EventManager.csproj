@@ -312,6 +312,9 @@
     <Resource Include="Images\RedBull.png" />
     <Resource Include="Images\Soupo.png" />
     <Resource Include="Images\Water.png" />
+    <Resource Include="Images\Camera.png" />
+    <Resource Include="Images\Charger.png" />
+    <Resource Include="Images\USB.png" />
     <Content Include="Sounds\ding.mp3" />
     <Content Include="Sounds\ele.mp3" />
     <Content Include="Sounds\fart.mp3" />

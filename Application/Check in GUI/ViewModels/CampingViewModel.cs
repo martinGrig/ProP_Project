@@ -127,8 +127,6 @@ namespace EventManager.ViewModels
             {
                 _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(GetCampingSpot);
 
-                _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(test);
-
                 _mainViewModel._MyRFIDReader.Open();
             }
             catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
@@ -188,11 +186,6 @@ namespace EventManager.ViewModels
             SelectedCampingSpot = null;
             _mainViewModel._MyRFIDReader.AntennaEnabled = true;
         }
-
-        private void test(object sender, RFIDTagEventArgs e)
-        {
-            System.Windows.Forms.MessageBox.Show("Camp");
-        }
-
+        
     }
 }

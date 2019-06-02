@@ -10,7 +10,7 @@
         xmlns:viewmodels="clr-namespace:EventManager.ViewModels"
         xmlns:views="clr-namespace:EventManager.Views"
         mc:Ignorable="d"
-        Title="{Binding dataModel.UserName}" Height="450" Width="549.881"
+        Title="{Binding dataModel.UserName}" Height="540" Width="960" ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen" Icon="Webp.net-resizeimage (3).png"
         WindowState="Maximized">
     <Window.DataContext>
@@ -77,7 +77,7 @@
         </Grid.RowDefinitions>
         
         <!--Sidebar-->
-        <Border Background="Gray" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Name="SideBar">
+        <Border Background="Gray" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Name="SideBar" Visibility="Collapsed">
             <StackPanel>
                 <!--Navigation-->
                 <Button Content="Login"

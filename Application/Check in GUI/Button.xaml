@@ -223,7 +223,7 @@
                 <ControlTemplate TargetType="Button">
                     <Grid>
                         <StackPanel Orientation="Horizontal">
-                            <fa:FontAwesome Foreground="Black" FontSize="50" Name="icon" Icon="SignOut" VerticalAlignment="Center"/>
+                            <fa:FontAwesome Foreground="Black" FontSize="50" Name="icon" Icon="SignOut" VerticalAlignment="Center" Rotation="180"/>
                         </StackPanel>
                     </Grid>
 

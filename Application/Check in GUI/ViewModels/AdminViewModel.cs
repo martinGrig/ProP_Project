@@ -251,6 +251,7 @@ namespace EventManager.ViewModels
             _mainViewModel.dataModel.LoanStands = _mainViewModel.dataHelper.GetLoanStands();
             _mainViewModel.dataModel.Shops = _mainViewModel.dataHelper.GetShops();
             _mainViewModel.dataModel.Jobs = _mainViewModel.dataHelper.GetJobs();
+            SelectedJob = _mainViewModel.dataModel.Jobs.ToList()[0];
             CanInspect = true;
             SearchNr = "";
         }

@@ -22,20 +22,24 @@ namespace EventManager.ViewModels
             }
             set
             {
-                if(_selecetedJob != value)
+                if (value != null)
                 {
+                    if (_selecetedJob != value)
+                    {
+                        _selecetedJob = value;
+                        if (SelectedJob.Id != _mainViewModel.dataModel.SelectedEmployee.JobId)
+                        {
+                            CanChangeJob = true;
+                        }
+                        else
+                        {
+                            CanChangeJob = false;
+                        }
+                    }
                     _selecetedJob = value;
-                    if (SelectedJob.Id != _mainViewModel.dataModel.SelectedEmployee.JobId)
-                    {
-                        CanChangeJob = true;
-                    }
-                    else
-                    {
-                        CanChangeJob = false;
-                    }
+                    OnPropertyChanged("SelectedJob");
                 }
-                _selecetedJob = value;
-                OnPropertyChanged("SelectedJob");
+
             }
         }
 
@@ -232,7 +236,7 @@ namespace EventManager.ViewModels
 
         private void ChangeJobId(object obj)
         {
-            
+
             try
             {
                 _mainViewModel.dataHelper.ChangeJobId(SelectedJob, _mainViewModel.dataModel.SelectedEmployee.EmployeeNr);
@@ -242,14 +246,14 @@ namespace EventManager.ViewModels
             {
                 System.Windows.Forms.MessageBox.Show("Test");
             }
-            
+
         }
 
         public void Start()
         {
-            foreach(Job j in _mainViewModel.dataModel.Jobs)
+            foreach (Job j in _mainViewModel.dataModel.Jobs)
             {
-                if(j.Id == _mainViewModel.dataModel.SelectedEmployee.JobId)
+                if (j.Id == _mainViewModel.dataModel.SelectedEmployee.JobId)
                 {
                     SelectedJob = j;
                 }
