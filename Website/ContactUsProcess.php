@@ -4,7 +4,7 @@ $email = $_POST['email'];
 $number = $_POST['number'];
 $comment = $_POST['comment'];
 
-$to = 'mitagki@abv.bg'; // note the comma
+$to = 'prop17team@hotmail.com'; // note the comma
 
 // Subject
 $subject = 'Contacting us';
@@ -20,7 +20,7 @@ $message = "
 <p>Email: $email</p>
 <p>Telephone number: $number</p>
 <p>Message: $comment</p>
-<img src=\"https://www.w3schools.com/images/w3schools_green.jpg\" alt=\"W3Schools.com\"> 
+<img src=\"https://www.w3schools.com/images/w3schools_green.jpg\" alt=\"W3Schools.com\">
 </body>
 </html>
 ";
@@ -31,7 +31,7 @@ $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
 // Additional headers
-$headers[] = 'To: Support Team <mitagki@abv.bg>';
+$headers[] = 'To: Support Team <prop17team@hotmail.com>';
 $headers[] = "From: $firstname <$email>";
 
 // Mail it

@@ -16,5 +16,9 @@
 
   $_SESSION['currentUser']['balance'] = $_SESSION['currentUser']['balance'] + $amount;
 
+
+  $email = $_SESSION['currentUser']['email'];
+  mail($email, "Your ticket!", "MESSAGE");
+
   header('Location:Profile.php');
   ?>

@@ -1,10 +1,8 @@
 to do:
 !back end:
-- camp spot reservation
 - show how many empty camp places are available
 - show price for selected number of people ?
 - send emails (usecase create account)
-- contact us
 
 (pdf with screenshots of work for client)
 

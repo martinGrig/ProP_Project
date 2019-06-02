@@ -60,7 +60,7 @@
     $statement->bindParam('2', $email);
     $result = $statement->execute();
   }
-  
-  header("location:Profile.php");
+
+  header("location:TicketSendProcess.php");
 
 ?>
