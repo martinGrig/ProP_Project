@@ -48,7 +48,7 @@
       $_SESSION['currentUser']['hasReview'] = $result[0]['hasReview'];
     }
 
-    header("location:index.html");
+    header("location:Profile.php");
   }
 
   //if we don't have users with such data
