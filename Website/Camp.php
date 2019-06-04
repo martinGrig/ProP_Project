@@ -104,8 +104,7 @@ session_start();
                     WE ACCEPT
                 </h2>
                 <h3>
-                    <img src="images/weaccept
-                    " width="200" height="75">
+                    <img src="images/weaccept.png" width="200" height="75">
                 </h3>
             </div>
         </div>
