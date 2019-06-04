@@ -20,7 +20,6 @@ $message = "
 <p>Email: $email</p>
 <p>Telephone number: $number</p>
 <p>Message: $comment</p>
-<img src=\"https://www.w3schools.com/images/w3schools_green.jpg\" alt=\"W3Schools.com\">
 </body>
 </html>
 ";
