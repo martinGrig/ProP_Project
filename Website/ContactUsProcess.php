@@ -4,7 +4,7 @@ $email = $_POST['email'];
 $number = $_POST['number'];
 $comment = $_POST['comment'];
 
-$to = 'prop17team@hotmail.com'; // note the comma
+$to = 'madprojects17@gmail.com'; // note the comma
 
 // Subject
 $subject = 'Contacting us';
