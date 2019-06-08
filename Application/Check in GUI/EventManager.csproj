@@ -100,6 +100,7 @@
     <Compile Include="Controls\StandItemControl.xaml.cs">
       <DependentUpon>StandItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AddEmployeeConverter.cs" />
     <Compile Include="Converters\EmailColorConverter.cs" />
     <Compile Include="Converters\ListToVisibility.cs" />
     <Compile Include="Converters\LoanStandEnddateConverter.cs" />
@@ -315,6 +316,9 @@
     <Resource Include="Images\Camera.png" />
     <Resource Include="Images\Charger.png" />
     <Resource Include="Images\USB.png" />
+    <Resource Include="Images\logout.png" />
+    <Resource Include="Images\CancelOrComplete.png" />
+    <Resource Include="Images\FinalQrCode.png" />
     <Content Include="Sounds\ding.mp3" />
     <Content Include="Sounds\ele.mp3" />
     <Content Include="Sounds\fart.mp3" />

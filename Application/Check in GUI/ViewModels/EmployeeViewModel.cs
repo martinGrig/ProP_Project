@@ -241,6 +241,7 @@ namespace EventManager.ViewModels
             {
                 _mainViewModel.dataHelper.ChangeJobId(SelectedJob, _mainViewModel.dataModel.SelectedEmployee.EmployeeNr);
                 _mainViewModel.dataModel.SelectedEmployee = _mainViewModel.dataHelper.GetEmployee(_mainViewModel.dataModel.SelectedEmployee.EmployeeNr);
+                CanChangeJob = false;
             }
             catch
             {

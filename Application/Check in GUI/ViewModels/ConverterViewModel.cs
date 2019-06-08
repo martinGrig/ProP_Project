@@ -95,6 +95,21 @@ namespace EventManager.ViewModels
                 return _uploadUnselectedCommand;
             }
         }
+
+        private RelayCommand _clearFileCommand;
+        public RelayCommand ClearFileCommand
+        {
+            get
+            {
+                if (_clearFileCommand == null) _clearFileCommand = new RelayCommand(new Action<object>(ClearFile));
+                return _clearFileCommand;
+            }
+        }
+
+        private void ClearFile(object obj)
+        {
+            Reset();
+        }
         #endregion
 
         private void LoadFile(object obj)
@@ -225,10 +240,15 @@ namespace EventManager.ViewModels
                 if(_mainViewModel.dataModel.LogFileLinesInfo.Where(x => x.IsEnabled == false).Count() > 0)
                 {
                     CanUpload = false;
+                    LogFileTitle = "Invalid Log File";
                 }
                 else
                 {
                     CanUpload = true;
+                    if (_mainViewModel.dataModel.LogFileLines.Where(x => x.IsEnabled == false).Count() == _mainViewModel.dataModel.LogFileLines.Count())
+                    {
+                        LogFileTitle = "Invalid Log File";
+                    }
                 }
             }
         }
@@ -315,7 +335,7 @@ namespace EventManager.ViewModels
 
         private void Reset()
         {
-            LogFileTitle = "";
+            LogFileTitle = null;
             CanUpload = false;
             _mainViewModel.dataModel._logFileLines.Clear();
             _mainViewModel.dataModel._logFileLinesInfo.Clear();
@@ -326,6 +346,7 @@ namespace EventManager.ViewModels
         public void Start()
         {
             CanUpload = false;
+            LogFileTitle = null;
             _mainViewModel.dataModel._logFileLines = new List<LogLine>();
             _mainViewModel.dataModel._logFileLinesInfo = new List<LogLine>();
         }

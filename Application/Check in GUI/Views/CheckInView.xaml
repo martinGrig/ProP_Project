@@ -32,7 +32,7 @@
                 </Grid.RowDefinitions>
 
                 <!--Ticket info group box-->
-                <Button Height="25" Width="26" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource DeleteButton}" Visibility="{Binding _mainViewModel.dataModel.ShowScanQrCode, Converter={StaticResource booleanToVisibilityConverter}}" Command="{Binding ClearVisitorCommand}"/>
+                <Button Height="25" Width="26" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource DeleteButton}" Visibility="{Binding _mainViewModel.dataModel.SelectedVisitor, Converter={StaticResource NullToCollapsed}}" Command="{Binding ClearVisitorCommand}"/>
                 <StackPanel Grid.Row="1" Margin="0 10 0 0">
                     <Button Background="Transparent" Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10 0 10 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
                     <Button VerticalAlignment="Top" Width="50" Height="40" Margin="10 10 0 0" HorizontalAlignment="Left" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Login}"  Style="{StaticResource logoutbutton}"/>
@@ -74,7 +74,7 @@
 
 
                         <!-- Image-->
-                        <Image Source="/EventManager;component/Images/Qr code valid.png" Height="140"  Grid.Row="3" Margin="10,10,10,30" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
+                        <Image Source="/EventManager;component/Images/Qr code valid.png" Height="140"  Grid.Row="3" Margin="10,10,10,30" Grid.ColumnSpan="2"/>
 
 
 
@@ -113,10 +113,6 @@
                     </Grid>
                 </GroupBox>
 
-                <!--Program chip-->
-                <!--<Border Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="Gray" Margin="5 5 10 10">
-                    <Image Source="{Binding _mainViewModel.dataModel.SelectedVisitor, Converter={StaticResource RfidScan} }" Grid.Column="1" Grid.Row="1" />
-                </Border>-->
 
                 <Border Background="White" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2" Grid.RowSpan="1" Margin="5,0,10,10" MaxWidth="500">
                     <Viewbox>

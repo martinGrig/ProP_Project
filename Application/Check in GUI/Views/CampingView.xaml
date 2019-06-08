@@ -13,7 +13,9 @@
         <converters:ReverseBoolToVIsibilityConverter x:Key="ReverseObjectToVisibilty"/>
         <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid>
+    <Viewbox>
+        <Border Height="450" Width="800">
+             <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
@@ -88,6 +90,18 @@
 
 
         </Border>
+        <Border Background="White" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2"  Visibility="{Binding CanSeeDisplay3,Converter={StaticResource booleanToVisibilityConverter}}">
+            <Viewbox>
+                <StackPanel DataContext="{Binding Display3}" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Text}" Foreground="{Binding Color}" HorizontalAlignment="Center"/>
+                    <fa:FontAwesome Icon="{Binding Icon}" HorizontalAlignment="Center" FontSize="20" Foreground="{Binding Color}" Visibility="{Binding ShowIcon ,Converter={StaticResource booleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </Viewbox>
+
+        </Border>
     </Grid>
 
+        </Border>
+    </Viewbox>
+   
 </UserControl>

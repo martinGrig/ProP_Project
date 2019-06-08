@@ -12,12 +12,13 @@
         mc:Ignorable="d"
         Title="{Binding dataModel.UserName}" Height="540" Width="960" ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen" Icon="Webp.net-resizeimage (3).png"
-        WindowState="Maximized">
+        WindowState="Maximized" Closing="SWWindow_Closing">
     <Window.DataContext>
         <viewmodels:MainViewModel/>
     </Window.DataContext>
     <!--Views and ViewModels-->
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
         <DataTemplate x:Name="LoginViewTemplate" DataType="{x:Type viewmodels:LoginViewModel}">
             <views:LoginView  DataContext="{Binding}"/>
         </DataTemplate>
@@ -124,6 +125,59 @@
             <ContentControl Content="{Binding CurrentPageViewModel}">
             </ContentControl>
         </Border>
-        
+        <Border Background="White" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="5" Visibility="{Binding CanSeeDisplay,Converter={StaticResource booleanToVisibilityConverter}}">
+            <Viewbox>
+                <Grid Width="900">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"/>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox>
+                        <StackPanel DataContext="{Binding Display}" Grid.Row="0" VerticalAlignment="Center">
+                            <Label Content="Can't connect to database" HorizontalContentAlignment="Center"/>
+                            <Label Content="The system will attempt to reconnect in:" HorizontalContentAlignment="Center"/>
+                            <TextBlock Text="{Binding Text}" Foreground="{Binding Color}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Viewbox>
+                    <Button Command="{Binding RetryConnectionCommand}" Grid.Row="1" Margin="10 10 10 50">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <fa:FontAwesome VerticalAlignment="Center" Icon="Refresh" FontSize="75"/>
+                                    <TextBlock Text="Retry Connection" VerticalAlignment="Center" FontSize="50"/>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                        
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity"  Value="0.75"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="Opacity"  Value="0.5"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Opacity"  Value="1"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </Viewbox>
+
+        </Border>
+
     </Grid>
 </sw:SWWindow>

@@ -195,9 +195,17 @@ namespace EventManager.Models
             {
                 _selectedItems = value.ToList();
                 OnPropertyChanged("SelectedItems");
+                OnPropertyChanged("Total");
             }
         }
 
+        public string Total
+        {
+            get
+            {
+                return SelectedItems.Sum(x => x.SubTotal).ToString();
+            }
+        }
         public List<Job> _jobs;
 
         public IEnumerable<Job> Jobs

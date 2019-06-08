@@ -71,9 +71,17 @@ namespace EventManager.ViewModels
             {
                 _selectedItems = value.ToList();
                 OnPropertyChanged("SelectedItems");
+                OnPropertyChanged("Total");
             }
         }
 
+        public string Total
+        {
+            get
+            {
+                return SelectedItems.Sum(x => x.SubTotal).ToString();
+            }
+        }
         private List<Loan> _loans;
         public IEnumerable<Loan> Loans
         {
@@ -125,15 +133,19 @@ namespace EventManager.ViewModels
             }
             set
             {
-                if(_selectedLoanStand != value)
+                if (value != null)
                 {
+                    if (_selectedLoanStand != value)
+                    {
+                        _selectedLoanStand = value;
+                        Display = new Display(Brushes.Black, "Scan vistors \nRFID Bracelet", "", true, false);
+                        _loanItems = dh.GetLoanStandItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedLoanStand.ID);
+                        SearchText = "";
+                    }
                     _selectedLoanStand = value;
-                    Display = new Display(Brushes.Black, "Scan vistors \nRFID Bracelet", "", true, false);
-                    _loanItems = dh.GetLoanStandItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedLoanStand.ID);
-                    SearchText = "";
+                    OnPropertyChanged("SelectedLoanStand");
                 }
-                _selectedLoanStand = value;
-                OnPropertyChanged("SelectedLoanStand");
+
             }
         }
 
@@ -148,6 +160,33 @@ namespace EventManager.ViewModels
             {
                 _canChangeLoanStand = value;
                 OnPropertyChanged("CanChangeLoanStand");
+            }
+        }
+        private bool _canSeeDisplay2;
+        public bool CanSeeDisplay2
+        {
+            get
+            {
+                return _canSeeDisplay2;
+            }
+            set
+            {
+                _canSeeDisplay2 = value;
+                OnPropertyChanged("CanSeeDisplay2");
+            }
+        }
+
+        private Display _display2;
+        public Display Display2
+        {
+            get
+            {
+                return _display2;
+            }
+            set
+            {
+                _display2 = value;
+                OnPropertyChanged("Display2");
             }
         }
         #endregion
@@ -294,7 +333,7 @@ namespace EventManager.ViewModels
                 _mainViewModel.ResetTimer.Start();
                 _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                 SearchText = "";
-                
+
                 Visitor = null;
             }
             catch
@@ -305,20 +344,38 @@ namespace EventManager.ViewModels
 
         public void Start()
         {
+            Dm = _mainViewModel.dataModel;
             CanChangeLoanStand = true;
             LoanStands = dh.GetEmployeeLoanStands(Convert.ToInt32(Dm.EmployeeNumber));
-            SelectedLoanStand = _loanStands[0];
-            Display = new Display(Brushes.Black, "Scan vistors \nRFID Bracelet", "", true, false);
-            _loanItems = dh.GetLoanStandItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedLoanStand.ID);
+            Loans = new List<Loan>();
+            if (LoanStands.Count() == 1)
+            {
+                CanChangeLoanStand = false;
+            }
+            if (LoanStands.Count() == 0)
+            {
+                CanChangeLoanStand = false;
+                Display2 = new Display(Brushes.Red, "Employee does not \nhave any LoanStand", "", false, false);
+                CanSeeDisplay2 = true;
+            }
+            else
+            {
+                SelectedLoanStand = _loanStands[0];
+                Display = new Display(Brushes.Black, "Scan vistors \nRFID Bracelet", "", true, false);
+                _loanItems = dh.GetLoanStandItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedLoanStand.ID);
+            }
+            _selectedItems = new List<LoanStandItem>();
             _mainViewModel.ResetTimer.Tick += new EventHandler(Reset);
             _mainViewModel.ResetTimer.Interval = new TimeSpan(0, 0, 3);
             try
             {
                 _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(GetLoans);
-
+                _mainViewModel._MyRFIDReader.Detach += new DetachEventHandler(DetachRfid);
+                _mainViewModel._MyRFIDReader.Attach += new AttachEventHandler(AttachRfid);
                 _mainViewModel._MyRFIDReader.Open();
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
             }
-            catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
+            catch (PhidgetException) { CanSeeDisplay2 = true; Display2 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false); }
         }
 
         private void SelectItem(object obj)
@@ -492,7 +549,9 @@ namespace EventManager.ViewModels
                     }
                     catch (Exception ex)
                     {
-
+                        Display = new Display(Brushes.Red, $"{ex.Message}", "times", false, true);
+                        _mainViewModel.ResetTimer.Start();
+                        _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                     }
                 }
                 else
@@ -528,8 +587,38 @@ namespace EventManager.ViewModels
                         }
                         else if (Loans.Where(l => l.IsOverdue).Count() > 0)
                         {
-                            Display = new Display(Brushes.Black, "Visitor must return overdue items before loaning new items", "", false, false);
-                            _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                            int days;
+                            double pricePerDay;
+                            int daysOverdue;
+                            double extra;
+                            double totalExtra = 0;
+                            foreach (Loan loan in Loans)
+                            {
+                                if (loan.IsOverdue)
+                                {
+                                    days = ((TimeSpan)(loan.EndDate - loan.StartDate)).Days;
+                                    pricePerDay = (loan.Total / loan.Qauntity) / days;
+                                    daysOverdue = ((TimeSpan)(DateTime.Now - loan.EndDate)).Days;
+                                    extra = pricePerDay * daysOverdue * loan.Qauntity;
+                                    totalExtra += extra;
+                                }
+                            }
+
+                            if (Visitor.Balance >= totalExtra)
+                            {
+                                Display = new Display(Brushes.Orange, $"Visitor must return overdue items.\n Must pay:{totalExtra}", "", false, false);
+                                _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                            }
+                            else
+                            {
+                                //Start timer but increase the interval
+                                Display = new Display(Brushes.Red, $"Visitor does not have enough funds to pay for overdue items.\n Must pay:{totalExtra}", "", false, false);
+                                _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                                _mainViewModel.ResetTimer.Start();
+                            }
+
+                            //Display = new Display(Brushes.Black, "Visitor must return overdue items before loaning new items", "", false, false);
+                            //_mainViewModel._MyRFIDReader.AntennaEnabled = false;
                         }
                         else if (SelectedItems.Count() == 0)
                         {
@@ -568,18 +657,51 @@ namespace EventManager.ViewModels
             _selectedItems.Clear();
             SelectedItems = _selectedItems;
         }
-        private void Reset(object sender, EventArgs e)
+        public void Reset(object sender, EventArgs e)
         {
             Display = new Display(Brushes.Black, "Scan vistors \nRFID", "", true, false);
             Loans = new List<Loan>();
             _loanItems = dh.GetLoanStandItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedLoanStand.ID);
             _selectedItems.Clear();
             SelectedItems = _selectedItems;
+            SearchText = "";
             _mainViewModel.ResetTimer.Stop();
             _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(GetLoans);
-            _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+            try
+            {
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+            }
+            catch (PhidgetException) { CanSeeDisplay2 = true; Display2 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false); }
             CanChangeLoanStand = true;
             Visitor = null;
+        }
+
+        private void AttachRfid(object sender, AttachEventArgs e)
+        {
+            if (!CanChangeLoanStand && LoanStands.Count() == 0)
+            {
+                CanChangeLoanStand = false;
+                Display2 = new Display(Brushes.Red, "Employee does not \nhave any LoanStands", "", false, false);
+                CanSeeDisplay2 = true;
+            }
+            else
+            {
+                CanSeeDisplay2 = false;
+                if (SelectedItems.Count() != 0 || _visitor == null)
+                {
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+                }
+                else
+                {
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                }
+            }
+
+        }
+        private void DetachRfid(object sender, DetachEventArgs e)
+        {
+            Display2 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false);
+            CanSeeDisplay2 = true;
         }
     }
 }

@@ -117,14 +117,14 @@ namespace EventManager
                 MySqlDataReader reader = command.ExecuteReader();
 
                 String name;
-                int price;
+                double price;
                 int stock;
                 bool isFood;
                 int id;
                 while (reader.Read())
                 {
                     name = Convert.ToString(reader["Name"]);
-                    price = Convert.ToInt32(reader["Price"]);
+                    price = Convert.ToDouble(reader["Price"]);
                     stock = Convert.ToInt32(reader["Stock"]);
                     isFood = Convert.ToBoolean(reader["Food"]);
                     id = Convert.ToInt32(reader["Id"]);
@@ -133,7 +133,7 @@ namespace EventManager
             }
             catch
             {
-                MessageBox.Show("error while loading the students");
+                //MessageBox.Show("error while loading the students");
             }
             finally
             {
@@ -156,13 +156,13 @@ namespace EventManager
                 MySqlDataReader reader = command.ExecuteReader();
 
                 String name;
-                int price;
+                double price;
                 int stock;
                 int id;
                 while (reader.Read())
                 {
                     name = Convert.ToString(reader["Name"]);
-                    price = Convert.ToInt32(reader["Price"]);
+                    price = Convert.ToDouble(reader["Price"]);
                     stock = Convert.ToInt32(reader["Stock"]);
                     id = Convert.ToInt32(reader["Id"]);
                     temp.Add(new LoanStandItem(name, price, stock, $"Images/{name}.png", id));
@@ -170,7 +170,7 @@ namespace EventManager
             }
             catch
             {
-                MessageBox.Show("error while loading the students");
+                //MessageBox.Show("error while loading the students");
             }
             finally
             {
@@ -214,7 +214,7 @@ namespace EventManager
             }
             catch
             {
-                MessageBox.Show("error while loading the employess");
+                //MessageBox.Show("error while loading the employess");
             }
             finally
             {
@@ -230,10 +230,6 @@ namespace EventManager
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@empNr", employeeNr);
 
-            //On internet you also see a solution like:
-            // String sql = "INSERT INTO StudentTable VALUES (" +
-            //     "'" + name + "'," + number  + "," + creditpoints + ")";
-            //Be aware of sql-injection!
             Employee emp = null;
             try
             {
@@ -262,7 +258,7 @@ namespace EventManager
             }
             catch
             {
-                MessageBox.Show("error while loading the employee");
+                //MessageBox.Show("error while loading the employee");
             }
             finally
             {
@@ -271,9 +267,10 @@ namespace EventManager
             return emp;
         }
 
-        public int AddEmployee(string firstName, string lastName, string jobId, Shop shop, LoanStand loanStand)
+        public int AddEmployee(string _firstName, string _lastName, string jobId, Shop shop, LoanStand loanStand)
         {
-
+            string firstName = FirstLetterToUpperCaseOrConvertNullToEmptyString(_firstName.Trim());
+            string lastName = FirstLetterToUpperCaseOrConvertNullToEmptyString(_lastName.Trim());
             int nrOfRecordsChanged;
             String sql = "INSERT INTO employee (employeeName, surname, positionId, password) VALUES (@employeeName, @surname, @possitionId, @password )";
             MySqlCommand command = new MySqlCommand(sql, connection);
@@ -325,7 +322,7 @@ namespace EventManager
             return nrOfRecordsChanged;
         }
 
-        public int AddShopToEmployee(int empNr,int shopId)
+        public int AddShopToEmployee(int empNr, int shopId)
         {
             int nrOfRecordsChanged;
             string sql = "INSERT INTO employee_place (EmployeeemployeeNr, PlaceplaceId) VALUES (@empNr, @placeId)";
@@ -337,7 +334,7 @@ namespace EventManager
             {
                 connection.Open();
                 nrOfRecordsChanged = command.ExecuteNonQuery();
-                
+
             }
             catch
             {
@@ -377,14 +374,14 @@ namespace EventManager
             return nrOfRecordsChanged;
         }
 
-        public int RemoveShopFromEmployee(int empNr,int shopId)
+        public int RemoveShopFromEmployee(int empNr, int shopId)
         {
             int check = 1;
             String sql = "DELETE FROM employee_place WHERE employee_place.EmployeeemployeeNr = @empNr And employee_place.PlaceplaceId = @place";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@empNr", empNr);
             command.Parameters.AddWithValue("@place", shopId);
-            
+
             try
             {
                 connection.Open();
@@ -392,7 +389,7 @@ namespace EventManager
             }
             catch
             {
-                MessageBox.Show("error while deleting shop");
+                //MessageBox.Show("error while deleting shop");
                 check = 0;
             }
             finally
@@ -417,7 +414,7 @@ namespace EventManager
             }
             catch
             {
-                MessageBox.Show("error while deleting shop");
+                //MessageBox.Show("error while deleting shop");
                 check = 0;
             }
             finally
@@ -454,7 +451,7 @@ namespace EventManager
                 String name;
                 string lastName;
                 int ticketNr;
-                int balance;
+                double balance;
                 bool isScanned;
                 bool isValid;
 
@@ -462,7 +459,7 @@ namespace EventManager
                 {
                     name = Convert.ToString(reader["Name"]);
                     lastName = Convert.ToString(reader["Surname"]);
-                    balance = Convert.ToInt32(reader["Balance"]);
+                    balance = Convert.ToDouble(reader["Balance"]);
                     ticketNr = Convert.ToInt32(reader["Ticket"]);
                     isScanned = Convert.ToBoolean(reader["IsScanned"]);
                     isValid = Convert.ToBoolean(reader["Valid"]);
@@ -536,6 +533,27 @@ namespace EventManager
             return rowsAffected;
         }
 
+        public void CheckIn(int ticketNr)
+        {
+            String sql = "UPDATE visitor SET isScanned = 1, whenScanned = CURRENT_TIMESTAMP WHERE visitor.ticketNr = @ticketNr";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@ticketNr", ticketNr);
+            int rowsAffected;
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw new Exception("Could not change isscanned");
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
         public int MarkVisitorAccountAsInvalid(int ticketNr)
         {
             String sql = "UPDATE visitor SET isValid = 0, whenScanned = CURRENT_TIMESTAMP WHERE visitor.ticketNr = @ticketNr";
@@ -568,10 +586,6 @@ namespace EventManager
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@ticketNr", ticketNr);
 
-            //On internet you also see a solution like:
-            // String sql = "INSERT INTO StudentTable VALUES (" +
-            //     "'" + name + "'," + number  + "," + creditpoints + ")";
-            //Be aware of sql-injection!
             Visitor vis = null;
             try
             {
@@ -581,7 +595,7 @@ namespace EventManager
                 String name;
                 string lastName;
                 string email;
-                int balance;
+                double balance;
                 bool isScanned;
                 bool isValid;
 
@@ -590,7 +604,7 @@ namespace EventManager
                     name = Convert.ToString(reader["Name"]);
                     lastName = Convert.ToString(reader["Surname"]);
                     email = Convert.ToString(reader["Email"]);
-                    balance = Convert.ToInt32(reader["Balance"]);
+                    balance = Convert.ToDouble(reader["Balance"]);
                     isScanned = Convert.ToBoolean(reader["IsScanned"]);
                     isValid = Convert.ToBoolean(reader["Valid"]);
 
@@ -632,7 +646,7 @@ namespace EventManager
                 String name;
                 string lastName;
                 string email;
-                int balance;
+                double balance;
                 bool isScanned;
                 int ticketNr;
                 bool isValid;
@@ -642,7 +656,7 @@ namespace EventManager
                     name = Convert.ToString(reader["Name"]);
                     lastName = Convert.ToString(reader["Surname"]);
                     email = Convert.ToString(reader["Email"]);
-                    balance = Convert.ToInt32(reader["Balance"]);
+                    balance = Convert.ToDouble(reader["Balance"]);
                     isScanned = Convert.ToBoolean(reader["IsScanned"]);
                     ticketNr = Convert.ToInt32(reader["TicketNr"]);
                     isValid = Convert.ToBoolean(reader["Valid"]);
@@ -694,9 +708,9 @@ namespace EventManager
             return allVisitors;
         }
 
-        public int SumOfAllVisitorBalance()
+        public double SumOfAllVisitorBalance()
         {
-            int sumOfBalance = 0;
+            double sumOfBalance = 0;
             String sql = "Select sum(balance) as total From visitor";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
@@ -705,16 +719,16 @@ namespace EventManager
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();
 
-                int total = 0;
+                double total = 0;
                 while (reader.Read())
                 {
-                    total = Convert.ToInt32(reader["total"]);
+                    total = Convert.ToDouble(reader["total"]);
                 }
                 sumOfBalance = total;
             }
             catch
             {
-                MessageBox.Show("error while loading the visitors");
+                //MessageBox.Show("error while loading the visitors");
             }
             finally
             {
@@ -723,38 +737,38 @@ namespace EventManager
             return sumOfBalance;
         }
 
-        public int TotalMoneyEarned()
+        //public double TotalMoneyEarned()
+        //{
+        //    double sumOfEarnedMoney = 0;
+        //    String sql = "Select sum(balance) as total From visitor";
+        //    MySqlCommand command = new MySqlCommand(sql, connection);
+
+        //    try
+        //    {
+        //        connection.Open();
+        //        MySqlDataReader reader = command.ExecuteReader();
+
+        //        double total = 0;
+        //        while (reader.Read())
+        //        {
+        //            total = Convert.ToDouble(reader["total"]);
+        //        }
+        //        sumOfEarnedMoney = total;
+        //    }
+        //    catch
+        //    {
+        //        //MessageBox.Show("error while loading the sumOfEarnedMoney");
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
+        //    return sumOfEarnedMoney;
+        //}
+
+        public double TotalMoneySpentByVisitor()
         {
-            int sumOfEarnedMoney = 0;
-            String sql = "Select sum(balance) as total From visitor";
-            MySqlCommand command = new MySqlCommand(sql, connection);
-
-            try
-            {
-                connection.Open();
-                MySqlDataReader reader = command.ExecuteReader();
-
-                int total = 0;
-                while (reader.Read())
-                {
-                    total = Convert.ToInt32(reader["total"]);
-                }
-                sumOfEarnedMoney = total;
-            }
-            catch
-            {
-                MessageBox.Show("error while loading the sumOfEarnedMoney");
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return sumOfEarnedMoney;
-        }
-
-        public int TotalMoneySpentByVisitor()
-        {
-            int sumOfSpentMoney = 0;
+            double sumOfSpentMoney = 0;
             String sql = "SELECT count(v.ticketNr) * 55 + sum(p.amount) + sum(l.amount) as total FROM purchaise p join visitor v on v.ticketNr = p.ticketNr join loan l on l.ticketNr = v.ticketNr";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
@@ -763,16 +777,16 @@ namespace EventManager
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();
 
-                int total = 0;
+                double total = 0;
                 while (reader.Read())
                 {
-                    total = Convert.ToInt32(reader["total"]);
+                    total = Convert.ToDouble(reader["total"]);
                 }
                 sumOfSpentMoney = total;
             }
             catch
             {
-                MessageBox.Show("error while loading the sumOfEarnedMoney");
+                //MessageBox.Show("error while loading the sumOfEarnedMoney");
             }
             finally
             {
@@ -840,13 +854,13 @@ namespace EventManager
 
         }
 
-        public int AmountEarnedPerShop(int placeId)
+        public double AmountEarnedPerShop(int placeId)
         {
             String sql = "SELECT SUM(p.qauntity*i.price) as total FROM purchase_item p JOIN purchaisable c On p.itemId = c.itemId JOIN item i ON i.itemId = c.itemId JOIN purchaise pur ON pur.purchaseNr = p.purchaseNr And pur.placeId = @placeId";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@placeId", placeId);
 
-            int amount = 0;
+            double amount = 0;
             try
             {
                 connection.Open();
@@ -854,7 +868,7 @@ namespace EventManager
 
                 while (reader.Read())
                 {
-                    amount = Convert.ToInt32(reader["total"]);
+                    amount = Convert.ToDouble(reader["total"]);
                 }
             }
             catch
@@ -868,13 +882,13 @@ namespace EventManager
             return amount;
         }
 
-        public int AmountEarnedPerLoanStand(int loanStandId)
+        public double AmountEarnedPerLoanStand(int loanStandId)
         {
             String sql = "SELECT SUM(amount) as total FROM loan WHERE loanStandId = @loanStandId ;";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@loanStandId", loanStandId);
 
-            int amount = 0;
+            double amount = 0;
             try
             {
                 connection.Open();
@@ -882,7 +896,7 @@ namespace EventManager
 
                 while (reader.Read())
                 {
-                    amount = Convert.ToInt32(reader["total"]);
+                    amount = Convert.ToDouble(reader["total"]);
                 }
             }
             catch
@@ -896,13 +910,13 @@ namespace EventManager
             return amount;
         }
 
-        public int AmountEarnedPerItem(int itemId)
+        public double AmountEarnedPerItem(int itemId)
         {
             String sql = "SELECT SUM(p.qauntity*i.price) as total FROM purchase_item p JOIN item i ON i.itemId = p.itemId And p.itemId = @itemId;";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@itemId", itemId);
 
-            int amount = 0;
+            double amount = 0;
             try
             {
                 connection.Open();
@@ -910,7 +924,7 @@ namespace EventManager
 
                 while (reader.Read())
                 {
-                    amount = Convert.ToInt32(reader["total"]);
+                    amount = Convert.ToDouble(reader["total"]);
                 }
             }
             catch
@@ -923,13 +937,13 @@ namespace EventManager
             }
             return amount;
         }
-        public int AmountEarnedPerLoanable(int loanitemId)
+        public double AmountEarnedPerLoanable(int loanitemId)
         {
             String sql = "SELECT SUM(amount) as total FROM loan WHERE loanitemId = @loanitemId;";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("@loanitemId", loanitemId);
 
-            int amount = 0;
+            double amount = 0;
             try
             {
                 connection.Open();
@@ -937,7 +951,7 @@ namespace EventManager
 
                 while (reader.Read())
                 {
-                    amount = Convert.ToInt32(reader["total"]);
+                    amount = Convert.ToDouble(reader["total"]);
                 }
             }
             catch
@@ -950,6 +964,7 @@ namespace EventManager
             }
             return amount;
         }
+
         public List<string> GetTransactions(int ticketNr)
         {
             String sql = "SELECT date_format(p.dateOfTrans, '%a') as Date, p.amount as Amount, pl.name as Place " +
@@ -1166,14 +1181,25 @@ namespace EventManager
             command.Parameters.AddWithValue("@jobId", job.Id);
             command.Parameters.AddWithValue("@empNr", employeeNr);
 
-            //On internet you also see a solution like:
-            // String sql = "INSERT INTO StudentTable VALUES (" +
-            //     "'" + name + "'," + number  + "," + creditpoints + ")";
-            //Be aware of sql-injection!
             try
             {
                 connection.Open();
                 command.ExecuteNonQuery();
+                if (!job.Id.Contains("l"))
+                {
+                    sql = "DELETE FROM employee_loanstand WHERE employee_loanstand.employeeNr = @empNr";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@empNr", employeeNr);
+                    command.ExecuteNonQuery();
+
+                }
+                if (!job.Id.Contains("s"))
+                {
+                    sql = "DELETE FROM employee_place WHERE employee_place.EmployeeemployeeNr = @empNr";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@empNr", employeeNr);
+                    command.ExecuteNonQuery();
+                }
 
             }
             catch
@@ -1346,7 +1372,7 @@ namespace EventManager
 
         public int StartLoan(Visitor visitor, List<LoanStandItem> loanStandItems, int placeId)
         {
-            double total = (int)loanStandItems.Sum(x => x.Days * x.Price * x.Quantity);
+            double total = (double)loanStandItems.Sum(x => x.SubTotal);
             int check = 0;
             if (visitor.Balance >= total)
             {
@@ -1370,7 +1396,7 @@ namespace EventManager
 
                         sql = "INSERT INTO loan (ticketNr, dateOfTrans, loanitemId, loanStandId, startTime, endTime, isReturned, amount, qauntity) VALUES (@ticketNr, CURRENT_TIMESTAMP, @Id, @place, CURRENT_TIMESTAMP , now() + interval @day day, '0', @amount, @qauntity);";
                         command = new MySqlCommand(sql, connection);
-                        command.Parameters.AddWithValue("@amount", li.SubTotal * li.Days);
+                        command.Parameters.AddWithValue("@amount", li.SubTotal);
                         command.Parameters.AddWithValue("@Id", li.ID);
                         command.Parameters.AddWithValue("@place", placeId);
                         command.Parameters.AddWithValue("@day", li.Days);
@@ -1430,8 +1456,8 @@ namespace EventManager
                     loanStandId = Convert.ToInt32(reader["LoanStand"]);
                     name = Convert.ToString(reader["Name"]);
                     loanStandName = Convert.ToString(reader["LoanstandName"]);
-                    start = DateTime.Parse(Convert.ToString(reader["StartDate"]));
-                    end = DateTime.Parse(Convert.ToString(reader["EndDate"]));
+                    start = DateTime.Parse(Convert.ToString(reader["StartDate"])).Date;
+                    end = DateTime.Parse(Convert.ToString(reader["EndDate"])).Date;
                     total = Convert.ToDouble(reader["Total"]);
                     qauntity = Convert.ToInt32(reader["Qauntity"]);
                     itemId = Convert.ToInt32(reader["ItemId"]);
@@ -1482,8 +1508,8 @@ namespace EventManager
                     loanStandId = Convert.ToInt32(reader["LoanStand"]);
                     name = Convert.ToString(reader["Name"]);
                     loanStandName = Convert.ToString(reader["LoanstandName"]);
-                    start = DateTime.Parse(Convert.ToString(reader["StartDate"]));
-                    end = DateTime.Parse(Convert.ToString(reader["EndDate"]));
+                    start = DateTime.Parse(Convert.ToString(reader["StartDate"])).Date;
+                    end = DateTime.Parse(Convert.ToString(reader["EndDate"])).Date;
                     total = Convert.ToDouble(reader["Total"]);
                     qauntity = Convert.ToInt32(reader["Qauntity"]);
                     itemId = Convert.ToInt32(reader["ItemId"]);
@@ -1516,10 +1542,10 @@ namespace EventManager
                 {
                     if (loan.IsOverdue)
                     {
-                        int days = ((TimeSpan)(loan.EndDate - loan.StartDate)).Days;
+                        int days = (loan.EndDate.DayOfYear - loan.StartDate.DayOfYear);
                         double pricePerDay = (loan.Total / loan.Qauntity) / days;
-                        int daysOverdue = ((TimeSpan)(DateTime.Now - loan.EndDate)).Days;
-                        double extra = pricePerDay * daysOverdue;
+                        int daysOverdue = (loan.EndDate.DayOfYear - DateTime.Now.DayOfYear);
+                        double extra = -1 * (pricePerDay * daysOverdue * loan.Qauntity);
 
                         if (visitor.Balance >= extra)
                         {
@@ -1582,7 +1608,7 @@ namespace EventManager
 
         public int CreatePurchase(Visitor visitor, List<ShopItem> shopItems, int placeId)
         {
-            int total = (int)shopItems.Sum(x => x.SubTotal);
+            double total = (int)shopItems.Sum(x => x.SubTotal);
             int purchaseNr = 0;
             int check = 0;
             if (visitor.Balance >= total)
@@ -1658,21 +1684,30 @@ namespace EventManager
                 connection.Open();
                 foreach (LogLine line in logLines)
                 {
-                    string[] words = line.Line.Split(' ');
-                    int ticketNr = Convert.ToInt32(words[0]);
-                    double amount = Convert.ToDouble(words[1]);
-                    sql = "INSERT INTO topup (topUpNr, ticketNr, dateOfTrans, amount) VALUES (NULL, @ticketNr, CURRENT_TIMESTAMP, @amount)";
-                    command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@ticketNr", ticketNr);
-                    command.Parameters.AddWithValue("@amount", amount);
-                    command.ExecuteNonQuery();
+                    try
+                    {
+                        string[] words = line.Line.Split(' ');
+                        int ticketNr = Convert.ToInt32(words[0]);
+                        double amount = Convert.ToDouble(words[1]);
+                        sql = "INSERT INTO topup (topUpNr, ticketNr, dateOfTrans, amount) VALUES (NULL, @ticketNr, CURRENT_TIMESTAMP, @amount)";
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@ticketNr", ticketNr);
+                        command.Parameters.AddWithValue("@amount", amount);
+                        command.ExecuteNonQuery();
 
 
-                    sql = "UPDATE visitor SET balance = balance + @total WHERE ticketNr = @ticketNr";
-                    command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@total", amount);
-                    command.Parameters.AddWithValue("@ticketNr", ticketNr);
-                    command.ExecuteNonQuery();
+                        sql = "UPDATE visitor SET balance = balance + @total WHERE ticketNr = @ticketNr";
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@total", amount);
+                        command.Parameters.AddWithValue("@ticketNr", ticketNr);
+                        command.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        //TODO Maybe add extra feature here
+                    }
+
+
                 }
             }
             catch
@@ -1686,7 +1721,20 @@ namespace EventManager
             }
             return nrOfRecordsChanged;
         }
-        #endregion 
+        #endregion
+
+        /// <summary>
+        /// Returns the input string with the first character converted to uppercase, or mutates any nulls passed into string.Empty
+        /// </summary>
+        public string FirstLetterToUpperCaseOrConvertNullToEmptyString(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return string.Empty;
+
+            char[] a = s.ToCharArray();
+            a[0] = char.ToUpper(a[0]);
+            return new string(a);
+        }
 
         #region Password Generation
         public static string GetRandomAlphanumericString(int length)

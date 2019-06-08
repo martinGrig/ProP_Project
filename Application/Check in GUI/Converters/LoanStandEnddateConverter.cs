@@ -15,7 +15,7 @@ namespace EventManager.Converters
             if(value != null)
             {
                 int days = (int)value;
-                DateTime enddate = new DateTime(2019, 6, 6);
+                DateTime enddate = new DateTime(2019, 6, 10);
                 int daysleft = (enddate.DayOfYear - DateTime.Now.DayOfYear);
                 if(days < daysleft)
                 {

@@ -46,6 +46,34 @@ namespace EventManager.ViewModels
             }
         }
 
+        private Display _display3;
+        public Display Display3
+        {
+            get
+            {
+                return _display3;
+            }
+            set
+            {
+                _display3 = value;
+                OnPropertyChanged("Display3");
+            }
+        }
+
+        private bool _canSeeDisplay3;
+        public bool CanSeeDisplay3
+        {
+            get
+            {
+                return _canSeeDisplay3;
+            }
+            set
+            {
+                _canSeeDisplay3 = value;
+                OnPropertyChanged("CanSeeDisplay3");
+            }
+        }
+
         private CampingSpot _selectedCampingSpot;
         public CampingSpot SelectedCampingSpot
         {
@@ -103,10 +131,30 @@ namespace EventManager.ViewModels
                     if (_visitor == null)
                     {
                         Display2 = new Display(Brushes.Red, $"There is not a visitor linked to this rfid code", "times", false, true);
+                        _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                        Task.Delay(2000).ContinueWith(_ =>
+                        {
+                            Display2 = new Display(Brushes.Black, $"Scan visitors \nRFID bracelet", "", false, false);
+                            try
+                            {
+                                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+                            }
+                            catch (PhidgetException) { CanSeeDisplay3 = true; Display3 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false); }
+                        });
                     }
                     else
                     {
                         Display2 = new Display(Brushes.Red, $"Visitor does not have a camping reservation", "times", false, true);
+                        _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                        Task.Delay(2000).ContinueWith(_ =>
+                        {
+                            Display2 = new Display(Brushes.Black, $"Scan visitors \nRFID bracelet", "", false, false);
+                            try
+                            {
+                                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+                            }
+                            catch (PhidgetException) { CanSeeDisplay3 = true; Display3 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false); }
+                        });
                     }
                     
                 }
@@ -126,10 +174,31 @@ namespace EventManager.ViewModels
             try
             {
                 _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(GetCampingSpot);
-
+                _mainViewModel._MyRFIDReader.Detach += new DetachEventHandler(DetachRfid);
+                _mainViewModel._MyRFIDReader.Attach += new AttachEventHandler(AttachRfid);
                 _mainViewModel._MyRFIDReader.Open();
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
             }
-            catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
+            catch (PhidgetException) { CanSeeDisplay3 = true; Display3 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false); }
+        }
+
+        private void AttachRfid(object sender, AttachEventArgs e)
+        {
+            CanSeeDisplay3 = false;
+                if (SelectedCampingSpot == null)
+                {
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+                }
+                else
+                {
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                }
+
+        }
+        private void DetachRfid(object sender, DetachEventArgs e)
+        {
+            Display3 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false);
+            CanSeeDisplay3 = true;
         }
 
         private RelayCommand _clearVisitorCommand;
@@ -184,7 +253,11 @@ namespace EventManager.ViewModels
             Display2 = new Display(Brushes.Black, $"Scan visitors \nRFID bracelet", "", false, false);
             _mainViewModel.ResetTimer.Stop();
             SelectedCampingSpot = null;
-            _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+            try
+            {
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+            }
+            catch (PhidgetException) { CanSeeDisplay3 = true; Display3 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false); }
         }
         
     }

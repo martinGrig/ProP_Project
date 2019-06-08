@@ -81,6 +81,34 @@ namespace EventManager.ViewModels
             }
         }
 
+        private bool _canSeeDisplay2;
+        public bool CanSeeDisplay2
+        {
+            get
+            {
+                return _canSeeDisplay2;
+            }
+            set
+            {
+                _canSeeDisplay2 = value;
+                OnPropertyChanged("CanSeeDisplay2");
+            }
+        }
+
+        private Display _display2;
+        public Display Display2
+        {
+            get
+            {
+                return _display2;
+            }
+            set
+            {
+                _display2 = value;
+                OnPropertyChanged("Display2");
+            }
+        }
+
         public CheckinViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -119,11 +147,6 @@ namespace EventManager.ViewModels
 
                             _mainViewModel.dataModel.ShowScanQrCode = true;
                             FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
-                            //var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/ding.mp3");
-                            //waveOut = new WaveOut();
-                            //waveOut.Volume = 0.8F;
-                            //waveOut.Init(reader);
-                            //waveOut.Play();
                             _mainViewModel._MyRFIDReader.Tag -= new RFIDTagEventHandler(CheckIn);
                             _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(LinkRfid);
                             _mainViewModel._MyRFIDReader.AntennaEnabled = true;
@@ -131,12 +154,6 @@ namespace EventManager.ViewModels
                         }
                         else
                         {
-                            var reader = new Mp3FileReader("C:/Users/David/project-p-phase_group17/Application/Check in GUI/Sounds/fart.mp3");
-                            waveOut = new WaveOut();
-                            waveOut.Volume = 0.8F;
-                            waveOut.Init(reader);
-                            waveOut.Play();
-
                             QrImageSource = "/Images/CheckinUnsuccessful.png";
                             FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
                             dispatcherTimer.Start();
@@ -205,7 +222,7 @@ namespace EventManager.ViewModels
                 _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataHelper.CreateTemporaryAccount(TempEmail);
                 if (_mainViewModel.dataModel.SelectedVisitor != null)
                 {
-                    
+
                     SmtpClient client = new SmtpClient();
                     client.Port = 25;
                     client.Host = "smtp.gmail.com";
@@ -218,13 +235,13 @@ namespace EventManager.ViewModels
                     MailMessage mm = new MailMessage("ovelking@gmail.com", $"{TempEmail}", "Temporary MAD Projects Account Creation", $"Welcome visitor To the Board Game event of the Year where you will be anything but Board \n This is your account password: {_mainViewModel.dataHelper.GetVisitorPassword(TempEmail)} for the Event's website http://i415306.hera.fhict.nl/");
                     mm.BodyEncoding = UTF8Encoding.UTF8;
                     mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-                    
+
                     client.SendMailAsync(mm);
 
                     _mainViewModel._MyRFIDReader.Tag -= new RFIDTagEventHandler(CheckIn);
                     _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(LinkRfid);
                     _mainViewModel._MyRFIDReader.AntennaEnabled = true;
-                    QrImageSource = "/Images/waiting.jpg";
+                    QrImageSource = "/Images/CancelOrComplete.png";
                     Display = new Display(System.Windows.Media.Brushes.Black, "Scan RFID Bracelet to link to visitors account", "", true, false);
                     TempEmail = null;
 
@@ -240,15 +257,33 @@ namespace EventManager.ViewModels
         {
             FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
             FinalFrame.Start();
-            QrImageSource = "/Images/ScanQrCode.png";
+            _mainViewModel.dataModel.SelectedVisitor = null;
+            TempEmail = null;
+            QrImageSource = "/Images/FinalQrCode.png";
+            _mainViewModel.dataModel.ShowScanQrCode = false;
             Display = new Display(System.Windows.Media.Brushes.Black, "Scan Or Buy ticket/ Scan RFID Bracelet", "", false, false);
             try
             {
                 _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(CheckIn);
-
+                _mainViewModel._MyRFIDReader.Detach += new DetachEventHandler(DetachRfid);
+                _mainViewModel._MyRFIDReader.Attach += new AttachEventHandler(AttachRfid);
                 _mainViewModel._MyRFIDReader.Open();
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
             }
-            catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
+            catch (PhidgetException) { CanSeeDisplay2 = true; Display2 = new Display(System.Windows.Media.Brushes.Red, "Please connect rfid reader", "", false, false); }
+        }
+
+        private void AttachRfid(object sender, AttachEventArgs e)
+        {
+
+            CanSeeDisplay2 = false;
+            _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+
+        }
+        private void DetachRfid(object sender, DetachEventArgs e)
+        {
+            Display2 = new Display(System.Windows.Media.Brushes.Red, "Please connect rfid reader", "", false, false);
+            CanSeeDisplay2 = true;
         }
 
         public void StopQrScanner(object obj)
@@ -277,57 +312,71 @@ namespace EventManager.ViewModels
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             // logic to hide your image
-            QrImageSource = "/Images/ScanQrCode.png";
+            QrImageSource = "/Images/FinalQrCode.png";
             FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
             dispatcherTimer.Stop();
         }
 
         private void LinkRfid(object sender, RFIDTagEventArgs e)
         {
-            try
+            if (_mainViewModel.dataModel.SelectedVisitor.RfidCode != null)
             {
-                int check = _mainViewModel.dataHelper.SetRfidTag(e.Tag, _mainViewModel.dataModel.SelectedVisitor.TicketNr);
-                if (check == 0)//there is already a visitor linked to this code
+                try
                 {
-                    //What should happen?
-                    Display = new Display(System.Windows.Media.Brushes.Red, "Scanned RFID Bracelet is already linked to visitor, Try again", "times", false, true);
-                }
-                else
-                {
+
+                    int check = _mainViewModel.dataHelper.SetRfidTag(e.Tag, _mainViewModel.dataModel.SelectedVisitor.TicketNr);
+
                     resetTimer.Start();
-                    Display = new Display(System.Windows.Media.Brushes.Green, "Checkin Successful", "check", false, true);
+                    Display = new Display(System.Windows.Media.Brushes.Green, "Checkin Successful, \nLink succesful", "check", false, true);
                     _mainViewModel._MyRFIDReader.Tag -= new RFIDTagEventHandler(LinkRfid);
                     _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+
                 }
-
-
-            }
-            catch (Exception ex)
-            {
-                Display = new Display(System.Windows.Media.Brushes.Red, "Checkin Unsuccessful", "times", false, true);
-                _mainViewModel._MyRFIDReader.AntennaEnabled = false;
-                Task.Delay(1000).ContinueWith(_ =>
+                catch (Exception ex)
                 {
-                    Display = new Display(System.Windows.Media.Brushes.Black, "Scan RFID Bracelet to link to visitors account", "", true, false);
-                    _mainViewModel._MyRFIDReader.AntennaEnabled = true;
-                }
-);
-                
+                    Display = new Display(System.Windows.Media.Brushes.Red, "Scanned RFID Bracelet is already linked to a visitor's, Try again", "times", false, true);
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                    Task.Delay(1000).ContinueWith(_ =>
+                    {
+                        Display = new Display(System.Windows.Media.Brushes.Black, "Scan RFID Bracelet to link to visitors account", "", true, false);
+                        try
+                        {
+                            _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+                        }
+                        catch (PhidgetException) { CanSeeDisplay2 = true; Display2 = new Display(System.Windows.Media.Brushes.Red, "Please connect rfid reader", "", false, false); }
+                    }
+    );
 
+
+                }
+                finally
+                {
+                    _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataModel.SelectedVisitor;
+
+                }
             }
-            finally
+            else
             {
-                _mainViewModel.dataModel.SelectedVisitor = _mainViewModel.dataModel.SelectedVisitor;
-                
+                Display = new Display(System.Windows.Media.Brushes.Red, "RFID Bracelet is already linked to visitor", "times", false, true);
+                _mainViewModel._MyRFIDReader.Tag -= new RFIDTagEventHandler(LinkRfid);
+                _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                resetTimer.Start();
             }
+
 
         }
 
         private void Reset(object sender, EventArgs e)
         {
             _mainViewModel.dataModel.SelectedVisitor = null;
-            _mainViewModel._MyRFIDReader.AntennaEnabled = true;
-            QrImageSource = "/Images/ScanQrCode.png";
+            try
+            {
+                _mainViewModel._MyRFIDReader.Tag -= new RFIDTagEventHandler(CheckIn);
+                _mainViewModel._MyRFIDReader.Tag -= new RFIDTagEventHandler(LinkRfid);
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+            }
+            catch (PhidgetException) { CanSeeDisplay2 = true; Display2 = new Display(System.Windows.Media.Brushes.Red, "Please connect rfid reader", "", false, false); }
+            QrImageSource = "/Images/FinalQrCode.png";
             _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(CheckIn);
             Display = new Display(System.Windows.Media.Brushes.Black, "Scan Or Buy ticket/ Scan RFID Bracelet", "", false, false);
             _mainViewModel.dataModel.ShowScanQrCode = false;
@@ -350,12 +399,14 @@ namespace EventManager.ViewModels
                     if (temp.IsScanned == false && temp.IsValid)
                     {
                         //reset
+                        _mainViewModel.dataHelper.CheckIn(temp.TicketNr);
                         Display = new Display(System.Windows.Media.Brushes.Green, "Checkin Successful", "check", false, true);
+                        _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                         resetTimer.Start();
                     }
                     else
                     {
-                        Display = new Display(System.Windows.Media.Brushes.Red, "Checkin Unsuccessful", "times", false, true);
+                        Display = new Display(System.Windows.Media.Brushes.Red, "Checkin Unsuccessful, \nVisitor already Checked In", "times", false, true);
                         resetTimer.Interval = new TimeSpan(0, 0, 1);
                         resetTimer.Start();
                     }
@@ -373,6 +424,6 @@ namespace EventManager.ViewModels
 
             }
         }
-        
+
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using EventManager.Views;
 using Phidget22;
 using Phidget22.Events;
+using System.Windows.Media;
 
 namespace EventManager.ViewModels
 {
@@ -19,8 +20,14 @@ namespace EventManager.ViewModels
 
     public class MainViewModel : ObservableObject
     {
+
+
+
+        DispatcherTimer timer;
+        int attemptCount;
+        int timeTillRetry;
         public DispatcherTimer ResetTimer { get; private set; }
-        private bool isConnected;
+        public bool isConnected {  get; set; }
         public RFID _MyRFIDReader;
         private WaveOut waveOut;
         private DispatcherTimer databaseChecker;
@@ -70,11 +77,43 @@ namespace EventManager.ViewModels
             databaseChecker.Tick += new EventHandler(CheckDatabaseConnection);
             databaseChecker.IsEnabled = true;
             databaseChecker.Start();
-            
 
+            timeTillRetry = 10;
+            attemptCount = 0;
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Tick += new EventHandler(UpdateTime);
+            Display = new Display(Brushes.Black, "0", "", false, false);
             dataModel._jobs = new List<Job>();
             dataModel.Jobs = dataModel._jobs;
             isConnected = true;
+        }
+
+        private Display _display;
+        public Display Display
+        {
+            get
+            {
+                return _display;
+            }
+            set
+            {
+                _display = value;
+                OnPropertyChanged("Display");
+            }
+        }
+        private bool _canSeeDisplay;
+        public bool CanSeeDisplay
+        {
+            get
+            {
+                return _canSeeDisplay;
+            }
+            set
+            {
+                _canSeeDisplay = value;
+                OnPropertyChanged("CanSeeDisplay");
+            }
         }
         public RelayCommand ChangePageCommand
         {
@@ -121,6 +160,8 @@ namespace EventManager.ViewModels
 
         private void ChangeViewModel(IPageViewModel viewModel)
         {
+            ResetTimer.Stop();
+            ResetTimer = new DispatcherTimer();
             _MyRFIDReader.Close();
             _MyRFIDReader = new RFID();
 
@@ -177,21 +218,103 @@ namespace EventManager.ViewModels
             
         }
 
+
+
         private void CheckDatabaseConnection(object sender, EventArgs e)
         {
             bool check = dataHelper.IsServerConnected();
+            if (check == false)
+            {
+                databaseChecker.Stop();
+                Display = new Display(Brushes.Red, "Conection attempt fail", "", false, false);
+                Display = Display;
+            }
+            else
+            {
+                Display = new Display(Brushes.Green, "Conection succesfull", "", false, false);
+                Display = Display;
+            }
             if (check != isConnected)
             {
                 if(check == false)
                 {
-                    PopUpView popUp = new PopUpView(dataHelper);
-                    popUp.Height = 200;
-                    popUp.Width = 400;
-                    popUp.ShowDialog();
+                    //Show display
+                    databaseChecker.Stop();
+                    timer.Start();
+                    Display = new Display(Brushes.Red, "Conection attempt fail", "", false, false);
+                    Display = Display;
+                    CanSeeDisplay = true;
+                }
+                else
+                {
+                    Display = new Display(Brushes.Green, "Conection succesfull", "", false, false);
+                    Display = Display;
+                    CanSeeDisplay = false;
+                    timer.Stop();
+                    databaseChecker.Start();
+                    timeTillRetry = 10;
                 }
                 isConnected = check;
             }
+            
         }
+
+            
+          
+
+        private void UpdateTime(object sender, EventArgs e)
+        {
+            timeTillRetry -= 1;
+            if (timeTillRetry <= 0)
+            {
+                CheckDatabaseConnection(null, null);
+                if (timeTillRetry == -1)
+                {
+                    if (attemptCount == 0)
+                    {
+                        timeTillRetry = 10;
+                    }
+                    else if (attemptCount < 4)
+                    {
+                        timeTillRetry = 30;
+                    }
+                    else
+                    {
+                        timeTillRetry = 60;
+                    }
+                    attemptCount++;
+                    Display.Text = $"{timeTillRetry.ToString()}";
+                    Display = Display;
+
+                }
+
+            }
+            else
+            {
+                Display.Text = $"{timeTillRetry.ToString()}";
+                Display = Display;
+            }
+
+        }
+
+        private RelayCommand _retryConnectionCommand;
+        public RelayCommand RetryConnectionCommand
+        {
+            get
+            {
+                if (_retryConnectionCommand == null)
+                {
+                    _retryConnectionCommand = new RelayCommand(new Action<object>(RetryConnection));
+                }
+                return _retryConnectionCommand;
+            }
+        }
+
+        private void RetryConnection(object obj)
+        {
+            CheckDatabaseConnection(null, null);
+        }
+
     }
     
 }

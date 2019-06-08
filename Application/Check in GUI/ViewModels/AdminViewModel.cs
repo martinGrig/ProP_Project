@@ -247,6 +247,8 @@ namespace EventManager.ViewModels
 
         public void GetDatabaseStuff()
         {
+            NewFirstName = null;
+            NewLastName = null;
             _employees = _mainViewModel.dataHelper.GetEmployees();
             _mainViewModel.dataModel.LoanStands = _mainViewModel.dataHelper.GetLoanStands();
             _mainViewModel.dataModel.Shops = _mainViewModel.dataHelper.GetShops();

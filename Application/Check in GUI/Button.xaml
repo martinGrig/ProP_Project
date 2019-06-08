@@ -216,6 +216,8 @@
           Value="true" />
         <Setter Property="OverridesDefaultStyle"
           Value="true" />
+        <Setter Property="Opacity"
+          Value="0.75" />
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
         <Setter Property="Template">
 
@@ -223,19 +225,19 @@
                 <ControlTemplate TargetType="Button">
                     <Grid>
                         <StackPanel Orientation="Horizontal">
-                            <fa:FontAwesome Foreground="Black" FontSize="50" Name="icon" Icon="SignOut" VerticalAlignment="Center" Rotation="180"/>
+                            <Image Source="Images/logout.png" />
                         </StackPanel>
                     </Grid>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" TargetName="icon" Value="0.56"/>
+                            <Setter Property="Opacity"  Value="0.56"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" TargetName="icon" Value="#ff9659"/>
+                            <Setter Property="Opacity"  Value="1"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Foreground" TargetName="icon" Value="#ff650c"/>
+                            <Setter Property="Opacity"  Value="0.8"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
 

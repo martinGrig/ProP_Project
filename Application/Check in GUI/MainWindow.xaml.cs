@@ -26,6 +26,11 @@ namespace EventManager
         {
             InitializeComponent();
         }
-        
+
+        private void SWWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainViewModel vm = (MainViewModel)DataContext;
+            vm.CheckIn.StopQrScannerCommand.Execute(null);
+        }
     }
 }

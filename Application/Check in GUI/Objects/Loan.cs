@@ -30,7 +30,7 @@ namespace EventManager.Objects
             Total = total;
             Qauntity = qauntity;
             ItemId = itemId;
-            if(DateTime.Compare(DateTime.Now, EndDate) > 0)
+            if(((TimeSpan)(DateTime.Now - EndDate)).Days >= 1)
             {
                 IsOverdue = true;
             }

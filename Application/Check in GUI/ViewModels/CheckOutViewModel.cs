@@ -52,6 +52,34 @@ namespace EventManager.ViewModels
             }
         }
 
+        private bool _canSeeDisplay2;
+        public bool CanSeeDisplay2
+        {
+            get
+            {
+                return _canSeeDisplay2;
+            }
+            set
+            {
+                _canSeeDisplay2 = value;
+                OnPropertyChanged("CanSeeDisplay2");
+            }
+        }
+
+        private Display _display2;
+        public Display Display2
+        {
+            get
+            {
+                return _display2;
+            }
+            set
+            {
+                _display2 = value;
+                OnPropertyChanged("Display2");
+            }
+        }
+
         private List<Loan> _loans;
         public IEnumerable<Loan> Loans
         {
@@ -111,16 +139,41 @@ namespace EventManager.ViewModels
 
         public void Start()
         {
+            Dm = _mainViewModel.dataModel;
+            Visitor = null;
+            Loans = new List<Loan>();
             Display = new Display(Brushes.Black, "Scan vistors \nRFID Bracelet", "", true, false);
             _mainViewModel.ResetTimer.Tick += new EventHandler(Reset);
             _mainViewModel.ResetTimer.Interval = new TimeSpan(0, 0, 3);
             try
             {
                 _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(GetLoans);
-
+                _mainViewModel._MyRFIDReader.Detach += new DetachEventHandler(DetachRfid);
+                _mainViewModel._MyRFIDReader.Attach += new AttachEventHandler(AttachRfid);
                 _mainViewModel._MyRFIDReader.Open();
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
             }
-            catch (PhidgetException) { System.Windows.Forms.MessageBox.Show("Please connect rfid reader"); }
+            catch (PhidgetException) { CanSeeDisplay2 = true; Display2 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false); }
+        }
+
+        private void AttachRfid(object sender, AttachEventArgs e)
+        {
+            
+                CanSeeDisplay2 = false;
+                if (Visitor == null)
+                {
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+                }
+                else
+                {
+                    _mainViewModel._MyRFIDReader.AntennaEnabled = false;
+                }
+
+        }
+        private void DetachRfid(object sender, DetachEventArgs e)
+        {
+            Display2 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false);
+            CanSeeDisplay2 = true;
         }
 
         public void GetLoans(object sender, RFIDTagEventArgs e)
@@ -138,7 +191,7 @@ namespace EventManager.ViewModels
                         {
                             Display = new Display(Brushes.Black, "Visitor has no unreturned loaned items", "", false, false);
                             ButtonTempText = "Temporarly check visitor out";
-                            ButtonInvalidText = "Permantly check visitor out";
+                            ButtonInvalidText = "Permanently check visitor out";
                             _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                         }
                         else if (Loans.Where(l => l.IsOverdue).Count() > 0)
@@ -155,22 +208,22 @@ namespace EventManager.ViewModels
                                     days = ((TimeSpan)(loan.EndDate - loan.StartDate)).Days;
                                     pricePerDay = (loan.Total / loan.Qauntity) / days;
                                     daysOverdue = ((TimeSpan)(DateTime.Now - loan.EndDate)).Days;
-                                    extra = pricePerDay * daysOverdue;
+                                    extra = pricePerDay * daysOverdue*loan.Qauntity;
                                     totalExtra += extra;
                                 }
                             }
 
                             if (Visitor.Balance >= totalExtra)
                             {
-                                Display = new Display(Brushes.Orange, "Visitor must return overdue items", "", false, false);
+                                Display = new Display(Brushes.Orange, $"Visitor must return overdue items.\n Must pay:{totalExtra}", "", false, false);
                                 _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                                 ButtonTempText = "Return items & Temporarly check visitor out";
-                                ButtonInvalidText = "Return items & Permantly check visitor out";
+                                ButtonInvalidText = "Return items & Permanently check visitor out";
                             }
                             else
                             {
                                 //Start timer but increase the interval
-                                Display = new Display(Brushes.Red, "Visitor does not have enough funds to pay for overdue items", "", false, false);
+                                Display = new Display(Brushes.Red, $"Visitor does not have enough funds to pay for overdue items.\n Must pay:{totalExtra}", "", false, false);
                                 _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                                 ButtonTempText = "";
                                 ButtonInvalidText = "";
@@ -183,7 +236,7 @@ namespace EventManager.ViewModels
                         {
                             Display = new Display(Brushes.Black, "Visitor must return items before checking out", "", false, false);
                             ButtonTempText = "Return items & Temporarly check visitor out";
-                            ButtonInvalidText = "Return items & Permantly check visitor out";
+                            ButtonInvalidText = "Return items & Permanently check visitor out";
                         }
                     }
                     else
@@ -249,7 +302,6 @@ namespace EventManager.ViewModels
                     dh.ReturnLoanedItems(Loans.ToList(), Visitor);
                     dh.TemporaryCheckOut(Visitor.TicketNr);
                     Visitor = _mainViewModel.dataHelper.GetVisitor(Visitor.TicketNr);
-                    Display = new Display(Brushes.Green, $"Visitor succesfully Permantly checked out, Return amount:{Visitor.Balance}", "", false, false);
                     _mainViewModel.ResetTimer.Interval = new TimeSpan(0, 0, 10);
                     _mainViewModel.ResetTimer.Start();
                 }
@@ -274,12 +326,12 @@ namespace EventManager.ViewModels
 
         private void CheckOutMarkInvalid(object obj)
         {
-            if (ButtonInvalidText == "Permantly check visitor out")
+            if (ButtonInvalidText == "Permanently check visitor out")
             {
                 try
                 {
                     dh.MarkVisitorAccountAsInvalid(Visitor.TicketNr);
-                    Display = new Display(Brushes.Green, "Visitor succesfully Permantly checked out", "", false, false);
+                    Display = new Display(Brushes.Green, "Visitor succesfully Permanently checked out", "", false, false);
                 }
                 catch
                 {
@@ -290,7 +342,7 @@ namespace EventManager.ViewModels
                     _mainViewModel.ResetTimer.Start();
                 }
             }
-            else if (ButtonTempText == "Return items & Permantly check visitor out")
+            else if (ButtonInvalidText == "Return items & Permanently check visitor out")
             {
                 //TODO What happens when visitor has overdue items
                 try
@@ -304,7 +356,7 @@ namespace EventManager.ViewModels
                 }
                 catch
                 {
-
+                    System.Windows.Forms.MessageBox.Show("Test");
                 }
                
             }
@@ -320,7 +372,11 @@ namespace EventManager.ViewModels
             {
                 _mainViewModel.ResetTimer.Interval = new TimeSpan(0, 0, 3);
             }
-            _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+            try
+            {
+                _mainViewModel._MyRFIDReader.AntennaEnabled = true;
+            }
+            catch (PhidgetException) { CanSeeDisplay2 = true; Display2 = new Display(Brushes.Red, "Please connect rfid reader", "", false, false); }
         }
     }
 }

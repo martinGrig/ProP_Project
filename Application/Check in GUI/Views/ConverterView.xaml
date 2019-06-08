@@ -11,6 +11,7 @@
         <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
         <converters:LogFileRegExConverter x:Key="RegExConverter"/>
         <converters:LogLineConverter x:Key="ButtonEnabled"/>
+        <converters:NullToCollapsed x:Key="NullToCollapsed"/>
         <Style x:Key="_ListBoxItemStyle" TargetType="ListBoxItem">
             <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
             <Setter Property="Margin" Value="0,0.25"/>
@@ -37,16 +38,23 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Viewbox>
+        <Border Height="450" Width="900">
+            <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Margin="0 10 0 0">
             <Button Background="Transparent" Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10 0 10 0" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Apps}" Style="{StaticResource BackButton}" Visibility="{Binding _mainViewModel.dataModel.ShowBackButton, Converter={StaticResource booleanToVisibilityConverter}}"/>
             <Button VerticalAlignment="Top" Width="50" Height="40" Margin="10 10 0 0" HorizontalAlignment="Center" Command="{Binding _mainViewModel.ChangePageCommand}" CommandParameter="{Binding _mainViewModel.Login}"  Style="{StaticResource logoutbutton}"/>
         </StackPanel>
-        <Viewbox Width="Auto" Grid.Column="1">
+                <Button Height="25" Width="26" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource DeleteButton}" Visibility="{Binding LogFileTitle, Converter={StaticResource NullToCollapsed}}" Command="{Binding ClearFileCommand}" />
+                <Viewbox Width="Auto" Grid.Row="1" Grid.Column="1">
             <Border Height="400"  Margin="10" >
                 <GroupBox Header="Transaction File Converter" Style="{StaticResource ThirdGroupbox}">
                     <Grid >
@@ -108,5 +116,8 @@
 
         </Viewbox>
     </Grid>
+        </Border>
+    </Viewbox>
+    
 
 </UserControl>

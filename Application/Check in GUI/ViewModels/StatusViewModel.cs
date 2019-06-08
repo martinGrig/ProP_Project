@@ -33,15 +33,19 @@ namespace EventManager.ViewModels
             }
             set
             {
-                if (_visitor.IsScanned == true)
+                if (Visitor != null)
                 {
-                    _visitorStatus = "Checked In";
+                    if (_visitor.IsScanned == true)
+                    {
+                        _visitorStatus = "Checked In";
+                    }
+                    else
+                    {
+                        _visitorStatus = "Not checked in";
+                    }
+                    OnPropertyChanged("VisitorStatus");
                 }
-                else
-                {
-                    _visitorStatus = "Not checked in";
-                }
-                OnPropertyChanged("VisitorStatus");
+
             }
         }
         public IEnumerable<string> Transactions
@@ -55,6 +59,10 @@ namespace EventManager.ViewModels
                 _transactions = value.ToList();
                 OnPropertyChanged("Transactions");
             }
+        }
+        private int SortByDay(string first,string second)
+        {
+            return first.CompareTo(second);
         }
         public string TotalVisitors
         {
@@ -235,7 +243,7 @@ namespace EventManager.ViewModels
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("Test");
+
             }
 
         }
@@ -286,11 +294,34 @@ namespace EventManager.ViewModels
         }
         public void Start()
         {
+            _mainViewModel.ResetTimer.Start();
+            _mainViewModel.ResetTimer.Tick += new EventHandler(Reset);
+            _mainViewModel.ResetTimer.Interval = new TimeSpan(0, 0, 30);
             TotalVisitors = _mainViewModel.dataHelper.GetAllVisitors().ToString();
             TotalBalance = _mainViewModel.dataHelper.SumOfAllVisitorBalance().ToString();
             SpentMoney = _mainViewModel.dataHelper.TotalMoneySpentByVisitor().ToString();
             BookedCampingSpots = _mainViewModel.dataHelper.AmountOfBookedCampingSpots().ToString();
             FreeCampingSpots = _mainViewModel.dataHelper.AmountOfFreeCampSpaces().ToString();
+            Visitor = null;
+            AmountEarnedPerItem = null;
+            AmountEarnedPerLoanable = null;
+            AmountEarnedPerLoanStand = null;
+            AmountEarnedPerShop = null;
+            VisitorStatus = "";
+            Transactions = new List<string>();
+
+        }
+        private void Reset(object sender, EventArgs eventArgs)
+        {
+            if (_mainViewModel.isConnected)
+            {
+                TotalVisitors = _mainViewModel.dataHelper.GetAllVisitors().ToString();
+                TotalBalance = _mainViewModel.dataHelper.SumOfAllVisitorBalance().ToString();
+                SpentMoney = _mainViewModel.dataHelper.TotalMoneySpentByVisitor().ToString();
+                BookedCampingSpots = _mainViewModel.dataHelper.AmountOfBookedCampingSpots().ToString();
+                FreeCampingSpots = _mainViewModel.dataHelper.AmountOfFreeCampSpaces().ToString();
+            }
+
         }
     }
 }

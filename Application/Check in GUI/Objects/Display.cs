@@ -7,10 +7,11 @@ using System.Windows.Media;
 
 namespace EventManager.Objects
 {
-    public class Display
+    public class Display : ObservableObject
     {
         public Brush Color { get; private set; }
-        public string Text { get; private set; }
+        private string text;
+        public string Text { get { return text; } set { text = value; OnPropertyChanged("Text"); } }
         public string Icon { get; private set; }
         public bool ShowImage { get; private set; }
         public bool ShowIcon { get; private set; }

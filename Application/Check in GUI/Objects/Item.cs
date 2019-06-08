@@ -39,7 +39,7 @@ namespace EventManager
                 }
             }
         }
-        public double SubTotal {
+        public virtual double SubTotal {
             get
             {
                 return Quantity*Price;
@@ -109,10 +109,5 @@ namespace EventManager
                 Quantity-= 1;
             }
         }
-        //public List<string> GetSelectedItemInfo()
-        //{
-        //    int quanity;
-        //    foreach()
-        //}
     }
 }

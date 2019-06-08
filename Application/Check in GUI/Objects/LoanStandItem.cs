@@ -8,6 +8,14 @@ namespace EventManager.Objects
 {
     public class LoanStandItem : Item
     {
+        public override double SubTotal
+        {
+            get { return base.Quantity * base.Price * Days; }
+            set
+            {
+                base.SubTotal = value;
+            }
+        }
         private int _days;
         public int Days
         {
@@ -26,7 +34,7 @@ namespace EventManager.Objects
                 }
             }
         }
-        public LoanStandItem (string _name, double _price, int _stock, string fileName, int _id) : base(_name, _price, _stock, fileName, _id)
+        public LoanStandItem(string _name, double _price, int _stock, string fileName, int _id) : base(_name, _price, _stock, fileName, _id)
         {
             Days = 1;
         }
@@ -35,10 +43,10 @@ namespace EventManager.Objects
         {
             Days++;
         }
-        
+
         public void DecreaseDays()
         {
-            if(Days-1 >= 1)
+            if (Days - 1 >= 1)
             {
                 Days--;
             }
