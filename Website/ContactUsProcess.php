@@ -4,7 +4,7 @@ $email = $_POST['email'];
 $number = $_POST['number'];
 $comment = $_POST['comment'];
 
-$to = 'prop17team@hotmail.com'; // note the comma
+$to = 'madprojects17@gmail.com'; // note the comma
 
 // Subject
 $subject = 'Contacting us';
@@ -20,7 +20,6 @@ $message = "
 <p>Email: $email</p>
 <p>Telephone number: $number</p>
 <p>Message: $comment</p>
-<img src=\"https://www.w3schools.com/images/w3schools_green.jpg\" alt=\"W3Schools.com\">
 </body>
 </html>
 ";

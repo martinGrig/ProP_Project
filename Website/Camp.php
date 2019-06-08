@@ -34,13 +34,25 @@ session_start();
                     <img src="images/spots.png" style="width:50%">
                 </div>
                 <form name="Camp-form"  action="CampProcess.php" method="post">
+                <h4>
+                &#160;
+                &#160;
+                &#160;
+                &#160;
+                &#160;
+                &#160;
+                &#160;
+                &#160;
+                &#160;
                     <select name="spots">
                         <option value="A">SPOT A</option>
                         <option value="B">SPOT B</option>
                         <option value="C">SPOT C</option>
                         <option value="D">SPOT D</option>
                         <option value="E">SPOT E</option>
-                    </select><br>
+                    </select>
+                    Free Spots
+                </h4>
                     <select name="people">
                         <option value="1">1 Person</option>
                         <option value="2">2 Persons</option>
@@ -92,8 +104,7 @@ session_start();
                     WE ACCEPT
                 </h2>
                 <h3>
-                    <img src="images/weaccept
-                    " width="200" height="75">
+                    <img src="images/weaccept.png" width="200" height="75">
                 </h3>
             </div>
         </div>

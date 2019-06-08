@@ -1,13 +1,1 @@
-to do:
-!back end:
-- show how many empty camp places are available
-- show price for selected number of people ?
-- send emails (usecase create account)
-
-(pdf with screenshots of work for client)
-
-!front end:
-- make better review showing
-- ability to pay right now for camp or later
-(a box were you can tick if you wanna pay during reservation)
-
+show campspot
