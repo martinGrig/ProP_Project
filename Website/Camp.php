@@ -35,23 +35,28 @@ session_start();
                 </div>
                 <form name="Camp-form"  action="CampProcess.php" method="post">
                 <h4>
-                &#160;
-                &#160;
-                &#160;
-                &#160;
-                &#160;
-                &#160;
-                &#160;
-                &#160;
-                &#160;
-                    <select name="spots">
-                        <option value="A">SPOT A</option>
-                        <option value="B">SPOT B</option>
-                        <option value="C">SPOT C</option>
-                        <option value="D">SPOT D</option>
-                        <option value="E">SPOT E</option>
-                    </select>
-                    Free Spots
+
+                <?php
+                $username = 'dbi410102';
+                $password = 'prop17';
+                $con = new PDO('mysql:host=studmysql01.fhict.local;dbname=dbi410102', $username, $password);
+
+                $sql = "select * from campspot where reservedPlaces < capacity";
+                $statement = $con->prepare($sql);
+                $statement->execute();
+                $result = $statement->fetchAll();
+                echo "<select name=\"spots\" onchange=\"campchanged()\">";
+                for ($i = 0; $i < sizeof($result); $i++) {
+                  echo "<option value=\"";
+                  echo $result[$i]['name'];
+                  echo "\">SPOT ";
+                  echo $result[$i]['name'];
+                  echo "</option>";
+                }
+                echo "</select>";
+
+                ?>
+
                 </h4>
                     <select name="people">
                         <option value="1">1 Person</option>

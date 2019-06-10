@@ -46,7 +46,7 @@ session_start();
                   echo "<h3>Balance: " .  $balance . "€</h3>";
                   echo "
                   <input type=\"button\" value=\"Top Up Balance\" onclick=\"window.location.href='TopUp.php'\">
-                  <input type=\"button\" value=\"Reserve A Camp Spot\" onclick=\"window.location.href='Camp.php'\">
+                  <input type=\"button\" value=\"Reserve Camp Spot\" onclick=\"window.location.href='Camp.php'\">
                   ";
                 }
                 ?>
