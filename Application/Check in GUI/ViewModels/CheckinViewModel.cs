@@ -27,7 +27,6 @@ namespace EventManager.ViewModels
 {
     public class CheckinViewModel : ObservableObject, IPageViewModel
     {
-        WaveOut waveOut;
         private FilterInfoCollection CaptureDevice;
         private VideoCaptureDevice FinalFrame;
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
@@ -150,7 +149,7 @@ namespace EventManager.ViewModels
                             _mainViewModel._MyRFIDReader.Tag -= new RFIDTagEventHandler(CheckIn);
                             _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(LinkRfid);
                             _mainViewModel._MyRFIDReader.AntennaEnabled = true;
-                            Display = new Display(System.Windows.Media.Brushes.Black, "Scan RFID Bracelet to link to visitors account", "", true, false);
+                            Display = new Display(System.Windows.Media.Brushes.Black, "Scan RFID Bracelet to \nLink to visitors account", "", true, false);
                         }
                         else
                         {
@@ -242,7 +241,7 @@ namespace EventManager.ViewModels
                     _mainViewModel._MyRFIDReader.Tag += new RFIDTagEventHandler(LinkRfid);
                     _mainViewModel._MyRFIDReader.AntennaEnabled = true;
                     QrImageSource = "/Images/CancelOrComplete.png";
-                    Display = new Display(System.Windows.Media.Brushes.Black, "Scan RFID Bracelet to link to visitors account", "", true, false);
+                    Display = new Display(System.Windows.Media.Brushes.Black, "Scan RFID Bracelet to \nLink to visitors account", "", true, false);
                     TempEmail = null;
 
                 }
@@ -334,7 +333,7 @@ namespace EventManager.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    Display = new Display(System.Windows.Media.Brushes.Red, "Scanned RFID Bracelet is already linked to a visitor's, Try again", "times", false, true);
+                    Display = new Display(System.Windows.Media.Brushes.Red, "Scanned RFID Bracelet is already \nlinked to a visitor's,\nTry again", "times", false, true);
                     _mainViewModel._MyRFIDReader.AntennaEnabled = false;
                     Task.Delay(1000).ContinueWith(_ =>
                     {
@@ -413,7 +412,7 @@ namespace EventManager.ViewModels
                 }
                 else
                 {
-                    Display = new Display(System.Windows.Media.Brushes.Red, "Visitor not recognised, try again", "times", false, true);
+                    Display = new Display(System.Windows.Media.Brushes.Red, "Visitor not recognised,\nTry again", "times", false, true);
                     resetTimer.Interval = new TimeSpan(0, 0, 1);
                     resetTimer.Start();
                 }

@@ -6,13 +6,13 @@
              xmlns:converters="clr-namespace:EventManager.Converters"
              xmlns:local="clr-namespace:EventManager.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="580" d:DesignWidth="900">
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
         <converters:TextToEnabled x:Key="TextToEnabled"/>
     </UserControl.Resources>
     <Viewbox >
-        <Grid Width="900">
+        <Grid Width="1160" Margin="0 0 10 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -61,7 +61,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -78,18 +78,18 @@
             </GroupBox>
 
 
-            <GroupBox Margin="5,10,10,5" Header="Camping" Style="{StaticResource SecondGroupbox}" Grid.Column="3" Grid.Row="1" Grid.RowSpan="1">
+            <GroupBox Margin="5,10,10,5" Header="Camping" Style="{StaticResource FirstGroupbox}" Grid.Column="3" Grid.Row="1" Grid.RowSpan="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Amount of booked camping spots:" Grid.Row="0"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
-                    <TextBlock Text="Amount of free camping spots:" Grid.Row="1"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Text="Booked Camping Spots:" Grid.Row="0"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Text="Free Camping Spots:" Grid.Row="1"  Grid.Column="0" Style="{StaticResource HeaderText}"/>
                     <TextBox Grid.Column="1" Grid.Row="0" Height="28" Style="{StaticResource ReadOnlyTextBox}"  Text="{Binding BookedCampingSpots, Mode=OneWay}"/>
                     <TextBox Grid.Column="1" Grid.Row="1" Height="28" Style="{StaticResource ReadOnlyTextBox}"  Text="{Binding FreeCampingSpots, Mode=OneWay}"/>
                 </Grid>
@@ -112,7 +112,7 @@
                     <Button IsEnabled="{Binding ElementName=tbShopId, Path=Text, Converter={StaticResource TextToEnabled}}" Content="Find Shop" Grid.Column="2" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="9" Height="30" Command="{Binding GetShopEarningsCommand}" CommandParameter="{Binding ElementName=tbShopId, Path=Text, Mode=OneWay}"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Margin="5,5,10,5" Header="Amount earned per product" Style="{StaticResource ThirdGroupbox}" Grid.Column="3" Grid.Row="2" Grid.RowSpan="1">
+            <GroupBox Margin="5,5,10,5" Header="Amount earned per product" Style="{StaticResource FifthGroupbox}" Grid.Column="3" Grid.Row="2" Grid.RowSpan="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -131,7 +131,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox Margin="5,5,5,10" Header="Amount earned per Loan stand" Style="{StaticResource FifthGroupbox}" Grid.Column="2" Grid.Row="3" Grid.RowSpan="1">
+            <GroupBox Margin="5,5,5,10" Header="Amount earned per Loan stand" Style="{StaticResource ThirdGroupbox}" Grid.Column="2" Grid.Row="3" Grid.RowSpan="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -149,7 +149,7 @@
                     <Button IsEnabled="{Binding ElementName=tbLoanStandId, Path=Text, Converter={StaticResource TextToEnabled}}" Content="Find Loan Stand" Grid.Column="2" Grid.Row="2" Style="{StaticResource ButtonTest}" Margin="9" Height="30" Command="{Binding GetLoanStandEarningsCommand}" CommandParameter="{Binding ElementName=tbLoanStandId, Path=Text, Mode=OneWay}"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Margin="5,5,10,10" Header="Amount earned per Loanable" Style="{StaticResource FirstGroupbox}" Grid.Column="3" Grid.Row="3" Grid.RowSpan="1">
+            <GroupBox Margin="5,5,10,10" Header="Amount earned per Loanable" Style="{StaticResource ThirdGroupbox}" Grid.Column="3" Grid.Row="3" Grid.RowSpan="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

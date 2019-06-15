@@ -319,6 +319,9 @@
     <Resource Include="Images\logout.png" />
     <Resource Include="Images\CancelOrComplete.png" />
     <Resource Include="Images\FinalQrCode.png" />
+    <None Include="Resources\fart.mp3" />
+    <None Include="Resources\error.wav" />
+    <None Include="Resources\correct.wav" />
     <Content Include="Sounds\ding.mp3" />
     <Content Include="Sounds\ele.mp3" />
     <Content Include="Sounds\fart.mp3" />

@@ -234,7 +234,7 @@ namespace EventManager.ViewModels
                 try
                 {
                     _mainViewModel.dataHelper.CreatePurchase(temp, Dm.SelectedItems.ToList(), SelectedShop.ID);
-                    _receipt.Add("Shop: blablabla");
+                    _receipt.Add($"Shop: {SelectedShop.Name}");
                     _receipt.Add($"Customer: {temp.FirstName} {temp.LastName}");
                     _receipt.Add(DateTime.Now.ToShortDateString());
                     _receipt.Add("-----------------------------");
@@ -244,7 +244,7 @@ namespace EventManager.ViewModels
                         if (shopItem.IsFood)
                         {
                             _receipt.Add($"Item: {shopItem.Name} Price: {shopItem.Price} Quantity: {shopItem.Quantity}");
-                            _receipt.Add($"     Subtotal: {shopItem.SubTotal}");
+                            _receipt.Add($"Subtotal: {shopItem.SubTotal}");
                         }
                     }
                     _receipt.Add("Beverages:");
@@ -253,11 +253,12 @@ namespace EventManager.ViewModels
                         if (!shopItem.IsFood)
                         {
                             _receipt.Add($"Item {shopItem.Name} Price {shopItem.Price} Quantity {shopItem.Quantity}");
-                            _receipt.Add($"     Subtotal: {shopItem.SubTotal}");
+                            _receipt.Add($"Subtotal: {shopItem.SubTotal}");
                         }
                     }
-                    Display = new Display(Brushes.Green, "Transaction Complete \nItems successfully purchased", "check", false, true);
+                    _receipt.Add("-----------------------------");
                     _receipt.Add($"Total {Dm.SelectedItems.Sum(x => x.SubTotal)}");
+                    Display = new Display(Brushes.Green, "Transaction Complete \nItems successfully purchased", "check", false, true);
                     Receipt = _receipt;
                     Dm.Items = dh.GetItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedShop.ID);
                     Dm._selectedItems.Clear();

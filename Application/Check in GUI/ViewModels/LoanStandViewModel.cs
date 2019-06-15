@@ -513,30 +513,19 @@ namespace EventManager.ViewModels
                     {
                         _mainViewModel.dataHelper.StartLoan(Visitor, SelectedItems.ToList(), SelectedLoanStand.ID);
                         Display = new Display(Brushes.Green, "Transaction Complete", "check", false, true);
-                        //_receipt.Add("Shop: blablabla");
-                        //_receipt.Add($"Customer: {temp.FirstName} {temp.LastName}");
-                        //_receipt.Add(DateTime.Now.ToShortDateString());
-                        //_receipt.Add("-----------------------------");
-                        //_receipt.Add("Food:");
-                        //foreach (ShopItem shopItem in Dm.SelectedItems)
-                        //{
-                        //    if (shopItem.IsFood)
-                        //    {
-                        //        _receipt.Add($"Item: {shopItem.Name} Price: {shopItem.Price} Quantity: {shopItem.Quantity}");
-                        //        _receipt.Add($"     Subtotal: {shopItem.SubTotal}");
-                        //    }
-                        //}
-                        //_receipt.Add("Beverages:");
-                        //foreach (ShopItem shopItem in Dm.SelectedItems)
-                        //{
-                        //    if (!shopItem.IsFood)
-                        //    {
-                        //        _receipt.Add($"Item {shopItem.Name} Price {shopItem.Price} Quantity {shopItem.Quantity}");
-                        //        _receipt.Add($"     Subtotal: {shopItem.SubTotal}");
-                        //    }
-                        //}
-                        //_receipt.Add($"Total {Dm.SelectedItems.Sum(x => x.SubTotal)}");
-                        //Receipt = _receipt;
+                        _receipt.Add($"Loan Stand: {SelectedLoanStand.Name}");
+                        _receipt.Add($"Customer: {Visitor.FirstName} {Visitor.LastName}");
+                        _receipt.Add(DateTime.Now.ToShortDateString());
+                        _receipt.Add("-----------------------------");
+                        _receipt.Add("Loaned Items:");
+                        foreach (LoanStandItem lsi in SelectedItems)
+                        {
+                                _receipt.Add($"Item: {lsi.Name} Price: {lsi.Price} Quantity: {lsi.Quantity}");
+                                _receipt.Add($"Subtotal: {lsi.SubTotal}");
+                        }
+                        _receipt.Add("-----------------------------");
+                        _receipt.Add($"Total {Total}");
+                        Receipt = _receipt;
                         _loanItems = dh.GetLoanStandItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedLoanStand.ID);
                         _selectedItems.Clear();
                         SelectedItems = _selectedItems;
@@ -660,6 +649,8 @@ namespace EventManager.ViewModels
         public void Reset(object sender, EventArgs e)
         {
             Display = new Display(Brushes.Black, "Scan vistors \nRFID", "", true, false);
+            _receipt = new List<string>();
+            Receipt = _receipt;
             Loans = new List<Loan>();
             _loanItems = dh.GetLoanStandItems(Convert.ToInt32(Dm.EmployeeNumber), SelectedLoanStand.ID);
             _selectedItems.Clear();

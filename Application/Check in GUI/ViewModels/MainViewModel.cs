@@ -13,6 +13,8 @@ using EventManager.Views;
 using Phidget22;
 using Phidget22.Events;
 using System.Windows.Media;
+using System.Media;
+using System.IO;
 
 namespace EventManager.ViewModels
 {
@@ -22,14 +24,13 @@ namespace EventManager.ViewModels
     {
 
 
-
+        public SoundPlayer player = new SoundPlayer();
         DispatcherTimer timer;
         int attemptCount;
         int timeTillRetry;
         public DispatcherTimer ResetTimer { get; private set; }
         public bool isConnected {  get; set; }
         public RFID _MyRFIDReader;
-        private WaveOut waveOut;
         private DispatcherTimer databaseChecker;
         public LoginViewModel Login { get; private set; }
         public AdminViewModel Admin { get; private set; }
@@ -315,6 +316,13 @@ namespace EventManager.ViewModels
             CheckDatabaseConnection(null, null);
         }
 
+        public void PlaySound(UnmanagedMemoryStream sound)
+        {
+            using (var player = new SoundPlayer(sound))
+            {
+                player.Play();
+            }
+        }
     }
     
 }

@@ -2,7 +2,9 @@
 using EventManager.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -107,6 +109,7 @@ namespace EventManager.ViewModels
                     {
                         Dm.ShowAdmin = true;
                     }
+                    _mainViewModel.PlaySound(Properties.Resources.correct);
                     _mainViewModel.ChangePageCommand.Execute(_mainViewModel.Apps);
                 }
                 
@@ -114,7 +117,8 @@ namespace EventManager.ViewModels
             }
             else
             {
-                MessageBox.Show("Wrong username or password");
+                _mainViewModel.PlaySound(Properties.Resources.error);
+                pwBox.Password = "";
             }
         }
         public LoginViewModel(MainViewModel mainViewModel)

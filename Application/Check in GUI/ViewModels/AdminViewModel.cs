@@ -219,6 +219,7 @@ namespace EventManager.ViewModels
                             SelectedJob = null;
                             SelectedLoanStand = null;
                             SelectedShop = null;
+                            _mainViewModel.PlaySound(Properties.Resources.correct);
                         }
                         else
                         {

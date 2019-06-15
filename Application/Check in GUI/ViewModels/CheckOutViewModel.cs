@@ -350,7 +350,7 @@ namespace EventManager.ViewModels
                     dh.ReturnLoanedItems(Loans.ToList(), Visitor);
                     dh.MarkVisitorAccountAsInvalid(Visitor.TicketNr);
                     Visitor = _mainViewModel.dataHelper.GetVisitor(Visitor.TicketNr);
-                    Display = new Display(Brushes.Green, $"Visitor succesfully Permantly checked out, Return amount:{Visitor.Balance}", "", false, false);
+                    Display = new Display(Brushes.Green, $"Visitor succesfully Permantly checked out,\nReturn amount:{Visitor.Balance}", "", false, false);
                     _mainViewModel.ResetTimer.Interval = new TimeSpan(0, 0, 10);
                     _mainViewModel.ResetTimer.Start();
                 }
