@@ -229,9 +229,9 @@ namespace EventManager.ViewModels
                     client.Timeout = 1000;
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     client.UseDefaultCredentials = false;
-                    client.Credentials = new System.Net.NetworkCredential("ovelking@gmail.com", "welcome18255");
+                    client.Credentials = new System.Net.NetworkCredential("email@email.com", "password123");
 
-                    MailMessage mm = new MailMessage("ovelking@gmail.com", $"{TempEmail}", "Temporary MAD Projects Account Creation", $"Welcome visitor To the Board Game event of the Year where you will be anything but Board \n This is your account password: {_mainViewModel.dataHelper.GetVisitorPassword(TempEmail)} for the Event's website http://i415306.hera.fhict.nl/");
+                    MailMessage mm = new MailMessage("email@email.com", $"{TempEmail}", "Temporary MAD Projects Account Creation", $"Welcome visitor To the Board Game event of the Year where you will be anything but Board \n This is your account password: {_mainViewModel.dataHelper.GetVisitorPassword(TempEmail)} for the Event's website http://i415306.hera.fhict.nl/");
                     mm.BodyEncoding = UTF8Encoding.UTF8;
                     mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
